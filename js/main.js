@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=14';
-import { loadLocals } from './dataSource.js?v=14';
-import { createCityMap } from './cityMap.js?v=14';
+import { metrics } from './metrics.js?v=15';
+import { loadLocals } from './dataSource.js?v=15';
+import { createCityMap } from './cityMap.js?v=15';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -282,10 +282,10 @@ els.select.addEventListener('change', () => {
   update();
 });
 
-// "Showing" ⇄ "Compare" segmented switch. Compare divides the metric by local
-// cost of living, so the two percentage metrics (which aren't dollars) can't
-// be compared against it.
-const COMPARE_EXCLUDED = ['col_pct', 'dues'];
+// "Showing" ⇄ "Compare" segmented switch. Compare turns the metric into a
+// cost-of-living-adjusted profitability score — only the three pay totals make
+// sense there, so the rest of the picker is locked out.
+const COMPARE_METRICS = ['total_package', 'hourly_rate', 'yearly_salary'];
 
 function setCompare(on) {
   state.compare = on;
@@ -296,12 +296,11 @@ function setCompare(on) {
   });
   els.modeNote.hidden = !on;
 
-  for (const id of COMPARE_EXCLUDED) {
-    const opt = els.select.querySelector(`option[value="${id}"]`);
-    if (opt) opt.disabled = on;
+  for (const opt of els.select.options) {
+    opt.disabled = on && !COMPARE_METRICS.includes(opt.value);
   }
-  if (on && COMPARE_EXCLUDED.includes(state.metricId)) {
-    state.metricId = 'total_package';
+  if (on && !COMPARE_METRICS.includes(state.metricId)) {
+    state.metricId = COMPARE_METRICS[0];
     els.select.value = state.metricId;
   }
 
