@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=11';
-import { loadLocals } from './dataSource.js?v=11';
-import { createCityMap } from './cityMap.js?v=11';
+import { metrics } from './metrics.js?v=12';
+import { loadLocals } from './dataSource.js?v=12';
+import { createCityMap } from './cityMap.js?v=12';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -46,6 +46,8 @@ const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const els = {
   select: document.getElementById('metric-select'),
+  modeToggle: document.getElementById('mode-toggle'),
+  modeNote: document.getElementById('mode-note'),
   list: document.getElementById('city-list'),
   panelTitle: document.getElementById('panel-title'),
   sortToggle: document.getElementById('sort-toggle'),
@@ -57,6 +59,9 @@ const state = {
   metricId: 'total_package',
   sortDesc: true,
   selectedId: null,
+  // "Compare" mode: divide the chosen metric by local cost of living, so values
+  // read as national-average dollars (how far the pay actually goes).
+  compare: false,
 };
 
 // Contiguous US — the first-load view. Panning to AK / HI / Canada still works
@@ -98,15 +103,18 @@ els.select.value = state.metricId;
 
 function pointsForMetric(metricId) {
   return locals
-    .filter((c) => Number.isFinite(c.values[metricId]))
-    .map((c) => ({
-      id: c.id,
-      name: c.name,
-      subtitle: c.subtitle,
-      lat: c.lat,
-      lng: c.lng,
-      value: c.values[metricId],
-    }));
+    .map((c) => {
+      let value = c.values[metricId];
+      if (!Number.isFinite(value)) return null;
+      if (state.compare) {
+        // divide by cost of living (as a fraction of the national average)
+        const col = c.values.col_pct;
+        if (!Number.isFinite(col) || col <= 0) return null;
+        value /= col / 100;
+      }
+      return { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value };
+    })
+    .filter(Boolean);
 }
 
 /* ---- ranked locals list ------------------------------------------------- */
@@ -239,17 +247,22 @@ function deselect() {
 function update() {
   const meta = metrics[state.metricId];
   const points = pointsForMetric(state.metricId);
+  const cmp = state.compare;
 
   map.setData(points, {
-    valueLabel: meta.label,
+    valueLabel: cmp ? `${meta.label} vs cost of living` : meta.label,
     formatValue: meta.format,
   });
   map.renderLegend('#legend');
 
-  els.panelTitle.textContent = loadError ? 'IBEW Locals' : `${meta.label} · ${points.length} locals`;
+  els.panelTitle.textContent = loadError
+    ? 'IBEW Locals'
+    : `${meta.label}${cmp ? ' vs cost of living' : ''} · ${points.length} locals`;
   els.readout.textContent = loadError
     ? 'Data unavailable — see the list.'
-    : `${meta.label} — ${meta.unit}. ${meta.hint}.`;
+    : cmp
+      ? `${meta.label} ÷ local cost of living — higher means the pay goes further.`
+      : `${meta.label} — ${meta.unit}. ${meta.hint}.`;
   els.sortLabel.textContent = state.sortDesc ? 'High → Low' : 'Low → High';
 
   renderList(points, meta);
@@ -259,6 +272,15 @@ function update() {
 
 els.select.addEventListener('change', () => {
   state.metricId = els.select.value;
+  update();
+});
+
+// "Showing" ⇄ "Compare" — Compare divides the metric by local cost of living.
+els.modeToggle.addEventListener('click', () => {
+  state.compare = !state.compare;
+  els.modeToggle.textContent = state.compare ? 'Compare' : 'Showing';
+  els.modeToggle.setAttribute('aria-pressed', String(state.compare));
+  els.modeNote.hidden = !state.compare;
   update();
 });
 
