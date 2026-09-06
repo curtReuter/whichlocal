@@ -36,6 +36,10 @@ try {
   console.error(e);
 }
 
+// id → full local (all metric values, wage-sheet URL, source date) for the
+// expanding detail panel.
+const localById = new Map(locals.map((c) => [c.id, c]));
+
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const els = {
@@ -88,8 +92,47 @@ function pointsForMetric(metricId) {
 
 /* ---- ranked locals list ------------------------------------------------- */
 
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 function renderMessage(text) {
   els.list.innerHTML = `<li class="city-list__empty">${text}</li>`;
+}
+
+// The green panel that expands under the selected local: every metric it has a
+// value for, plus the source date and wage-sheet link.
+function buildDetail(local) {
+  if (!local) return '';
+
+  const cells = [];
+  for (const [id, m] of Object.entries(metrics)) {
+    const v = local.values[id];
+    if (!Number.isFinite(v)) continue;
+    cells.push(
+      '<div class="detail__cell">' +
+        `<span class="detail__k">${esc(m.label)}</span>` +
+        `<span class="detail__v">${esc(m.format(v))}</span>` +
+      '</div>',
+    );
+  }
+
+  const foot = [];
+  if (local.sourceUpdated) foot.push(`<span>Source updated ${esc(local.sourceUpdated)}</span>`);
+  if (local.wageSheetUrl) {
+    foot.push(
+      `<a href="${esc(local.wageSheetUrl)}" target="_blank" rel="noopener">Wage sheet&nbsp;↗</a>`,
+    );
+  }
+
+  return (
+    '<div class="city-list__detail"><div class="detail__inner">' +
+      `<div class="detail__grid">${cells.join('')}</div>` +
+      (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '') +
+    '</div></div>'
+  );
 }
 
 function renderList(points, meta) {
@@ -108,34 +151,53 @@ function renderList(points, meta) {
   const sorted = [...points].sort((a, b) =>
     state.sortDesc ? b.value - a.value : a.value - b.value
   );
+  const rankById = new Map(sorted.map((p, i) => [p.id, i + 1]));
+
+  // Pull the selected local to the top; everything else keeps its ranked order.
+  let ordered = sorted;
+  const selIdx = sorted.findIndex((p) => p.id === state.selectedId);
+  if (selIdx > 0) {
+    ordered = [sorted[selIdx], ...sorted.slice(0, selIdx), ...sorted.slice(selIdx + 1)];
+  }
 
   els.list.innerHTML = '';
-  sorted.forEach((p, i) => {
+  ordered.forEach((p) => {
+    const isSel = p.id === state.selectedId;
     const li = document.createElement('li');
-    li.className = 'city-list__item' + (p.id === state.selectedId ? ' is-active' : '');
+    li.className = 'city-list__item' + (isSel ? ' is-active' : '');
     li.dataset.id = p.id;
-    li.innerHTML = `
-      <span class="city-list__rank">${i + 1}</span>
-      <span class="city-list__body">
-        <span class="city-list__name">${p.name}</span>
-        <span class="city-list__sub">${p.subtitle}</span>
-      </span>
-      <span class="city-list__value">${meta.format(p.value)}</span>`;
-    li.addEventListener('click', () => {
-      map.select(p.id);
-      setSelected(p.id);
-    });
+    li.innerHTML =
+      '<div class="city-list__row">' +
+        `<span class="city-list__rank">${rankById.get(p.id)}</span>` +
+        '<span class="city-list__body">' +
+          `<span class="city-list__name">${esc(p.name)}</span>` +
+          `<span class="city-list__sub">${esc(p.subtitle)}</span>` +
+        '</span>' +
+        `<span class="city-list__value">${esc(meta.format(p.value))}</span>` +
+      '</div>' +
+      (isSel ? buildDetail(localById.get(p.id)) : '');
+    li.querySelector('.city-list__row').addEventListener('click', () => onSelect(p.id));
     els.list.appendChild(li);
   });
 }
 
-function setSelected(id) {
-  state.selectedId = id;
-  els.list.querySelectorAll('.city-list__item').forEach((li) => {
-    li.classList.toggle('is-active', li.dataset.id === id);
-  });
-  const active = els.list.querySelector('.is-active');
+function rerenderList() {
+  renderList(pointsForMetric(state.metricId), metrics[state.metricId]);
+}
+
+function scrollActiveIntoView() {
+  const active = els.list.querySelector('.city-list__item.is-active');
   if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+// Selection entry point. `fromMap` is true when the map's own select event
+// drove this (so we don't call back into the map and loop).
+function onSelect(id, { fromMap = false } = {}) {
+  const changed = state.selectedId !== id;
+  state.selectedId = id;
+  if (!fromMap) map.select(id);            // pan to + highlight the marker
+  if (changed || !fromMap) rerenderList(); // reorder the list, expand the panel
+  scrollActiveIntoView();
 }
 
 /* ---- redraw everything for the current metric ----------------------------- */
@@ -171,7 +233,7 @@ els.sortToggle.addEventListener('click', () => {
   update();
 });
 
-map.on('select', (city) => setSelected(city.id));
+map.on('select', (city) => onSelect(city.id, { fromMap: true }));
 
 /* ---- resizable sidebar (desktop only), width saved in a cookie ---------- */
 
