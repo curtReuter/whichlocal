@@ -8,12 +8,14 @@ import { metrics } from './metrics.js';
 import { loadLocals } from './dataSource.js';
 import { createCityMap } from './cityMap.js';
 
-// Local, gitignored config (CARTO key + PocketBase URL).
-let config = { cartoApiKey: '', pocketbaseUrl: 'http://127.0.0.1:8090' };
+// Local, gitignored config (CARTO key + PocketBase URL). With no config.local.js
+// (the normal case on a static host), pocketbaseUrl is '' and the app reads the
+// committed js/data/locals.json snapshot instead of a live PocketBase.
+let config = { cartoApiKey: '', pocketbaseUrl: '' };
 try {
   ({ config } = await import('./config.local.js'));
 } catch {
-  console.info('js/config.local.js not found — using defaults.');
+  console.info('js/config.local.js not found — reading the bundled data snapshot.');
 }
 
 // Pull the IBEW locals from PocketBase up front. On failure the app still
@@ -87,7 +89,7 @@ function renderList(points, meta) {
   if (loadError) {
     renderMessage(
       `Couldn't load the data.<br><span>${loadError}</span><br>` +
-      `Start it with <code>./pb/pocketbase serve</code>, then <code>node scripts/scrape.mjs</code>.`,
+      `In local dev, run <code>./pb/pocketbase serve</code> then <code>node scripts/scrape.mjs</code>.`,
     );
     return;
   }

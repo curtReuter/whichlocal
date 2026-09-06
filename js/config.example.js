@@ -8,5 +8,9 @@ export const config = {
   cartoApiKey: '',
 
   // Where the frontend reads the scraped IBEW data from.
+  //   'http://127.0.0.1:8090'  → a live PocketBase (local dev)
+  //   ''                       → js/data/locals.json, the daily snapshot the
+  //                              GitHub Action commits (used on static hosts,
+  //                              which is why the deployed site needs no config)
   pocketbaseUrl: 'http://127.0.0.1:8090',
 };

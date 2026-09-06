@@ -1,0 +1,79 @@
+name: Daily scrape
+
+# Refreshes the IBEW wage data once a day and commits an updated
+# js/data/locals.json. Any static host watching this branch (GitHub Pages,
+# Netlify, Vercel, Cloudflare Pages) then redeploys automatically — no server
+# and no PocketBase instance needed in production.
+
+on:
+  schedule:
+    # 08:27 UTC daily. GitHub cron is best-effort and can lag by a few minutes
+    # (or skip under heavy load); pick an off-peak, non-round minute.
+    - cron: "27 8 * * *"
+  workflow_dispatch: {}   # let you run it on demand from the Actions tab
+
+# Never let two runs race to push.
+concurrency:
+  group: daily-scrape
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # to commit the refreshed snapshot back to the branch
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25   # first run geocodes ~300 cities at 1 req/s (~6 min)
+
+    env:
+      PB_URL: http://127.0.0.1:8090
+      PB_ADMIN_EMAIL: ${{ secrets.PB_ADMIN_EMAIL }}
+      PB_ADMIN_PASSWORD: ${{ secrets.PB_ADMIN_PASSWORD }}
+      SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+      PB_VERSION: 0.40.3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download PocketBase
+        run: |
+          curl -sL -o pb.zip \
+            "https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip"
+          unzip -o pb.zip -d pb && rm pb.zip
+          chmod +x pb/pocketbase
+
+      - name: Start PocketBase (ephemeral DB, schema from pb/pb_migrations/)
+        run: |
+          if [ -z "$PB_ADMIN_EMAIL" ] || [ -z "$PB_ADMIN_PASSWORD" ]; then
+            echo "::error::PB_ADMIN_EMAIL / PB_ADMIN_PASSWORD repo secrets are not set."
+            exit 1
+          fi
+          pb/pocketbase superuser upsert "$PB_ADMIN_EMAIL" "$PB_ADMIN_PASSWORD"
+          nohup pb/pocketbase serve --http=127.0.0.1:8090 > pb/serve.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:8090/api/health >/dev/null && break
+            sleep 1
+          done
+          curl -sf http://127.0.0.1:8090/api/health || { echo "PocketBase did not start:"; cat pb/serve.log; exit 1; }
+
+      - name: Scrape → geocode → upsert
+        run: node scripts/scrape.mjs
+
+      - name: Export static snapshot
+        run: node scripts/export-snapshot.mjs
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data/locals.json scripts/cache/geocache.json
+          if git diff --cached --quiet; then
+            echo "No data changes today."
+          else
+            git commit -m "data: daily scrape $(date -u +%Y-%m-%d)"
+            git push
+          fi
