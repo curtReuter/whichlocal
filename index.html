@@ -14,7 +14,7 @@
   <!-- ?v= busts GitHub Pages' 10-min asset cache. Bump it (here + in the
        matching imports at the top of js/main.js) whenever a frontend file
        changes, so reloads pick the change up without a hard refresh. -->
-  <link rel="stylesheet" href="css/styles.css?v=15">
+  <link rel="stylesheet" href="css/styles.css?v=16">
 </head>
 <body>
   <div class="app">
@@ -28,12 +28,15 @@
       </div>
 
       <div class="metric-switch" role="group" aria-label="Choose a metric">
-        <div class="mode-switch" role="group" aria-label="Value mode" title="Compare divides the metric by local cost of living">
-          <button type="button" class="mode-switch__opt is-on" data-mode="showing" aria-pressed="true">Showing</button>
-          <button type="button" class="mode-switch__opt" data-mode="compare" aria-pressed="false">Compare</button>
-        </div>
+        <button
+          type="button"
+          id="mode-toggle"
+          class="metric-switch__toggle"
+          aria-pressed="false"
+          title="Compare the chosen metric against local cost of living"
+        >Showing</button>
         <select id="metric-select" class="metric-switch__select" aria-label="Metric"></select>
-        <span class="metric-switch__note" id="mode-note" hidden>profitability score</span>
+        <span class="metric-switch__note" id="mode-note" hidden>vs. cost of living</span>
       </div>
     </header>
 
@@ -79,6 +82,6 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
     crossorigin=""
   ></script>
-  <script type="module" src="js/main.js?v=15"></script>
+  <script type="module" src="js/main.js?v=16"></script>
 </body>
 </html>
