@@ -10,6 +10,7 @@ on:
     paths:
       - scripts/overrides.json
       - scripts/lib/overrides.mjs
+      - scripts/lib/derive.mjs
       - scripts/apply-overrides.mjs
   workflow_dispatch: {}
 

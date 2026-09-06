@@ -17,6 +17,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadOverrides, resolveOverrides, mergeOverride } from './lib/overrides.mjs';
+import { totalPackage } from './lib/derive.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'js', 'data', 'locals.json');
@@ -68,14 +69,26 @@ issues.forEach((m) => console.warn(`  ${m}`));
 let overridesApplied = 0;
 const merged = shaped.map((rec) => {
   const override = overrides.get(rec.slug);
-  if (!override) return rec;
 
-  const { record, applied } = mergeOverride(rec, override);
-  if (applied.length) {
-    overridesApplied++;
-    console.log(`  override ${rec.slug}: ${applied.join(', ')}`);
-  } else {
-    console.warn(`  override ${rec.slug}: no effect — the scrape already matches or exceeds it; safe to remove`);
+  let record = rec;
+  if (override) {
+    const res2 = mergeOverride(rec, override);
+    record = res2.record;
+    if (res2.applied.length) {
+      overridesApplied++;
+      console.log(`  override ${rec.slug}: ${res2.applied.join(', ')}`);
+    } else {
+      console.warn(`  override ${rec.slug}: no effect — the scrape already matches or exceeds it; safe to remove`);
+    }
+  }
+
+  // Recompute total_package as the sum of its components (see lib/derive.mjs),
+  // now including any override just merged in. An override that sets
+  // total_package explicitly pins it. `total_package` is already a key on the
+  // record, so assign in place to keep the field order stable.
+  if (!(override && 'total_package' in override)) {
+    const tp = totalPackage(record);
+    if (tp !== null) record.total_package = tp;
   }
   return record;
 });
