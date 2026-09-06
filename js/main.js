@@ -57,9 +57,13 @@ const state = {
   selectedId: null,
 };
 
+// Contiguous US — the first-load view. Panning to AK / HI / Canada still works
+// (the map's maxBounds is the wider North-America box).
+const US_BOUNDS = [[25.5, -123.5], [48.5, -67]];
+
 const map = createCityMap('#map', {
   theme: prefersDark ? 'dark' : 'light',
-  center: [43, -96], // North America — the map is pan-locked to this region
+  center: [39.5, -98], // continental US; refined to US_BOUNDS on load
   zoom: 4,
   minZoom: 3,
   cartoApiKey: config.cartoApiKey || '',
@@ -329,8 +333,10 @@ window.addEventListener('resize', () => {
 /* ---- go ----------------------------------------------------------------- */
 
 update();
-// let the grid settle at the restored --panel-w, then size the map to it
+// let the grid settle at the restored --panel-w, then size the map to it and
+// frame the contiguous US (rather than fitToData, which zooms out for the
+// handful of AK / HI / Canada locals).
 requestAnimationFrame(() => {
   map.resize();
-  map.fitToData();
+  map.leaflet.fitBounds(US_BOUNDS, { padding: [8, 8] });
 });

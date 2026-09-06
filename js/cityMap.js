@@ -24,6 +24,7 @@ const DEFAULT_OPTIONS = {
   zoom: 4,
   minZoom: 3,
   maxZoom: 12,
+  zoomSnap: 0.25,                    // allow fractional zoom so fitBounds can land tighter
   maxBounds: [[5, -170], [75, -45]], // pan-lock box: North America only (null = no lock)
   maxBoundsViscosity: 1.0,           // 1 = hard wall at the bounds
   minRadius: 8,     // px — radius of the smallest value
@@ -118,6 +119,7 @@ export function createCityMap(target, userOptions = {}) {
     maxZoom: opts.maxZoom,
     maxBounds: opts.maxBounds ? L.latLngBounds(opts.maxBounds) : undefined,
     maxBoundsViscosity: opts.maxBoundsViscosity,
+    zoomSnap: opts.zoomSnap,
     zoomControl: true,
   });
 
