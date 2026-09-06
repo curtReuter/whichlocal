@@ -93,7 +93,10 @@ async function loadFromSnapshot() {
 
   let res;
   try {
-    res = await fetch(url);
+    // `no-cache` = always revalidate with the server (conditional request, 304
+    // when unchanged) rather than trusting GitHub Pages' 10-minute max-age. Lets
+    // a fresh scrape/correction show on a normal reload, not just a hard one.
+    res = await fetch(url, { cache: 'no-cache' });
   } catch (e) {
     throw new Error(`Couldn't load the data snapshot at ${url} (${e.message}).`);
   }
