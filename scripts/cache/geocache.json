@@ -1,0 +1,1218 @@
+{
+  "Akron|OH": {
+    "lat": 41.08306,
+    "lng": -81.51848
+  },
+  "Albany|GA": {
+    "lat": 31.57821,
+    "lng": -84.15568
+  },
+  "Albany|NY": {
+    "lat": 42.65117,
+    "lng": -73.75497
+  },
+  "Albuquerque|NM": {
+    "lat": 35.0841,
+    "lng": -106.65099
+  },
+  "Alexandria / Pineville|LA": {
+    "lat": 31.35562,
+    "lng": -92.41856
+  },
+  "All of Vermont|VT": {
+    "lat": 42.96198,
+    "lng": -72.90787
+  },
+  "Allentown|PA": {
+    "lat": 40.60226,
+    "lng": -75.47161
+  },
+  "Alton|IL": {
+    "lat": 38.89086,
+    "lng": -90.18431
+  },
+  "Amarillo|TX": {
+    "lat": 35.20729,
+    "lng": -101.83712
+  },
+  "Anchorage|AK": {
+    "lat": 61.21631,
+    "lng": -149.89485
+  },
+  "Ann Arbor|MI": {
+    "lat": 42.28137,
+    "lng": -83.74846
+  },
+  "Appleton|WI": {
+    "lat": 44.2614,
+    "lng": -88.40697
+  },
+  "Asbury Park|NJ": {
+    "lat": 40.22039,
+    "lng": -74.01208
+  },
+  "Asheville|NC": {
+    "lat": 35.59536,
+    "lng": -82.55084
+  },
+  "Atlanta|GA": {
+    "lat": 33.75447,
+    "lng": -84.38982
+  },
+  "Auburn|ME": {
+    "lat": 44.09654,
+    "lng": -70.22495
+  },
+  "Augusta|GA": {
+    "lat": 33.47097,
+    "lng": -81.97484
+  },
+  "Augusta|ME": {
+    "lat": 44.3148,
+    "lng": -69.77439
+  },
+  "Aurora|IL": {
+    "lat": 41.75717,
+    "lng": -88.31475
+  },
+  "Austin|TX": {
+    "lat": 30.27113,
+    "lng": -97.7437
+  },
+  "Bakersfield|CA": {
+    "lat": 35.37387,
+    "lng": -119.01946
+  },
+  "Baltimore|MD": {
+    "lat": 39.29088,
+    "lng": -76.61076
+  },
+  "Baton Rouge|LA": {
+    "lat": 30.44942,
+    "lng": -91.18697
+  },
+  "Battle Creek|MI": {
+    "lat": 42.31925,
+    "lng": -85.18243
+  },
+  "Bay City|MI": {
+    "lat": 43.59621,
+    "lng": -83.88817
+  },
+  "Beaumont|TX": {
+    "lat": 30.08293,
+    "lng": -94.09843
+  },
+  "Beaver|PA": {
+    "lat": 40.69166,
+    "lng": -80.371
+  },
+  "Beechville|NS": {
+    "lat": 44.63762,
+    "lng": -63.67836
+  },
+  "Billings|MT": {
+    "lat": 45.7875,
+    "lng": -108.49607
+  },
+  "Binghamton|NY": {
+    "lat": 42.0987,
+    "lng": -75.91252
+  },
+  "Birmingham|AL": {
+    "lat": 33.52068,
+    "lng": -86.80243
+  },
+  "Bloomington|IL": {
+    "lat": 40.47978,
+    "lng": -88.99391
+  },
+  "Bogalusa|LA": {
+    "lat": 30.79102,
+    "lng": -89.84869
+  },
+  "Boise|ID": {
+    "lat": 43.61662,
+    "lng": -116.20089
+  },
+  "Boston|MA": {
+    "lat": 42.35883,
+    "lng": -71.05783
+  },
+  "Bridgeport|CT": {
+    "lat": 41.17927,
+    "lng": -73.18879
+  },
+  "Brockton|MA": {
+    "lat": 42.08343,
+    "lng": -71.01838
+  },
+  "Buffalo|NY": {
+    "lat": 42.88642,
+    "lng": -78.87815
+  },
+  "Burlington|IA": {
+    "lat": 40.81269,
+    "lng": -91.10202
+  },
+  "Canton|OH": {
+    "lat": 40.79855,
+    "lng": -81.37495
+  },
+  "Casper|WY": {
+    "lat": 42.85012,
+    "lng": -106.32514
+  },
+  "Castroville|CA": {
+    "lat": 36.76412,
+    "lng": -121.75176
+  },
+  "Cedar Rapids N|IA": {
+    "lat": 41.97589,
+    "lng": -91.67041
+  },
+  "Central Ontario|ON": {
+    "lat": 44.9376,
+    "lng": -78.99256
+  },
+  "Champaign|IL": {
+    "lat": 40.11648,
+    "lng": -88.24309
+  },
+  "Charleston|SC": {
+    "lat": 32.78844,
+    "lng": -79.93993
+  },
+  "Charleston|WV": {
+    "lat": 38.3506,
+    "lng": -81.63328
+  },
+  "Charlotte|NC": {
+    "lat": 35.22721,
+    "lng": -80.84308
+  },
+  "Chattanooga|TN": {
+    "lat": 35.04572,
+    "lng": -85.30949
+  },
+  "Chester|PA": {
+    "lat": 39.98293,
+    "lng": -75.76524
+  },
+  "Cheswick|PA": {
+    "lat": 40.5411,
+    "lng": -79.80134
+  },
+  "Cheyenne|WY": {
+    "lat": 41.13998,
+    "lng": -104.82025
+  },
+  "Chicago|IL": {
+    "lat": 41.87556,
+    "lng": -87.62442
+  },
+  "Cincinnati|OH": {
+    "lat": 39.10128,
+    "lng": -84.51274
+  },
+  "Clarksburg|WV": {
+    "lat": 39.28065,
+    "lng": -80.34453
+  },
+  "Cleveland|OH": {
+    "lat": 41.49966,
+    "lng": -81.69368
+  },
+  "Collinsville|IL": {
+    "lat": 38.67033,
+    "lng": -89.98455
+  },
+  "Colorado Springs|CO": {
+    "lat": 38.83396,
+    "lng": -104.82535
+  },
+  "Columbus|OH": {
+    "lat": 39.96226,
+    "lng": -83.00071
+  },
+  "Concord|NH": {
+    "lat": 43.20718,
+    "lng": -71.53748
+  },
+  "Coopersville/West Michigan|MI": {
+    "lat": 43.06026,
+    "lng": -85.95825
+  },
+  "Coos Bay|OR": {
+    "lat": 43.36789,
+    "lng": -124.21746
+  },
+  "Corinth|MS": {
+    "lat": 34.93436,
+    "lng": -88.52234
+  },
+  "Corpus Christi|TX": {
+    "lat": 27.76353,
+    "lng": -97.40332
+  },
+  "Cumberland|MD": {
+    "lat": 39.65265,
+    "lng": -78.76238
+  },
+  "Dallas|TX": {
+    "lat": 32.77627,
+    "lng": -96.79686
+  },
+  "Danville|IL": {
+    "lat": 40.12522,
+    "lng": -87.63046
+  },
+  "Davenport|IA": {
+    "lat": 41.52247,
+    "lng": -90.57564
+  },
+  "Daytona Beach|FL": {
+    "lat": 29.21081,
+    "lng": -81.02283
+  },
+  "Dayton|OH": {
+    "lat": 39.75895,
+    "lng": -84.19161
+  },
+  "Decatur|IL": {
+    "lat": 39.84542,
+    "lng": -88.95242
+  },
+  "Denver|CO": {
+    "lat": 39.73924,
+    "lng": -104.98486
+  },
+  "Des Moines|IA": {
+    "lat": 41.58687,
+    "lng": -93.62495
+  },
+  "Detroit|MI": {
+    "lat": 42.33155,
+    "lng": -83.04664
+  },
+  "Dublin|CA": {
+    "lat": 37.70215,
+    "lng": -121.93579
+  },
+  "Dubuque|IA": {
+    "lat": 42.50062,
+    "lng": -90.6648
+  },
+  "Duluth|MN": {
+    "lat": 46.78383,
+    "lng": -92.10527
+  },
+  "Eastern Shore|MD": {
+    "lat": 39.60651,
+    "lng": -76.0674
+  },
+  "Eau Claire / Fall Creek|WI": {
+    "lat": 44.81135,
+    "lng": -91.49849
+  },
+  "Edmonton|AB": {
+    "lat": 53.54621,
+    "lng": -113.49124
+  },
+  "El Dorado|AR": {
+    "lat": 33.21151,
+    "lng": -92.66501
+  },
+  "El Paso - Zone 1|TX": {
+    "lat": 31.7601,
+    "lng": -106.48705
+  },
+  "El Paso - Zone 2|TX": {
+    "lat": 31.7601,
+    "lng": -106.48705
+  },
+  "Elgin|IL": {
+    "lat": 42.03726,
+    "lng": -88.2811
+  },
+  "Elmira|NY": {
+    "lat": 42.0898,
+    "lng": -76.80773
+  },
+  "Erie|PA": {
+    "lat": 42.12947,
+    "lng": -80.08527
+  },
+  "Evansville|IN": {
+    "lat": 37.97049,
+    "lng": -87.57156
+  },
+  "Everett|WA": {
+    "lat": 47.97934,
+    "lng": -122.2127
+  },
+  "FT. Lauderdale|FL": {
+    "lat": 26.12231,
+    "lng": -80.14338
+  },
+  "Flint|MI": {
+    "lat": 43.01617,
+    "lng": -83.69002
+  },
+  "Folsom|NJ": {
+    "lat": 39.60206,
+    "lng": -74.84267
+  },
+  "Fort Smith|AR": {
+    "lat": 35.38803,
+    "lng": -94.4265
+  },
+  "Fort Wayne|IN": {
+    "lat": 41.07999,
+    "lng": -85.1386
+  },
+  "Fredericton|NB": {
+    "lat": 45.94883,
+    "lng": -66.62918
+  },
+  "Fresno|CA": {
+    "lat": 36.73944,
+    "lng": -119.78483
+  },
+  "Gainesville|FL": {
+    "lat": 29.65197,
+    "lng": -82.32498
+  },
+  "Galesburg|IL": {
+    "lat": 40.94757,
+    "lng": -90.37122
+  },
+  "Galveston County|TX": {
+    "lat": 29.38723,
+    "lng": -94.99274
+  },
+  "Gary Hammonds|IN": {
+    "lat": 41.6021,
+    "lng": -87.33706
+  },
+  "Geneva|NY": {
+    "lat": 42.86903,
+    "lng": -76.97861
+  },
+  "Gilbert|AZ": {
+    "lat": 33.35276,
+    "lng": -111.78904
+  },
+  "Globe|AZ": {
+    "lat": 33.39591,
+    "lng": -110.78717
+  },
+  "Grand Forks|ND": {
+    "lat": 47.92521,
+    "lng": -97.03063
+  },
+  "Green Bay|WI": {
+    "lat": 44.51264,
+    "lng": -88.01258
+  },
+  "Greensboro|NC": {
+    "lat": 36.07264,
+    "lng": -79.79198
+  },
+  "Gulfport|MS": {
+    "lat": 30.36742,
+    "lng": -89.09282
+  },
+  "Hamilton|OH": {
+    "lat": 39.20854,
+    "lng": -84.55019
+  },
+  "Hamilton|ON": {
+    "lat": 43.25608,
+    "lng": -79.87286
+  },
+  "Hannibal|MO": {
+    "lat": 39.70825,
+    "lng": -91.35874
+  },
+  "Harrisburg|PA": {
+    "lat": 40.26631,
+    "lng": -76.88611
+  },
+  "Hartford|CT": {
+    "lat": 41.76458,
+    "lng": -72.69085
+  },
+  "Helena|MT": {
+    "lat": 46.59274,
+    "lng": -112.03628
+  },
+  "Hibbing|MN": {
+    "lat": 47.42715,
+    "lng": -92.93769
+  },
+  "Hollywood|CA": {
+    "lat": 34.098,
+    "lng": -118.32952
+  },
+  "Honolulu|HI": {
+    "lat": 21.30455,
+    "lng": -157.85568
+  },
+  "Houston|TX": {
+    "lat": 29.75894,
+    "lng": -95.3677
+  },
+  "Huntington|WV": {
+    "lat": 38.41925,
+    "lng": -82.44515
+  },
+  "Hutchinson|KS": {
+    "lat": 38.06084,
+    "lng": -97.92977
+  },
+  "Indianapolis|IN": {
+    "lat": 39.76833,
+    "lng": -86.15835
+  },
+  "Ithaca|NY": {
+    "lat": 42.43742,
+    "lng": -76.54837
+  },
+  "Jacksonville|FL": {
+    "lat": 30.32622,
+    "lng": -81.65792
+  },
+  "Jackson|MS": {
+    "lat": 32.29987,
+    "lng": -90.18304
+  },
+  "Jamestown|NY": {
+    "lat": 42.09652,
+    "lng": -79.23803
+  },
+  "Janesville|WI": {
+    "lat": 42.68298,
+    "lng": -89.02268
+  },
+  "Jefferson City|MO": {
+    "lat": 38.57736,
+    "lng": -92.17243
+  },
+  "Jersey City|NJ": {
+    "lat": 40.72157,
+    "lng": -74.04745
+  },
+  "Joliet - Zone 1|IL": {
+    "lat": 41.52636,
+    "lng": -88.08402
+  },
+  "Joliet - Zone 2|IL": {
+    "lat": 41.52636,
+    "lng": -88.08402
+  },
+  "Joliet - Zone 3|IL": {
+    "lat": 41.52636,
+    "lng": -88.08402
+  },
+  "Jonesboro|AR": {
+    "lat": 35.83481,
+    "lng": -90.70453
+  },
+  "Joplin|MO": {
+    "lat": 37.08418,
+    "lng": -94.51334
+  },
+  "Kalamazoo|MI": {
+    "lat": 42.29171,
+    "lng": -85.58723
+  },
+  "Kalispell|MT": {
+    "lat": 48.20216,
+    "lng": -114.31532
+  },
+  "Kansas City|MO": {
+    "lat": 39.1001,
+    "lng": -94.57814
+  },
+  "Kennewick|WA": {
+    "lat": 46.20871,
+    "lng": -119.11992
+  },
+  "Kenosha|WI": {
+    "lat": 42.58468,
+    "lng": -87.82123
+  },
+  "Kingsport|TN": {
+    "lat": 36.55024,
+    "lng": -82.55943
+  },
+  "Knoxville|TN": {
+    "lat": 35.96039,
+    "lng": -83.92103
+  },
+  "Kokomo|IN": {
+    "lat": 40.48644,
+    "lng": -86.13364
+  },
+  "La Porte|IN": {
+    "lat": 41.6106,
+    "lng": -86.72252
+  },
+  "Lafayette|IN": {
+    "lat": 40.41912,
+    "lng": -86.8919
+  },
+  "Lake Charles|LA": {
+    "lat": 30.23051,
+    "lng": -93.21698
+  },
+  "Lakeside|NS": {
+    "lat": 44.63842,
+    "lng": -63.69804
+  },
+  "Lansing|MI": {
+    "lat": 42.73383,
+    "lng": -84.55463
+  },
+  "Las Cruces (Dona Ana county group)|NM": {
+    "lat": 32.31404,
+    "lng": -106.77981
+  },
+  "Las Vegas|NV": {
+    "lat": 36.16743,
+    "lng": -115.14841
+  },
+  "Lima|OH": {
+    "lat": 40.73998,
+    "lng": -84.10501
+  },
+  "Lincoln|NE": {
+    "lat": 40.80889,
+    "lng": -96.70778
+  },
+  "Little Rock|AR": {
+    "lat": 34.74651,
+    "lng": -92.28963
+  },
+  "London|ON": {
+    "lat": 42.98367,
+    "lng": -81.24961
+  },
+  "Long Island|NY": {
+    "lat": 40.8515,
+    "lng": -73.09943
+  },
+  "Lorain|OH": {
+    "lat": 41.26336,
+    "lng": -82.17347
+  },
+  "Los Angeles|CA": {
+    "lat": 34.05369,
+    "lng": -118.24277
+  },
+  "Louisville|KY": {
+    "lat": 38.25424,
+    "lng": -85.75941
+  },
+  "Macon|GA": {
+    "lat": 32.84069,
+    "lng": -83.6324
+  },
+  "Madison|WI": {
+    "lat": 43.07469,
+    "lng": -89.38417
+  },
+  "Mansfield|OH": {
+    "lat": 40.75839,
+    "lng": -82.51545
+  },
+  "Marietta|OH": {
+    "lat": 39.41677,
+    "lng": -81.45484
+  },
+  "Marquette|MI": {
+    "lat": 46.44815,
+    "lng": -87.63059
+  },
+  "Martinez|CA": {
+    "lat": 38.01389,
+    "lng": -122.13387
+  },
+  "Martin|TN": {
+    "lat": 36.34328,
+    "lng": -88.85035
+  },
+  "McAllen|TX": {
+    "lat": 26.20411,
+    "lng": -98.23006
+  },
+  "Medford|OR": {
+    "lat": 42.32642,
+    "lng": -122.87186
+  },
+  "Memphis|TN": {
+    "lat": 35.14603,
+    "lng": -90.05178
+  },
+  "Meridian|MS": {
+    "lat": 32.36431,
+    "lng": -88.70366
+  },
+  "Miami|FL": {
+    "lat": 25.77416,
+    "lng": -80.1936
+  },
+  "Milwaukee|WI": {
+    "lat": 43.03865,
+    "lng": -87.90908
+  },
+  "Minneapolis|MN": {
+    "lat": 44.9773,
+    "lng": -93.26547
+  },
+  "Minot|ND": {
+    "lat": 48.23251,
+    "lng": -101.29627
+  },
+  "Mobile|AL": {
+    "lat": 30.69135,
+    "lng": -88.04375
+  },
+  "Modesto|CA": {
+    "lat": 37.63934,
+    "lng": -120.99689
+  },
+  "Moncton|NB": {
+    "lat": 46.09857,
+    "lng": -64.80043
+  },
+  "Monroe|LA": {
+    "lat": 32.50255,
+    "lng": -92.11622
+  },
+  "Montgomery|AL": {
+    "lat": 32.37771,
+    "lng": -86.30908
+  },
+  "Montreal|QC": {
+    "lat": 45.50318,
+    "lng": -73.56981
+  },
+  "Muncie|IN": {
+    "lat": 40.19369,
+    "lng": -85.38653
+  },
+  "Napa|CA": {
+    "lat": 38.48987,
+    "lng": -122.32184
+  },
+  "Nashville|TN": {
+    "lat": 36.16228,
+    "lng": -86.7743
+  },
+  "Nelson|BC": {
+    "lat": 49.49489,
+    "lng": -117.29004
+  },
+  "New Brunswick|NJ": {
+    "lat": 40.49361,
+    "lng": -74.44364
+  },
+  "New Castle|DE": {
+    "lat": 39.61599,
+    "lng": -75.66296
+  },
+  "New City|NY": {
+    "lat": 41.15098,
+    "lng": -73.98978
+  },
+  "New Haven|CT": {
+    "lat": 41.30821,
+    "lng": -72.92505
+  },
+  "New Orleans|LA": {
+    "lat": 29.95614,
+    "lng": -90.07339
+  },
+  "New York City|NY": {
+    "lat": 40.71273,
+    "lng": -74.00602
+  },
+  "Newark|OH": {
+    "lat": 40.05812,
+    "lng": -82.40126
+  },
+  "Newport News|VA": {
+    "lat": 36.9775,
+    "lng": -76.42977
+  },
+  "Niagara Falls|NY": {
+    "lat": 43.08484,
+    "lng": -79.07018
+  },
+  "Niagara Peninsula|ON": {
+    "lat": 43.04081,
+    "lng": -79.53945
+  },
+  "Norfolk|VA": {
+    "lat": 36.84937,
+    "lng": -76.28995
+  },
+  "Northern BC|BC": {
+    "lat": 54.44227,
+    "lng": -124.25596
+  },
+  "Nova Scotia|NS": {
+    "lat": 45,
+    "lng": -63.75
+  },
+  "Oak Ridge|TN": {
+    "lat": 36.01036,
+    "lng": -84.26964
+  },
+  "Oklahoma City|OK": {
+    "lat": 35.47299,
+    "lng": -97.51705
+  },
+  "Omaha|NE": {
+    "lat": 41.25875,
+    "lng": -95.93838
+  },
+  "Orange County|CA": {
+    "lat": 33.75063,
+    "lng": -117.87223
+  },
+  "Orlando|FL": {
+    "lat": 28.54212,
+    "lng": -81.37905
+  },
+  "Ottawa|ON": {
+    "lat": 45.42088,
+    "lng": -75.69011
+  },
+  "Owensboro|KY": {
+    "lat": 37.77422,
+    "lng": -87.11333
+  },
+  "Paducah|KY": {
+    "lat": 37.08339,
+    "lng": -88.60005
+  },
+  "Painesville|OH": {
+    "lat": 41.72449,
+    "lng": -81.24566
+  },
+  "Parkersburg|WV": {
+    "lat": 39.26673,
+    "lng": -81.56208
+  },
+  "Paterson|NJ": {
+    "lat": 40.91677,
+    "lng": -74.17181
+  },
+  "Pensacola|FL": {
+    "lat": 30.42131,
+    "lng": -87.21691
+  },
+  "Peoria|IL": {
+    "lat": 40.69386,
+    "lng": -89.5891
+  },
+  "Philadelphia (N)|PA": {
+    "lat": 39.95272,
+    "lng": -75.16353
+  },
+  "Philadelphia (S)|PA": {
+    "lat": 39.95272,
+    "lng": -75.16353
+  },
+  "Phoenix|AZ": {
+    "lat": 33.44844,
+    "lng": -112.07414
+  },
+  "Pittsburgh|PA": {
+    "lat": 40.4407,
+    "lng": -80.00257
+  },
+  "Pocatello|ID": {
+    "lat": 42.86203,
+    "lng": -112.45063
+  },
+  "Ponca City|OK": {
+    "lat": 36.70365,
+    "lng": -97.0819
+  },
+  "Port Coquitlam|BC": {
+    "lat": 49.26216,
+    "lng": -122.78054
+  },
+  "Portland|OR": {
+    "lat": 45.52025,
+    "lng": -122.67419
+  },
+  "Portsmouth|OH": {
+    "lat": 38.73454,
+    "lng": -82.99627
+  },
+  "Providence|RI": {
+    "lat": 41.82399,
+    "lng": -71.41283
+  },
+  "Pueblo|CO": {
+    "lat": 38.264,
+    "lng": -104.61419
+  },
+  "Quincy|IL": {
+    "lat": 39.9356,
+    "lng": -91.40987
+  },
+  "Quine|ON": {
+    "lat": null,
+    "lng": null
+  },
+  "Racine|WI": {
+    "lat": 42.73138,
+    "lng": -87.78348
+  },
+  "Raleigh-Durham|NC": {
+    "lat": 35.88036,
+    "lng": -78.78724
+  },
+  "Rapid City|SD": {
+    "lat": 44.0806,
+    "lng": -103.22802
+  },
+  "Reading|PA": {
+    "lat": 40.33534,
+    "lng": -75.92795
+  },
+  "Regina|SK": {
+    "lat": 50.44797,
+    "lng": -104.61588
+  },
+  "Reno|NV": {
+    "lat": 39.52618,
+    "lng": -119.81266
+  },
+  "Richmond|VA": {
+    "lat": 37.53851,
+    "lng": -77.43428
+  },
+  "Riverside|CA": {
+    "lat": 33.98249,
+    "lng": -117.37424
+  },
+  "Roanoke|VA": {
+    "lat": 37.27097,
+    "lng": -79.94143
+  },
+  "Rochester|MN": {
+    "lat": 44.02344,
+    "lng": -92.46302
+  },
+  "Rochester|NY": {
+    "lat": 43.15729,
+    "lng": -77.61521
+  },
+  "Rockford|IL": {
+    "lat": 42.27139,
+    "lng": -89.09397
+  },
+  "Sacramento|CA": {
+    "lat": 38.58106,
+    "lng": -121.49389
+  },
+  "Saginaw|MI": {
+    "lat": 43.42004,
+    "lng": -83.94904
+  },
+  "Saint John|NB": {
+    "lat": 45.27276,
+    "lng": -66.06279
+  },
+  "Salt Lake City|UT": {
+    "lat": 40.75962,
+    "lng": -111.8868
+  },
+  "San Antonio|TX": {
+    "lat": 29.4246,
+    "lng": -98.49514
+  },
+  "San Bernadino Zone A|CA": {
+    "lat": 34.8253,
+    "lng": -116.08331
+  },
+  "San Bernadino Zone B|CA": {
+    "lat": 34.8253,
+    "lng": -116.08331
+  },
+  "San Diego|CA": {
+    "lat": 32.71742,
+    "lng": -117.16277
+  },
+  "San Francisco|CA": {
+    "lat": 37.78794,
+    "lng": -122.40752
+  },
+  "San Jose|CA": {
+    "lat": 37.33617,
+    "lng": -121.89059
+  },
+  "San Luis Obispo|CA": {
+    "lat": 35.35402,
+    "lng": -120.37572
+  },
+  "San Mateo|CA": {
+    "lat": 37.4969,
+    "lng": -122.33306
+  },
+  "Santa Barbara|CA": {
+    "lat": 34.42213,
+    "lng": -119.70267
+  },
+  "Santa Rosa|CA": {
+    "lat": 38.44049,
+    "lng": -122.7141
+  },
+  "Sarnia|ON": {
+    "lat": 42.97438,
+    "lng": -82.40353
+  },
+  "Saskatoon|SK": {
+    "lat": 52.1318,
+    "lng": -106.66077
+  },
+  "Savannah|GA": {
+    "lat": 32.07901,
+    "lng": -81.09213
+  },
+  "Scranton|PA": {
+    "lat": 41.40869,
+    "lng": -75.66213
+  },
+  "Seattle|WA": {
+    "lat": 47.60383,
+    "lng": -122.33006
+  },
+  "Shamokin|PA": {
+    "lat": 40.78876,
+    "lng": -76.55852
+  },
+  "Sheffield|AL": {
+    "lat": 34.76087,
+    "lng": -87.69759
+  },
+  "Shreveport|LA": {
+    "lat": 32.51354,
+    "lng": -93.74778
+  },
+  "Sioux City|IA": {
+    "lat": 42.49668,
+    "lng": -96.40588
+  },
+  "Sioux Falls|SD": {
+    "lat": 43.5476,
+    "lng": -96.72936
+  },
+  "South Bend|IN": {
+    "lat": 41.68338,
+    "lng": -86.25001
+  },
+  "Spokane|WA": {
+    "lat": 47.65719,
+    "lng": -117.42351
+  },
+  "Springfield|IL": {
+    "lat": 39.79902,
+    "lng": -89.64396
+  },
+  "Springfield|MA": {
+    "lat": 42.10188,
+    "lng": -72.58867
+  },
+  "Springfield|MO": {
+    "lat": 37.20817,
+    "lng": -93.29227
+  },
+  "St Joseph|MO": {
+    "lat": 39.76861,
+    "lng": -94.84663
+  },
+  "St Paul|MN": {
+    "lat": 44.94975,
+    "lng": -93.0931
+  },
+  "St. Johns|NL": {
+    "lat": 56.69228,
+    "lng": -60.93732
+  },
+  "St. Louis|MO": {
+    "lat": 38.62541,
+    "lng": -90.19001
+  },
+  "Steubenville|OH": {
+    "lat": 40.36007,
+    "lng": -80.6151
+  },
+  "Stevens Point|WI": {
+    "lat": 44.52345,
+    "lng": -89.58445
+  },
+  "Stockton|CA": {
+    "lat": 37.9577,
+    "lng": -121.29078
+  },
+  "Sudbury|ON": {
+    "lat": 46.49272,
+    "lng": -80.99121
+  },
+  "Syracuse|NY": {
+    "lat": 43.04812,
+    "lng": -76.14742
+  },
+  "Tacoma|WA": {
+    "lat": 47.2455,
+    "lng": -122.43833
+  },
+  "Tampa|FL": {
+    "lat": 27.94499,
+    "lng": -82.45831
+  },
+  "Tangent|OR": {
+    "lat": 44.54404,
+    "lng": -123.10929
+  },
+  "Terre Haute|IN": {
+    "lat": 39.4667,
+    "lng": -87.41391
+  },
+  "Texarkana|TX": {
+    "lat": 33.44662,
+    "lng": -94.07657
+  },
+  "Thunder Bay|ON": {
+    "lat": 48.40641,
+    "lng": -89.2598
+  },
+  "Toledo|OH": {
+    "lat": 41.65291,
+    "lng": -83.53782
+  },
+  "Topeka|KS": {
+    "lat": 39.04901,
+    "lng": -95.67756
+  },
+  "Toronto|ON": {
+    "lat": 43.65348,
+    "lng": -79.38393
+  },
+  "Traverse City|MI": {
+    "lat": 44.76065,
+    "lng": -85.6166
+  },
+  "Trenton|NJ": {
+    "lat": 40.22031,
+    "lng": -74.7659
+  },
+  "Tucson|AZ": {
+    "lat": 32.22288,
+    "lng": -110.97485
+  },
+  "Tulsa|OK": {
+    "lat": 36.15631,
+    "lng": -95.99275
+  },
+  "Ventura|CA": {
+    "lat": 34.44582,
+    "lng": -119.07794
+  },
+  "Victoria|BC": {
+    "lat": 48.42832,
+    "lng": -123.36495
+  },
+  "Waco|TX": {
+    "lat": 31.55451,
+    "lng": -97.13256
+  },
+  "Warrenville|IL": {
+    "lat": 41.81793,
+    "lng": -88.1741
+  },
+  "Warren|OH": {
+    "lat": 39.4204,
+    "lng": -84.1809
+  },
+  "Washington DC Metro Zone|DC": {
+    "lat": 38.8951,
+    "lng": -77.03638
+  },
+  "Washington DC Shenandoah Zone|DC": {
+    "lat": null,
+    "lng": null
+  },
+  "Waterloo|IA": {
+    "lat": 42.49827,
+    "lng": -92.33287
+  },
+  "Watertown|NY": {
+    "lat": 43.97478,
+    "lng": -75.91076
+  },
+  "Waukengan|IL": {
+    "lat": 42.36023,
+    "lng": -87.83182
+  },
+  "West Frankfort|IL": {
+    "lat": 37.89783,
+    "lng": -88.93146
+  },
+  "Wheeling|WV": {
+    "lat": 40.06396,
+    "lng": -80.72091
+  },
+  "Whitehorse|YT": {
+    "lat": 60.72157,
+    "lng": -135.05493
+  },
+  "Wichita Falls|TX": {
+    "lat": 33.90046,
+    "lng": -98.50208
+  },
+  "Wichita|KS": {
+    "lat": 37.69224,
+    "lng": -97.33754
+  },
+  "Wilkes-Barre|PA": {
+    "lat": 41.24648,
+    "lng": -75.88173
+  },
+  "Williamsport|PA": {
+    "lat": 41.24116,
+    "lng": -77.00111
+  },
+  "Wilmington|NC": {
+    "lat": 34.23529,
+    "lng": -77.94873
+  },
+  "Windsor|ON": {
+    "lat": 42.28585,
+    "lng": -82.97807
+  },
+  "Winnipeg|MB": {
+    "lat": 49.89554,
+    "lng": -97.13846
+  },
+  "Worcester|MA": {
+    "lat": 42.26256,
+    "lng": -71.80189
+  },
+  "York|PA": {
+    "lat": 39.96249,
+    "lng": -76.7277
+  },
+  "Youngstown|OH": {
+    "lat": 41.10358,
+    "lng": -80.65202
+  }
+}

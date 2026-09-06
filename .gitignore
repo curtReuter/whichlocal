@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+js/config.local.js
+.DS_Store
+*.log
+.claude
+
+# PocketBase — binary and local database are not committed
+pb/pocketbase
+pb/pb_data/
+pb/CHANGELOG.md
+pb/LICENSE.md
+
+# Scraper — cache the raw HTML locally, but keep geocache.json tracked
+scripts/cache/*.html

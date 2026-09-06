@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Local — IBEW electrician pay by local</title>
+
+  <!-- Leaflet map library -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+    crossorigin=""
+  >
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <div>
+          <h1 class="brand__name">Which Local</h1>
+          <p class="brand__tag">IBEW electrician pay, local by local</p>
+        </div>
+      </div>
+
+      <div class="metric-switch" role="group" aria-label="Choose a metric">
+        <label class="metric-switch__label" for="metric-select">Showing</label>
+        <select id="metric-select" class="metric-switch__select"></select>
+      </div>
+    </header>
+
+    <main class="app__body">
+      <section class="panel" aria-label="IBEW local rankings">
+        <div class="panel__head">
+          <h2 class="panel__title" id="panel-title">IBEW Locals</h2>
+          <button type="button" id="sort-toggle" class="panel__sort" aria-label="Toggle sort direction">
+            <span id="sort-label">High → Low</span>
+          </button>
+        </div>
+        <ol class="city-list" id="city-list"></ol>
+      </section>
+
+      <div
+        class="panel-resizer"
+        id="panel-resizer"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Drag to resize the city list (double-click to reset)"
+        tabindex="0"
+      >
+        <span class="panel-resizer__grip" aria-hidden="true"></span>
+      </div>
+
+      <section class="map-wrap" aria-label="Map of IBEW locals">
+        <div id="map" class="map"></div>
+        <div class="legend" id="legend" aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <footer class="app__footer">
+      <span id="readout">Loading IBEW locals…</span>
+      <span class="app__credit">
+        Wage data: <a href="https://unionpayscales.com/trades/ibew-electricians/" target="_blank" rel="noopener">unionpayscales.com</a>
+        · Map © OpenStreetMap contributors, CARTO
+      </span>
+    </footer>
+  </div>
+
+  <!-- Leaflet must load before our modules -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+    crossorigin=""
+  ></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

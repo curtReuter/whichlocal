@@ -1,0 +1,412 @@
+/* ------------------------------------------------------------------ *
+ * Which Local — dashboard chrome around the cityMap module.
+ * Palette is defined as tokens on :root and swapped for dark mode.
+ * ------------------------------------------------------------------ */
+
+:root {
+  --bg:         #f4f6f8;
+  --surface:    #ffffff;
+  --surface-2:  #f0f2f5;
+  --border:     #e2e6ea;
+  --text:       #1a2330;
+  --text-soft:  #5b6675;
+  --accent:     #2c7bb6;
+  --accent-ink: #ffffff;
+  --map-bg:     #f4f3f1; /* matches CARTO Positron land — neutral, no teal */
+  --shadow:     0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .08);
+  --radius:     14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #0e1116;
+    --surface:   #161b22;
+    --surface-2: #1e252e;
+    --border:    #2a323d;
+    --text:      #e8edf2;
+    --text-soft: #9aa7b4;
+    --accent:    #4da3d8;
+    --accent-ink:#0e1116;
+    --map-bg:    #16181b; /* matches CARTO dark_all land — neutral, no teal */
+    --shadow:    0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .45);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- app shell -------------------------------------------------------- */
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand__mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: radial-gradient(circle at 30% 30%, #7ec7f0, var(--accent) 70%);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .25);
+  flex: none;
+}
+
+.brand__name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.brand__tag  { margin: 0; font-size: 12.5px; color: var(--text-soft); }
+
+.metric-switch { display: flex; align-items: center; gap: 10px; }
+
+.metric-switch__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-soft);
+}
+
+.metric-switch__select {
+  appearance: none;
+  padding: 9px 34px 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237b8794' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
+    no-repeat right 12px center;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.metric-switch__select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---- body: sidebar + map ------------------------------------------------ */
+
+.app__body {
+  display: grid;
+  /* --panel-w is set inline by js/main.js (restored from a cookie) on desktop */
+  grid-template-columns: var(--panel-w, 480px) 6px 1fr;
+  gap: 0;
+  min-height: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+}
+
+/* ---- draggable divider between the list and the map (desktop only) ---- */
+
+.panel-resizer {
+  position: relative;
+  background: var(--border);
+  cursor: col-resize;
+  touch-action: none;
+}
+/* invisible widened hit area so the 6px bar is easy to grab */
+.panel-resizer::after {
+  content: "";
+  position: absolute;
+  inset: 0 -5px;
+  z-index: 600;
+}
+.panel-resizer:hover,
+.panel-resizer:focus-visible,
+.panel-resizer.is-dragging {
+  background: var(--accent);
+  outline: none;
+}
+
+/* always-visible grip so it's obvious the bar can be dragged */
+.panel-resizer__grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 46px;
+  border-radius: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  z-index: 601;
+  transition: background .12s ease, border-color .12s ease;
+}
+/* six dots (2 columns × 3 rows), drawn with box-shadow in currentColor */
+.panel-resizer__grip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-soft);
+  box-shadow:
+    -3px -7px, 3px -7px,
+    -3px  0,   3px  0,
+    -3px  7px, 3px  7px;
+  transition: color .12s ease;
+}
+.panel-resizer:hover .panel-resizer__grip,
+.panel-resizer:focus-visible .panel-resizer__grip,
+.panel-resizer.is-dragging .panel-resizer__grip {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.panel-resizer:hover .panel-resizer__grip::before,
+.panel-resizer:focus-visible .panel-resizer__grip::before,
+.panel-resizer.is-dragging .panel-resizer__grip::before {
+  color: var(--accent-ink);
+}
+
+body.is-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+body.is-resizing .leaflet-container { pointer-events: none; }
+
+.panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 18px 10px;
+}
+
+.panel__title { margin: 0; font-size: 15px; font-weight: 700; }
+
+.panel__sort {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.panel__sort:hover { color: var(--text); }
+
+.city-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 8px 12px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.city-list__empty {
+  padding: 20px 14px;
+  color: var(--text-soft);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.city-list__empty span { color: var(--text); }
+.city-list__empty code {
+  font-size: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.city-list__item {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.city-list__item:hover { background: var(--surface-2); }
+.city-list__item.is-active {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.city-list__rank {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-soft);
+  text-align: center;
+}
+.city-list__body { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.city-list__name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.city-list__sub  { font-size: 12px; color: var(--text-soft); }
+.city-list__value { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 13.5px; }
+
+/* ---- map + legend ----------------------------------------------------- */
+
+.map-wrap { position: relative; min-height: 0; }
+
+.map {
+  position: absolute;
+  inset: 0;
+  background: var(--map-bg);
+}
+
+.legend {
+  position: absolute;
+  left: 16px;
+  bottom: 22px;
+  z-index: 500;
+  width: 220px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+}
+
+.legend__title { font-weight: 700; margin-bottom: 8px; }
+.legend__bar { height: 10px; border-radius: 5px; }
+.legend__scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.legend__sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.legend__size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.legend__dot {
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  border: 1.5px solid var(--accent);
+}
+
+/* ---- footer --------------------------------------------------------------- */
+
+.app__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 20px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-soft);
+}
+.app__credit { flex: none; }
+
+/* ---- Leaflet overrides ------------------------------------------------- */
+
+.city-hotspot {
+  transition: stroke-width .12s ease, fill .3s ease, r .3s ease;
+  cursor: pointer;
+}
+
+.leaflet-container { font: inherit; background: var(--map-bg); }
+
+.city-tooltip.leaflet-tooltip {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+  padding: 8px 10px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.city-tooltip.leaflet-tooltip::before { display: none; }
+.city-tooltip strong { display: block; font-size: 13.5px; }
+.city-tooltip .tt-sub { display: block; color: var(--text-soft); }
+.city-tooltip .tt-val { display: block; margin-top: 3px; }
+
+.leaflet-bar a {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.leaflet-bar a:hover { background: var(--surface-2); }
+
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--surface) 82%, transparent) !important;
+  color: var(--text-soft) !important;
+}
+.leaflet-control-attribution a { color: var(--accent) !important; }
+
+/* ---- responsive ------------------------------------------------------- */
+
+@media (max-width: 820px) {
+  .app { grid-template-rows: auto auto 1fr auto; }
+
+  .app__body {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(160px, 32vh) 1fr;
+  }
+
+  /* no drag-to-resize below the desktop breakpoint */
+  .panel-resizer { display: none; }
+
+  .panel {
+    border-bottom: 1px solid var(--border);
+    order: 2;
+  }
+  .map-wrap { order: 1; min-height: 240px; }
+
+  .legend { width: 190px; bottom: 14px; left: 12px; padding: 10px 12px; }
+  .legend__sizes { gap: 10px; }
+}
+
+@media (max-width: 520px) {
+  .app__header { gap: 10px; }
+  .brand__tag { display: none; }
+  .app__footer { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .app__credit { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .city-hotspot, .city-list__item,
+  .panel-resizer__grip, .panel-resizer__grip::before { transition: none; }
+}
