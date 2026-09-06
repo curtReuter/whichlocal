@@ -15,27 +15,11 @@
  * scripts/overrides.json folded in.
  */
 
-// total_package is derived (summed), not read straight from the record — see totalPackage().
 const VALUE_FIELDS = [
-  'hourly_rate', 'yearly_salary', 'col_pct',
+  'total_package', 'hourly_rate', 'yearly_salary', 'col_pct',
   'defined_pension', 'contribution_pension', 'k401', 'vacation',
   'hw', 'nebf_pension', 'dues',
 ];
-
-// Sum total_package from its components so the PocketBase path (local dev) and
-// the snapshot agree, and so a manual correction to any component flows through.
-// MUST match scripts/lib/derive.mjs — keep the two in sync.
-const PACKAGE_COMPONENTS = [
-  'hourly_rate', 'defined_pension', 'contribution_pension', 'k401', 'vacation', 'hw', 'nebf_pension',
-];
-function totalPackage(rec) {
-  if (typeof rec.hourly_rate !== 'number' || rec.hourly_rate === 0) return null;
-  let sum = 0;
-  for (const f of PACKAGE_COMPONENTS) {
-    if (typeof rec[f] === 'number') sum += rec[f];
-  }
-  return Math.round(sum * 100) / 100;
-}
 
 export async function loadLocals(pbUrl = '') {
   const base = String(pbUrl || '').trim().replace(/\/$/, '');
@@ -54,8 +38,6 @@ export async function loadLocals(pbUrl = '') {
       for (const f of VALUE_FIELDS) {
         if (typeof r[f] === 'number' && r[f] !== 0) values[f] = r[f];
       }
-      const tp = totalPackage(r);
-      if (tp !== null && tp !== 0) values.total_package = tp;
       return {
         id: r.slug,
         name: `IBEW Local ${r.local_no}`,

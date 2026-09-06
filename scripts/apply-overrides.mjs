@@ -17,7 +17,6 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadOverrides, resolveOverrides, mergeOverride } from './lib/overrides.mjs';
-import { totalPackage } from './lib/derive.mjs';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -34,28 +33,14 @@ issues.forEach((m) => console.warn(`  ${m}`));
 let applied = 0;
 const items = snapshot.items.map((rec) => {
   const override = overrides.get(rec.slug);
+  if (!override) return rec;
 
-  let record = rec;
-  if (override) {
-    const res = mergeOverride(rec, override);
-    record = res.record;
-    if (res.applied.length) {
-      applied++;
-      console.log(`  ${rec.slug}: ${res.applied.map((f) => `${f} → ${record[f]}`).join(', ')}`);
-    } else {
-      console.warn(`  ${rec.slug}: no effect — safe to remove from overrides.json`);
-    }
-  }
-
-  // Recompute total_package = sum of components (see lib/derive.mjs), including
-  // any override just merged in. Idempotent for rows with no override — so it's
-  // fine to run on every one. An explicit total_package override pins it.
-  if (!(override && 'total_package' in override)) {
-    const tp = totalPackage(record);
-    if (tp !== null && tp !== record.total_package) {
-      if (record === rec) record = { ...rec };
-      record.total_package = tp;
-    }
+  const { record, applied: changed } = mergeOverride(rec, override);
+  if (changed.length) {
+    applied++;
+    console.log(`  ${rec.slug}: ${changed.map((f) => `${f} → ${record[f]}`).join(', ')}`);
+  } else {
+    console.warn(`  ${rec.slug}: no effect — safe to remove from overrides.json`);
   }
   return record;
 }).filter((r) => r.lat && r.lng);

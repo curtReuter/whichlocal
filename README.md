@@ -158,12 +158,6 @@ Merge rule when the scrape runs:
 `note` / `source` / `reported` / `date` keys are ignored (use them for
 provenance). Keys starting with `_` (like `__doc__`) are ignored too.
 
-**`total_package` is derived**, not scraped: after any correction is merged it is
-recomputed as `hourly_rate + defined_pension + contribution_pension + k401 +
-vacation + hw + nebf_pension` (see `scripts/lib/derive.mjs`), so correcting a
-component updates the total automatically. Set `total_package` in an override
-only to pin a specific figure and skip that recompute.
-
 **Getting a fix live:**
 
 - Commit and push `scripts/overrides.json`. `.github/workflows/apply-overrides.yml`
@@ -212,9 +206,7 @@ Collection `locals` — public read, superuser-only writes. Numeric fields
 Plus `slug`, `local_no`, `city`, `state`, `lat`, `lng`, `wage_sheet_url`,
 `source_updated`, `raw` (original cell strings), `scraped_at`.
 
-`js/data/locals.json` is `{ count, overrides_applied, items[] }` — the same
-records minus `raw`, `id`, `scraped_at` and geo-miss rows, with manual
-corrections merged and `total_package` recomputed (see
-[Manual corrections](#manual-corrections)). `js/dataSource.js` derives
-`total_package` the same way when it reads a live PocketBase, so the deployed
-snapshot and local dev agree except on locals that have an override.
+`js/data/locals.json` is the same records as `{ generated_at, count, items[] }`,
+minus `raw` and geo-miss rows — `scripts/export-snapshot.mjs` mirrors the exact
+query `js/dataSource.js` runs against PocketBase, so the two data paths return
+identical results.
