@@ -435,6 +435,12 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     flex: none;
   }
 
+  /* "Showing" selector gets its own full-width row, centered */
+  .metric-switch {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+
   .app__body {
     flex: 1 0 auto;
     grid-template-columns: 1fr;
