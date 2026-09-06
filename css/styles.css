@@ -454,9 +454,10 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   }
 
   .leaflet-control-attribution {
-    font-size: 8.5px !important;
-    padding: 0 4px !important;
-    line-height: 1.4 !important;
+    font-size: 7px !important;
+    padding: 0 3px !important;
+    line-height: 1.35 !important;
+    opacity: .8;
   }
 
   .city-tooltip.leaflet-tooltip {

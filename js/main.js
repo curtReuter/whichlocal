@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=2';
-import { loadLocals } from './dataSource.js?v=2';
-import { createCityMap } from './cityMap.js?v=2';
+import { metrics } from './metrics.js?v=3';
+import { loadLocals } from './dataSource.js?v=3';
+import { createCityMap } from './cityMap.js?v=3';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -70,6 +70,19 @@ const map = createCityMap('#map', {
   minZoom: 3,
   cartoApiKey: config.cartoApiKey || '',
 });
+
+// On phones, tuck the map attribution into the bottom-left corner and drop the
+// "Leaflet" prefix so it's a tiny unobtrusive line (CSS shrinks the type).
+const L = window.L;
+const DEFAULT_ATTR_PREFIX = L.Control.Attribution.prototype.options.prefix;
+const mqMobile = window.matchMedia('(max-width: 820px)');
+function placeAttribution() {
+  const ac = map.leaflet.attributionControl;
+  ac.setPosition(mqMobile.matches ? 'bottomleft' : 'bottomright');
+  ac.setPrefix(mqMobile.matches ? false : DEFAULT_ATTR_PREFIX);
+}
+placeAttribution();
+mqMobile.addEventListener('change', placeAttribution);
 
 /* ---- populate the metric <select> ------------------------------------- */
 
