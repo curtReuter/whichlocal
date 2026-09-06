@@ -476,21 +476,24 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   }
   .map-wrap { order: 1; min-height: 240px; }
 
-  /* compact colour key, tucked into the bottom-right of the map */
+  /* tiny colour key, jammed into the bottom-right corner of the map, on a
+     solid high-contrast panel so it reads clearly over the circles */
   .legend {
     left: auto;
-    right: 10px;
-    bottom: 10px;
-    width: 132px;
-    padding: 6px 8px;
-    font-size: 9px;
-    border-radius: 9px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
+    right: 5px;
+    bottom: 5px;
+    width: 110px;
+    padding: 5px 7px;
+    font-size: 8px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border-color: var(--text-soft);
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .45);
     opacity: 1;
   }
-  .legend__title { margin-bottom: 4px; }
-  .legend__bar { height: 6px; border-radius: 3px; }
-  .legend__scale { margin-top: 3px; font-size: 8px; gap: 4px; }
+  .legend__title { margin-bottom: 3px; }
+  .legend__bar { height: 5px; border-radius: 2.5px; }
+  .legend__scale { margin-top: 2px; font-size: 7px; gap: 4px; }
   .legend__scale span { white-space: nowrap; }
 }
 
