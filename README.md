@@ -26,10 +26,15 @@ whichlocal/
 ├── scripts/
 │   ├── setup-collection.mjs     recreate the `locals` collection via the API (idempotent)
 │   ├── scrape.mjs               scrape → geocode → upsert into PocketBase
-│   ├── export-snapshot.mjs      dump the `locals` collection to js/data/locals.json
+│   ├── export-snapshot.mjs      dump `locals` (+ overrides) to js/data/locals.json
+│   ├── apply-overrides.mjs      fast path: apply overrides.json straight to the snapshot
+│   ├── overrides.json           hand-entered data corrections (see Manual corrections)
 │   ├── lib/pb.mjs               .env loader + PocketBase auth helpers
+│   ├── lib/overrides.mjs        override loader + merge rule (shared)
 │   └── cache/                   cached page HTML + geocache.json
-├── .github/workflows/scrape.yml daily scrape → export → commit
+├── .github/workflows/
+│   ├── scrape.yml               daily scrape → export → commit
+│   └── apply-overrides.yml      on overrides.json push → re-export → commit
 └── .env                         local secrets (gitignored)
 ```
 
@@ -120,6 +125,55 @@ The CI PocketBase is thrown away after each run — the snapshot commit is the o
 output — so those admin credentials are just for that run and need not match any
 real deployment. GitHub's scheduler is best-effort; runs can lag or, rarely, be
 skipped. Adjust the `cron:` line to change the time.
+
+## Manual corrections
+
+When someone reports that a local's numbers are stale or wrong, fix it in
+**`scripts/overrides.json`** — a map of `slug → { field: value }`. The slug is
+the `id` shown in the ranked list (`l<local#>-<city>-<state>`, e.g.
+`l1-st-louis-mo`).
+
+```json
+{
+  "l1-st-louis-mo": {
+    "hourly_rate": 51.0,
+    "wage_sheet_url": "https://…/local-1-wage-sheet.pdf",
+    "note": "member report 2026-09-10, matches the posted wage sheet"
+  }
+}
+```
+
+Merge rule when the scrape runs:
+
+| field kind | behaviour |
+|---|---|
+| wage / benefit numbers (`hourly_rate`, `total_package`, `yearly_salary`, `col_pct`, `defined_pension`, `contribution_pension`, `k401`, `vacation`, `hw`, `nebf_pension`, `adjusted_base_wage`, `dues`) | your value is kept **unless the scrape finds a strictly higher number**, which then wins |
+| any of those, listed in `"force": [...]` | your value is always kept |
+| everything else (`city`, `state`, `lat`, `lng`, `wage_sheet_url`, `source_updated`, `local_no`) | your value always wins |
+
+`note` / `source` / `reported` / `date` keys are ignored (use them for
+provenance). Keys starting with `_` (like `__doc__`) are ignored too.
+
+**Getting a fix live:**
+
+- Commit and push `scripts/overrides.json`. `.github/workflows/apply-overrides.yml`
+  folds it into `js/data/locals.json` and commits — live in about a minute, no
+  scrape needed.
+- The daily scrape applies the same corrections every run, so they persist.
+- Preview locally without touching PocketBase:
+  `node scripts/apply-overrides.mjs --dry-run` (drop the flag to rewrite the
+  snapshot).
+
+The fast path only edits locals already on the map. To rescue a local the
+geocoder missed — by putting `lat`/`lng` in its override — run a full
+`node scripts/scrape.mjs && node scripts/export-snapshot.mjs` (or the daily
+workflow).
+
+The export warns when an override changed nothing (the scrape has caught up —
+delete that entry) or when a slug matches no local (typo).
+
+Users can send corrections by opening an issue or a pull request against
+`scripts/overrides.json`.
 
 ## The scraper
 

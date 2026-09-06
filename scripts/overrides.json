@@ -1,0 +1,15 @@
+{
+  "__doc__": "Manual data corrections, keyed by local slug (the `id` in the ranked list, e.g. l1-st-louis-mo). Wage/benefit numbers: your value is kept unless a scrape finds a HIGHER number. Add a field name to `force` to always keep your value. Text fields (city, state, lat, lng, wage_sheet_url, source_updated): your value always wins. `note` is ignored. See README > Manual corrections. Delete entries once the scrape has caught up.",
+  "__example__": {
+    "hourly_rate": 51.0,
+    "total_package": 86.4,
+    "wage_sheet_url": "https://example.org/local-123-wage-sheet.pdf",
+    "force": ["dues"],
+    "dues": 2.5,
+    "note": "reported by a member 2026-09-10; matches the local's posted wage sheet"
+  },
+  "l606-orlando-fl": {
+    "hourly_rate": 32.64,
+    "note": "new Orlando (IBEW Local 606) hourly rate"
+  }
+}

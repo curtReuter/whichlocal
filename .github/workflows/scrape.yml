@@ -12,9 +12,9 @@ on:
     - cron: "27 8 * * *"
   workflow_dispatch: {}   # let you run it on demand from the Actions tab
 
-# Never let two runs race to push.
+# Serialize against the other workflow that writes js/data/locals.json.
 concurrency:
-  group: daily-scrape
+  group: data-write
   cancel-in-progress: false
 
 permissions:

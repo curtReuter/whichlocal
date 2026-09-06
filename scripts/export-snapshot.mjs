@@ -9,22 +9,40 @@
  *   node scripts/export-snapshot.mjs            # PB_URL or http://127.0.0.1:8090
  *   PB_URL=http://127.0.0.1:8090 node scripts/export-snapshot.mjs
  *
- * The file mirrors the exact query `js/dataSource.js` uses against PocketBase
- * (all locals, sorted by local_no, geo-miss rows dropped) so the two data
- * paths stay interchangeable.
+ * Manual corrections from scripts/overrides.json are folded in here (see
+ * scripts/lib/overrides.mjs), then geo-miss rows are dropped — so the snapshot
+ * matches what js/dataSource.js expects.
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { loadOverrides, mergeOverride } from './lib/overrides.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'js', 'data', 'locals.json');
 
+// Emit fields in a fixed order so the snapshot diff stays minimal regardless of
+// how the PocketBase REST API orders record keys. Omitted on purpose: `raw` and
+// `collection*` (bookkeeping), and PocketBase's `id` / `scraped_at` — both are
+// per-instance/per-run values the frontend never reads (it keys off `slug`), so
+// keeping them would churn the file on every scrape even when nothing changed.
+const FIELD_ORDER = [
+  'slug', 'local_no', 'city', 'state', 'lat', 'lng',
+  'yearly_salary', 'hourly_rate', 'total_package', 'col_pct', 'adjusted_base_wage',
+  'defined_pension', 'contribution_pension', 'k401', 'vacation', 'hw', 'nebf_pension', 'dues',
+  'wage_sheet_url', 'source_updated',
+];
+
+const shape = (rec) => {
+  const out = {};
+  for (const k of FIELD_ORDER) if (k in rec) out[k] = rec[k];
+  return out;
+};
+
 const base = (process.env.PB_URL || 'http://127.0.0.1:8090').replace(/\/$/, '');
-const url =
-  `${base}/api/collections/locals/records` +
-  `?perPage=500&skipTotal=1&sort=local_no` +
-  `&filter=${encodeURIComponent('lat != 0 && lng != 0')}`;
+// Fetch every row (no lat/lng filter): an override may supply coordinates for a
+// local the geocoder missed. We filter after merging.
+const url = `${base}/api/collections/locals/records?perPage=500&skipTotal=1&sort=local_no`;
 
 let res;
 try {
@@ -37,17 +55,51 @@ if (!res.ok) {
 }
 
 const { items = [] } = await res.json();
+const overrides = loadOverrides();
+const seen = new Set();
+let overridesApplied = 0;
 
-// Keep PocketBase's order (the query already sorts by local_no) so this file
-// matches the live API path row-for-row. Drop bookkeeping fields plus `raw`
-// (original scraped cell strings — kept in the DB for debugging, never read by
-// the frontend, and about half the payload).
-const clean = items.map(({ collectionId, collectionName, raw, ...rec }) => rec);
+// Keep PocketBase's order (the query sorts by local_no). `shape()` narrows each
+// record to the frontend fields in a fixed order (drops `raw` etc.); then apply
+// any manual correction for this slug.
+const merged = items.map((item) => {
+  const rec = shape(item);
+  seen.add(rec.slug);
+  const override = overrides[rec.slug];
+  if (!override) return rec;
+
+  const { record, applied } = mergeOverride(rec, override);
+  if (applied.length) {
+    overridesApplied++;
+    console.log(`  override ${rec.slug}: ${applied.join(', ')}`);
+  } else {
+    console.warn(`  override ${rec.slug}: no effect — the scrape already matches or exceeds it; safe to remove`);
+  }
+  return record;
+});
+
+for (const slug of Object.keys(overrides)) {
+  if (!seen.has(slug)) console.warn(`  override ${slug}: no local has this slug — check for a typo`);
+}
+
+const clean = merged.filter((r) => r.lat && r.lng);
+const dropped = merged.length - clean.length;
 
 mkdirSync(dirname(OUT), { recursive: true });
+// No timestamp field: the file should change only when the data does, so the
+// daily workflow's "nothing changed" check is meaningful. Git history is the
+// record of when each refresh landed.
 writeFileSync(
   OUT,
-  JSON.stringify({ generated_at: new Date().toISOString(), count: clean.length, items: clean }, null, 2) + '\n',
+  JSON.stringify(
+    { count: clean.length, overrides_applied: overridesApplied, items: clean },
+    null,
+    2,
+  ) + '\n',
 );
 
-console.log(`Wrote ${OUT} — ${clean.length} locals.`);
+console.log(
+  `Wrote ${OUT} — ${clean.length} locals` +
+  `${overridesApplied ? `, ${overridesApplied} corrected` : ''}` +
+  `${dropped ? `, ${dropped} without coords dropped` : ''}.`,
+);

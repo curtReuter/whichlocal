@@ -1,0 +1,47 @@
+name: Apply manual corrections
+
+# When scripts/overrides.json changes on main, fold the corrections into
+# js/data/locals.json and commit — so a fix goes live in ~a minute without
+# waiting for (or running) the daily scrape.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/overrides.json
+      - scripts/lib/overrides.mjs
+      - scripts/apply-overrides.mjs
+  workflow_dispatch: {}
+
+# Serialize against the daily scrape (both write js/data/locals.json).
+concurrency:
+  group: data-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Apply overrides to the snapshot
+        run: node scripts/apply-overrides.mjs
+
+      - name: Commit
+        run: |
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data/locals.json
+          if git diff --cached --quiet; then
+            echo "No snapshot changes — overrides had no effect."
+          else
+            git commit -m "data: apply manual corrections"
+            git push
+          fi

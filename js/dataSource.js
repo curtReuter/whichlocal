@@ -10,8 +10,9 @@
  *   • js/data/locals.json    — the daily snapshot committed by the GitHub Action;
  *                              lets the site deploy to any static host with no backend.
  *
- * `scripts/export-snapshot.mjs` writes the snapshot with the same query used
- * here, so both paths return identical data.
+ * `scripts/export-snapshot.mjs` writes the snapshot from the same query used
+ * here; the two match, except the snapshot also has any manual corrections from
+ * scripts/overrides.json folded in.
  */
 
 const VALUE_FIELDS = [
