@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=10';
-import { loadLocals } from './dataSource.js?v=10';
-import { createCityMap } from './cityMap.js?v=10';
+import { metrics } from './metrics.js?v=11';
+import { loadLocals } from './dataSource.js?v=11';
+import { createCityMap } from './cityMap.js?v=11';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -148,6 +148,7 @@ function buildDetail(local) {
 
   return (
     '<div class="city-list__detail"><div class="detail__inner">' +
+      '<button type="button" class="detail__close" aria-label="Close details">×</button>' +
       `<div class="detail__grid">${cells.join('')}</div>` +
       (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '') +
     '</div></div>'
@@ -196,6 +197,12 @@ function renderList(points, meta) {
       '</div>' +
       (isSel ? buildDetail(localById.get(p.id)) : '');
     li.querySelector('.city-list__row').addEventListener('click', () => onSelect(p.id));
+    if (isSel) {
+      li.querySelector('.detail__close')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deselect();
+      });
+    }
     els.list.appendChild(li);
   });
 }
@@ -217,6 +224,14 @@ function onSelect(id, { fromMap = false } = {}) {
   if (!fromMap) map.select(id);            // pan to + highlight the marker
   if (changed || !fromMap) rerenderList(); // reorder the list, expand the panel
   scrollActiveIntoView();
+}
+
+// Close the green detail panel: clear the selection and the map highlight.
+function deselect() {
+  if (!state.selectedId) return;
+  state.selectedId = null;
+  map.select(null);
+  rerenderList();
 }
 
 /* ---- redraw everything for the current metric ----------------------------- */

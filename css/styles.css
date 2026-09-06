@@ -299,12 +299,34 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 .city-list__item.is-active .city-list__detail { max-height: 640px; }
 
 .detail__inner {
+  position: relative;
   margin: 0 8px 10px;
-  padding: 12px;
+  padding: 12px 12px 12px;
+  padding-right: 30px;   /* room for the close button */
   border: 1px solid var(--good-line);
   border-radius: 10px;
   background: color-mix(in srgb, var(--good) 8%, var(--surface));
 }
+
+.detail__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--good) 18%, var(--surface));
+  color: var(--good);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.detail__close:hover { background: color-mix(in srgb, var(--good) 32%, var(--surface)); }
+.detail__close:focus-visible { outline: 2px solid var(--good); outline-offset: 1px; }
 
 .detail__grid {
   display: grid;
