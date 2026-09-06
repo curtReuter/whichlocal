@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=12';
-import { loadLocals } from './dataSource.js?v=12';
-import { createCityMap } from './cityMap.js?v=12';
+import { metrics } from './metrics.js?v=14';
+import { loadLocals } from './dataSource.js?v=14';
+import { createCityMap } from './cityMap.js?v=14';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -46,7 +46,7 @@ const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const els = {
   select: document.getElementById('metric-select'),
-  modeToggle: document.getElementById('mode-toggle'),
+  modeOpts: document.querySelectorAll('.mode-switch__opt'),
   modeNote: document.getElementById('mode-note'),
   list: document.getElementById('city-list'),
   panelTitle: document.getElementById('panel-title'),
@@ -59,8 +59,8 @@ const state = {
   metricId: 'total_package',
   sortDesc: true,
   selectedId: null,
-  // "Compare" mode: divide the chosen metric by local cost of living, so values
-  // read as national-average dollars (how far the pay actually goes).
+  // "Compare" mode: show a unitless profitability score instead of the raw
+  // metric — the metric adjusted for local cost of living (see compareScore).
   compare: false,
 };
 
@@ -101,16 +101,23 @@ els.select.value = state.metricId;
 
 /* ---- build the {id,name,subtitle,lat,lng,value} points for a metric --- */
 
+// Compare mode turns the metric into a unitless "profitability score":
+//   score = value ÷ (cost of living ÷ 100) − 50
+const compareScore = (value, colPct) => value / (colPct / 100) - 50;
+
+// How a value column / tooltip / legend entry is formatted right now.
+const fmtScore = (v) => v.toFixed(1);
+const valueFormat = () => (state.compare ? fmtScore : metrics[state.metricId].format);
+
 function pointsForMetric(metricId) {
   return locals
     .map((c) => {
       let value = c.values[metricId];
       if (!Number.isFinite(value)) return null;
       if (state.compare) {
-        // divide by cost of living (as a fraction of the national average)
         const col = c.values.col_pct;
         if (!Number.isFinite(col) || col <= 0) return null;
-        value /= col / 100;
+        value = compareScore(value, col);
       }
       return { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value };
     })
@@ -201,7 +208,7 @@ function renderList(points, meta) {
           `<span class="city-list__name">${esc(p.name)}</span>` +
           `<span class="city-list__sub">${esc(p.subtitle)}</span>` +
         '</span>' +
-        `<span class="city-list__value">${esc(meta.format(p.value))}</span>` +
+        `<span class="city-list__value">${esc(valueFormat()(p.value))}</span>` +
       '</div>' +
       (isSel ? buildDetail(localById.get(p.id)) : '');
     li.querySelector('.city-list__row').addEventListener('click', () => onSelect(p.id));
@@ -250,18 +257,18 @@ function update() {
   const cmp = state.compare;
 
   map.setData(points, {
-    valueLabel: cmp ? `${meta.label} vs cost of living` : meta.label,
-    formatValue: meta.format,
+    valueLabel: cmp ? `${meta.label} profitability score` : meta.label,
+    formatValue: valueFormat(),
   });
   map.renderLegend('#legend');
 
   els.panelTitle.textContent = loadError
     ? 'IBEW Locals'
-    : `${meta.label}${cmp ? ' vs cost of living' : ''} · ${points.length} locals`;
+    : `${meta.label}${cmp ? ' profitability score' : ''} · ${points.length} locals`;
   els.readout.textContent = loadError
     ? 'Data unavailable — see the list.'
     : cmp
-      ? `${meta.label} ÷ local cost of living — higher means the pay goes further.`
+      ? `Profitability score — ${meta.label} ÷ local cost of living, minus 50. Higher means the pay goes further.`
       : `${meta.label} — ${meta.unit}. ${meta.hint}.`;
   els.sortLabel.textContent = state.sortDesc ? 'High → Low' : 'Low → High';
 
@@ -275,14 +282,35 @@ els.select.addEventListener('change', () => {
   update();
 });
 
-// "Showing" ⇄ "Compare" — Compare divides the metric by local cost of living.
-els.modeToggle.addEventListener('click', () => {
-  state.compare = !state.compare;
-  els.modeToggle.textContent = state.compare ? 'Compare' : 'Showing';
-  els.modeToggle.setAttribute('aria-pressed', String(state.compare));
-  els.modeNote.hidden = !state.compare;
+// "Showing" ⇄ "Compare" segmented switch. Compare divides the metric by local
+// cost of living, so the two percentage metrics (which aren't dollars) can't
+// be compared against it.
+const COMPARE_EXCLUDED = ['col_pct', 'dues'];
+
+function setCompare(on) {
+  state.compare = on;
+  els.modeOpts.forEach((b) => {
+    const active = (b.dataset.mode === 'compare') === on;
+    b.classList.toggle('is-on', active);
+    b.setAttribute('aria-pressed', String(active));
+  });
+  els.modeNote.hidden = !on;
+
+  for (const id of COMPARE_EXCLUDED) {
+    const opt = els.select.querySelector(`option[value="${id}"]`);
+    if (opt) opt.disabled = on;
+  }
+  if (on && COMPARE_EXCLUDED.includes(state.metricId)) {
+    state.metricId = 'total_package';
+    els.select.value = state.metricId;
+  }
+
   update();
-});
+}
+
+els.modeOpts.forEach((b) =>
+  b.addEventListener('click', () => setCompare(b.dataset.mode === 'compare')),
+);
 
 els.sortToggle.addEventListener('click', () => {
   state.sortDesc = !state.sortDesc;
