@@ -1,7 +1,7 @@
 /**
- * Copy this file to `config.local.js` and fill in your values.
- * `config.local.js` is gitignored — for this build-step-free static site it is
- * the browser's runtime config (keep the CARTO key in sync with the root .env).
+ * Optional local overrides. Copy this file to `config.local.js` (gitignored) to
+ * point the frontend at a live PocketBase during development. If it's absent,
+ * the app falls back to the committed `js/config.js` (snapshot mode).
  */
 export const config = {
   // CARTO basemap key. Empty = keyless tiles (which CARTO watermarks).

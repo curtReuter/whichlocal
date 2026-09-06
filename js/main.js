@@ -8,14 +8,21 @@ import { metrics } from './metrics.js';
 import { loadLocals } from './dataSource.js';
 import { createCityMap } from './cityMap.js';
 
-// Local, gitignored config (CARTO key + PocketBase URL). With no config.local.js
-// (the normal case on a static host), pocketbaseUrl is '' and the app reads the
-// committed js/data/locals.json snapshot instead of a live PocketBase.
+// Runtime config (CARTO key + PocketBase URL), resolved in order:
+//   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
+//      PocketBase for dev); optional.
+//   2. js/config.js        — the committed default the deployed site uses:
+//      the publishable CARTO key + an empty pocketbaseUrl, so the app reads the
+//      js/data/locals.json snapshot.
 let config = { cartoApiKey: '', pocketbaseUrl: '' };
 try {
   ({ config } = await import('./config.local.js'));
 } catch {
-  console.info('js/config.local.js not found — reading the bundled data snapshot.');
+  try {
+    ({ config } = await import('./config.js'));
+  } catch {
+    console.info('No js/config.local.js or js/config.js — using built-in defaults.');
+  }
 }
 
 // Pull the IBEW locals from PocketBase up front. On failure the app still

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .env
+# local dev overrides only; js/config.js is the committed default
 js/config.local.js
 .DS_Store
 *.log

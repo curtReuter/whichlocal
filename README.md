@@ -17,6 +17,8 @@ whichlocal/
 │   ├── js/metrics.js            metric labels / units / formatters
 │   ├── js/dataSource.js         reads `locals` from PocketBase, or js/data/locals.json
 │   ├── js/data/locals.json      daily scrape snapshot (committed; what the deploy serves)
+│   ├── js/config.js             committed runtime config (publishable CARTO key, snapshot mode)
+│   ├── js/config.local.js       optional gitignored dev overrides (live PocketBase URL)
 │   └── js/main.js               wires data + map + UI
 ├── pb/
 │   ├── pocketbase               binary (gitignored — download, see below)
@@ -43,9 +45,13 @@ unzip -o pb.zip && rm pb.zip && chmod +x pocketbase && cd ..
 
 # 2. Superuser + .env
 pb/pocketbase superuser create admin@whichlocal.local "<a-strong-password>"
-cp js/config.example.js js/config.local.js      # frontend config (PB url + CARTO key)
+cp js/config.example.js js/config.local.js      # dev override: point the frontend at your live PocketBase
 #   then edit .env  →  PB_ADMIN_EMAIL / PB_ADMIN_PASSWORD / SCRAPER_CONTACT
 ```
+
+`js/config.local.js` is optional — without it the frontend uses the committed
+`js/config.js` (snapshot mode). Set `pocketbaseUrl: 'http://127.0.0.1:8090'` in
+`config.local.js` to develop against a live PocketBase instead.
 
 `.env` (gitignored) holds:
 
@@ -54,7 +60,7 @@ cp js/config.example.js js/config.local.js      # frontend config (PB url + CART
 | `PB_URL` | PocketBase base URL (default `http://127.0.0.1:8090`) |
 | `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` | superuser used by the scripts |
 | `SCRAPER_CONTACT` | email/URL sent as the `User-Agent` contact when scraping |
-| `CARTO_API_KEY` | reference copy; the browser reads `js/config.local.js` |
+| `CARTO_API_KEY` | reference copy; the browser reads it from `js/config.js` |
 
 ## Run
 
@@ -76,18 +82,22 @@ node scripts/export-snapshot.mjs    # refresh js/data/locals.json from the DB
 python3 -m http.server 8777         # open http://localhost:8777
 ```
 
-Local dev reads the live PocketBase because `js/config.local.js` sets
-`pocketbaseUrl`. With no `config.local.js` (the deployed site) or an empty
-`pocketbaseUrl`, the frontend loads `js/data/locals.json` instead.
+If `js/config.local.js` exists it wins; otherwise the frontend reads the
+committed `js/config.js`, whose empty `pocketbaseUrl` selects
+`js/data/locals.json`.
 
 ## Deploy
 
 The deployed site is just static files — host `index.html`, `css/`, `js/` on any
-static provider (GitHub Pages, Netlify, Vercel, Cloudflare Pages). Do **not**
-copy `js/config.local.js` to the host; its absence is what makes the frontend
-read the committed `js/data/locals.json` snapshot. (Set the CARTO key for
-production via whatever config mechanism you prefer, or leave it empty for
-keyless, watermarked tiles.)
+static provider (GitHub Pages, Netlify, Vercel, Cloudflare Pages). No build step
+and nothing to configure on the host: `js/config.js` is committed with the
+publishable CARTO key and snapshot mode, and `js/config.local.js` (dev-only) is
+gitignored so it never ships.
+
+The CARTO basemap key is a *client* key — it appears in every tile URL the
+browser requests and cannot be hidden. Restrict it to your site's domain in the
+[CARTO dashboard](https://carto.com/) (allowed origins / referrers) instead; an
+empty key just falls back to keyless, watermarked tiles.
 
 ### Automatic daily refresh
 
