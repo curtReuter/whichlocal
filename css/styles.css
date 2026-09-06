@@ -359,27 +359,6 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   color: var(--text-soft);
   font-variant-numeric: tabular-nums;
 }
-.legend__sizes {
-  display: flex;
-  align-items: flex-end;
-  gap: 14px;
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.legend__size {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  color: var(--text-soft);
-  font-variant-numeric: tabular-nums;
-}
-.legend__dot {
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 45%, transparent);
-  border: 1.5px solid var(--accent);
-}
 
 /* ---- footer --------------------------------------------------------------- */
 
@@ -453,7 +432,6 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   .map-wrap { order: 1; min-height: 240px; }
 
   .legend { width: 190px; bottom: 14px; left: 12px; padding: 10px 12px; }
-  .legend__sizes { gap: 10px; }
 }
 
 @media (max-width: 520px) {

@@ -260,8 +260,6 @@ export function createCityMap(target, userOptions = {}) {
 
     const { min, max, meta } = current;
     const gradient = opts.colorRamp.join(', ');
-    const mid = min + (max - min) / 2;
-    const sizeSamples = [min, mid, max];
 
     box.innerHTML = `
       <div class="legend__title">${escapeHtml(meta.valueLabel)}</div>
@@ -269,17 +267,6 @@ export function createCityMap(target, userOptions = {}) {
       <div class="legend__scale">
         <span>${escapeHtml(meta.formatValue(min))}</span>
         <span>${escapeHtml(meta.formatValue(max))}</span>
-      </div>
-      <div class="legend__sizes">
-        ${sizeSamples
-          .map((v) => {
-            const d = 2 * radiusFor(v, min, max, opts.minRadius, opts.maxRadius);
-            return `<span class="legend__size">
-                      <span class="legend__dot" style="width:${d}px;height:${d}px;"></span>
-                      <span>${escapeHtml(meta.formatValue(v))}</span>
-                    </span>`;
-          })
-          .join('')}
       </div>`;
     box.setAttribute('aria-hidden', 'false');
     return api;
