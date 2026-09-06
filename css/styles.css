@@ -476,7 +476,22 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   }
   .map-wrap { order: 1; min-height: 240px; }
 
-  .legend { width: 190px; bottom: 14px; left: 12px; padding: 10px 12px; }
+  /* compact colour key, tucked into the bottom-right of the map */
+  .legend {
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+    width: 132px;
+    padding: 6px 8px;
+    font-size: 9px;
+    border-radius: 9px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
+    opacity: 1;
+  }
+  .legend__title { margin-bottom: 4px; }
+  .legend__bar { height: 6px; border-radius: 3px; }
+  .legend__scale { margin-top: 3px; font-size: 8px; gap: 4px; }
+  .legend__scale span { white-space: nowrap; }
 }
 
 @media (max-width: 520px) {
