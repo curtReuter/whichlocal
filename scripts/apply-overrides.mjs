@@ -16,20 +16,23 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadOverrides, mergeOverride } from './lib/overrides.mjs';
+import { loadOverrides, resolveOverrides, mergeOverride } from './lib/overrides.mjs';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SNAP = join(ROOT, 'js', 'data', 'locals.json');
 
 const snapshot = JSON.parse(readFileSync(SNAP, 'utf8'));
-const overrides = loadOverrides();
-const seen = new Set();
-let applied = 0;
 
+// Resolve override keys (bare local numbers or slugs) against the snapshot rows.
+// A key that matches nothing here may just be a geo-missed local (not in the
+// snapshot) — a full scrape would place it. See the header note.
+const { bySlug: overrides, issues } = resolveOverrides(loadOverrides(), snapshot.items);
+issues.forEach((m) => console.warn(`  ${m}`));
+
+let applied = 0;
 const items = snapshot.items.map((rec) => {
-  seen.add(rec.slug);
-  const override = overrides[rec.slug];
+  const override = overrides.get(rec.slug);
   if (!override) return rec;
 
   const { record, applied: changed } = mergeOverride(rec, override);
@@ -41,12 +44,6 @@ const items = snapshot.items.map((rec) => {
   }
   return record;
 }).filter((r) => r.lat && r.lng);
-
-for (const slug of Object.keys(overrides)) {
-  if (!seen.has(slug)) {
-    console.warn(`  ${slug}: not in the snapshot — typo, or a geo-missed local (needs a full scrape)`);
-  }
-}
 
 if (DRY_RUN) {
   console.log(`--dry-run — ${applied} override(s) would apply. Snapshot not written.`);

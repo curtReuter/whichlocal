@@ -16,7 +16,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { loadOverrides, mergeOverride } from './lib/overrides.mjs';
+import { loadOverrides, resolveOverrides, mergeOverride } from './lib/overrides.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'js', 'data', 'locals.json');
@@ -55,17 +55,19 @@ if (!res.ok) {
 }
 
 const { items = [] } = await res.json();
-const overrides = loadOverrides();
-const seen = new Set();
-let overridesApplied = 0;
 
-// Keep PocketBase's order (the query sorts by local_no). `shape()` narrows each
-// record to the frontend fields in a fixed order (drops `raw` etc.); then apply
-// any manual correction for this slug.
-const merged = items.map((item) => {
-  const rec = shape(item);
-  seen.add(rec.slug);
-  const override = overrides[rec.slug];
+// `shape()` narrows each record to the frontend fields in a fixed order (drops
+// `raw` etc.), keeping PocketBase's local_no sort order.
+const shaped = items.map(shape);
+
+// Resolve override keys (bare local numbers or slugs) against the real records,
+// then fold each correction in.
+const { bySlug: overrides, issues } = resolveOverrides(loadOverrides(), shaped);
+issues.forEach((m) => console.warn(`  ${m}`));
+
+let overridesApplied = 0;
+const merged = shaped.map((rec) => {
+  const override = overrides.get(rec.slug);
   if (!override) return rec;
 
   const { record, applied } = mergeOverride(rec, override);
@@ -77,10 +79,6 @@ const merged = items.map((item) => {
   }
   return record;
 });
-
-for (const slug of Object.keys(overrides)) {
-  if (!seen.has(slug)) console.warn(`  override ${slug}: no local has this slug — check for a typo`);
-}
 
 const clean = merged.filter((r) => r.lat && r.lng);
 const dropped = merged.length - clean.length;

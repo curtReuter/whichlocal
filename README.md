@@ -129,16 +129,20 @@ skipped. Adjust the `cron:` line to change the time.
 ## Manual corrections
 
 When someone reports that a local's numbers are stale or wrong, fix it in
-**`scripts/overrides.json`** — a map of `slug → { field: value }`. The slug is
-the `id` shown in the ranked list (`l<local#>-<city>-<state>`, e.g.
-`l1-st-louis-mo`).
+**`scripts/overrides.json`** — a map of `key → { field: value }`. The **key is
+the local number** (`"606"`). A handful of numbers cover more than one row (e.g.
+Local 26 is both Washington DC and Roanoke); for those, `apply-overrides` /
+`export-snapshot` print the choices and you switch that one entry to a slug — the
+`id` in the ranked list, `l<local#>-<city>-<state>`, e.g. `l26-roanoke-va`.
 
 ```json
 {
-  "l1-st-louis-mo": {
-    "hourly_rate": 51.0,
-    "wage_sheet_url": "https://…/local-1-wage-sheet.pdf",
-    "note": "member report 2026-09-10, matches the posted wage sheet"
+  "606": {
+    "hourly_rate": 32.64,
+    "note": "Orlando (Local 606) — member report 2026-09-10"
+  },
+  "l26-roanoke-va": {
+    "wage_sheet_url": "https://…/local-26-roanoke-wage-sheet.pdf"
   }
 }
 ```
@@ -169,8 +173,9 @@ geocoder missed — by putting `lat`/`lng` in its override — run a full
 `node scripts/scrape.mjs && node scripts/export-snapshot.mjs` (or the daily
 workflow).
 
-The export warns when an override changed nothing (the scrape has caught up —
-delete that entry) or when a slug matches no local (typo).
+Both steps warn when an override changed nothing (the scrape has caught up —
+delete that entry), when a number/slug matches no local (typo), or when a bare
+number is ambiguous (switch it to a slug).
 
 Users can send corrections by opening an issue or a pull request against
 `scripts/overrides.json`.
