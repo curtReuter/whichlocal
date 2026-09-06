@@ -73,10 +73,20 @@ body {
 .brand { display: flex; align-items: center; gap: 12px; }
 
 .brand__mark {
+  width: 34px;
   height: 34px;
-  width: auto;
-  border-radius: 8px;
+  border-radius: 50%;   /* circular clip drops the image's checkerboard corners */
+  overflow: hidden;
   flex: none;
+  display: block;
+}
+.brand__mark img {
+  width: 126%;
+  height: 126%;
+  object-fit: cover;
+  display: block;
+  margin: -6% 0 0 -13%;  /* crop in to just the seal's disc — the file's
+                            checkerboard "transparency" sits outside it */
 }
 
 .brand__name { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
