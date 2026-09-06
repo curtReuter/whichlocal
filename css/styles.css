@@ -415,12 +415,35 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 /* ---- responsive ------------------------------------------------------- */
 
 @media (max-width: 820px) {
-  .app { grid-template-rows: auto auto 1fr auto; }
+  /* Mobile: the whole page scrolls rather than the list scrolling in its own
+     box. The footer then flows after the full list, so the metric readout +
+     credits are only seen once you scroll to the bottom — no persistent bar. */
+  html, body { height: auto; }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  /* keep the metric picker reachable while everything below it scrolls */
+  .app__header {
+    position: sticky;
+    top: 0;
+    z-index: 700;
+    flex: none;
+  }
 
   .app__body {
+    flex: 1 0 auto;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(160px, 32vh) 1fr;
+    grid-template-rows: minmax(160px, 32vh) auto;
   }
+
+  .city-list { overflow: visible; }
+
+  .app__footer { flex: none; }
 
   /* no drag-to-resize below the desktop breakpoint */
   .panel-resizer { display: none; }
