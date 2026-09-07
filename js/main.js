@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=28';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=28';
-import { createCityMap } from './cityMap.js?v=28';
+import { metrics } from './metrics.js?v=29';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=29';
+import { createCityMap } from './cityMap.js?v=29';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -79,15 +79,35 @@ const US_BOUNDS = [[25.5, -123.5], [48.5, -67]];
 
 const mqMobile = window.matchMedia('(max-width: 820px)');
 
+// Hotspot circle sizes scale with the map's own width, so they stay readable on
+// a phone and don't crowd the map on a laptop. Anchored to #map (the ranked
+// list eats into the window on desktop), clamped so extremes stay sane.
+function hotspotRadii() {
+  const w = document.querySelector('#map')?.clientWidth || window.innerWidth;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  return {
+    minRadius: clamp(w / 170, 4, 9),
+    maxRadius: clamp(w / 45, 15, 40),
+  };
+}
+
 const map = createCityMap('#map', {
   theme: prefersDark ? 'dark' : 'light',
   center: [39.5, -98], // continental US; refined to US_BOUNDS on load
   zoom: 4,
   minZoom: 3,
   cartoApiKey: config.cartoApiKey || '',
-  // smaller hotspots on phones — the full-size circles overlap and clutter
-  // the much narrower map
-  ...(mqMobile.matches ? { minRadius: 4, maxRadius: 15 } : {}),
+  ...hotspotRadii(),
+});
+
+// keep the circle scale in step with the viewport (device rotation, window drag)
+let radiiTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(radiiTimer);
+  radiiTimer = setTimeout(() => {
+    const { minRadius, maxRadius } = hotspotRadii();
+    map.setRadii(minRadius, maxRadius);
+  }, 200);
 });
 
 // On phones, tuck the map attribution into the bottom-left corner and drop the

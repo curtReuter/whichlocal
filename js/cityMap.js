@@ -256,6 +256,14 @@ export function createCityMap(target, userOptions = {}) {
     return api;
   }
 
+  /** Change the circle-size range and redraw (callers scale it to the viewport). */
+  function setRadii(minR, maxR) {
+    if (Number.isFinite(minR)) opts.minRadius = minR;
+    if (Number.isFinite(maxR)) opts.maxRadius = maxR;
+    draw();
+    return api;
+  }
+
   /** Render a colour-gradient + circle-size legend into `legendTarget`. */
   function renderLegend(legendTarget) {
     const box = typeof legendTarget === 'string' ? document.querySelector(legendTarget) : legendTarget;
@@ -282,7 +290,7 @@ export function createCityMap(target, userOptions = {}) {
     markersById.clear();
   }
 
-  const api = { setData, fitToData, select, on, resize, renderLegend, destroy, get leaflet() { return map; } };
+  const api = { setData, fitToData, select, on, resize, setRadii, renderLegend, destroy, get leaflet() { return map; } };
   return api;
 }
 
