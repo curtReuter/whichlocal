@@ -184,7 +184,8 @@ function compEmbed(slug) {
     color: BLUE,
     description:
       'Journeyman compensation for this local. New job calls appear below as they’re listed.\n\n' +
-      links.join(' · '),
+      links.join(' · ') +
+      '\n\n**FOLLOW FOR NOTIFICATIONS** ⬇️',
     fields: fields.length ? fields : undefined,
     footer: { text: l?.source_updated ? `Wage data updated ${l.source_updated} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
