@@ -195,12 +195,10 @@ function compEmbed(slug) {
 }
 
 function callEmbed(slug, c) {
-  const l = localBySlug.get(slug);
-  const p = place(slug);
+  // No local header — every call message is posted inside that local's own thread.
   const jc = readJson(FULL, { locals: {} }).locals?.[slug] || {};
   return {
     color: GREEN,
-    author: { name: `IBEW Local ${localNoOf(slug)} — ${l?.city || p.city}, ${l?.state || p.state}` },
     title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
     description: trunc(
       `${c.text}` + (jc.url ? `\n\n[full list](${jc.url}) · [view map](${siteUrl})` : `\n\n[view map](${siteUrl})`),
