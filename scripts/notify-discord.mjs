@@ -148,14 +148,17 @@ for (const [st, id] of Object.entries(legacyForums)) {
 
 // Resolve (and, when guild_id is set + the bot may write, CREATE) the forum
 // channel for a state. The `<state>-job-calls` forum is made once, then its id
-// is recorded in discord-threads.json.
+// is recorded in discord-threads.json. Discord rate-limits channel creation
+// hard, so cap creates per run — the rest get made on the next 2-hourly run,
+// so a full roll-out spreads over a few runs instead of timing out.
+let forumBudget = Number(process.env.FORUM_CREATE_BUDGET || 8);
 async function resolveForum(st) {
   const fe = forumsMap[st];
   if (fe && fe.id) return fe.id;
   if (legacyForums[st]) return legacyForums[st];
   const canCreate = fe && fe.name && guildId;
   if (canCreate && DRY) return `(new #${fe.name})`;
-  if (canCreate && !COMP_ONLY && BOT_TOKEN) {
+  if (canCreate && !COMP_ONLY && BOT_TOKEN && forumBudget > 0) {
     try {
       const ch = await discord('POST', `/guilds/${guildId}/channels`, {
         name: fe.name,
@@ -163,11 +166,15 @@ async function resolveForum(st) {
         ...(categoryId ? { parent_id: categoryId } : {}),
       });
       fe.id = ch.id;
+      if (categoryId) fe.parent = categoryId;
       threadsDirty = true;
-      console.log(`  + created forum #${fe.name} (${ch.id}) for ${st}`);
+      forumBudget -= 1;
+      console.log(`  + created forum #${fe.name} (${ch.id}) for ${st}${forumBudget === 0 ? ' — budget reached, more next run' : ''}`);
+      await sleep(2500); // stay well under the channel-create rate limit
       return ch.id;
     } catch (e) {
-      console.warn(`  ${st}: couldn't create forum #${fe.name} (${e.status ?? e.message}) — needs a valid discord.guild_id and the bot's Manage Channels permission`);
+      forumBudget = 0; // rate-limited or no permission — stop trying this run
+      console.warn(`  ${st}: couldn't create forum #${fe.name} (${e.status ?? e.message}) — check the bot's Manage Channels permission and discord.guild_id; retrying next run`);
     }
   }
   return defaultChannel || '';
@@ -299,6 +306,26 @@ async function refreshComp(entry, slug, forumId) {
       return { thread: entry.thread, comp: msg.id, calls: entry.calls || {} };
     }
     throw e;
+  }
+}
+
+// One-time reconcile: move any state forum that isn't yet under the Job Calls
+// category into it (covers forums created before category_id was set).
+if (categoryId && !DRY && !COMP_ONLY && BOT_TOKEN) {
+  let moveBudget = 15;
+  for (const [st, fe] of Object.entries(forumsMap)) {
+    if (!fe || !fe.id || fe.parent === categoryId || moveBudget <= 0) continue;
+    try {
+      await discord('PATCH', `/channels/${fe.id}`, { parent_id: categoryId });
+      fe.parent = categoryId;
+      threadsDirty = true;
+      moveBudget -= 1;
+      console.log(`  ~ filed #${fe.name || st} under the Job Calls category`);
+      await sleep(700);
+    } catch (e) {
+      console.warn(`  ${st}: couldn't move #${fe.name || st} into the category (${e.status ?? e.message})`);
+      break;
+    }
   }
 }
 
