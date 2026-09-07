@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=46';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=46';
-import { createCityMap } from './cityMap.js?v=46';
+import { metrics } from './metrics.js?v=47';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=47';
+import { createCityMap } from './cityMap.js?v=47';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -116,14 +116,17 @@ const mqMobile = window.matchMedia('(max-width: 820px)');
 function hotspotRadii() {
   const w = document.querySelector('#map')?.clientWidth || window.innerWidth;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-  const dataless = clamp(w / 380, 1.6, 4);
+  const jobs = state.metricId === 'job_calls';
   return {
-    minRadius: clamp(w / 170, 4, 9),
-    maxRadius: clamp(w / 45, 15, 40),
+    // job-call counts are small integers with a narrow spread, so a tight range
+    // keeps a 12-call local from ballooning into a blob that hides its
+    // neighbours; wage metrics span a wide range and want the full scale
+    minRadius: jobs ? clamp(w / 130, 8, 12) : clamp(w / 170, 4, 9),
+    maxRadius: jobs ? clamp(w / 70, 14, 22) : clamp(w / 45, 15, 40),
     // roster-only greys elsewhere are a faint speck so they don't swamp the
     // coloured data; on the job-calls view they ARE the data (every local with
     // no open calls), so show them bigger and bolder there
-    datalessRadius: state.metricId === 'job_calls' ? clamp(w / 150, 4.5, 9) : dataless,
+    datalessRadius: jobs ? clamp(w / 150, 4.5, 9) : clamp(w / 380, 1.6, 4),
   };
 }
 
