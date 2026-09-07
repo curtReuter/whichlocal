@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=40';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=40';
-import { createCityMap } from './cityMap.js?v=40';
+import { metrics } from './metrics.js?v=42';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=42';
+import { createCityMap } from './cityMap.js?v=42';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -94,6 +94,13 @@ const state = {
 
 const jobCallCount = (slug) => (jobCalls[slug] ? jobCalls[slug].total : null);
 const jobCallLabel = (n) => `${n} job call${n === 1 ? '' : 's'}`;
+
+// Web3Forms key for the "Edit Data" / "Add Job Call" submission forms. Empty →
+// the buttons aren't shown (e.g. a fork without a key configured).
+const CONTRIB_KEY = (config.web3formsKey || '').trim();
+// Web3Forms' shared hCaptcha sitekey (free tier); the account has hCaptcha
+// spam-protection turned on, so a token is required on every submission.
+const HCAPTCHA_SITEKEY = '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
 
 // Contiguous US — the first-load view. Panning to AK / HI / Canada still works
 // (the map's maxBounds is the wider North-America box).
@@ -223,17 +230,28 @@ function renderMessage(text) {
 }
 
 // The green panel that expands under the selected local. Views: the compensation
-// grid ('comp'), the local's job-calls list ('jobs'), or — for a roster-only
-// local — a short "no wage data" note (plus its job calls if it has any).
+// grid ('comp'), the local's job-calls list ('jobs'), the "Edit Data" / "Add Job
+// Call" submission forms ('edit' / 'addcall'), or — for a roster-only local — a
+// short "no wage data" note (plus its job calls if it has any).
 function buildDetail(local) {
   if (!local) return '';
   const jc = jobCalls[local.id];
   let body;
-  if (local.dataless) {
+  if (state.detailView === 'edit') {
+    body = buildEditView(local);
+  } else if (state.detailView === 'addcall') {
+    body = buildAddCallView(local);
+  } else if (local.dataless) {
     body =
       '<p class="detail__nodata">No wage data for this local yet — only locals with a ' +
       'published wage sheet have figures. It’s on the map so it can still be found.</p>' +
-      (jc ? buildJobsView(jc, { noBack: true }) : '');
+      (jc ? buildJobsView(jc, { noBack: true }) : '') +
+      (CONTRIB_KEY
+        ? '<div class="detail__actions">' +
+            '<button type="button" class="detail__go detail__go--edit">Add wage data</button>' +
+            '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
+          '</div>'
+        : '');
   } else if (state.detailView === 'jobs' && jc) {
     body = buildJobsView(jc);
   } else {
@@ -270,8 +288,170 @@ function buildCompView(local) {
 
   return (
     `<div class="detail__grid">${cells.join('')}</div>` +
-    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '')
+    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '') +
+    (CONTRIB_KEY
+      ? '<div class="detail__actions">' +
+          '<button type="button" class="detail__go detail__go--edit">Edit Data</button>' +
+          '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
+        '</div>'
+      : '')
   );
+}
+
+const CONTRIB_METRICS = Object.entries(metrics).filter(([id]) => id !== 'job_calls');
+
+// hCaptcha widget + honeypot + status line shared by both submission forms
+const FORM_TAIL =
+  '<input type="checkbox" name="botcheck" class="detail__hp" tabindex="-1" autocomplete="off">' +
+  '<div class="detail__captcha"></div>' +
+  '<div class="detail__formfoot">' +
+    '<button type="button" class="detail__link detail__formcancel">←&nbsp;Back</button>' +
+    '<button type="submit" class="detail__go detail__submit">Submit for review</button>' +
+  '</div>' +
+  '<p class="detail__formstatus" hidden></p>';
+
+// render (or re-render) the hCaptcha checkbox in a freshly-built form. api.js is
+// loaded async, so retry until window.hcaptcha is ready.
+function renderCaptcha(form) {
+  const el = form && form.querySelector('.detail__captcha');
+  if (!el || el.dataset.wid || !el.isConnected) return;
+  if (window.hcaptcha && window.hcaptcha.render) {
+    try { el.dataset.wid = window.hcaptcha.render(el, { sitekey: HCAPTCHA_SITEKEY }); }
+    catch { /* already rendered */ }
+  } else {
+    setTimeout(() => renderCaptcha(form), 250);
+  }
+}
+function resetCaptcha(form) {
+  const wid = form && form.querySelector('.detail__captcha')?.dataset.wid;
+  if (wid && window.hcaptcha) { try { window.hcaptcha.reset(wid); } catch { /* gone */ } }
+}
+
+function buildEditView(local) {
+  const rows = CONTRIB_METRICS.map(([id, m]) => {
+    const v = local.values[id];
+    return (
+      '<label class="detail__f">' +
+        `<span class="detail__k">${esc(m.label)}</span>` +
+        `<input class="detail__in" type="number" step="0.01" inputmode="decimal" name="m_${id}" ` +
+          `value="${Number.isFinite(v) ? v : ''}" placeholder="${Number.isFinite(v) ? '' : '—'}">` +
+      '</label>'
+    );
+  }).join('');
+  return (
+    '<form class="detail__form" data-kind="edit">' +
+      `<p class="detail__formhead">Suggest a correction for <strong>${esc(local.name)}</strong> — ` +
+        `${esc(local.subtitle)}. Change any figures, attach the wage sheet, or both — it’s emailed for review.</p>` +
+      `<div class="detail__fgrid">${rows}</div>` +
+      '<label class="detail__f detail__f--wide">' +
+        '<span class="detail__k">Wage sheet — PDF or image (optional)</span>' +
+        '<input class="detail__in" type="file" name="wage_sheet" accept=".pdf,image/*">' +
+      '</label>' +
+      '<label class="detail__f detail__f--wide">' +
+        '<span class="detail__k">Notes (optional)</span>' +
+        '<textarea class="detail__in" name="notes" rows="2" placeholder="Effective date, where you got this, anything else"></textarea>' +
+      '</label>' +
+      FORM_TAIL +
+    '</form>'
+  );
+}
+
+function buildAddCallView(local) {
+  return (
+    '<form class="detail__form" data-kind="jobcall">' +
+      `<p class="detail__formhead">Add a job call for <strong>${esc(local.name)}</strong> — ` +
+        `${esc(local.subtitle)}. Paste the posting as the local listed it — it’s emailed for review.</p>` +
+      '<label class="detail__f detail__f--wide">' +
+        '<span class="detail__k">Job call details</span>' +
+        '<textarea class="detail__in" name="call" rows="6" required ' +
+          'placeholder="e.g. 3 Journeyman Wireman calls for … — hours, scale, reporting instructions"></textarea>' +
+      '</label>' +
+      '<label class="detail__f detail__f--wide">' +
+        '<span class="detail__k">Source link (optional)</span>' +
+        '<input class="detail__in" type="url" name="source" placeholder="https://…">' +
+      '</label>' +
+      FORM_TAIL +
+    '</form>'
+  );
+}
+
+function setFormStatus(el, kind, msg) {
+  el.hidden = false;
+  el.textContent = msg;
+  el.className = 'detail__formstatus' + (kind ? ` detail__formstatus--${kind}` : '');
+}
+
+async function submitContribution(form, local) {
+  if (!local || form.querySelector('[name=botcheck]').checked) return; // bot
+  const kind = form.dataset.kind;
+  const status = form.querySelector('.detail__formstatus');
+  const submit = form.querySelector('.detail__submit');
+
+  const captcha = form.querySelector('[name="h-captcha-response"]')?.value || '';
+  if (!captcha) {
+    setFormStatus(status, 'error', 'Please complete the “I am human” check first.');
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append('h-captcha-response', captcha);
+  fd.append('access_key', CONTRIB_KEY);
+  fd.append('from_name', 'Which Local — visitor submission');
+  fd.append('local', `IBEW Local ${local.local_no} — ${local.subtitle}`);
+  fd.append('local_slug', local.id);
+  fd.append('page', location.href);
+
+  if (kind === 'edit') {
+    fd.append('subject', `Wage edit — Local ${local.local_no} (${local.subtitle})`);
+    const changes = [];
+    for (const [id, m] of CONTRIB_METRICS) {
+      const inp = form.querySelector(`[name="m_${id}"]`);
+      if (!inp || inp.value.trim() === '') continue;
+      const next = Number(inp.value);
+      if (!Number.isFinite(next)) continue;
+      const now = local.values[id];
+      if (next !== now) changes.push(`${m.label}: ${Number.isFinite(now) ? now : '—'} → ${next}`);
+    }
+    const notes = form.querySelector('[name=notes]').value.trim();
+    const file = form.querySelector('[name=wage_sheet]').files[0];
+    if (file && file.size > 9 * 1024 * 1024) {
+      setFormStatus(status, 'error', 'That file is over 9 MB — attach a smaller one or link it in Notes.');
+      return;
+    }
+    if (!changes.length && !notes && !file) {
+      setFormStatus(status, 'error', 'Change a figure, add a note, or attach a wage sheet first.');
+      return;
+    }
+    fd.append('proposed_changes', changes.length ? changes.join('\n') : '(no figure edits — see notes / wage sheet)');
+    fd.append('notes', notes);
+    if (file) fd.append('wage_sheet', file, file.name);
+  } else {
+    const call = form.querySelector('[name=call]').value.trim();
+    if (!call) { setFormStatus(status, 'error', 'Paste the job call text first.'); return; }
+    fd.append('subject', `Job call — Local ${local.local_no} (${local.subtitle})`);
+    fd.append('job_call', call);
+    fd.append('source', form.querySelector('[name=source]').value.trim());
+  }
+
+  submit.disabled = true;
+  setFormStatus(status, '', 'Sending…');
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+    const out = await res.json().catch(() => ({}));
+    if (res.ok && out.success) {
+      setFormStatus(status, 'ok', 'Thanks — sent for review.');
+      // lock the fields but leave "Back" usable
+      form.querySelectorAll('input, textarea').forEach((el) => { el.disabled = true; });
+    } else {
+      setFormStatus(status, 'error', out.message || 'Submission failed — please try again later.');
+      submit.disabled = false;
+      resetCaptcha(form); // token is single-use
+    }
+  } catch {
+    setFormStatus(status, 'error', 'Network error — please try again later.');
+    submit.disabled = false;
+    resetCaptcha(form);
+  }
 }
 
 function buildJobsView(jc, { noBack = false } = {}) {
@@ -364,13 +544,26 @@ function renderList(points, meta) {
         e.stopPropagation();
         deselect();
       });
-      li.querySelector('.detail__back')?.addEventListener('click', (e) => {
+      const toView = (view) => (e) => {
         e.stopPropagation();
-        state.detailView = 'comp';
+        state.detailView = view;
         rerenderList();
-      });
+      };
+      li.querySelector('.detail__back')?.addEventListener('click', toView('comp'));
+      li.querySelector('.detail__formcancel')?.addEventListener('click', toView('comp'));
+      li.querySelector('.detail__go--edit')?.addEventListener('click', toView('edit'));
+      li.querySelector('.detail__go--call')?.addEventListener('click', toView('addcall'));
+      const form = li.querySelector('.detail__form');
+      if (form) {
+        form.addEventListener('click', (e) => e.stopPropagation());
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          submitContribution(form, localById.get(p.id));
+        });
+      }
     }
     els.list.appendChild(li);
+    if (isSel) renderCaptcha(li.querySelector('.detail__form')); // needs to be in the DOM
   });
 }
 

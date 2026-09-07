@@ -13,4 +13,8 @@ export const config = {
   //                              GitHub Action commits (used on static hosts,
   //                              which is why the deployed site needs no config)
   pocketbaseUrl: 'http://127.0.0.1:8090',
+
+  // Web3Forms access key for the "Edit Data" / "Add Job Call" forms. Empty here
+  // hides the buttons in local dev; the deployed key lives in js/config.js.
+  web3formsKey: '',
 };

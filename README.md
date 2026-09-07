@@ -184,7 +184,36 @@ delete that entry), when a number/slug matches no local (typo), or when a bare
 number is ambiguous (switch it to a slug).
 
 Users can send corrections by opening an issue or a pull request against
-`scripts/overrides.json`.
+`scripts/overrides.json`, or through the in-app forms below.
+
+## Visitor submissions
+
+The wage-data panel has two buttons (shown only when a submission key is set):
+
+* **Edit Data** — opens the metric grid as editable number fields, pre-filled
+  with the current figures, plus a wage-sheet file picker (PDF/image, ≤ 9 MB) and
+  a notes box. Submitting emails a diff (`old → new` per changed field) plus the
+  attachment.
+* **Add Job Call** — a textarea to paste a posting verbatim, plus an optional
+  source link.
+
+Both post to **Web3Forms** (`api.web3forms.com/submit`) as `multipart/form-data`
+and are emailed to the address the key is registered to. Set the key in
+`js/config.js` → `web3formsKey` (a free, publishable client key from
+[web3forms.com](https://web3forms.com) — lock it to the site's domain in their
+dashboard). No key → the buttons don't render.
+
+Spam protection: a hidden honeypot field plus **hCaptcha** (turned on in the
+Web3Forms dashboard). `index.html` loads `js.hcaptcha.com/1/api.js?render=explicit`
+and `js/main.js` renders a checkbox per form with Web3Forms' shared free-tier
+sitekey (`50b2fe65-…`); the `h-captcha-response` token is sent with the POST and
+Web3Forms verifies it. If you turn hCaptcha off in the dashboard, drop the
+sitekey check in `submitContribution` (or leave it — an off dashboard still
+accepts tokens).
+
+Nothing is stored server-side. Acting on a submission still means hand-editing
+`scripts/overrides.json` (wages) or `scripts/job-calls.config.json` /
+`js/data/job-calls.json` (calls).
 
 ## The scraper
 
