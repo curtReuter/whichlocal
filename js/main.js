@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=27';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=27';
-import { createCityMap } from './cityMap.js?v=27';
+import { metrics } from './metrics.js?v=28';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=28';
+import { createCityMap } from './cityMap.js?v=28';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -87,7 +87,7 @@ const map = createCityMap('#map', {
   cartoApiKey: config.cartoApiKey || '',
   // smaller hotspots on phones — the full-size circles overlap and clutter
   // the much narrower map
-  ...(mqMobile.matches ? { minRadius: 5, maxRadius: 20 } : {}),
+  ...(mqMobile.matches ? { minRadius: 4, maxRadius: 15 } : {}),
 });
 
 // On phones, tuck the map attribution into the bottom-left corner and drop the
