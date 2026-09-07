@@ -166,10 +166,8 @@ async function discord(method, path, body) {
 /* ---------- embeds --------------------------------------------------- */
 
 function compEmbed(slug) {
+  // No title — the thread is already named "IBEW Local N — City".
   const l = localBySlug.get(slug);
-  const p = place(slug);
-  const name = `IBEW Local ${localNoOf(slug) ?? ''}`.trim() +
-    (l ? ` — ${l.city}, ${l.state}` : p.city ? ` — ${p.city}, ${p.state}` : '');
 
   const fields = [];
   if (l) {
@@ -184,7 +182,6 @@ function compEmbed(slug) {
 
   return {
     color: BLUE,
-    title: trunc(name, 256),
     description:
       'Journeyman compensation for this local. New job calls appear below as they’re listed.\n\n' +
       links.join(' · '),
