@@ -106,8 +106,10 @@ async function verifyCaptcha(token, env, request) {
   try {
     const r = await fetch('https://api.hcaptcha.com/siteverify', { method: 'POST', body });
     const out = await r.json();
+    if (out.success !== true) console.error('hcaptcha verify failed', JSON.stringify(out));
     return out.success === true;
-  } catch {
+  } catch (e) {
+    console.error('hcaptcha verify error', e.message);
     return false;
   }
 }

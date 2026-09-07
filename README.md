@@ -238,9 +238,30 @@ renders a widget per form). Two possible targets, set in `js/config.js`:
   verifies the hCaptcha with its shared sitekey (`50b2fe65-…`).
 
 Neither set → the buttons don't render. Blanking `submitUrl` falls straight back
-to Web3Forms. Acting on a submission still means hand-editing
-`scripts/overrides.json` (wages) or `scripts/job-calls.overrides.json` (calls) —
-with the Worker, the issue hands you the snippet to paste.
+to Web3Forms.
+
+### Approving a submission (Worker path)
+
+Add the label **`approved`** to a submission issue and
+`.github/workflows/apply-submission.yml` folds its JSON snippet into the right
+file and opens a PR:
+
+* `wage-correction` → merges the fields into `scripts/overrides.json`
+* `job-call` → appends the call(s) to `scripts/job-calls.overrides.json`
+  (skipping any whose text is already there)
+* `job-call-removal` → no auto-apply; the bot comments to say do it by hand
+
+Review the PR diff and merge — that triggers `apply-overrides.yml` /
+`apply-job-calls.yml`, which take it live (and, for calls, drive Discord). Only
+people with repo write access can add labels, so a visitor can't approve their
+own submission. Re-labelling updates the existing `submission/<n>` PR.
+
+Two one-time repo settings: create the `approved` label, and switch on
+**Settings → Actions → General → Allow GitHub Actions to create and approve pull
+requests** (otherwise the PR step can't run).
+
+Without the label, act on a submission by hand-editing `scripts/overrides.json`
+or `scripts/job-calls.overrides.json` — the issue body has the snippet to paste.
 
 ## The scraper
 

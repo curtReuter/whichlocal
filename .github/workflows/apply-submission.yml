@@ -1,0 +1,67 @@
+name: Apply approved submission
+
+# Label a submission issue `approved` → fold its JSON snippet into the right
+# overrides file and open a PR. Merging the PR triggers apply-overrides.yml /
+# apply-job-calls.yml, which take it live. Only people with write access can add
+# labels, so this is already gated.
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  apply:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fold the submission into an overrides file
+        id: apply
+        run: node scripts/apply-submission.mjs
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+
+      - name: Open / update the pull request
+        if: steps.apply.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          TITLE: ${{ github.event.issue.title }}
+          FILE: ${{ steps.apply.outputs.file }}
+        run: |
+          branch="submission/$ISSUE"
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add -A
+          if git diff --cached --quiet; then
+            gh issue comment "$ISSUE" --body "Nothing to change — these values are already in \`$FILE\`."
+            exit 0
+          fi
+          git commit -m "data: apply submission #$ISSUE"
+          git push -f origin "$branch"
+          body="Closes #$ISSUE — auto-applied from the approved submission (\`$FILE\`). Review the diff and merge; apply-overrides.yml / apply-job-calls.yml then takes it live."
+          gh pr create --head "$branch" --base main --title "Apply submission #$ISSUE — $TITLE" --body "$body" \
+            || gh pr edit "$branch" --title "Apply submission #$ISSUE — $TITLE" --body "$body"
+
+      - name: Explain when it can't be auto-applied
+        if: steps.apply.outputs.changed != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          NOTE: ${{ steps.apply.outputs.note }}
+        run: gh issue comment "$ISSUE" --body "$NOTE"
