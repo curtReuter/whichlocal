@@ -572,15 +572,26 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     flex: none;
   }
 
-  /* let brand / Discord / metric-switch lay out directly in the wrapping
-     header: brand + Discord share the top row, the selector drops below */
+  /* let the metric-switch lay out directly in the wrapping header */
   .app__header-actions { display: contents; }
+
+  /* Discord logo: pinned to the top-right of the viewport, above the
+     sticky header, so it's always reachable while scrolling */
+  .discord-link {
+    position: fixed;
+    top: 15px;
+    right: 18px;
+    z-index: 800;
+  }
 
   /* "Showing" selector gets its own full-width row, centered */
   .metric-switch {
     flex: 1 0 100%;
     justify-content: center;
   }
+
+  /* keep the brand text clear of the fixed logo */
+  .brand { padding-right: 40px; }
 
   .app__body {
     flex: 1 0 auto;
