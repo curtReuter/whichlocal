@@ -64,7 +64,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 20px;
+  padding: 14px 20px 24px;   /* extra room below for the metric-switch hint line */
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
@@ -94,7 +94,7 @@ body {
 
 .app__header-actions { display: flex; align-items: center; gap: 14px; }
 
-.metric-switch { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.metric-switch { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
 
 .discord-link {
   display: inline-flex;
@@ -137,12 +137,16 @@ body {
   white-space: nowrap;
 }
 
-/* full-width line under the toggle + selector */
+/* sits just under the selector without widening the switch (desktop) */
 .metric-switch__hint {
-  flex: 1 0 100%;
-  margin-top: -2px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 2px;
   font-size: 11.5px;
   color: var(--text-soft);
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .metric-switch__select {
@@ -603,7 +607,14 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     flex: 1 0 100%;
     justify-content: center;
   }
-  .metric-switch__hint { text-align: center; }
+  /* hint drops back into flow as a centered line under the selector */
+  .metric-switch__hint {
+    position: static;
+    flex: 1 0 100%;
+    margin-top: 0;
+    text-align: center;
+    white-space: normal;
+  }
 
   .app__body {
     flex: 1 0 auto;
