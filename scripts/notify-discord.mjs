@@ -353,6 +353,34 @@ if (guildId && !DRY && !COMP_ONLY && BOT_TOKEN) {
       saveThreads();
       console.log(`Forum sync: adopted ${adopted}, cleared ${dropped} deleted.`);
     }
+
+    // Create the still-missing forums here (not in the per-local loop), so
+    // states that actually have job calls get one straight away rather than
+    // waiting behind lower-numbered states for the per-run budget.
+    const callStates = new Set();
+    for (const [slug, cs] of Object.entries(newCalls)) if (cs && cs.length) callStates.add(stateOf(slug));
+    for (const slug of Object.keys(readJson(FULL, { locals: {} }).locals || {})) callStates.add(stateOf(slug));
+    const missing = Object.entries(forumsMap)
+      .filter(([, fe]) => fe && fe.name && !fe.id)
+      .sort(([a], [b]) => (callStates.has(b) ? 1 : 0) - (callStates.has(a) ? 1 : 0));
+    for (const [st, fe] of missing) {
+      if (forumBudget <= 0) break;
+      const payload = { name: fe.name, type: 15 };
+      if (categoryId) payload.parent_id = categoryId;
+      try {
+        const ch = await discord('POST', `/guilds/${guildId}/channels`, payload);
+        fe.id = ch.id;
+        fe.parent = ch.parent_id || (categoryId || null);
+        saveThreads();
+        forumBudget -= 1;
+        console.log(`  + created forum #${fe.name} (${ch.id}) for ${st} ${ch.parent_id ? `under ${ch.parent_id}` : 'at server root'}`);
+        await sleep(2500);
+      } catch (e) {
+        forumBudget = 0;
+        console.warn(`  ${st}: create forum #${fe.name} FAILED — ${e.message}`);
+        break;
+      }
+    }
   } catch (e) {
     console.warn(`  couldn't list guild channels to sync forums — ${e.message}`);
   }
