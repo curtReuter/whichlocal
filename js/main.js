@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=38';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=38';
-import { createCityMap } from './cityMap.js?v=38';
+import { metrics } from './metrics.js?v=39';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=39';
+import { createCityMap } from './cityMap.js?v=39';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -110,6 +110,9 @@ function hotspotRadii() {
   return {
     minRadius: clamp(w / 170, 4, 9),
     maxRadius: clamp(w / 45, 15, 40),
+    // roster-only greys: tiny on a phone (~1.4) so they don't swamp the map,
+    // a little bigger on a wide desktop
+    datalessRadius: clamp(w / 380, 1.4, 4),
   };
 }
 
@@ -127,8 +130,8 @@ let radiiTimer;
 window.addEventListener('resize', () => {
   clearTimeout(radiiTimer);
   radiiTimer = setTimeout(() => {
-    const { minRadius, maxRadius } = hotspotRadii();
-    map.setRadii(minRadius, maxRadius);
+    const { minRadius, maxRadius, datalessRadius } = hotspotRadii();
+    map.setRadii(minRadius, maxRadius, datalessRadius);
   }, 200);
 });
 

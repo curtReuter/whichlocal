@@ -158,9 +158,11 @@ export function createCityMap(target, userOptions = {}) {
   function styleFor(p, isSelected) {
     // roster-only local (no value for this metric): a small grey dot
     if (p.dataless || !Number.isFinite(p.value)) {
-      const base = Math.max(3, (opts.minRadius ?? 8) * 0.6);
+      const base = Number.isFinite(opts.datalessRadius)
+        ? opts.datalessRadius
+        : Math.max(2, (opts.minRadius ?? 8) * 0.5);
       return {
-        radius: isSelected ? base + 2.5 : base,
+        radius: isSelected ? base + Math.max(2, base) : base,
         color: isSelected ? '#111827' : '#ffffff',
         weight: isSelected ? 2 : 1,
         opacity: 1,
@@ -278,9 +280,10 @@ export function createCityMap(target, userOptions = {}) {
   }
 
   /** Change the circle-size range and redraw (callers scale it to the viewport). */
-  function setRadii(minR, maxR) {
+  function setRadii(minR, maxR, datalessR) {
     if (Number.isFinite(minR)) opts.minRadius = minR;
     if (Number.isFinite(maxR)) opts.maxRadius = maxR;
+    if (Number.isFinite(datalessR)) opts.datalessRadius = datalessR;
     draw();
     return api;
   }
