@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=47';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=47';
-import { createCityMap } from './cityMap.js?v=47';
+import { metrics } from './metrics.js?v=48';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=48';
+import { createCityMap } from './cityMap.js?v=48';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -59,6 +59,39 @@ try {
 } catch (e) {
   console.warn('roster merge skipped:', e.message);
 }
+
+// Locals in the same city geocode to identical coordinates (St. Louis has 5,
+// Tampa 3, …) and stack into a single dot — the ones underneath can't be seen or
+// clicked. Fan each such cluster out into a small ring around its shared point so
+// every member has its own hover/click target; one zoom step separates them
+// fully. ~0.3° between neighbours keeps each local inside its own metro.
+function disperseCoincident(list) {
+  const NEIGHBOUR_DEG = 0.3;
+  const groups = new Map();
+  for (const c of list) {
+    if (!Number.isFinite(c.lat) || !Number.isFinite(c.lng)) continue;
+    const key = `${c.lat.toFixed(3)},${c.lng.toFixed(3)}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(c);
+  }
+  for (const [key, members] of groups) {
+    if (members.length < 2) continue;
+    members.sort((a, b) => (a.local_no || 0) - (b.local_no || 0));
+    const n = members.length;
+    const lat0 = members.reduce((s, c) => s + c.lat, 0) / n;
+    const lng0 = members.reduce((s, c) => s + c.lng, 0) / n;
+    const r = NEIGHBOUR_DEG / (2 * Math.sin(Math.PI / n));
+    const lngScale = Math.max(0.25, Math.cos((lat0 * Math.PI) / 180));
+    // deterministic phase so pairs/triangles don't all point the same way
+    const phase = ((parseInt(key.replace(/\D/g, '').slice(-4), 10) || 0) % 360) * Math.PI / 180;
+    members.forEach((c, i) => {
+      const a = phase + (2 * Math.PI * i) / n;
+      c.lat = lat0 + r * Math.sin(a);
+      c.lng = lng0 + (r * Math.cos(a)) / lngScale;
+    });
+  }
+}
+disperseCoincident(locals);
 
 // id → full local (all metric values, wage-sheet URL, source date) for the
 // expanding detail panel.
