@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=33';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=33';
-import { createCityMap } from './cityMap.js?v=33';
+import { metrics } from './metrics.js?v=34';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=34';
+import { createCityMap } from './cityMap.js?v=34';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -321,14 +321,15 @@ function scrollActiveIntoView() {
 
 // Selection entry point. `fromMap` is true when the map's own select event
 // drove this (so we don't call back into the map and loop). `view` picks which
-// face of the green panel to open; when it isn't given we open 'jobs' for a
-// local that has open job calls, otherwise 'comp'. `selfDriven` marks the
-// synchronous echo of our own map.select() call so it doesn't reset the view a
-// list button just chose.
+// face of the green panel to open; when it isn't given we open 'jobs' only if
+// the current metric IS "Open job calls" and this local has some, otherwise
+// 'comp'. `selfDriven` marks the synchronous echo of our own map.select() call
+// so it doesn't reset the view a list button just chose.
 let selfDrivenSelect = false;
 
 function onSelect(id, { fromMap = false, view } = {}) {
-  const defaultView = jobCallCount(id) != null ? 'jobs' : 'comp';
+  const defaultView =
+    state.metricId === 'job_calls' && jobCallCount(id) != null ? 'jobs' : 'comp';
   const nextView = view ?? (fromMap && selfDrivenSelect ? state.detailView : defaultView);
   const changed = state.selectedId !== id || state.detailView !== nextView;
   state.selectedId = id;
