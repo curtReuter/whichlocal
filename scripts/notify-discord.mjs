@@ -166,7 +166,7 @@ async function discord(method, path, body) {
 /* ---------- embeds --------------------------------------------------- */
 
 function compEmbed(slug) {
-  // No title — the thread is already named "IBEW Local N — City".
+  // No title — the thread is already named "Local N — City".
   const l = localBySlug.get(slug);
 
   const fields = [];
@@ -215,7 +215,7 @@ function callEmbed(slug, c) {
 
 async function createThread(forumId, slug) {
   const l = localBySlug.get(slug);
-  const name = trunc(`IBEW Local ${localNoOf(slug)} — ${l?.city || place(slug).city}`, 100);
+  const name = trunc(`Local ${localNoOf(slug)} — ${l?.city || place(slug).city}`, 100);
   const t = await discord('POST', `/channels/${forumId}/threads`, {
     name,
     message: compMessage(slug),
