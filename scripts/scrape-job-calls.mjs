@@ -94,15 +94,48 @@ const CLASSES = {
 };
 
 /**
- * Pull the job-call blocks out of a UnionActive "Job Calls" page. Two layouts
- * are handled, one <p> per call in both:
- *   A (e.g. Local 606) — "10 Journeyman Wireman calls for Contractor …",
- *      with a "There are N job calls:" header.
- *   B (e.g. Local 756) — "5 - JW Contractor, Working at …  $40.30", sometimes
- *      followed by a lone "OPEN UNTIL FILLED" paragraph, and no header (the
- *      total is the sum of the leading counts).
+ * Paragraph shapes we know how to read, tried in order against each <p> on a
+ * "Job Calls" page. A matcher gets the paragraph's plain text and returns
+ * { count, classification } for a call, or null to pass. Every configured local
+ * is run through all of these unless its job-calls.config.json entry names a
+ * `format` (string or array) to restrict it.
+ *
+ * To support a local that publishes calls in a new shape, add an entry here —
+ * nothing else needs to change.
  */
-function parseJobCalls(html) {
+const FORMATS = [
+  {
+    // "10 Journeyman Wireman calls for Maddox Electric …"  (e.g. Local 606)
+    name: 'prose',
+    match(t) {
+      const m = t.match(/^(\d+)\s+([A-Za-z][A-Za-z ]*?)\s+calls?\s+for\b/i);
+      return m ? { count: parseInt(m[1], 10), classification: m[2].trim() } : null;
+    },
+  },
+  {
+    // "5 - JW Cache Valley Electric, Working at …  $40.30"  (e.g. Local 756)
+    name: 'dash-code',
+    match(t) {
+      const m = t.match(/^(\d+)\s*[-–—]\s*([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b/);
+      if (!m) return null;
+      return {
+        count: parseInt(m[1], 10),
+        classification: CLASSES[m[2].toUpperCase()] || m[2].toUpperCase(),
+      };
+    },
+  },
+];
+
+/**
+ * Pull the job-call blocks out of a UnionActive "Job Calls" page. One <p> per
+ * call; each is matched against FORMATS (optionally narrowed by `formatNames`).
+ * A "There are N job calls:" header sets the total when present, otherwise it is
+ * the sum of the leading counts.
+ */
+function parseJobCalls(html, formatNames) {
+  const active = formatNames && formatNames.length
+    ? FORMATS.filter((f) => formatNames.includes(f.name))
+    : FORMATS;
   // widest content region across the UnionActive page templates
   let start = -1;
   for (const a of [/class=["']pageheader["']/i, /id=["']pagecontent["']/i, /id=["']maincolumnspot["']/i]) {
@@ -130,23 +163,12 @@ function parseJobCalls(html) {
   for (const block of region.match(/<p\b[^>]*>[\s\S]*?<\/p>/gi) || []) {
     const t = plain(block);
     if (!t) continue;
-
-    if (/^open until filled\b/i.test(t)) {
-      if (calls.length) calls[calls.length - 1].open_until_filled = true;
-      continue;
-    }
-
-    // A: "10 Journeyman Wireman calls for …"
-    let m = t.match(/^(\d+)\s+([A-Za-z][A-Za-z ]*?)\s+calls?\s+for\b/i);
-    if (m) {
-      calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: m[2].trim(), text: t });
-      continue;
-    }
-    // B: "5 - JW Contractor …"  (dash then a short classification token)
-    m = t.match(/^(\d+)\s*[-–—]\s*([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b/);
-    if (m) {
-      const cls = CLASSES[m[2].toUpperCase()] || m[2].toUpperCase();
-      calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: cls, text: t });
+    for (const f of active) {
+      const hit = f.match(t);
+      if (hit) {
+        calls.push({ id: callId(t), count: hit.count, classification: hit.classification, text: t });
+        break;
+      }
     }
   }
 
@@ -171,10 +193,10 @@ let ok = 0;
 let failed = 0;
 let newTotal = 0;
 
-for (const [slug, { local_no, url }] of entries) {
+for (const [slug, { local_no, url, format }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
-    const parsed = parseJobCalls(await getHtml(slug, url));
+    const parsed = parseJobCalls(await getHtml(slug, url), [].concat(format || []));
 
     // index the previous run's calls by id and by normalised text (older files
     // may predate `id`, so match on text too)

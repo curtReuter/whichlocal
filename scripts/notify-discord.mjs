@@ -191,7 +191,7 @@ function callEmbed(slug, c) {
     description: trunc(
       `${c.text}` + (jc.url ? `\n\n[full list](${jc.url}) · [view map](${siteUrl})` : `\n\n[view map](${siteUrl})`),
       4000,
-    ) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
+    ),
     footer: { text: jc.posted ? `List posted ${jc.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
   };

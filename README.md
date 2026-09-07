@@ -234,14 +234,20 @@ node scripts/notify-discord.mjs --dry-run            # preview the Discord posts
 ```
 
 then `node scripts/scrape-job-calls.mjs --only <slug>` and check the output.
-IBEW sites run UnionActive, and the parser handles the two layouts seen so far,
-one `<p>` per call in both:
+IBEW sites run UnionActive. Each `<p>` on the page is matched against an ordered
+list of paragraph parsers — the `FORMATS` array in `scripts/scrape-job-calls.mjs`
+— and the first match wins. The two shapes seen so far, one `<p>` per call:
 
-* **A** (Local 606) — `"10 Journeyman Wireman calls for Contractor …"`, with a
-  `"There are N job calls:"` header.
-* **B** (Local 756) — `"5 - JW Contractor, Working at …  $40.30"`, optionally
-  followed by a lone `OPEN UNTIL FILLED` line (captured as `open_until_filled`
-  on that call), and **no header** — the total is the sum of the leading counts.
+* **`prose`** (Local 606) — `"10 Journeyman Wireman calls for Contractor …"`,
+  with a `"There are N job calls:"` header.
+* **`dash-code`** (Local 756) — `"5 - JW Contractor, Working at …  $40.30"`, and
+  **no header** — the total is the sum of the leading counts.
+
+When a local publishes calls in a shape neither recognises, add another entry to
+`FORMATS` (a `{ name, match(text) }` object); nothing else changes. If a new
+parser would misfire on a local you already scrape, pin that local to the parsers
+it needs with a `"format"` key in its config entry (a name or array of names) —
+otherwise every parser is tried.
 
 Same conduct as the main scraper — one request per local per run, HTML cached,
 descriptive `User-Agent`.

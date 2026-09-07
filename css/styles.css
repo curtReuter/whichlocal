@@ -442,20 +442,6 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   border-top: 1px solid var(--good-line);
 }
 .detail__call:first-of-type { border-top: 0; padding-top: 0; }
-.detail__ouf {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 1px 6px;
-  border-radius: 999px;
-  background: var(--good);
-  color: var(--accent-ink);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  white-space: nowrap;
-  vertical-align: 1px;
-}
 
 /* ---- map + legend ----------------------------------------------------- */
 
