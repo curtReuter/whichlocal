@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=50';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=50';
-import { createCityMap } from './cityMap.js?v=50';
+import { metrics } from './metrics.js?v=51';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=51';
+import { createCityMap } from './cityMap.js?v=51';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -130,12 +130,18 @@ const state = {
 const jobCallCount = (slug) => (jobCalls[slug] ? jobCalls[slug].total : null);
 const jobCallLabel = (n) => `${n} job call${n === 1 ? '' : 's'}`;
 
-// Web3Forms key for the "Edit Data" / "Add Job Call" submission forms. Empty →
-// the buttons aren't shown (e.g. a fork without a key configured).
+// Where the "Edit Data" / "Add Job Call" / "Flag filled" forms submit:
+//   config.submitUrl    — a Cloudflare Worker that opens a GitHub issue and
+//                         stores the wage-sheet upload in R2 (worker/); preferred.
+//   config.web3formsKey  — fall back to Web3Forms → email.
+// The submission buttons show when either is configured.
+const SUBMIT_URL = (config.submitUrl || '').trim();
 const CONTRIB_KEY = (config.web3formsKey || '').trim();
-// Web3Forms' shared hCaptcha sitekey (free tier); the account has hCaptcha
-// spam-protection turned on, so a token is required on every submission.
-const HCAPTCHA_SITEKEY = '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
+const CAN_SUBMIT = Boolean(SUBMIT_URL || CONTRIB_KEY);
+// hCaptcha sitekey. With the Worker, set config.hcaptchaSitekey to your own
+// site's key (its secret lives in the Worker). Default = Web3Forms' shared key.
+const HCAPTCHA_SITEKEY =
+  (config.hcaptchaSitekey || '').trim() || '50b2fe65-b00b-4b9e-ad62-3ba471098be2';
 
 // Contiguous US — the first-load view. Panning to AK / HI / Canada still works
 // (the map's maxBounds is the wider North-America box).
@@ -290,7 +296,7 @@ function buildDetail(local) {
       '<p class="detail__nodata">No wage data for this local yet — only locals with a ' +
       'published wage sheet have figures. It’s on the map so it can still be found.</p>' +
       (jc ? buildJobsView(jc, { noBack: true }) : '') +
-      (CONTRIB_KEY ? `<div class="detail__foot">${CONTRIB_BUTTONS}</div>` : '');
+      (CAN_SUBMIT ? `<div class="detail__foot">${CONTRIB_BUTTONS}</div>` : '');
   } else if (state.detailView === 'jobs' && jc) {
     body = buildJobsView(jc);
   } else {
@@ -326,7 +332,7 @@ function buildCompView(local) {
       `<a href="${esc(local.wageSheetUrl)}" target="_blank" rel="noopener">Wage sheet&nbsp;↗</a>`,
     );
   }
-  if (CONTRIB_KEY) foot.push(CONTRIB_BUTTONS);
+  if (CAN_SUBMIT) foot.push(CONTRIB_BUTTONS);
 
   return (
     `<div class="detail__grid">${cells.join('')}</div>` +
@@ -459,22 +465,30 @@ async function submitContribution(form, local) {
 
   const fd = new FormData();
   fd.append('h-captcha-response', captcha);
-  fd.append('access_key', CONTRIB_KEY);
-  fd.append('from_name', 'Which Local — visitor submission');
+  fd.append('kind', kind);
   fd.append('local', `IBEW Local ${local.local_no} — ${local.subtitle}`);
   fd.append('local_slug', local.id);
+  fd.append('local_no', String(local.local_no ?? ''));
   fd.append('page', location.href);
+  if (!SUBMIT_URL) { // Web3Forms wants these; the Worker ignores them
+    fd.append('access_key', CONTRIB_KEY);
+    fd.append('from_name', 'Which Local — visitor submission');
+  }
 
   if (kind === 'edit') {
     fd.append('subject', `Wage edit — Local ${local.local_no} (${local.subtitle})`);
     const changes = [];
+    const changed = {};
     for (const [id, m] of CONTRIB_METRICS) {
       const inp = form.querySelector(`[name="m_${id}"]`);
       if (!inp || inp.value.trim() === '') continue;
       const next = Number(inp.value);
       if (!Number.isFinite(next)) continue;
       const now = local.values[id];
-      if (next !== now) changes.push(`${m.label}: ${Number.isFinite(now) ? now : '—'} → ${next}`);
+      if (next !== now) {
+        changes.push(`${m.label}: ${Number.isFinite(now) ? now : '—'} → ${next}`);
+        changed[id] = next;
+      }
     }
     const notes = form.querySelector('[name=notes]').value.trim();
     const file = form.querySelector('[name=wage_sheet]').files[0];
@@ -487,6 +501,7 @@ async function submitContribution(form, local) {
       return;
     }
     fd.append('proposed_changes', changes.length ? changes.join('\n') : '(no figure edits — see notes / wage sheet)');
+    fd.append('changes_json', JSON.stringify(changed));
     fd.append('notes', notes);
     if (file) fd.append('wage_sheet', file, file.name);
   } else if (kind === 'delcall') {
@@ -509,7 +524,8 @@ async function submitContribution(form, local) {
   submit.disabled = true;
   setFormStatus(status, '', 'Sending…');
   try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+    const endpoint = SUBMIT_URL || 'https://api.web3forms.com/submit';
+    const res = await fetch(endpoint, { method: 'POST', body: fd });
     const out = await res.json().catch(() => ({}));
     if (res.ok && out.success) {
       setFormStatus(status, 'ok', 'Thanks — sent for review.');
@@ -536,7 +552,7 @@ function buildJobsView(jc, { noBack = false } = {}) {
   const foot = [];
   if (!noBack) {
     foot.push('<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>');
-    if (CONTRIB_KEY) {
+    if (CAN_SUBMIT) {
       foot.push(
         '<span class="detail__footacts">' +
           (jc.calls.length

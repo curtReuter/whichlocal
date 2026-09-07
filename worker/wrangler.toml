@@ -1,0 +1,19 @@
+name = "whichlocal-submit"
+main = "src/worker.js"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+[vars]
+GITHUB_OWNER = "curtReuter"
+GITHUB_REPO = "whichlocal"
+# The site origin. Use "*" to accept submissions from anywhere (the hCaptcha
+# token is still bound to your sitekey's allowed hostnames).
+ALLOWED_ORIGIN = "https://curtreuter.github.io"
+
+[[r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "whichlocal-submissions"
+
+# Secrets (never in this file) — set once with:
+#   wrangler secret put GITHUB_TOKEN     (fine-grained PAT, Issues: read+write on the repo)
+#   wrangler secret put HCAPTCHA_SECRET  (from hcaptcha.com, matches your sitekey)

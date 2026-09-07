@@ -19,3 +19,8 @@ scripts/cache/*.html
 scripts/cache/job-calls-delta.json
 # raw OLMS filer dump — 20+ MB, only used for scrape-ibew-roster.mjs --offline
 scripts/cache/olms-filers.json
+
+# Cloudflare Worker (worker/)
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars

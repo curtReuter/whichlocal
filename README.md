@@ -110,6 +110,31 @@ browser requests and cannot be hidden. Restrict it to your site's domain in the
 [CARTO dashboard](https://carto.com/) (allowed origins / referrers) instead; an
 empty key just falls back to keyless, watermarked tiles.
 
+### Moving to a custom domain
+
+Say the site moves from `curtreuter.github.io/whichlocal/` to `whichlocal.org`.
+Most of the stack doesn't care about the domain; a few allow-lists and one
+committed URL do. Add the new host **alongside** the old one everywhere that
+takes a list, flip the switch, then remove the old host once it's confirmed.
+
+**Nothing to change:** the submission Worker URL (`*.workers.dev`) and
+`js/config.js` → `submitUrl`; the GitHub token, R2 bucket, and secrets; the
+scrape workflows, PocketBase, and all data files.
+
+| # | Where | What to do |
+|---|---|---|
+| 1 | **DNS + GitHub Pages** | Add the domain in the repo's **Settings → Pages** (writes a `CNAME` file), and point the domain's DNS at GitHub Pages ([docs](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site)). If you host elsewhere (Netlify/Vercel/Cloudflare Pages), use that host's custom-domain flow instead. |
+| 2 | [**CARTO dashboard**](https://carto.com/) | Add the new domain to the basemap key's allowed origins / referrers (else the map falls back to watermarked tiles). |
+| 3 | **hCaptcha dashboard** | Add the new hostname to the site's allowed hostnames (else the submission captcha stops verifying). |
+| 4 | `worker/wrangler.toml` → `ALLOWED_ORIGIN` | Set to `https://whichlocal.org`, then `cd worker && npx wrangler deploy`. Or set it to `"*"` once and never touch this again — a valid, hostname-bound hCaptcha token is still required, so it isn't actually open. |
+| 5 | [**Web3Forms dashboard**](https://web3forms.com) | Only if you still use the email fallback (`web3formsKey`): add the new domain to the access key's allowed domains. |
+| 6 | `scripts/job-calls.config.json` → `site_url` | Change to `https://whichlocal.org/`. This is the "view on the map" link in every Discord message (`scripts/notify-discord.mjs`). Commit it. |
+| 7 | Docs / comments | Cosmetic find-and-replace of `curtreuter.github.io/whichlocal` in this README, `worker/README.md`, and the fallback default in `scripts/notify-discord.mjs`. |
+
+Optional: give the Worker a matching custom route (e.g. `submit.whichlocal.org`)
+in the Cloudflare dashboard and update `submitUrl` — the `workers.dev` URL keeps
+working either way, so this is purely cosmetic.
+
 ### Automatic daily refresh
 
 `.github/workflows/scrape.yml` runs every day (~08:27 UTC, plus a manual
@@ -188,34 +213,34 @@ Users can send corrections by opening an issue or a pull request against
 
 ## Visitor submissions
 
-The green detail panel has buttons (shown only when a submission key is set):
+The green detail panel has buttons (shown only when a submission target is set):
 
 * **Edit Data** (wage view) — the metric grid as editable number fields,
   pre-filled with the current figures, plus a wage-sheet file picker (PDF/image,
-  ≤ 9 MB) and a notes box. Emails a diff (`old → new` per changed field) plus the
+  ≤ 9 MB) and a notes box. Sends a diff (`old → new` per changed field) plus the
   attachment.
 * **Add Job Call** (wage or jobs view) — a textarea to paste a posting verbatim,
   plus an optional source link.
 * **Flag filled** (jobs view, when the local has calls) — a checklist of the
-  local's current job calls; ticked ones are emailed as "please remove".
+  local's current job calls; ticked ones are sent as "please remove".
 
-All post to **Web3Forms** (`api.web3forms.com/submit`) as `multipart/form-data`
-and are emailed to the address the key is registered to. Set the key in
-`js/config.js` → `web3formsKey` (a free, publishable client key from
-[web3forms.com](https://web3forms.com) — lock it to the site's domain in their
-dashboard). No key → the buttons don't render.
+Each form is `multipart/form-data` with a hidden honeypot and an **hCaptcha**
+checkbox (`index.html` loads `js.hcaptcha.com/1/api.js?render=explicit`, `js/main.js`
+renders a widget per form). Two possible targets, set in `js/config.js`:
 
-Spam protection: a hidden honeypot field plus **hCaptcha** (turned on in the
-Web3Forms dashboard). `index.html` loads `js.hcaptcha.com/1/api.js?render=explicit`
-and `js/main.js` renders a checkbox per form with Web3Forms' shared free-tier
-sitekey (`50b2fe65-…`); the `h-captcha-response` token is sent with the POST and
-Web3Forms verifies it. If you turn hCaptcha off in the dashboard, drop the
-sitekey check in `submitContribution` (or leave it — an off dashboard still
-accepts tokens).
+* **`submitUrl`** — the Cloudflare Worker in [`worker/`](worker/) (**preferred**).
+  It verifies the hCaptcha token, stores the upload in R2, and opens a labelled
+  **GitHub issue** with a paste-ready `overrides.json` / `job-calls.overrides.json`
+  snippet. Also set `hcaptchaSitekey` to your own hCaptcha key (its secret lives
+  in the Worker). See `worker/README.md` for the ~20-min setup.
+* **`web3formsKey`** — fallback: a publishable [Web3Forms](https://web3forms.com)
+  key; submissions are emailed to the address it's registered to, and Web3Forms
+  verifies the hCaptcha with its shared sitekey (`50b2fe65-…`).
 
-Nothing is stored server-side. Acting on a submission still means hand-editing
-`scripts/overrides.json` (wages) or `scripts/job-calls.config.json` /
-`js/data/job-calls.json` (calls).
+Neither set → the buttons don't render. Blanking `submitUrl` falls straight back
+to Web3Forms. Acting on a submission still means hand-editing
+`scripts/overrides.json` (wages) or `scripts/job-calls.overrides.json` (calls) —
+with the Worker, the issue hands you the snippet to paste.
 
 ## The scraper
 

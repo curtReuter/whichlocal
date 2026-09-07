@@ -14,7 +14,11 @@ export const config = {
   //                              which is why the deployed site needs no config)
   pocketbaseUrl: 'http://127.0.0.1:8090',
 
-  // Web3Forms access key for the "Edit Data" / "Add Job Call" forms. Empty here
-  // hides the buttons in local dev; the deployed key lives in js/config.js.
+  // Submission forms. `submitUrl` = the Cloudflare Worker (worker/); it wins over
+  // `web3formsKey` (Web3Forms → email). `hcaptchaSitekey` = your own hCaptcha
+  // site key, only needed with the Worker. All empty here = buttons hidden in
+  // local dev; the deployed values live in js/config.js.
+  submitUrl: '',
   web3formsKey: '',
+  hcaptchaSitekey: '',
 };

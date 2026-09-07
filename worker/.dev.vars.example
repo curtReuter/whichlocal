@@ -1,0 +1,8 @@
+# Copy to `.dev.vars` (gitignored) for `wrangler dev`. Not used in production —
+# there the real values are `wrangler secret put`.
+GITHUB_TOKEN=github_pat_xxx
+HCAPTCHA_SECRET=0xYourHcaptchaSecret
+
+# hCaptcha test pair that always passes (dev only):
+#   sitekey  10000000-ffff-ffff-ffff-000000000001   (put in js/config.local.js -> hcaptchaSitekey)
+#   secret   0x0000000000000000000000000000000000000000
