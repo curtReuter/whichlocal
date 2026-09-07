@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=25';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=25';
-import { createCityMap } from './cityMap.js?v=25';
+import { metrics } from './metrics.js?v=26';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=26';
+import { createCityMap } from './cityMap.js?v=26';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -164,7 +164,7 @@ function buildDetail(local) {
   const jc = jobCalls[local.id];
   const body = state.detailView === 'jobs' && jc
     ? buildJobsView(jc)
-    : buildCompView(local, jc);
+    : buildCompView(local);
   return (
     '<div class="city-list__detail"><div class="detail__inner">' +
       '<button type="button" class="detail__close" aria-label="Close details">×</button>' +
@@ -173,7 +173,7 @@ function buildDetail(local) {
   );
 }
 
-function buildCompView(local, jc) {
+function buildCompView(local) {
   const cells = [];
   for (const [id, m] of Object.entries(metrics)) {
     const v = local.values[id];
@@ -191,11 +191,6 @@ function buildCompView(local, jc) {
   if (local.wageSheetUrl) {
     foot.push(
       `<a href="${esc(local.wageSheetUrl)}" target="_blank" rel="noopener">Wage sheet&nbsp;↗</a>`,
-    );
-  }
-  if (jc) {
-    foot.push(
-      `<button type="button" class="detail__link detail__viewjobs">${esc(jobCallLabel(jc.total))}&nbsp;→</button>`,
     );
   }
 
@@ -281,11 +276,6 @@ function renderList(points, meta) {
         e.stopPropagation();
         deselect();
       });
-      li.querySelector('.detail__viewjobs')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        state.detailView = 'jobs';
-        rerenderList();
-      });
       li.querySelector('.detail__back')?.addEventListener('click', (e) => {
         e.stopPropagation();
         state.detailView = 'comp';
@@ -307,13 +297,15 @@ function scrollActiveIntoView() {
 
 // Selection entry point. `fromMap` is true when the map's own select event
 // drove this (so we don't call back into the map and loop). `view` picks which
-// face of the green panel to open ('comp' by default, 'jobs' from the list's
-// job-calls button). `selfDriven` marks the synchronous echo of our own
-// map.select() call so it doesn't reset the view a list button just chose.
+// face of the green panel to open; when it isn't given we open 'jobs' for a
+// local that has open job calls, otherwise 'comp'. `selfDriven` marks the
+// synchronous echo of our own map.select() call so it doesn't reset the view a
+// list button just chose.
 let selfDrivenSelect = false;
 
 function onSelect(id, { fromMap = false, view } = {}) {
-  const nextView = view ?? (fromMap && selfDrivenSelect ? state.detailView : 'comp');
+  const defaultView = jobCallCount(id) != null ? 'jobs' : 'comp';
+  const nextView = view ?? (fromMap && selfDrivenSelect ? state.detailView : defaultView);
   const changed = state.selectedId !== id || state.detailView !== nextView;
   state.selectedId = id;
   state.detailView = nextView;
