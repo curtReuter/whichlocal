@@ -156,19 +156,26 @@ export function createCityMap(target, userOptions = {}) {
   }
 
   function styleFor(p, isSelected) {
-    // roster-only local (no value for this metric): a small grey dot
+    // roster-only local (no value for this metric): a small grey dot. The dot
+    // itself stays tiny and, being a px radius, never grows or shrinks with
+    // zoom; a fat fully-transparent stroke around it is the finger-sized tap
+    // target (Leaflet marks interactive paths pointer-events:auto, so the
+    // invisible ring is still clickable).
     if (p.dataless || !Number.isFinite(p.value)) {
-      const base = Number.isFinite(opts.datalessRadius)
+      const r = Number.isFinite(opts.datalessRadius)
         ? opts.datalessRadius
         : Math.max(2, (opts.minRadius ?? 8) * 0.5);
-      return {
-        radius: isSelected ? base + Math.max(2, base) : base,
-        color: isSelected ? '#111827' : '#ffffff',
-        weight: isSelected ? 2 : 1,
-        opacity: 1,
-        fillColor: '#9aa3af',
-        fillOpacity: 0.5,
-      };
+      return isSelected
+        ? {
+          radius: r + Math.max(3, r),
+          color: '#111827', weight: 2, opacity: 1,
+          fillColor: '#5b6472', fillOpacity: 0.95,
+        }
+        : {
+          radius: r,
+          color: '#000000', weight: 13, opacity: 0, // invisible tap target
+          fillColor: '#9aa3af', fillOpacity: 0.5,
+        };
     }
     const { min, max } = current;
     const t = max > min ? (p.value - min) / (max - min) : 0.5;
@@ -209,10 +216,14 @@ export function createCityMap(target, userOptions = {}) {
         { direction: 'top', offset: [0, -4], className: 'city-tooltip', sticky: false }
       );
 
-      const hoverW = dataless ? 2 : 3;
-      const restW = p.id === selectedId ? (dataless ? 2 : 3) : (dataless ? 1 : 1.5);
-      marker.on('mouseover', () => marker.setStyle({ weight: hoverW }));
-      marker.on('mouseout', () => marker.setStyle({ weight: restW }));
+      // grey dots keep their fat invisible hit ring — only the value dots get
+      // the hover outline
+      if (!dataless) {
+        marker.on('mouseover', () => marker.setStyle({ weight: 3 }));
+        marker.on('mouseout', () =>
+          marker.setStyle({ weight: p.id === selectedId ? 3 : 1.5 })
+        );
+      }
       marker.on('click', () => select(p.id, { pan: false }));
 
       marker.addTo(layer);
