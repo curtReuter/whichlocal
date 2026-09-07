@@ -1,11 +1,6 @@
 {
   "__doc__": "Discord state for scripts/notify-discord.mjs. `forums` maps each state/province code to its forum channel: `name` is the channel the bot creates (once) when a local in that state first has job calls — needs discord.guild_id (+ optional discord.category_id for the “Job Calls” category) in job-calls.config.json + the bot’s Manage Channels permission — and `id` is filled in with the created channel’s id (or paste one to reuse an existing forum; job-calls.config.json → discord.forums still works as a fallback). Every other key is a local slug → { thread, comp, calls }: the bot keeps a forum thread per local, edits `comp` (the opening compensation card), posts new job calls below, and deletes a call’s message when it drops off the list. `calls` maps a job call id (js/data/job-calls.json) to its Discord message id. Delete a local row to make the bot recreate that thread.",
   "forums": {
-    "AB": {
-      "name": "alberta-job-calls",
-      "id": "1546639264970711080",
-      "parent": "1533116837003399209"
-    },
     "AK": {
       "name": "alaska-job-calls",
       "id": ""
@@ -23,11 +18,6 @@
     "AZ": {
       "name": "arizona-job-calls",
       "id": "1546639422441787474",
-      "parent": "1533116837003399209"
-    },
-    "BC": {
-      "name": "british-columbia-job-calls",
-      "id": "1546637436216541266",
       "parent": "1533116837003399209"
     },
     "CA": {
@@ -109,10 +99,6 @@
       "id": "1546631140004069478",
       "parent": "1533116837003399209"
     },
-    "MB": {
-      "name": "manitoba-job-calls",
-      "id": ""
-    },
     "MD": {
       "name": "maryland-job-calls",
       "id": "1546634414468104314",
@@ -148,11 +134,6 @@
       "id": "1546637479187185786",
       "parent": "1533116837003399209"
     },
-    "NB": {
-      "name": "new-brunswick-job-calls",
-      "id": "1546639390225211498",
-      "parent": "1533116837003399209"
-    },
     "NC": {
       "name": "north-carolina-job-calls",
       "id": "1546637501702340680",
@@ -177,16 +158,8 @@
       "id": "1546636225748795484",
       "parent": "1533116837003399209"
     },
-    "NL": {
-      "name": "newfoundland-and-labrador-job-calls",
-      "id": ""
-    },
     "NM": {
       "name": "new-mexico-job-calls",
-      "id": ""
-    },
-    "NS": {
-      "name": "nova-scotia-job-calls",
       "id": ""
     },
     "NV": {
@@ -209,11 +182,6 @@
       "id": "1546639311921881088",
       "parent": "1533116837003399209"
     },
-    "ON": {
-      "name": "ontario-job-calls",
-      "id": "1546636244451074162",
-      "parent": "1533116837003399209"
-    },
     "OR": {
       "name": "oregon-job-calls",
       "id": "1546636139614568589",
@@ -223,10 +191,6 @@
       "name": "pennsylvania-job-calls",
       "id": "1546631111554113546",
       "parent": "1533116837003399209"
-    },
-    "QC": {
-      "name": "quebec-job-calls",
-      "id": ""
     },
     "RI": {
       "name": "rhode-island-job-calls",
@@ -240,11 +204,6 @@
     "SD": {
       "name": "south-dakota-job-calls",
       "id": "1546639278853980312",
-      "parent": "1533116837003399209"
-    },
-    "SK": {
-      "name": "saskatchewan-job-calls",
-      "id": "1546640389333585932",
       "parent": "1533116837003399209"
     },
     "TN": {
@@ -291,10 +250,6 @@
       "name": "wyoming-job-calls",
       "id": "1546638400856264834",
       "parent": "1533116837003399209"
-    },
-    "YT": {
-      "name": "yukon-job-calls",
-      "id": ""
     }
   },
   "l1-st-louis-mo": {
@@ -1117,11 +1072,6 @@
     "comp": "1546636237195059214",
     "calls": {}
   },
-  "l105-hamilton-ont": {
-    "thread": "1546636256597778546",
-    "comp": "1546636256597778546",
-    "calls": {}
-  },
   "l110-st-paul-mn": {
     "thread": "1546636276260798591",
     "comp": "1546636276260798591",
@@ -1130,11 +1080,6 @@
   "l112-kennewick-wa": {
     "thread": "1546636281235243041",
     "comp": "1546636281235243041",
-    "calls": {}
-  },
-  "l120-london-ont": {
-    "thread": "1546636290714501204",
-    "comp": "1546636290714501204",
     "calls": {}
   },
   "l131-kalamazoo-mi": {
@@ -1187,11 +1132,6 @@
     "comp": "1546636403520184342",
     "calls": {}
   },
-  "l303-niagara-peninsula-ont": {
-    "thread": "1546636410776326176",
-    "comp": "1546636410776326176",
-    "calls": {}
-  },
   "l343-rochester-mn": {
     "thread": "1546636433576566837",
     "comp": "1546636433576566837",
@@ -1202,19 +1142,9 @@
     "comp": "1546636443223326845",
     "calls": {}
   },
-  "l353-toronto-ont": {
-    "thread": "1546636446109007925",
-    "comp": "1546636446109007925",
-    "calls": {}
-  },
   "l400-asbury-park-nj": {
     "thread": "1546636469811028034",
     "comp": "1546636469811028034",
-    "calls": {}
-  },
-  "l402-thunder-bay-ont": {
-    "thread": "1546636472902357088",
-    "comp": "1546636472902357088",
     "calls": {}
   },
   "l445-battle-creek-mi": {
@@ -1237,19 +1167,9 @@
     "comp": "1546636518464954510",
     "calls": {}
   },
-  "l530-sarnia-ont": {
-    "thread": "1546636527549808786",
-    "comp": "1546636527549808786",
-    "calls": {}
-  },
   "l557-saginaw-mi": {
     "thread": "1546636539172225098",
     "comp": "1546636539172225098",
-    "calls": {}
-  },
-  "l586-ottawa-ont": {
-    "thread": "1546636556868001864",
-    "comp": "1546636556868001864",
     "calls": {}
   },
   "l659-medford-or": {
@@ -1267,16 +1187,6 @@
     "comp": "1546636915154092186",
     "calls": {}
   },
-  "l773-windsor-ont": {
-    "thread": "1546636941267828798",
-    "comp": "1546636941267828798",
-    "calls": {}
-  },
-  "l804-central-ontario-ont": {
-    "thread": "1546636943318589566",
-    "comp": "1546636943318589566",
-    "calls": {}
-  },
   "l906-marquette-mi": {
     "thread": "1546636958388854901",
     "comp": "1546636958388854901",
@@ -1290,11 +1200,6 @@
   "l948-flint-mi": {
     "thread": "1546636969755410574",
     "comp": "1546636969755410574",
-    "calls": {}
-  },
-  "l1687-sudbury-ont": {
-    "thread": "1546636987157446678",
-    "comp": "1546636987157446678",
     "calls": {}
   },
   "l130-new-orleans-la": {
@@ -1322,19 +1227,9 @@
     "comp": "1546637426443952211",
     "calls": {}
   },
-  "l213-port-coquitlam-bc": {
-    "thread": "1546637448807718954",
-    "comp": "1546637448807718954",
-    "calls": {}
-  },
   "l226-topeka-ks": {
     "thread": "1546637467795333262",
     "comp": "1546637467795333262",
-    "calls": {}
-  },
-  "l230-victoria-bc": {
-    "thread": "1546637473160106058",
-    "comp": "1546637473160106058",
     "calls": {}
   },
   "l233-helena-mt": {
@@ -1462,19 +1357,9 @@
     "comp": "1546637905441849356",
     "calls": {}
   },
-  "l993-northern-bc-bc": {
-    "thread": "1546637912039227424",
-    "comp": "1546637912039227424",
-    "calls": {}
-  },
   "l995-baton-rouge-la": {
     "thread": "1546637914665128039",
     "comp": "1546637914665128039",
-    "calls": {}
-  },
-  "l1003-nelson-bc": {
-    "thread": "1546637917290762445",
-    "comp": "1546637917290762445",
     "calls": {}
   },
   "l1077-bogalusa-la": {
@@ -1572,11 +1457,6 @@
     "comp": "1546638792574632059",
     "calls": {}
   },
-  "l424-edmonton-ab": {
-    "thread": "1546639276211708066",
-    "comp": "1546639276211708066",
-    "calls": {}
-  },
   "l426-sioux-falls-sd": {
     "thread": "1546639290287525943",
     "comp": "1546639290287525943",
@@ -1595,11 +1475,6 @@
   "l490-concord-nh": {
     "thread": "1546639379672342612",
     "comp": "1546639379672342612",
-    "calls": {}
-  },
-  "l502-saint-john-nb": {
-    "thread": "1546639402565107807",
-    "comp": "1546639402565107807",
     "calls": {}
   },
   "l508-savannah-ga": {
@@ -1672,24 +1547,9 @@
     "comp": "1546639675522023426",
     "calls": {}
   },
-  "l1555-moncton-nb": {
-    "thread": "1546639678176759870",
-    "comp": "1546639678176759870",
-    "calls": {}
-  },
   "l1579-augusta-ga": {
     "thread": "1546639680857055318",
     "comp": "1546639680857055318",
-    "calls": {}
-  },
-  "l2166-fredericton-nb": {
-    "thread": "1546639693142167554",
-    "comp": "1546639693142167554",
-    "calls": {}
-  },
-  "l529-saskatoon-sk": {
-    "thread": "1546640401677553686",
-    "comp": "1546640401677553686",
     "calls": {}
   },
   "l567-auburn-me": {
@@ -1700,11 +1560,6 @@
   "l1253-augusta-me": {
     "thread": "1546640665381834794",
     "comp": "1546640665381834794",
-    "calls": {}
-  },
-  "l2038-regina-sk": {
-    "thread": "1546640694205227131",
-    "comp": "1546640694205227131",
     "calls": {}
   }
 }

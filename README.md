@@ -429,12 +429,12 @@ only — no gateway, no slash commands — so it runs as a one-shot step in
    land there (optional — blank = server root).
 
 That's it — the bot now **creates the forum itself**. `scripts/discord-threads.json`
-ships with a `forums` block for every state (`FL → { "name": "florida-job-calls",
-"id": "…" }`, the rest blank); the first time a local in a given state has job
-calls, the bot creates that `<state>-job-calls` forum under the category, records
-its `id` back into the file (the workflow commits it), and threads locals into it
-from then on. Your existing `florida-job-calls` is already in the block with its
-id, so the bot reuses it — no duplicate.
+ships with a `forums` block for the **50 US states + DC** (`FL → { "name":
+"florida-job-calls", "id": "…" }`, the rest blank); the first time a local in a
+given state has job calls, the bot creates that `<state>-job-calls` forum under
+the category, records its `id` back into the file (the workflow commits it), and
+threads locals into it from then on. Discord auto-updates are **US only** —
+Canadian-province locals are skipped (a Discord category caps at 50 channels).
 
 To reuse a forum you already made, paste its channel id into the matching state's
 `id` in `discord-threads.json` (or into `discord.forums` in the config — still

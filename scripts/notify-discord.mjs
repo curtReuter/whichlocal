@@ -424,10 +424,23 @@ for (const slug of slugs) {
 
   if (COMP_ONLY && !entry) continue; // no thread yet — leave creation to job-calls.yml
 
-  const forumId = await resolveForum(normState(state));
+  const st = normState(state);
+
+  // Discord coverage is US states only (50-per-category cap). A local outside
+  // that list is skipped — including any thread a past run made for it (that
+  // channel just goes stale in Discord until you delete it).
+  if (!forumsMap[st] && !legacyForums[st]) {
+    if (calls.length) {
+      console.warn(`  ${slug}: ${st} isn't a covered Discord state — ${calls.length} new call(s) not posted`);
+    }
+    skipped += 1;
+    continue;
+  }
+
+  const forumId = await resolveForum(st);
 
   if (!entry && !forumId) {
-    console.warn(`  ${slug}: no forum for ${normState(state)} — add discord.guild_id (auto-create) or a channel id, or a default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
+    console.warn(`  ${slug}: no forum for ${st} — add discord.guild_id (auto-create) or a channel id, or a default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
     skipped += 1;
     continue;
   }
