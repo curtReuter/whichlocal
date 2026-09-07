@@ -265,6 +265,11 @@ one-shot step in `job-calls.yml`. Set **one** destination as a repo secret:
 With neither set the step is a no-op, so the workflow is safe to enable before
 you add secrets. Tighten the `cron:` in `job-calls.yml` for faster alerts.
 
+**Test it:** once a secret is set, Actions → *Job calls + Discord* → **Run
+workflow** with **"Post EVERY current job call"** ticked — it posts every call on
+the board once (`notify-discord.mjs --all`), so you don't have to wait for a new
+one to appear. Normal runs only post calls new since the previous scrape.
+
 Your Discord app: **application ID `1533086814875947068`**, public key
 `3b50e1a1b14f35e21a49879dacab70840b047dc3b820976155b1e621c3073e5e`. Neither is
 used by the notifier above — they're only needed if you later add an

@@ -4,6 +4,7 @@
  *
  *   node scripts/notify-discord.mjs
  *   node scripts/notify-discord.mjs --dry-run     # print payloads, post nothing
+ *   node scripts/notify-discord.mjs --all         # post EVERY current call (test)
  *
  * Destination — set ONE of these (repo secrets in CI):
  *   • DISCORD_WEBHOOK_URL                       — a channel webhook (simplest)
@@ -19,7 +20,9 @@ import { dirname, join } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DELTA = join(ROOT, 'scripts', 'cache', 'job-calls-delta.json');
+const FULL = join(ROOT, 'js', 'data', 'job-calls.json');
 const DRY = process.argv.includes('--dry-run');
+const ALL = process.argv.includes('--all') || process.env.NOTIFY_ALL === '1';
 
 const WEBHOOK = process.env.DISCORD_WEBHOOK_URL || '';
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || '';
@@ -28,15 +31,31 @@ const useBot = Boolean(BOT_TOKEN && CHANNEL_ID);
 
 const GREEN = 0x12905a;
 const trunc = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
+const place = (slug) => {
+  const parts = slug.replace(/^l\d+-/, '').split('-');
+  const state = (parts.pop() || '').toUpperCase();
+  return { city: parts.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), state };
+};
 
-if (!existsSync(DELTA)) {
-  console.log('No job-calls-delta.json — run scrape-job-calls.mjs first. Nothing to send.');
-  process.exit(0);
+// `--all` posts every current call from js/data/job-calls.json (one-off test);
+// otherwise only calls new since the last scrape (from the run delta).
+let added;
+if (ALL) {
+  if (!existsSync(FULL)) { console.log('No js/data/job-calls.json.'); process.exit(0); }
+  const locals = JSON.parse(readFileSync(FULL, 'utf8')).locals || {};
+  added = Object.fromEntries(Object.entries(locals).map(([slug, l]) =>
+    [slug, { local_no: l.local_no, url: l.url, posted: l.posted, ...place(slug), calls: l.calls || [] }]));
+} else {
+  if (!existsSync(DELTA)) {
+    console.log('No job-calls-delta.json — run scrape-job-calls.mjs first. Nothing to send.');
+    process.exit(0);
+  }
+  added = JSON.parse(readFileSync(DELTA, 'utf8')).added || {};
 }
-const added = JSON.parse(readFileSync(DELTA, 'utf8')).added || {};
+
 const slugs = Object.keys(added).filter((s) => (added[s].calls || []).length);
 if (!slugs.length) {
-  console.log('No new job calls.');
+  console.log(ALL ? 'No job calls at all.' : 'No new job calls.');
   process.exit(0);
 }
 if (!DRY && !useBot && !WEBHOOK) {
@@ -50,7 +69,7 @@ function embedsFor(slug) {
   return l.calls.map((c) => ({
     color: GREEN,
     author: { name: who },
-    title: trunc(`${c.count}× ${c.classification} — new job call`, 256),
+    title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
     description: trunc(c.text, 3900) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
     url: l.url,
     footer: { text: l.posted ? `List posted ${l.posted} · whichlocal` : 'whichlocal' },

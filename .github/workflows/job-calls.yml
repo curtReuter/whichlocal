@@ -7,7 +7,12 @@ name: Job calls + Discord
 on:
   schedule:
     - cron: "7 */2 * * *"   # every 2 hours, at :07
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      notify_all:
+        description: "Post EVERY current job call to Discord (one-off test), not just new ones"
+        type: boolean
+        default: false
 
 # Serialize with the other workflows that write js/data/*.json.
 concurrency:
@@ -38,6 +43,7 @@ jobs:
         run: node scripts/notify-discord.mjs
         continue-on-error: true   # a Discord hiccup shouldn't block the commit
         env:
+          NOTIFY_ALL: ${{ inputs.notify_all && '1' || '0' }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
