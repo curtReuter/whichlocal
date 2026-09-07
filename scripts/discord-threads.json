@@ -1,50 +1,50 @@
 {
   "__doc__": "slug → { thread, comp, calls }. scripts/notify-discord.mjs creates a forum thread per local, keeps a live compensation card as its opening post (`comp` = the message id it edits), posts new job calls below, and deletes a call's message when it drops off the local's list. `calls` maps each job call's id (from js/data/job-calls.json) to the Discord message id posted for it. Rows are appended automatically on first run; delete a row to make the bot recreate that thread.",
   "l606-orlando-fl": {
-    "thread": "1546398932353945631",
-    "comp": "1546398932353945631",
+    "thread": "1546399944468996127",
+    "comp": "1546399944468996127",
     "calls": {
-      "1900a3a2ce1cab4f": "1546398934652559371",
-      "c9906727ab351a2c": "1546398938314317827",
-      "6e3ce8b5fdf6d286": "1546398942839967825"
+      "1900a3a2ce1cab4f": "1546399945261842524",
+      "c9906727ab351a2c": "1546399948730273824",
+      "6e3ce8b5fdf6d286": "1546399951943245829"
     }
   },
   "l756-daytona-beach-fl": {
-    "thread": "1546398954512457812",
-    "comp": "1546398954512457812",
+    "thread": "1546399966346350633",
+    "comp": "1546399966346350633",
     "calls": {
-      "ff174a956a8367c9": "1546398955582267443",
-      "c611e60b7601da51": "1546398959218597889"
+      "ff174a956a8367c9": "1546399967600447541",
+      "c611e60b7601da51": "1546399971274788964"
     }
   },
   "l177-jacksonville-fl": {
-    "thread": "1546398924175056947",
-    "comp": "1546398924175056947",
+    "thread": "1546399935870799933",
+    "comp": "1546399935870799933",
     "calls": {}
   },
   "l349-miami-fl": {
-    "thread": "1546398927681486941",
-    "comp": "1546398927681486941",
+    "thread": "1546399941134393365",
+    "comp": "1546399941134393365",
     "calls": {}
   },
   "l676-pensacola-fl": {
-    "thread": "1546398948758134785",
-    "comp": "1546398948758134785",
+    "thread": "1546399957882245262",
+    "comp": "1546399957882245262",
     "calls": {}
   },
   "l728-ft-lauderdale-fl": {
-    "thread": "1546398951828365343",
-    "comp": "1546398951828365343",
+    "thread": "1546399960457682977",
+    "comp": "1546399960457682977",
     "calls": {}
   },
   "l915-tampa-fl": {
-    "thread": "1546398965040152669",
-    "comp": "1546398965040152669",
+    "thread": "1546399976802881650",
+    "comp": "1546399976802881650",
     "calls": {}
   },
   "l1205-gainesville-fl": {
-    "thread": "1546398968072638485",
-    "comp": "1546398968072638485",
+    "thread": "1546399980204462082",
+    "comp": "1546399980204462082",
     "calls": {}
   }
 }
