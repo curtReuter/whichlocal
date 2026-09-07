@@ -564,13 +564,19 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     min-height: 100dvh;
   }
 
-  /* keep the metric picker reachable while everything below it scrolls */
+  /* keep the metric picker reachable while everything below it scrolls;
+     side padding leaves room for the fixed Discord logo (top-right) so the
+     centred selector never runs under it */
   .app__header {
     position: sticky;
     top: 0;
     z-index: 700;
     flex: none;
+    padding: 12px 52px;
   }
+
+  /* hide the brand (IBEW mark + "Which Local?" + tagline) on phones */
+  .brand { display: none; }
 
   /* let the metric-switch lay out directly in the wrapping header */
   .app__header-actions { display: contents; }
@@ -589,9 +595,6 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     flex: 1 0 100%;
     justify-content: center;
   }
-
-  /* keep the brand text clear of the fixed logo */
-  .brand { padding-right: 40px; }
 
   .app__body {
     flex: 1 0 auto;
@@ -657,7 +660,6 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 
 @media (max-width: 520px) {
   .app__header { gap: 10px; }
-  .brand__tag { display: none; }
   .app__footer { flex-direction: column; align-items: flex-start; gap: 2px; }
 }
 
