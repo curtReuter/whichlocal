@@ -17,6 +17,7 @@ whichlocal/
 │   ├── js/metrics.js            metric labels / units / formatters
 │   ├── js/dataSource.js         reads `locals` from PocketBase, or js/data/locals.json
 │   ├── js/data/locals.json      daily scrape snapshot (committed; what the deploy serves)
+│   ├── js/data/job-calls.json   per-local job-call lists (committed; see Job calls)
 │   ├── js/config.js             committed runtime config (publishable CARTO key, snapshot mode)
 │   ├── js/config.local.js       optional gitignored dev overrides (live PocketBase URL)
 │   └── js/main.js               wires data + map + UI
@@ -29,6 +30,8 @@ whichlocal/
 │   ├── export-snapshot.mjs      dump `locals` (+ overrides) to js/data/locals.json
 │   ├── apply-overrides.mjs      fast path: apply overrides.json straight to the snapshot
 │   ├── overrides.json           hand-entered data corrections (see Manual corrections)
+│   ├── scrape-job-calls.mjs     scrape locals' own job-call pages → js/data/job-calls.json
+│   ├── job-calls.config.json    which locals' sites to scrape for job calls
 │   ├── lib/pb.mjs               .env loader + PocketBase auth helpers
 │   ├── lib/overrides.mjs        override loader + merge rule (shared)
 │   └── cache/                   cached page HTML + geocache.json
@@ -196,6 +199,37 @@ hidden from the map.
 general crawling (`User-agent: * → Allow: /`) while blocking AI-company crawlers;
 you are responsible for complying with the site's Terms of Use, and the app
 credits the source in its footer.
+
+## Job calls
+
+Some locals publish a live "job calls" / referral list on their own site.
+`scripts/scrape-job-calls.mjs` scrapes those into **`js/data/job-calls.json`**
+(keyed by slug) and the daily workflow commits it alongside `locals.json`.
+
+```sh
+node scripts/scrape-job-calls.mjs                    # every configured local
+node scripts/scrape-job-calls.mjs --only l606-orlando-fl
+node scripts/scrape-job-calls.mjs --offline          # re-parse cached HTML
+```
+
+**Adding a local:** append to `scripts/job-calls.config.json`:
+
+```json
+"l124-kansas-city-mo": {
+  "local_no": 124,
+  "url": "https://www.ibew124.org/…/Job20Calls"
+}
+```
+
+then `node scripts/scrape-job-calls.mjs --only <slug>` and check the output.
+Most IBEW sites run the same UnionActive CMS as Local 606, so the parser (a
+count-prefixed `<p>` per call: `"10 Journeyman Wireman calls for …"`) usually
+carries over. Same conduct as the main scraper — one request per local per run,
+HTML cached, descriptive `User-Agent`.
+
+In the app a local with job calls gets an **"N job calls"** button in its list
+row and the count in its map tooltip; the button opens the calls list in the
+green panel, with a link back to the compensation view.
 
 ## Data
 

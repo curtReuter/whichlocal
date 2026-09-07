@@ -291,13 +291,29 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 
 .city-list__row {
   display: grid;
-  grid-template-columns: 26px 1fr auto;
+  grid-template-columns: 26px 1fr auto auto;   /* rank · name · job-calls · value */
   align-items: center;
   gap: 10px;
   padding: 9px 10px;
   border-radius: 10px;
   cursor: pointer;
 }
+
+/* "N job calls" button, between the name and the value */
+.city-list__calls {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--good);
+  background: var(--good-soft);
+  border: 1px solid var(--good-line);
+  border-radius: 999px;
+  padding: 3px 9px;
+  cursor: pointer;
+}
+.city-list__calls:hover { background: color-mix(in srgb, var(--good) 22%, transparent); }
+.city-list__calls-gap { width: 0; }   /* keeps the value column aligned on rows without calls */
 
 .city-list__rank {
   font-size: 12px;
@@ -378,6 +394,35 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 .detail__foot a { color: var(--good); font-weight: 600; text-decoration: none; }
 .detail__foot a:hover { text-decoration: underline; }
 
+/* link-style buttons inside the green box (view job calls / go back) */
+.detail__link {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--good);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.detail__link:hover { text-decoration: underline; }
+
+/* job-calls view of the green box */
+.detail__jobs-head {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.detail__jobs-date { font-weight: 400; color: var(--text-soft); }
+.detail__call {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  border-top: 1px solid var(--good-line);
+}
+.detail__call:first-of-type { border-top: 0; padding-top: 0; }
+
 /* ---- map + legend ----------------------------------------------------- */
 
 .map-wrap { position: relative; min-height: 0; }
@@ -450,6 +495,12 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 .city-tooltip strong { display: block; font-size: 13.5px; }
 .city-tooltip .tt-sub { display: block; color: var(--text-soft); }
 .city-tooltip .tt-val { display: block; margin-top: 3px; }
+.city-tooltip .tt-badge {
+  display: block;
+  margin-top: 3px;
+  font-weight: 700;
+  color: var(--good);
+}
 
 .leaflet-bar a {
   background: var(--surface);

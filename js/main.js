@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=16';
-import { loadLocals } from './dataSource.js?v=16';
-import { createCityMap } from './cityMap.js?v=16';
+import { metrics } from './metrics.js?v=17';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=17';
+import { createCityMap } from './cityMap.js?v=17';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -42,6 +42,10 @@ try {
 // expanding detail panel.
 const localById = new Map(locals.map((c) => [c.id, c]));
 
+// slug → { total, calls[], posted, … } for the locals that publish a job-calls
+// list. Optional; empty when js/data/job-calls.json isn't present.
+const jobCalls = await loadJobCalls();
+
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const els = {
@@ -59,10 +63,15 @@ const state = {
   metricId: 'total_package',
   sortDesc: true,
   selectedId: null,
+  // Which view the green detail panel shows: 'comp' (metric grid) or 'jobs'.
+  detailView: 'comp',
   // "Compare" mode: divide the chosen metric by local cost of living, so values
   // read as national-average dollars (how far the pay actually goes).
   compare: false,
 };
+
+const jobCallCount = (slug) => (jobCalls[slug] ? jobCalls[slug].total : null);
+const jobCallLabel = (n) => `${n} job call${n === 1 ? '' : 's'}`;
 
 // Contiguous US — the first-load view. Panning to AK / HI / Canada still works
 // (the map's maxBounds is the wider North-America box).
@@ -112,7 +121,11 @@ function pointsForMetric(metricId) {
         if (!Number.isFinite(col) || col <= 0) return null;
         value /= col / 100;
       }
-      return { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value };
+      const n = jobCallCount(c.id);
+      return {
+        id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value,
+        badge: n != null ? jobCallLabel(n) : null, // shown in the map tooltip
+      };
     })
     .filter(Boolean);
 }
@@ -129,11 +142,23 @@ function renderMessage(text) {
   els.list.innerHTML = `<li class="city-list__empty">${text}</li>`;
 }
 
-// The green panel that expands under the selected local: every metric it has a
-// value for, plus the source date and wage-sheet link.
+// The green panel that expands under the selected local. Two views: the
+// compensation grid ('comp') or the local's job-calls list ('jobs').
 function buildDetail(local) {
   if (!local) return '';
+  const jc = jobCalls[local.id];
+  const body = state.detailView === 'jobs' && jc
+    ? buildJobsView(jc)
+    : buildCompView(local, jc);
+  return (
+    '<div class="city-list__detail"><div class="detail__inner">' +
+      '<button type="button" class="detail__close" aria-label="Close details">×</button>' +
+      body +
+    '</div></div>'
+  );
+}
 
+function buildCompView(local, jc) {
   const cells = [];
   for (const [id, m] of Object.entries(metrics)) {
     const v = local.values[id];
@@ -153,13 +178,30 @@ function buildDetail(local) {
       `<a href="${esc(local.wageSheetUrl)}" target="_blank" rel="noopener">Wage sheet&nbsp;↗</a>`,
     );
   }
+  if (jc) {
+    foot.push(
+      `<button type="button" class="detail__link detail__viewjobs">${esc(jobCallLabel(jc.total))}&nbsp;→</button>`,
+    );
+  }
 
   return (
-    '<div class="city-list__detail"><div class="detail__inner">' +
-      '<button type="button" class="detail__close" aria-label="Close details">×</button>' +
-      `<div class="detail__grid">${cells.join('')}</div>` +
-      (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '') +
-    '</div></div>'
+    `<div class="detail__grid">${cells.join('')}</div>` +
+    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '')
+  );
+}
+
+function buildJobsView(jc) {
+  const calls = jc.calls
+    .map((c) => `<p class="detail__call">${esc(c.text)}</p>`)
+    .join('');
+  return (
+    `<div class="detail__jobs-head">${esc(jobCallLabel(jc.total))}` +
+      (jc.posted ? ` <span class="detail__jobs-date">· ${esc(jc.posted)}</span>` : '') +
+    '</div>' +
+    (calls || '<p class="detail__call">No open calls listed right now.</p>') +
+    '<div class="detail__foot">' +
+      '<button type="button" class="detail__link detail__back">←&nbsp;Compensation data</button>' +
+    '</div>'
   );
 }
 
@@ -194,6 +236,10 @@ function renderList(points, meta) {
     const li = document.createElement('li');
     li.className = 'city-list__item' + (isSel ? ' is-active' : '');
     li.dataset.id = p.id;
+    const n = jobCallCount(p.id);
+    const callsBtn = n != null
+      ? `<button type="button" class="city-list__calls">${esc(jobCallLabel(n))}</button>`
+      : '<span class="city-list__calls-gap"></span>';
     li.innerHTML =
       '<div class="city-list__row">' +
         `<span class="city-list__rank">${rankById.get(p.id)}</span>` +
@@ -201,14 +247,29 @@ function renderList(points, meta) {
           `<span class="city-list__name">${esc(p.name)}</span>` +
           `<span class="city-list__sub">${esc(p.subtitle)}</span>` +
         '</span>' +
+        callsBtn +
         `<span class="city-list__value">${esc(meta.format(p.value))}</span>` +
       '</div>' +
       (isSel ? buildDetail(localById.get(p.id)) : '');
     li.querySelector('.city-list__row').addEventListener('click', () => onSelect(p.id));
+    li.querySelector('.city-list__calls')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onSelect(p.id, { view: 'jobs' });
+    });
     if (isSel) {
       li.querySelector('.detail__close')?.addEventListener('click', (e) => {
         e.stopPropagation();
         deselect();
+      });
+      li.querySelector('.detail__viewjobs')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.detailView = 'jobs';
+        rerenderList();
+      });
+      li.querySelector('.detail__back')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.detailView = 'comp';
+        rerenderList();
       });
     }
     els.list.appendChild(li);
@@ -225,11 +286,22 @@ function scrollActiveIntoView() {
 }
 
 // Selection entry point. `fromMap` is true when the map's own select event
-// drove this (so we don't call back into the map and loop).
-function onSelect(id, { fromMap = false } = {}) {
-  const changed = state.selectedId !== id;
+// drove this (so we don't call back into the map and loop). `view` picks which
+// face of the green panel to open ('comp' by default, 'jobs' from the list's
+// job-calls button). `selfDriven` marks the synchronous echo of our own
+// map.select() call so it doesn't reset the view a list button just chose.
+let selfDrivenSelect = false;
+
+function onSelect(id, { fromMap = false, view } = {}) {
+  const nextView = view ?? (fromMap && selfDrivenSelect ? state.detailView : 'comp');
+  const changed = state.selectedId !== id || state.detailView !== nextView;
   state.selectedId = id;
-  if (!fromMap) map.select(id);            // pan to + highlight the marker
+  state.detailView = nextView;
+  if (!fromMap) {
+    selfDrivenSelect = true;
+    map.select(id);            // pan to + highlight the marker (fires 'select')
+    selfDrivenSelect = false;
+  }
   if (changed || !fromMap) rerenderList(); // reorder the list, expand the panel
   scrollActiveIntoView();
 }
@@ -238,6 +310,7 @@ function onSelect(id, { fromMap = false } = {}) {
 function deselect() {
   if (!state.selectedId) return;
   state.selectedId = null;
+  state.detailView = 'comp';
   map.select(null);
   rerenderList();
 }

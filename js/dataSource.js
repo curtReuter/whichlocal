@@ -69,6 +69,23 @@ async function loadFromPocketBase(base) {
   return items;
 }
 
+/**
+ * Job-call / referral lists that a few locals publish on their own sites, keyed
+ * by slug (see scripts/scrape-job-calls.mjs). Optional — returns {} if the file
+ * isn't there yet, so the rest of the app is unaffected.
+ */
+export async function loadJobCalls() {
+  const url = new URL('data/job-calls.json', import.meta.url);
+  try {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) return {};
+    const { locals = {} } = await res.json();
+    return locals;
+  } catch {
+    return {};
+  }
+}
+
 async function loadFromSnapshot() {
   // Resolve relative to this module so it works from any deploy path.
   const url = new URL('data/locals.json', import.meta.url);

@@ -1,0 +1,7 @@
+{
+  "__doc__": "Locals whose own site publishes a job-calls / referral list. Keyed by the local's slug (the `id` in the ranked list). Add an entry to scrape another local; `scripts/scrape-job-calls.mjs` parses each `url` and writes js/data/job-calls.json. Most union sites run the same UnionActive CMS as IBEW 606, so the parser should carry over — spot-check a new one with `node scripts/scrape-job-calls.mjs --only <slug>`.",
+  "l606-orlando-fl": {
+    "local_no": 606,
+    "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls"
+  }
+}
