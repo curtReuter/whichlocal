@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=26';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=26';
-import { createCityMap } from './cityMap.js?v=26';
+import { metrics } from './metrics.js?v=27';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=27';
+import { createCityMap } from './cityMap.js?v=27';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -77,19 +77,23 @@ const jobCallLabel = (n) => `${n} job call${n === 1 ? '' : 's'}`;
 // (the map's maxBounds is the wider North-America box).
 const US_BOUNDS = [[25.5, -123.5], [48.5, -67]];
 
+const mqMobile = window.matchMedia('(max-width: 820px)');
+
 const map = createCityMap('#map', {
   theme: prefersDark ? 'dark' : 'light',
   center: [39.5, -98], // continental US; refined to US_BOUNDS on load
   zoom: 4,
   minZoom: 3,
   cartoApiKey: config.cartoApiKey || '',
+  // smaller hotspots on phones — the full-size circles overlap and clutter
+  // the much narrower map
+  ...(mqMobile.matches ? { minRadius: 5, maxRadius: 20 } : {}),
 });
 
 // On phones, tuck the map attribution into the bottom-left corner and drop the
 // "Leaflet" prefix so it's a tiny unobtrusive line (CSS shrinks the type).
 const L = window.L;
 const DEFAULT_ATTR_PREFIX = L.Control.Attribution.prototype.options.prefix;
-const mqMobile = window.matchMedia('(max-width: 820px)');
 function placeAttribution() {
   const ac = map.leaflet.attributionControl;
   ac.setPosition(mqMobile.matches ? 'bottomleft' : 'bottomright');
