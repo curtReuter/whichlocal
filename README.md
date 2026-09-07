@@ -233,10 +233,17 @@ node scripts/notify-discord.mjs --dry-run            # preview the Discord posts
 ```
 
 then `node scripts/scrape-job-calls.mjs --only <slug>` and check the output.
-Most IBEW sites run the same UnionActive CMS as Local 606, so the parser (a
-count-prefixed `<p>` per call: `"10 Journeyman Wireman calls for …"`) usually
-carries over. Same conduct as the main scraper — one request per local per run,
-HTML cached, descriptive `User-Agent`.
+IBEW sites run UnionActive, and the parser handles the two layouts seen so far,
+one `<p>` per call in both:
+
+* **A** (Local 606) — `"10 Journeyman Wireman calls for Contractor …"`, with a
+  `"There are N job calls:"` header.
+* **B** (Local 756) — `"5 - JW Contractor, Working at …  $40.30"`, optionally
+  followed by a lone `OPEN UNTIL FILLED` line (captured as `open_until_filled`
+  on that call), and **no header** — the total is the sum of the leading counts.
+
+Same conduct as the main scraper — one request per local per run, HTML cached,
+descriptive `User-Agent`.
 
 In the app a local with job calls gets an **"N job calls"** button in its list
 row and the count in its map tooltip; the button opens the calls list in the

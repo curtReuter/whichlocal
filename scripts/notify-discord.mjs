@@ -51,7 +51,7 @@ function embedsFor(slug) {
     color: GREEN,
     author: { name: who },
     title: trunc(`${c.count}× ${c.classification} — new job call`, 256),
-    description: trunc(c.text, 4000),
+    description: trunc(c.text, 3900) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
     url: l.url,
     footer: { text: l.posted ? `List posted ${l.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),

@@ -87,37 +87,71 @@ const prettyPlace = (slug) => {
   return { city, state };
 };
 
+const CLASSES = {
+  JW: 'Journeyman Wireman', JIW: 'Journeyman Inside Wireman',
+  CW: 'Construction Wireman', CE: 'Construction Electrician',
+  JWT: 'Journeyman Wireman Technician',
+};
+
 /**
- * Pull the job-call blocks out of a UnionActive "Job Calls" page. Each call is
- * its own <p> starting with a count, e.g. "10 Journeyman Wireman calls for …".
+ * Pull the job-call blocks out of a UnionActive "Job Calls" page. Two layouts
+ * are handled, one <p> per call in both:
+ *   A (e.g. Local 606) — "10 Journeyman Wireman calls for Contractor …",
+ *      with a "There are N job calls:" header.
+ *   B (e.g. Local 756) — "5 - JW Contractor, Working at …  $40.30", sometimes
+ *      followed by a lone "OPEN UNTIL FILLED" paragraph, and no header (the
+ *      total is the sum of the leading counts).
  */
 function parseJobCalls(html) {
-  const start = html.search(/class=["']pageheader["']/i);
-  const body = start >= 0 ? html.slice(start) : html;
-  const cut = body.search(/last call was taken by/i);
-  const region = cut > -1 ? body.slice(0, cut) : body;
+  // widest content region across the UnionActive page templates
+  let start = -1;
+  for (const a of [/class=["']pageheader["']/i, /id=["']pagecontent["']/i, /id=["']maincolumnspot["']/i]) {
+    const i = html.search(a);
+    if (i >= 0 && (start < 0 || i < start)) start = i;
+  }
+  let region = start >= 0 ? html.slice(start) : html;
+  const cut = region.search(
+    /last call was taken by|NEW CALLS DISPATCHED|OPEN CALLS DISPATCHED|All Calls for the|Page Last Updated/i,
+  );
+  if (cut > -1) region = region.slice(0, cut);
 
   const flat = plain(region);
   const head = flat.match(/There (?:are|is)\s+(\d+|no|one)\s+job calls?/i);
-  const total = head
+  const headerTotal = head
     ? (/\d/.test(head[1]) ? parseInt(head[1], 10) : head[1].toLowerCase() === 'no' ? 0 : 1)
     : null;
-  const posted = (flat.match(/\b([A-Z][a-z]+ \d{1,2},? \d{4})\b/) || [])[1] || null;
+  const posted =
+    (flat.match(/\b([A-Z][a-z]+ \d{1,2},? \d{4})\b/) || [])[1] ||
+    // "…the following calls: Tuesday, September 8th" — stop at the first call marker
+    (flat.match(/following calls:\s*(.{3,50}?)(?=\s*\d+\s*[-–—]\s*[A-Za-z]{2})/i) || [])[1]?.trim() ||
+    null;
 
   const calls = [];
   for (const block of region.match(/<p\b[^>]*>[\s\S]*?<\/p>/gi) || []) {
     const t = plain(block);
-    const m = t.match(/^(\d+)\s+(.+?)\s+calls?\s+for\b/i);
-    if (!m) continue;
-    calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: m[2].trim(), text: t });
+    if (!t) continue;
+
+    if (/^open until filled\b/i.test(t)) {
+      if (calls.length) calls[calls.length - 1].open_until_filled = true;
+      continue;
+    }
+
+    // A: "10 Journeyman Wireman calls for …"
+    let m = t.match(/^(\d+)\s+([A-Za-z][A-Za-z ]*?)\s+calls?\s+for\b/i);
+    if (m) {
+      calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: m[2].trim(), text: t });
+      continue;
+    }
+    // B: "5 - JW Contractor …"  (dash then a short classification token)
+    m = t.match(/^(\d+)\s*[-–—]\s*([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b/);
+    if (m) {
+      const cls = CLASSES[m[2].toUpperCase()] || m[2].toUpperCase();
+      calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: cls, text: t });
+    }
   }
 
-  return {
-    posted,
-    total: total ?? calls.reduce((a, c) => a + c.count, 0),
-    count_sum: calls.reduce((a, c) => a + c.count, 0),
-    calls,
-  };
+  const countSum = calls.reduce((a, c) => a + c.count, 0);
+  return { posted, total: headerTotal ?? countSum, count_sum: countSum, calls };
 }
 
 /* ---------- run ------------------------------------------------------- */
