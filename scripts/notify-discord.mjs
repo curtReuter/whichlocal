@@ -462,8 +462,10 @@ for (const slug of slugs) {
   }
 
   try {
+    let wasNew = false;
     if (!entry) {
       entry = await createThread(forumId, slug);
+      wasNew = true;
       console.log(`  ${slug}: created thread ${entry.thread}`);
       if (!COMP_ONLY) { threads[slug] = entry; saveThreads(); } // persist now — a timeout mustn't orphan it into a dupe
     } else {
@@ -473,7 +475,16 @@ for (const slug of slugs) {
     if (!COMP_ONLY && threads[slug] !== entry) { threads[slug] = entry; threadsDirty = true; }
     comps += 1;
 
-    for (const c of calls) {
+    // a fresh thread has no call messages yet — post the local's whole current
+    // list; an existing thread only gets the new ones from the scrape delta,
+    // plus any current call it's somehow missing a message for
+    const currentCalls = COMP_ONLY ? [] : (readJson(FULL, { locals: {} }).locals?.[slug]?.calls || []);
+    const toPost = COMP_ONLY
+      ? []
+      : (wasNew || ALL)
+        ? currentCalls
+        : [...calls, ...currentCalls.filter((c) => c.id && !entry.calls[c.id] && !calls.some((n) => n.id === c.id))];
+    for (const c of toPost) {
       const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
       if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
       posts += 1;
