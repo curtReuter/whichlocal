@@ -157,7 +157,9 @@ function parseJobCalls(html) {
 /* ---------- run ------------------------------------------------------- */
 
 const config = JSON.parse(readFileSync(CONFIG, 'utf8'));
-const entries = Object.entries(config).filter(([k]) => /^l\d/.test(k)); // slug keys only
+// slug keys with a `url` — the registry lists every local, but only those
+// pointing at a UnionActive job-calls page get scraped here.
+const entries = Object.entries(config).filter(([k, v]) => /^l\d/.test(k) && v && v.url);
 
 const prev = existsSync(OUT)
   ? JSON.parse(readFileSync(OUT, 'utf8')).locals || {}

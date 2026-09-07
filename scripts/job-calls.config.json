@@ -1,18 +1,984 @@
 {
-  "__doc__": "Locals whose own site publishes a job-calls / referral list, keyed by slug (the `id` in the ranked list). Add an entry to scrape another local; `scripts/scrape-job-calls.mjs` parses each `url` into js/data/job-calls.json. Spot-check a new one with `node scripts/scrape-job-calls.mjs --only <slug>`. `site_url` is the public site, linked from every Discord message — update it if the site moves. The `discord` block routes notifications: one forum channel per state, one thread per local (created on first post; ids kept in scripts/discord-threads.json). Channel ids aren't secret — the bot token is (repo secret DISCORD_BOT_TOKEN).",
+  "__doc__": "Master registry of IBEW locals for the job-calls / Discord pipeline, keyed by slug. Every local gets a Discord forum thread + live comp card (see scripts/notify-discord.mjs) once its state has a forum id below. Add a `url` to a local to also scrape its own job-calls page (scripts/scrape-job-calls.mjs). `discord.forums` maps state code -> forum channel id (fill these in; blank = that state is skipped). `default_channel_id` is a fallback for states with no forum. `site_url` is linked from every Discord message. Channel ids are not secret; the bot token is (repo secret DISCORD_BOT_TOKEN).",
   "site_url": "https://curtreuter.github.io/whichlocal/",
   "discord": {
     "forums": {
-      "FL": "1546378179373957120"
+      "AB": "",
+      "AK": "",
+      "AL": "",
+      "AR": "",
+      "AZ": "",
+      "BC": "",
+      "CA": "",
+      "CO": "",
+      "CT": "",
+      "DC": "",
+      "DE": "",
+      "FL": "1546378179373957120",
+      "GA": "",
+      "HI": "",
+      "IA": "",
+      "ID": "",
+      "IL": "",
+      "IN": "",
+      "KS": "",
+      "KY": "",
+      "LA": "",
+      "MA": "",
+      "MB": "",
+      "MD": "",
+      "ME": "",
+      "MI": "",
+      "MN": "",
+      "MO": "",
+      "MS": "",
+      "MT": "",
+      "NB": "",
+      "NC": "",
+      "ND": "",
+      "NE": "",
+      "NH": "",
+      "NJ": "",
+      "NL": "",
+      "NM": "",
+      "NS": "",
+      "NV": "",
+      "NY": "",
+      "OH": "",
+      "OK": "",
+      "ON": "",
+      "OR": "",
+      "PA": "",
+      "QC": "",
+      "RI": "",
+      "SC": "",
+      "SD": "",
+      "SK": "",
+      "TN": "",
+      "TX": "",
+      "UT": "",
+      "VA": "",
+      "VT": "",
+      "WA": "",
+      "WI": "",
+      "WV": "",
+      "WY": "",
+      "YT": ""
     },
     "default_channel_id": ""
+  },
+  "l1-st-louis-mo": {
+    "local_no": 1
+  },
+  "l3-new-york-city-ny": {
+    "local_no": 3
+  },
+  "l5-pittsburgh-pa": {
+    "local_no": 5
+  },
+  "l6-san-francisco-ca": {
+    "local_no": 6
+  },
+  "l7-springfield-ma": {
+    "local_no": 7
+  },
+  "l8-toledo-oh": {
+    "local_no": 8
+  },
+  "l11-los-angeles-ca": {
+    "local_no": 11
+  },
+  "l12-pueblo-co": {
+    "local_no": 12
+  },
+  "l13-burlington-ia": {
+    "local_no": 13
+  },
+  "l14-eau-claire-fall-creek-wi": {
+    "local_no": 14
+  },
+  "l16-evansville-in": {
+    "local_no": 16
+  },
+  "l20-dallas-tx": {
+    "local_no": 20
+  },
+  "l22-omaha-ne": {
+    "local_no": 22
+  },
+  "l24-baltimore-md": {
+    "local_no": 24
+  },
+  "l24-eastern-shore-md": {
+    "local_no": 24
+  },
+  "l25-long-island-ny": {
+    "local_no": 25
+  },
+  "l26-roanoke-va": {
+    "local_no": 26
+  },
+  "l26-washington-dc-metro-zone-dc": {
+    "local_no": 26
+  },
+  "l32-lima-oh": {
+    "local_no": 32
+  },
+  "l34-galesburg-il": {
+    "local_no": 34
+  },
+  "l34-peoria-il": {
+    "local_no": 34
+  },
+  "l34-quincy-il": {
+    "local_no": 34
+  },
+  "l35-hartford-ct": {
+    "local_no": 35
+  },
+  "l38-cleveland-oh": {
+    "local_no": 38
+  },
+  "l40-hollywood-ca": {
+    "local_no": 40
+  },
+  "l41-buffalo-ny": {
+    "local_no": 41
+  },
+  "l43-syracuse-ny": {
+    "local_no": 43
+  },
+  "l46-seattle-wa": {
+    "local_no": 46
+  },
+  "l48-portland-or": {
+    "local_no": 48
+  },
+  "l56-erie-pa": {
+    "local_no": 56
+  },
+  "l58-detroit-mi": {
+    "local_no": 58
+  },
+  "l60-san-antonio-tx": {
+    "local_no": 60
+  },
+  "l64-youngstown-oh": {
+    "local_no": 64
+  },
+  "l68-denver-co": {
+    "local_no": 68
+  },
+  "l72-waco-tx": {
+    "local_no": 72
+  },
+  "l73-spokane-wa": {
+    "local_no": 73
+  },
+  "l76-tacoma-wa": {
+    "local_no": 76
+  },
+  "l80-norfolk-va": {
+    "local_no": 80
+  },
+  "l81-scranton-pa": {
+    "local_no": 81
+  },
+  "l82-dayton-oh": {
+    "local_no": 82
+  },
+  "l86-rochester-ny": {
+    "local_no": 86
+  },
+  "l90-new-haven-ct": {
+    "local_no": 90
+  },
+  "l95-joplin-mo": {
+    "local_no": 95
+  },
+  "l96-worcester-ma": {
+    "local_no": 96
+  },
+  "l98-philadelphia-n-pa": {
+    "local_no": 98
+  },
+  "l98-philadelphia-s-pa": {
+    "local_no": 98
+  },
+  "l99-providence-ri": {
+    "local_no": 99
+  },
+  "l100-fresno-ca": {
+    "local_no": 100
+  },
+  "l102-paterson-nj": {
+    "local_no": 102
+  },
+  "l103-boston-ma": {
+    "local_no": 103
+  },
+  "l105-hamilton-ont": {
+    "local_no": 105
+  },
+  "l106-jamestown-ny": {
+    "local_no": 106
+  },
+  "l110-st-paul-mn": {
+    "local_no": 110
+  },
+  "l111-denver-co": {
+    "local_no": 111
+  },
+  "l112-kennewick-wa": {
+    "local_no": 112
+  },
+  "l113-colorado-springs-co": {
+    "local_no": 113
+  },
+  "l117-elgin-il": {
+    "local_no": 117
+  },
+  "l120-london-ont": {
+    "local_no": 120
+  },
+  "l124-kansas-city-mo": {
+    "local_no": 124
+  },
+  "l127-kenosha-wi": {
+    "local_no": 127
+  },
+  "l129-lorain-oh": {
+    "local_no": 129
+  },
+  "l130-new-orleans-la": {
+    "local_no": 130
+  },
+  "l131-kalamazoo-mi": {
+    "local_no": 131
+  },
+  "l134-chicago-il": {
+    "local_no": 134
+  },
+  "l136-birmingham-al": {
+    "local_no": 136
+  },
+  "l139-elmira-ny": {
+    "local_no": 139
+  },
+  "l141-wheeling-wv": {
+    "local_no": 141
+  },
+  "l143-harrisburg-pa": {
+    "local_no": 143
+  },
+  "l145-davenport-ia-il": {
+    "local_no": 145
+  },
+  "l146-decatur-il": {
+    "local_no": 146
+  },
+  "l150-waukengan-il": {
+    "local_no": 150
+  },
+  "l153-south-bend-in": {
+    "local_no": 153
+  },
+  "l158-green-bay-wi": {
+    "local_no": 158
+  },
+  "l159-madison-wi": {
+    "local_no": 159
+  },
+  "l163-wilkes-barre-pa": {
+    "local_no": 163
+  },
+  "l164-jersey-city-nj": {
+    "local_no": 164
+  },
+  "l175-chattanooga-tn": {
+    "local_no": 175
+  },
+  "l176-joliet-zone-1-il": {
+    "local_no": 176
+  },
+  "l176-joliet-zone-2-il": {
+    "local_no": 176
+  },
+  "l176-joliet-zone-3-il": {
+    "local_no": 176
+  },
+  "l177-jacksonville-fl": {
+    "local_no": 177
+  },
+  "l180-napa-ca": {
+    "local_no": 180
+  },
+  "l191-everett-wa": {
+    "local_no": 191
+  },
+  "l193-springfield-il": {
+    "local_no": 193
+  },
+  "l194-shreveport-la": {
+    "local_no": 194
+  },
+  "l197-bloomington-il": {
+    "local_no": 197
+  },
+  "l212-cincinnati-oh": {
+    "local_no": 212
+  },
+  "l213-port-coquitlam-bc": {
+    "local_no": 213
+  },
+  "l223-brockton-ma": {
+    "local_no": 223
+  },
+  "l226-topeka-ks": {
+    "local_no": 226
+  },
+  "l229-york-pa": {
+    "local_no": 229
+  },
+  "l230-victoria-bc": {
+    "local_no": 230
+  },
+  "l231-sioux-city-ia": {
+    "local_no": 231
+  },
+  "l233-helena-mt": {
+    "local_no": 233
+  },
+  "l234-castroville-ca": {
+    "local_no": 234
+  },
+  "l236-albany-ny": {
+    "local_no": 236
+  },
+  "l237-niagara-falls-ny": {
+    "local_no": 237
+  },
+  "l238-asheville-nc": {
+    "local_no": 238
+  },
+  "l241-ithaca-ny": {
+    "local_no": 241
+  },
+  "l242-duluth-mn": {
+    "local_no": 242
+  },
+  "l246-steubenville-oh": {
+    "local_no": 246
+  },
+  "l252-ann-arbor-mi": {
+    "local_no": 252
+  },
+  "l257-jefferson-city-mo": {
+    "local_no": 257
+  },
+  "l265-lincoln-ne": {
+    "local_no": 265
+  },
+  "l269-trenton-nj": {
+    "local_no": 269
+  },
+  "l270-oak-ridge-tn": {
+    "local_no": 270
+  },
+  "l271-wichita-ks": {
+    "local_no": 271
+  },
+  "l275-coopersville-west-michigan-mi": {
+    "local_no": 275
+  },
+  "l278-corpus-christi-tx": {
+    "local_no": 278
+  },
+  "l280-tangent-or": {
+    "local_no": 280
+  },
+  "l288-waterloo-ia": {
+    "local_no": 288
+  },
+  "l291-boise-id": {
+    "local_no": 291
+  },
+  "l292-minneapolis-mn": {
+    "local_no": 292
+  },
+  "l294-hibbing-mn": {
+    "local_no": 294
+  },
+  "l295-little-rock-ar": {
+    "local_no": 295
+  },
+  "l300-all-of-vermont-vt": {
+    "local_no": 300
+  },
+  "l301-texarkana-tx": {
+    "local_no": 301
+  },
+  "l302-martinez-ca": {
+    "local_no": 302
+  },
+  "l303-niagara-peninsula-ont": {
+    "local_no": 303
+  },
+  "l305-fort-wayne-in": {
+    "local_no": 305
+  },
+  "l306-akron-oh": {
+    "local_no": 306
+  },
+  "l307-cumberland-md": {
+    "local_no": 307
+  },
+  "l309-collinsville-il": {
+    "local_no": 309
+  },
+  "l313-new-castle-de": {
+    "local_no": 313
+  },
+  "l317-huntington-wv": {
+    "local_no": 317
+  },
+  "l322-casper-wy": {
+    "local_no": 322
+  },
+  "l322-i-casper-wy": {
+    "local_no": 322
+  },
+  "l325-binghamton-ny": {
+    "local_no": 325
+  },
+  "l332-san-jose-ca": {
+    "local_no": 332
+  },
+  "l340-sacramento-ca": {
+    "local_no": 340
+  },
+  "l342-greensboro-nc": {
+    "local_no": 342
+  },
+  "l343-rochester-mn": {
+    "local_no": 343
+  },
+  "l347-des-moines-ia": {
+    "local_no": 347
+  },
+  "l349-miami-fl": {
+    "local_no": 349
+  },
+  "l350-hannibal-mo": {
+    "local_no": 350
+  },
+  "l351-folsom-nj": {
+    "local_no": 351
+  },
+  "l353-toronto-ont": {
+    "local_no": 353
+  },
+  "l354-salt-lake-city-ut": {
+    "local_no": 354
+  },
+  "l357-las-vegas-nv": {
+    "local_no": 357
+  },
+  "l363-new-city-ny": {
+    "local_no": 363
+  },
+  "l364-rockford-il": {
+    "local_no": 364
+  },
+  "l369-louisville-ky": {
+    "local_no": 369
+  },
+  "l375-allentown-pa": {
+    "local_no": 375
+  },
+  "l379-charlotte-nc": {
+    "local_no": 379
+  },
+  "l388-stevens-point-wi": {
+    "local_no": 388
+  },
+  "l400-asbury-park-nj": {
+    "local_no": 400
+  },
+  "l401-reno-nv": {
+    "local_no": 401
+  },
+  "l402-thunder-bay-ont": {
+    "local_no": 402
+  },
+  "l405-cedar-rapids-n-ia": {
+    "local_no": 405
+  },
+  "l413-santa-barbara-ca": {
+    "local_no": 413
+  },
+  "l415-cheyenne-wy": {
+    "local_no": 415
+  },
+  "l424-edmonton-ab": {
+    "local_no": 424
+  },
+  "l426-sioux-falls-sd": {
+    "local_no": 426
+  },
+  "l428-bakersfield-ca": {
+    "local_no": 428
+  },
+  "l429-nashville-tn": {
+    "local_no": 429
+  },
+  "l430-racine-wi": {
+    "local_no": 430
+  },
+  "l436-el-dorado-ar": {
+    "local_no": 436
+  },
+  "l440-riverside-ca": {
+    "local_no": 440
+  },
+  "l441-orange-county-ca": {
+    "local_no": 441
+  },
+  "l443-montgomery-al": {
+    "local_no": 443
+  },
+  "l444-ponca-city-ok": {
+    "local_no": 444
+  },
+  "l445-battle-creek-mi": {
+    "local_no": 445
+  },
+  "l446-monroe-la": {
+    "local_no": 446
+  },
+  "l449-pocatello-id": {
+    "local_no": 449
+  },
+  "l453-springfield-mo": {
+    "local_no": 453
+  },
+  "l456-new-brunswick-nj": {
+    "local_no": 456
+  },
+  "l461-aurora-il": {
+    "local_no": 461
+  },
+  "l466-charleston-wv": {
+    "local_no": 466
+  },
+  "l474-memphis-tn": {
+    "local_no": 474
+  },
+  "l477-san-bernadino-zone-a-ca": {
+    "local_no": 477
+  },
+  "l477-san-bernadino-zone-b-ca": {
+    "local_no": 477
+  },
+  "l479-beaumont-tx": {
+    "local_no": 479
+  },
+  "l480-jackson-ms": {
+    "local_no": 480
+  },
+  "l481-indianapolis-in": {
+    "local_no": 481
+  },
+  "l488-bridgeport-ct": {
+    "local_no": 488
+  },
+  "l490-concord-nh": {
+    "local_no": 490
+  },
+  "l494-milwaukee-wi": {
+    "local_no": 494
+  },
+  "l495-wilmington-nc": {
+    "local_no": 495
+  },
+  "l498-traverse-city-mi": {
+    "local_no": 498
+  },
+  "l502-saint-john-nb": {
+    "local_no": 502
+  },
+  "l505-mobile-al": {
+    "local_no": 505
+  },
+  "l508-savannah-ga": {
+    "local_no": 508
+  },
+  "l518-globe-az": {
+    "local_no": 518
+  },
+  "l520-austin-tx": {
+    "local_no": 520
+  },
+  "l527-galveston-county-tx": {
+    "local_no": 527
+  },
+  "l529-saskatoon-sk": {
+    "local_no": 529
+  },
+  "l530-la-porte-in": {
+    "local_no": 530
+  },
+  "l530-sarnia-ont": {
+    "local_no": 530
+  },
+  "l532-billings-mt": {
+    "local_no": 532
+  },
+  "l538-danville-il": {
+    "local_no": 538
+  },
+  "l540-canton-oh": {
+    "local_no": 540
+  },
+  "l545-st-joseph-mo": {
+    "local_no": 545
+  },
+  "l551-santa-rosa-ca": {
+    "local_no": 551
+  },
+  "l553-raleigh-durham-nc": {
+    "local_no": 553
+  },
+  "l557-saginaw-mi": {
+    "local_no": 557
+  },
+  "l558-sheffield-al": {
+    "local_no": 558
+  },
+  "l567-auburn-me": {
+    "local_no": 567
+  },
+  "l568-montreal-qc": {
+    "local_no": 568
+  },
+  "l569-san-diego-ca": {
+    "local_no": 569
+  },
+  "l570-tucson-az": {
+    "local_no": 570
+  },
+  "l573-warren-oh": {
+    "local_no": 573
+  },
+  "l575-portsmouth-oh": {
+    "local_no": 575
+  },
+  "l576-alexandria-pineville-la": {
+    "local_no": 576
+  },
+  "l577-appleton-wi": {
+    "local_no": 577
+  },
+  "l583-el-paso-zone-1-tx": {
+    "local_no": 583
+  },
+  "l583-el-paso-zone-2-tx": {
+    "local_no": 583
+  },
+  "l583-las-cruces-dona-ana-county-group-nm": {
+    "local_no": 583
+  },
+  "l584-tulsa-ok": {
+    "local_no": 584
+  },
+  "l586-ottawa-ont": {
+    "local_no": 586
+  },
+  "l595-dublin-ca": {
+    "local_no": 595
+  },
+  "l595-stockton-ca": {
+    "local_no": 595
+  },
+  "l596-clarksburg-wv": {
+    "local_no": 596
+  },
+  "l601-champaign-il": {
+    "local_no": 601
+  },
+  "l602-amarillo-tx": {
+    "local_no": 602
   },
   "l606-orlando-fl": {
     "local_no": 606,
     "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls"
   },
+  "l607-shamokin-pa": {
+    "local_no": 607
+  },
+  "l611-albuquerque-nm": {
+    "local_no": 611
+  },
+  "l613-atlanta-ga": {
+    "local_no": 613
+  },
+  "l617-san-mateo-ca": {
+    "local_no": 617
+  },
+  "l625-lakeside-ns": {
+    "local_no": 625
+  },
+  "l639-san-luis-obispo-ca": {
+    "local_no": 639
+  },
+  "l640-phoenix-az": {
+    "local_no": 640
+  },
+  "l648-hamilton-oh": {
+    "local_no": 648
+  },
+  "l649-alton-il": {
+    "local_no": 649
+  },
+  "l654-chester-pa": {
+    "local_no": 654
+  },
+  "l659-medford-or": {
+    "local_no": 659
+  },
+  "l661-hutchinson-ks": {
+    "local_no": 661
+  },
+  "l665-lansing-mi": {
+    "local_no": 665
+  },
+  "l666-richmond-va": {
+    "local_no": 666
+  },
+  "l668-lafayette-in": {
+    "local_no": 668
+  },
+  "l673-painesville-oh": {
+    "local_no": 673
+  },
+  "l676-pensacola-fl": {
+    "local_no": 676
+  },
+  "l681-wichita-falls-tx": {
+    "local_no": 681
+  },
+  "l683-columbus-oh": {
+    "local_no": 683
+  },
+  "l684-modesto-ca": {
+    "local_no": 684
+  },
+  "l688-mansfield-oh": {
+    "local_no": 688
+  },
+  "l692-bay-city-mi": {
+    "local_no": 692
+  },
+  "l697-gary-hammonds-in": {
+    "local_no": 697
+  },
+  "l700-fort-smith-ar": {
+    "local_no": 700
+  },
+  "l701-warrenville-il": {
+    "local_no": 701
+  },
+  "l702-west-frankfort-il": {
+    "local_no": 702
+  },
+  "l704-dubuque-ia": {
+    "local_no": 704
+  },
+  "l712-beaver-pa": {
+    "local_no": 712
+  },
+  "l714-minot-nd": {
+    "local_no": 714
+  },
+  "l716-houston-tx": {
+    "local_no": 716
+  },
+  "l725-terre-haute-in": {
+    "local_no": 725
+  },
+  "l728-ft-lauderdale-fl": {
+    "local_no": 728
+  },
+  "l743-reading-pa": {
+    "local_no": 743
+  },
   "l756-daytona-beach-fl": {
     "local_no": 756,
     "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls"
+  },
+  "l760-knoxville-tn": {
+    "local_no": 760
+  },
+  "l768-kalispell-mt": {
+    "local_no": 768
+  },
+  "l769-gilbert-az": {
+    "local_no": 769
+  },
+  "l773-windsor-ont": {
+    "local_no": 773
+  },
+  "l776-charleston-sc": {
+    "local_no": 776
+  },
+  "l804-central-ontario-ont": {
+    "local_no": 804
+  },
+  "l812-williamsport-pa": {
+    "local_no": 812
+  },
+  "l816-paducah-ky": {
+    "local_no": 816
+  },
+  "l840-geneva-ny": {
+    "local_no": 840
+  },
+  "l852-corinth-ms": {
+    "local_no": 852
+  },
+  "l855-muncie-in": {
+    "local_no": 855
+  },
+  "l861-lake-charles-la": {
+    "local_no": 861
+  },
+  "l873-kokomo-in": {
+    "local_no": 873
+  },
+  "l890-janesville-wi": {
+    "local_no": 890
+  },
+  "l903-gulfport-ms": {
+    "local_no": 903
+  },
+  "l906-marquette-mi": {
+    "local_no": 906
+  },
+  "l910-watertown-ny": {
+    "local_no": 910
+  },
+  "l915-tampa-fl": {
+    "local_no": 915
+  },
+  "l917-meridian-ms": {
+    "local_no": 917
+  },
+  "l932-coos-bay-or": {
+    "local_no": 932
+  },
+  "l934-kingsport-tn": {
+    "local_no": 934
+  },
+  "l948-flint-mi": {
+    "local_no": 948
+  },
+  "l952-ventura-ca": {
+    "local_no": 952
+  },
+  "l968-parkersburg-wv": {
+    "local_no": 968
+  },
+  "l972-marietta-oh": {
+    "local_no": 972
+  },
+  "l993-northern-bc-bc": {
+    "local_no": 993
+  },
+  "l995-baton-rouge-la": {
+    "local_no": 995
+  },
+  "l1003-nelson-bc": {
+    "local_no": 1003
+  },
+  "l1015-mcallen-tx": {
+    "local_no": 1015
+  },
+  "l1077-bogalusa-la": {
+    "local_no": 1077
+  },
+  "l1105-newark-oh": {
+    "local_no": 1105
+  },
+  "l1141-oklahoma-city-ok": {
+    "local_no": 1141
+  },
+  "l1186-honolulu-hi": {
+    "local_no": 1186
+  },
+  "l1205-gainesville-fl": {
+    "local_no": 1205
+  },
+  "l1250-rapid-city-sd": {
+    "local_no": 1250
+  },
+  "l1253-augusta-me": {
+    "local_no": 1253
+  },
+  "l1316-macon-ga": {
+    "local_no": 1316
+  },
+  "l1340-newport-news-va": {
+    "local_no": 1340
+  },
+  "l1426-grand-forks-nd": {
+    "local_no": 1426
+  },
+  "l1516-jonesboro-ar": {
+    "local_no": 1516
+  },
+  "l1531-albany-ga": {
+    "local_no": 1531
+  },
+  "l1547-anchorage-ak": {
+    "local_no": 1547
+  },
+  "l1555-moncton-nb": {
+    "local_no": 1555
+  },
+  "l1574-whitehorse-yt": {
+    "local_no": 1574
+  },
+  "l1579-augusta-ga": {
+    "local_no": 1579
+  },
+  "l1687-sudbury-ont": {
+    "local_no": 1687
+  },
+  "l1701-owensboro-ky": {
+    "local_no": 1701
+  },
+  "l1852-nova-scotia-ns": {
+    "local_no": 1852
+  },
+  "l1914-cheswick-pa": {
+    "local_no": 1914
+  },
+  "l1925-martin-tn": {
+    "local_no": 1925
+  },
+  "l1928-beechville-ns": {
+    "local_no": 1928
+  },
+  "l2038-regina-sk": {
+    "local_no": 2038
+  },
+  "l2085-winnipeg-mb": {
+    "local_no": 2085
+  },
+  "l2166-fredericton-nb": {
+    "local_no": 2166
+  },
+  "l2330-st-johns-nl": {
+    "local_no": 2330
   }
 }

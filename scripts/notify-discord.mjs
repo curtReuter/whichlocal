@@ -78,6 +78,15 @@ const localNoOf = (slug) => Number(slug.match(/^l(\d+)/)?.[1]) || null;
 const cfg = readJson(CONFIG, {});
 const forums = cfg.discord?.forums || {};
 const defaultChannel = cfg.discord?.default_channel_id || '';
+
+// locals.json carries a few non-canonical state strings ("Ont.", "IA / IL");
+// discord.forums is keyed by the same normalised 2-letter codes the registry uses.
+const normState = (s) => {
+  s = String(s || '').trim();
+  if (/^ont\.?$/i.test(s)) return 'ON';
+  if (s.includes('/')) s = s.split('/')[0].trim();
+  return s.toUpperCase();
+};
 const siteUrl = (cfg.site_url || 'https://curtreuter.github.io/whichlocal/').replace(/\/?$/, '/');
 
 const localBySlug = new Map(
@@ -235,13 +244,13 @@ for (const slug of slugs) {
   const { state } = localBySlug.get(slug)
     ? { state: localBySlug.get(slug).state }
     : place(slug);
-  const forumId = forums[state] || defaultChannel;
+  const forumId = forums[normState(state)] || defaultChannel;
   let entry = entryOf(slug);
 
   if (COMP_ONLY && !entry) continue; // no thread yet — leave creation to job-calls.yml
 
   if (!entry && !forumId) {
-    console.warn(`  ${slug}: no forum for ${state} and no default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
+    console.warn(`  ${slug}: no forum for ${normState(state)} and no default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
     skipped += 1;
     continue;
   }
