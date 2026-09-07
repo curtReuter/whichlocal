@@ -318,22 +318,40 @@ async function refreshComp(entry, slug, forumId) {
   }
 }
 
-// Adopt any `<state>-job-calls` forum that already exists in the guild but whose
-// id we don't have on file (e.g. a past run created it, then lost the id). Makes
-// the whole thing idempotent — it syncs to whatever's actually in Discord.
+// Sync the forum registry to what's actually in the guild:
+//   • adopt a `<state>-job-calls` forum that exists but whose id we don't have
+//   • forget a recorded id whose channel was deleted (and drop that state's
+//     stale local-thread rows) so it gets rebuilt
 if (guildId && !DRY && !COMP_ONLY && BOT_TOKEN) {
   try {
     const list = await discord('GET', `/guilds/${guildId}/channels`);
-    const byName = new Map(list.filter((c) => c.type === 15).map((c) => [c.name, c]));
+    const liveById = new Map(list.map((c) => [c.id, c]));
+    const forumByName = new Map(list.filter((c) => c.type === 15).map((c) => [c.name, c]));
+    const stateOf = (slug) => normState((localBySlug.get(slug) || place(slug)).state);
+
     let adopted = 0;
-    for (const [, fe] of Object.entries(forumsMap)) {
-      if (!fe || fe.id || !fe.name) continue;
-      const found = byName.get(fe.name);
-      if (found) { fe.id = found.id; fe.parent = found.parent_id || null; adopted += 1; }
+    let dropped = 0;
+    for (const [st, fe] of Object.entries(forumsMap)) {
+      if (!fe || !fe.name) continue;
+      if (fe.id && !liveById.has(fe.id)) {          // recorded forum is gone
+        fe.id = '';
+        fe.parent = null;
+        dropped += 1;
+        for (const slug of Object.keys(threads)) {
+          if (/^l\d/.test(slug) && stateOf(slug) === st) delete threads[slug];
+        }
+      }
+      if (!fe.id) {                                  // fill from a live forum of the same name
+        const found = forumByName.get(fe.name);
+        if (found) { fe.id = found.id; fe.parent = found.parent_id || null; adopted += 1; }
+      }
     }
-    if (adopted) { saveThreads(); console.log(`Adopted ${adopted} existing forum(s) by name.`); }
+    if (adopted || dropped) {
+      saveThreads();
+      console.log(`Forum sync: adopted ${adopted}, cleared ${dropped} deleted.`);
+    }
   } catch (e) {
-    console.warn(`  couldn't list guild channels to adopt forums — ${e.message}`);
+    console.warn(`  couldn't list guild channels to sync forums — ${e.message}`);
   }
 }
 
