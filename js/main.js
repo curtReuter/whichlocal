@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=17';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=17';
-import { createCityMap } from './cityMap.js?v=17';
+import { metrics } from './metrics.js?v=19';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=19';
+import { createCityMap } from './cityMap.js?v=19';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -237,17 +237,16 @@ function renderList(points, meta) {
     li.className = 'city-list__item' + (isSel ? ' is-active' : '');
     li.dataset.id = p.id;
     const n = jobCallCount(p.id);
-    const callsBtn = n != null
-      ? `<button type="button" class="city-list__calls">${esc(jobCallLabel(n))}</button>`
-      : '<span class="city-list__calls-gap"></span>';
     li.innerHTML =
-      '<div class="city-list__row">' +
+      `<div class="city-list__row${n != null ? ' city-list__row--calls' : ''}">` +
         `<span class="city-list__rank">${rankById.get(p.id)}</span>` +
         '<span class="city-list__body">' +
           `<span class="city-list__name">${esc(p.name)}</span>` +
           `<span class="city-list__sub">${esc(p.subtitle)}</span>` +
         '</span>' +
-        callsBtn +
+        (n != null
+          ? `<button type="button" class="city-list__calls">${esc(jobCallLabel(n))}</button>`
+          : '') +
         `<span class="city-list__value">${esc(meta.format(p.value))}</span>` +
       '</div>' +
       (isSel ? buildDetail(localById.get(p.id)) : '');
