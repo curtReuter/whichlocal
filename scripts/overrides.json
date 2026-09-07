@@ -7,10 +7,5 @@
     "force": ["dues"],
     "dues": 2.5,
     "note": "reported by a member 2026-09-10; matches the local's posted wage sheet"
-  },
-  "606": {
-    "hourly_rate": 32.64,
-    "total_package": 45.30,
-    "note": "Orlando (IBEW Local 606) hourly rate"
   }
 }
