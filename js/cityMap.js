@@ -204,7 +204,7 @@ export function createCityMap(target, userOptions = {}) {
       // formatValue is only safe for a real number — some formatters (e.g.
       // "$X.XX/hr") throw on the null value a grey dot carries
       const valueLine = dataless
-        ? '<span class="tt-note">No wage data yet</span>'
+        ? `<span class="tt-note">${escapeHtml(p.note || 'No wage data yet')}</span>`
         : p.hideValue
           ? ''
           : `<span class="tt-val">${escapeHtml(current.meta.valueLabel)}: <b>${escapeHtml(current.meta.formatValue(p.value))}</b></span>`;

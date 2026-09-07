@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=44';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=44';
-import { createCityMap } from './cityMap.js?v=44';
+import { metrics } from './metrics.js?v=45';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=45';
+import { createCityMap } from './cityMap.js?v=45';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -188,7 +188,7 @@ function pointsForMetric(metricId) {
         // count for locals that have calls, a grey "no calls" dot for the rest
         return n != null
           ? { ...base, value: n, badge: jobCallLabel(n), hideValue: true, tp: c.values.total_package }
-          : grey;
+          : { ...grey, note: 'no job calls available' };
       }
 
       // roster-only local: a grey dot on any wage metric
@@ -231,6 +231,12 @@ function renderMessage(text) {
 function buildDetail(local) {
   if (!local) return '';
   const jc = jobCalls[local.id];
+  // on the job-calls view, a local with no calls gets a plain-language line
+  const noCallsNote =
+    state.detailView !== 'edit' && state.detailView !== 'addcall' &&
+    state.metricId === 'job_calls' && !jc
+      ? '<p class="detail__nodata">No job calls available for this local right now.</p>'
+      : '';
   let body;
   if (state.detailView === 'edit') {
     body = buildEditView(local);
@@ -238,6 +244,7 @@ function buildDetail(local) {
     body = buildAddCallView(local);
   } else if (local.dataless) {
     body =
+      noCallsNote +
       '<p class="detail__nodata">No wage data for this local yet — only locals with a ' +
       'published wage sheet have figures. It’s on the map so it can still be found.</p>' +
       (jc ? buildJobsView(jc, { noBack: true }) : '') +
@@ -245,7 +252,7 @@ function buildDetail(local) {
   } else if (state.detailView === 'jobs' && jc) {
     body = buildJobsView(jc);
   } else {
-    body = buildCompView(local);
+    body = noCallsNote + buildCompView(local);
   }
   return (
     '<div class="city-list__detail"><div class="detail__inner">' +
@@ -520,7 +527,7 @@ function renderList(points, meta) {
     li.dataset.id = p.id;
     const n = jobCallCount(p.id);
     const valueText = isDataless
-      ? 'no data'
+      ? (state.metricId === 'job_calls' ? 'no calls' : 'no data')
       : showTp
         ? (Number.isFinite(p.tp) && p.tp !== 0 ? metrics.total_package.format(p.tp) : '—')
         : meta.format(p.value);
