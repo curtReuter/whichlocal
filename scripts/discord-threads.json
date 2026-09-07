@@ -3,7 +3,8 @@
   "forums": {
     "AK": {
       "name": "alaska-job-calls",
-      "id": ""
+      "id": "1546665169214771220",
+      "parent": "1533116837003399209"
     },
     "AL": {
       "name": "alabama-job-calls",
@@ -47,8 +48,8 @@
     },
     "FL": {
       "name": "florida-job-calls",
-      "id": "",
-      "parent": null
+      "id": "1546665157277786124",
+      "parent": "1533116837003399209"
     },
     "GA": {
       "name": "georgia-job-calls",
@@ -57,7 +58,8 @@
     },
     "HI": {
       "name": "hawaii-job-calls",
-      "id": ""
+      "id": "1546665181231456328",
+      "parent": "1533116837003399209"
     },
     "IA": {
       "name": "iowa-job-calls",
@@ -141,7 +143,8 @@
     },
     "ND": {
       "name": "north-dakota-job-calls",
-      "id": ""
+      "id": "1546665192891490304",
+      "parent": "1533116837003399209"
     },
     "NE": {
       "name": "nebraska-job-calls",
