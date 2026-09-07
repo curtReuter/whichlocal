@@ -105,18 +105,16 @@ function embedsFor(slug) {
     color: GREEN,
     author: { name: `IBEW Local ${l.local_no} — ${city}, ${state}` },
     title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
-    description: trunc(c.text, 3900) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
-    url: l.url,
+    // NOTE: no `url` — Discord merges same-message embeds that share a url, and
+    // one message per call also reads better in a thread.
+    description: trunc(`${c.text}\n\n[full list](${l.url})`, 4000) +
+      (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
     footer: { text: l.posted ? `List posted ${l.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
   }));
 }
 
-const chunk10 = (arr) => {
-  const out = [];
-  for (let i = 0; i < arr.length; i += 10) out.push(arr.slice(i, i + 10));
-  return out;
-};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* ---------- run ------------------------------------------------------- */
 
@@ -127,7 +125,7 @@ for (const slug of slugs) {
   const l = added[slug];
   const state = l.state || place(slug).state;
   const forumId = forums[state] || defaultChannel;
-  const batches = chunk10(embedsFor(slug));
+  const embeds = embedsFor(slug); // one per call — sent as one message each
   let threadId = threads[slug];
 
   if (!threadId && !forumId) {
@@ -137,9 +135,10 @@ for (const slug of slugs) {
   }
 
   if (DRY) {
-    console.log(`  ${slug}: ${threadId ? `post ${batches.flat().length} embed(s) to thread ${threadId}`
-      : `create thread "IBEW Local ${l.local_no} — ${l.city || place(slug).city}" in forum ${forumId}, then post ${batches.flat().length} embed(s)`}`);
-    posted += batches.flat().length;
+    console.log(`  ${slug}: ${threadId
+      ? `post ${embeds.length} message(s) to thread ${threadId}`
+      : `create thread "IBEW Local ${l.local_no} — ${l.city || place(slug).city}" in forum ${forumId}, then ${embeds.length} message(s)`}`);
+    posted += embeds.length;
     continue;
   }
 
@@ -148,7 +147,7 @@ for (const slug of slugs) {
     if (!threadId) {
       const thread = await discord('POST', `/channels/${forumId}/threads`, {
         name: trunc(`IBEW Local ${l.local_no} — ${l.city || place(slug).city}`, 100),
-        message: { embeds: batches[0] },
+        message: { embeds: [embeds[0]] },
       });
       threadId = thread.id;
       threads[slug] = threadId;
@@ -156,9 +155,9 @@ for (const slug of slugs) {
       start = 1;
       console.log(`  ${slug}: created thread ${threadId}`);
     }
-    for (let i = start; i < batches.length; i += 1) {
+    for (let i = start; i < embeds.length; i += 1) {
       try {
-        await discord('POST', `/channels/${threadId}/messages`, { embeds: batches[i] });
+        await discord('POST', `/channels/${threadId}/messages`, { embeds: [embeds[i]] });
       } catch (e) {
         if (e.status === 404 && start === 0) {
           // stored thread is gone — drop it and recreate on the next run
@@ -169,9 +168,9 @@ for (const slug of slugs) {
         }
         throw e;
       }
-      await new Promise((r) => setTimeout(r, 700));
+      await sleep(700);
     }
-    posted += batches.flat().length;
+    posted += embeds.length;
   } catch (e) {
     console.error(`  ${slug}: ${e.message}`);
     skipped += 1;
