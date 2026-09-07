@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=19';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=19';
-import { createCityMap } from './cityMap.js?v=19';
+import { metrics } from './metrics.js?v=20';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=20';
+import { createCityMap } from './cityMap.js?v=20';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -60,7 +60,7 @@ const els = {
 };
 
 const state = {
-  metricId: 'total_package',
+  metricId: 'job_calls',   // default view: locals ranked by open job calls
   sortDesc: true,
   selectedId: null,
   // Which view the green detail panel shows: 'comp' (metric grid) or 'jobs'.
@@ -106,25 +106,40 @@ for (const [id, meta] of Object.entries(metrics)) {
   opt.textContent = meta.label;
   els.select.appendChild(opt);
 }
+
+// Default to the job-calls view; fall back to total package if no local has a
+// job-calls list yet (so the app still shows something on first load).
+if (state.metricId === 'job_calls' && pointsForMetric('job_calls').length === 0) {
+  state.metricId = 'total_package';
+}
 els.select.value = state.metricId;
 
 /* ---- build the {id,name,subtitle,lat,lng,value} points for a metric --- */
 
 function pointsForMetric(metricId) {
+  const isJobs = metricId === 'job_calls';
   return locals
     .map((c) => {
-      let value = c.values[metricId];
-      if (!Number.isFinite(value)) return null;
-      if (state.compare) {
-        // divide by cost of living (as a fraction of the national average)
-        const col = c.values.col_pct;
-        if (!Number.isFinite(col) || col <= 0) return null;
-        value /= col / 100;
-      }
       const n = jobCallCount(c.id);
+      let value;
+      if (isJobs) {
+        // filter: only locals that publish a job-calls list
+        if (n == null) return null;
+        value = n;
+      } else {
+        value = c.values[metricId];
+        if (!Number.isFinite(value)) return null;
+        if (state.compare) {
+          // divide by cost of living (as a fraction of the national average)
+          const col = c.values.col_pct;
+          if (!Number.isFinite(col) || col <= 0) return null;
+          value /= col / 100;
+        }
+      }
       return {
         id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value,
-        badge: n != null ? jobCallLabel(n) : null, // shown in the map tooltip
+        badge: !isJobs && n != null ? jobCallLabel(n) : null, // map tooltip line
+        tp: c.values.total_package, // shown in the list when metric = job_calls
       };
     })
     .filter(Boolean);
@@ -230,6 +245,9 @@ function renderList(points, meta) {
     ordered = [sorted[selIdx], ...sorted.slice(0, selIdx), ...sorted.slice(selIdx + 1)];
   }
 
+  // When ranking by job calls, the list value column still shows total package.
+  const showTp = state.metricId === 'job_calls';
+
   els.list.innerHTML = '';
   ordered.forEach((p) => {
     const isSel = p.id === state.selectedId;
@@ -237,6 +255,9 @@ function renderList(points, meta) {
     li.className = 'city-list__item' + (isSel ? ' is-active' : '');
     li.dataset.id = p.id;
     const n = jobCallCount(p.id);
+    const valueText = showTp
+      ? (Number.isFinite(p.tp) && p.tp !== 0 ? metrics.total_package.format(p.tp) : '—')
+      : meta.format(p.value);
     li.innerHTML =
       `<div class="city-list__row${n != null ? ' city-list__row--calls' : ''}">` +
         `<span class="city-list__rank">${rankById.get(p.id)}</span>` +
@@ -247,7 +268,7 @@ function renderList(points, meta) {
         (n != null
           ? `<button type="button" class="city-list__calls">${esc(jobCallLabel(n))}</button>`
           : '') +
-        `<span class="city-list__value">${esc(meta.format(p.value))}</span>` +
+        `<span class="city-list__value">${esc(valueText)}</span>` +
       '</div>' +
       (isSel ? buildDetail(localById.get(p.id)) : '');
     li.querySelector('.city-list__row').addEventListener('click', () => onSelect(p.id));

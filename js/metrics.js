@@ -1,16 +1,20 @@
 /**
- * Metric definitions for the Which Local map — one entry per selectable data
- * value scraped from unionpayscales.com (IBEW electricians). Each entry gives a
- * label, a unit line, a one-line hint, and a `format` used by the list, the
- * tooltips and the legend.
- *
- * The keys here MUST match the field names on the PocketBase `locals`
- * collection (see js/dataSource.js).
+ * Metric definitions for the Which Local map. Most keys match a field on the
+ * PocketBase `locals` collection (scraped from unionpayscales.com); `job_calls`
+ * is the exception — it comes from js/data/job-calls.json and only covers the
+ * locals that publish a referral list, so selecting it filters the map/list to
+ * those. Each entry gives a label, unit line, one-line hint, and a `format`.
  */
 
 const perHour = (v) => `$${v.toFixed(2)}/hr`;
 
 export const metrics = {
+  job_calls: {
+    label: 'Open job calls',
+    unit: 'calls on the local’s referral list',
+    hint: 'Journeyman calls the local currently has posted (only some locals publish this)',
+    format: (v) => `${v} call${v === 1 ? '' : 's'}`,
+  },
   total_package: {
     label: 'Total package',
     unit: '$/hr incl. benefits',
