@@ -184,13 +184,17 @@ function compEmbed(slug) {
     color: BLUE,
     description:
       'Journeyman compensation for this local. New job calls appear below as they’re listed.\n\n' +
-      links.join(' · ') +
-      '\n\n**FOLLOW FOR NOTIFICATIONS** ⬇️',
+      links.join(' · '),
     fields: fields.length ? fields : undefined,
     footer: { text: l?.source_updated ? `Wage data updated ${l.source_updated} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
   };
 }
+
+// A second, minimal embed so the call-to-action renders *below* the comp
+// card's footer — the very bottom of the starter message.
+const FOLLOW_EMBED = { color: BLUE, description: '**FOLLOW FOR NOTIFICATIONS** ⬇️' };
+const compMessage = (slug) => ({ embeds: [compEmbed(slug), FOLLOW_EMBED] });
 
 function callEmbed(slug, c) {
   // No local header — every call message is posted inside that local's own thread.
@@ -214,14 +218,14 @@ async function createThread(forumId, slug) {
   const name = trunc(`IBEW Local ${localNoOf(slug)} — ${l?.city || place(slug).city}`, 100);
   const t = await discord('POST', `/channels/${forumId}/threads`, {
     name,
-    message: { embeds: [compEmbed(slug)] },
+    message: compMessage(slug),
   });
   return { thread: t.id, comp: t.id, calls: {} }; // forum starter message id == thread id
 }
 
 async function refreshComp(entry, slug, forumId) {
   try {
-    await discord('PATCH', `/channels/${entry.thread}/messages/${entry.comp}`, { embeds: [compEmbed(slug)] });
+    await discord('PATCH', `/channels/${entry.thread}/messages/${entry.comp}`, compMessage(slug));
     return entry;
   } catch (e) {
     // In comp-only mode never touch thread state — recreate/repin is the
@@ -237,7 +241,7 @@ async function refreshComp(entry, slug, forumId) {
     }
     if (e.status === 403 || String(e.message).includes('50005')) {
       // comp message isn't ours to edit — post a fresh one and pin it
-      const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [compEmbed(slug)] });
+      const msg = await discord('POST', `/channels/${entry.thread}/messages`, compMessage(slug));
       await discord('PUT', `/channels/${entry.thread}/pins/${msg.id}`).catch(() => {});
       return { thread: entry.thread, comp: msg.id, calls: entry.calls || {} };
     }
