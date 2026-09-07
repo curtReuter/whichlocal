@@ -421,22 +421,27 @@ only — no gateway, no slash commands — so it runs as a one-shot step in
 1. **Bot token** → repo secret `DISCORD_BOT_TOKEN` (Developer Portal → your app →
    Bot → Reset Token). This is the only secret.
 2. **Invite the bot** (OAuth2 → URL Generator → scope `bot`) with: *View
-   Channels, Send Messages, Send Messages in Threads, Create Public Threads,
-   Manage Messages, Embed Links, Read Message History*.
-3. Create a **Forum channel per state** you cover (e.g. `job-calls-florida`),
-   right-click → **Copy Channel ID**, and add it to
-   `scripts/job-calls.config.json`:
+   Channels, **Manage Channels**, Send Messages, Send Messages in Threads, Create
+   Public Threads, Manage Messages, Embed Links, Read Message History*.
+3. Put your server id in `scripts/job-calls.config.json` → `discord.guild_id`
+   (right-click the server → **Copy Server ID**; Developer Mode on). Make a
+   **"Job Calls" category** and put its id in `discord.category_id` so new forums
+   land there (optional — blank = server root).
 
-   ```json
-   "discord": {
-     "forums": { "FL": "111111111111111111" },
-     "default_channel_id": ""
-   }
-   ```
+That's it — the bot now **creates the forum itself**. `scripts/discord-threads.json`
+ships with a `forums` block for every state (`FL → { "name": "florida-job-calls",
+"id": "…" }`, the rest blank); the first time a local in a given state has job
+calls, the bot creates that `<state>-job-calls` forum under the category, records
+its `id` back into the file (the workflow commits it), and threads locals into it
+from then on. Your existing `florida-job-calls` is already in the block with its
+id, so the bot reuses it — no duplicate.
 
-Channel ids aren't secret. A local whose state has no forum falls back to
-`default_channel_id`; if that's blank too it's skipped with a warning, so you can
-roll out state by state. Without `DISCORD_BOT_TOKEN` the step is a no-op.
+To reuse a forum you already made, paste its channel id into the matching state's
+`id` in `discord-threads.json` (or into `discord.forums` in the config — still
+honoured as a fallback). Channel and server ids aren't secret. A state with no
+forum and no `guild_id` to make one falls back to `discord.default_channel_id`,
+else is skipped with a warning — so you can still roll out state by state.
+Without `DISCORD_BOT_TOKEN` the step is a no-op.
 
 The bot creates each configured local's thread (`IBEW Local 606 — Orlando`) with
 the comp card as the starter message, and records `{ thread, comp }` in

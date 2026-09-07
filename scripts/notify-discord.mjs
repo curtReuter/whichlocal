@@ -7,23 +7,27 @@
  *     is edited in place;
  *   • when a call drops off the local's list, its message is deleted.
  *
- * Layout: one forum channel per state (ids in scripts/job-calls.config.json →
- * discord.forums), one thread per local. Threads are created on first run and
- * their ids saved to scripts/discord-threads.json as { thread, comp, calls } —
- * `comp` is the message the bot edits (the forum starter message when the bot
- * made the thread, otherwise a pinned bot message); `calls` maps each posted
- * job call's id to its Discord message id, so the message can be removed when
- * scrape-job-calls.mjs reports the call as gone.
+ * Layout: one forum channel per state, one thread per local. The state → forum
+ * map lives in scripts/discord-threads.json → `forums` ({ name, id } per state,
+ * prefilled for every state). With scripts/job-calls.config.json → discord.guild_id
+ * set (and, optionally, discord.category_id for the "Job Calls" category), the
+ * bot CREATES the `<state>-job-calls` forum the first time a local in that state
+ * has calls and records its id; job-calls.config.json → discord.forums (state →
+ * id) is a fallback. Threads are saved to discord-threads.json as
+ * { thread, comp, calls } — `comp` is the message the bot edits (the forum
+ * starter message when the bot made the thread, otherwise a pinned bot message);
+ * `calls` maps each posted job call's id to its Discord message id, so the
+ * message can be removed when scrape-job-calls.mjs reports the call as gone.
  *
  *   node scripts/notify-discord.mjs
  *   node scripts/notify-discord.mjs --dry-run     # print what it would do
  *   node scripts/notify-discord.mjs --all         # also (re)post every current call
  *
  * Needs the repo secret DISCORD_BOT_TOKEN (bot invited with: View Channels,
- * Send Messages, Send Messages in Threads, Create Public Threads, Manage
- * Messages, Embed Links, Read Message History). Missing token → exits quietly.
- * A local whose state has no forum falls back to discord.default_channel_id,
- * else is skipped. Outbound only — no gateway, no slash commands.
+ * Manage Channels, Send Messages, Send Messages in Threads, Create Public
+ * Threads, Manage Messages, Embed Links, Read Message History). Missing token →
+ * exits quietly. A local whose state has no forum (and no guild_id to make one)
+ * falls back to discord.default_channel_id, else is skipped. Outbound only.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -81,8 +85,10 @@ const localNoOf = (slug) => Number(slug.match(/^l(\d+)/)?.[1]) || null;
 /* ---------- inputs ---------------------------------------------------- */
 
 const cfg = readJson(CONFIG, {});
-const forums = cfg.discord?.forums || {};
+const legacyForums = cfg.discord?.forums || {};      // state -> id, fallback only
 const defaultChannel = cfg.discord?.default_channel_id || '';
+const guildId = cfg.discord?.guild_id || '';         // needed to auto-create forums
+const categoryId = cfg.discord?.category_id || '';   // the "Job Calls" category new forums go under
 
 // locals.json carries a few non-canonical state strings ("Ont.", "IA / IL");
 // discord.forums is keyed by the same normalised 2-letter codes the registry uses.
@@ -132,6 +138,40 @@ const entryOf = (slug) => {
   if (!e.calls) e.calls = {}; // callId → Discord message id
   return e;
 };
+
+// state code → { name, id } forum registry, prefilled for every state in
+// discord-threads.json. Migrate any id still only in job-calls.config.json.
+const forumsMap = threads.forums || (threads.forums = {});
+for (const [st, id] of Object.entries(legacyForums)) {
+  if (id && forumsMap[st] && !forumsMap[st].id) { forumsMap[st].id = id; threadsDirty = true; }
+}
+
+// Resolve (and, when guild_id is set + the bot may write, CREATE) the forum
+// channel for a state. The `<state>-job-calls` forum is made once, then its id
+// is recorded in discord-threads.json.
+async function resolveForum(st) {
+  const fe = forumsMap[st];
+  if (fe && fe.id) return fe.id;
+  if (legacyForums[st]) return legacyForums[st];
+  const canCreate = fe && fe.name && guildId;
+  if (canCreate && DRY) return `(new #${fe.name})`;
+  if (canCreate && !COMP_ONLY && BOT_TOKEN) {
+    try {
+      const ch = await discord('POST', `/guilds/${guildId}/channels`, {
+        name: fe.name,
+        type: 15,                                  // GUILD_FORUM
+        ...(categoryId ? { parent_id: categoryId } : {}),
+      });
+      fe.id = ch.id;
+      threadsDirty = true;
+      console.log(`  + created forum #${fe.name} (${ch.id}) for ${st}`);
+      return ch.id;
+    } catch (e) {
+      console.warn(`  ${st}: couldn't create forum #${fe.name} (${e.status ?? e.message}) — needs a valid discord.guild_id and the bot's Manage Channels permission`);
+    }
+  }
+  return defaultChannel || '';
+}
 
 if (!DRY && !BOT_TOKEN) {
   console.warn('DISCORD_BOT_TOKEN not set — skipping.');
@@ -275,13 +315,14 @@ for (const slug of slugs) {
   const { state } = localBySlug.get(slug)
     ? { state: localBySlug.get(slug).state }
     : place(slug);
-  const forumId = forums[normState(state)] || defaultChannel;
   let entry = entryOf(slug);
 
   if (COMP_ONLY && !entry) continue; // no thread yet — leave creation to job-calls.yml
 
+  const forumId = await resolveForum(normState(state));
+
   if (!entry && !forumId) {
-    console.warn(`  ${slug}: no forum for ${normState(state)} and no default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
+    console.warn(`  ${slug}: no forum for ${normState(state)} — add discord.guild_id (auto-create) or a channel id, or a default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
     skipped += 1;
     continue;
   }

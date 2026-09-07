@@ -1,5 +1,251 @@
 {
-  "__doc__": "slug → { thread, comp, calls }. scripts/notify-discord.mjs creates a forum thread per local, keeps a live compensation card as its opening post (`comp` = the message id it edits), posts new job calls below, and deletes a call's message when it drops off the local's list. `calls` maps each job call's id (from js/data/job-calls.json) to the Discord message id posted for it. Rows are appended automatically on first run; delete a row to make the bot recreate that thread.",
+  "__doc__": "Discord state for scripts/notify-discord.mjs. `forums` maps each state/province code to its forum channel: `name` is the channel the bot creates (once) when a local in that state first has job calls — needs discord.guild_id (+ optional discord.category_id for the “Job Calls” category) in job-calls.config.json + the bot’s Manage Channels permission — and `id` is filled in with the created channel’s id (or paste one to reuse an existing forum; job-calls.config.json → discord.forums still works as a fallback). Every other key is a local slug → { thread, comp, calls }: the bot keeps a forum thread per local, edits `comp` (the opening compensation card), posts new job calls below, and deletes a call’s message when it drops off the list. `calls` maps a job call id (js/data/job-calls.json) to its Discord message id. Delete a local row to make the bot recreate that thread.",
+  "forums": {
+    "AB": {
+      "name": "alberta-job-calls",
+      "id": ""
+    },
+    "AK": {
+      "name": "alaska-job-calls",
+      "id": ""
+    },
+    "AL": {
+      "name": "alabama-job-calls",
+      "id": ""
+    },
+    "AR": {
+      "name": "arkansas-job-calls",
+      "id": ""
+    },
+    "AZ": {
+      "name": "arizona-job-calls",
+      "id": ""
+    },
+    "BC": {
+      "name": "british-columbia-job-calls",
+      "id": ""
+    },
+    "CA": {
+      "name": "california-job-calls",
+      "id": ""
+    },
+    "CO": {
+      "name": "colorado-job-calls",
+      "id": ""
+    },
+    "CT": {
+      "name": "connecticut-job-calls",
+      "id": ""
+    },
+    "DC": {
+      "name": "district-of-columbia-job-calls",
+      "id": ""
+    },
+    "DE": {
+      "name": "delaware-job-calls",
+      "id": ""
+    },
+    "FL": {
+      "name": "florida-job-calls",
+      "id": "1546378179373957120"
+    },
+    "GA": {
+      "name": "georgia-job-calls",
+      "id": ""
+    },
+    "HI": {
+      "name": "hawaii-job-calls",
+      "id": ""
+    },
+    "IA": {
+      "name": "iowa-job-calls",
+      "id": ""
+    },
+    "ID": {
+      "name": "idaho-job-calls",
+      "id": ""
+    },
+    "IL": {
+      "name": "illinois-job-calls",
+      "id": ""
+    },
+    "IN": {
+      "name": "indiana-job-calls",
+      "id": ""
+    },
+    "KS": {
+      "name": "kansas-job-calls",
+      "id": ""
+    },
+    "KY": {
+      "name": "kentucky-job-calls",
+      "id": ""
+    },
+    "LA": {
+      "name": "louisiana-job-calls",
+      "id": ""
+    },
+    "MA": {
+      "name": "massachusetts-job-calls",
+      "id": ""
+    },
+    "MB": {
+      "name": "manitoba-job-calls",
+      "id": ""
+    },
+    "MD": {
+      "name": "maryland-job-calls",
+      "id": ""
+    },
+    "ME": {
+      "name": "maine-job-calls",
+      "id": ""
+    },
+    "MI": {
+      "name": "michigan-job-calls",
+      "id": ""
+    },
+    "MN": {
+      "name": "minnesota-job-calls",
+      "id": ""
+    },
+    "MO": {
+      "name": "missouri-job-calls",
+      "id": ""
+    },
+    "MS": {
+      "name": "mississippi-job-calls",
+      "id": ""
+    },
+    "MT": {
+      "name": "montana-job-calls",
+      "id": ""
+    },
+    "NB": {
+      "name": "new-brunswick-job-calls",
+      "id": ""
+    },
+    "NC": {
+      "name": "north-carolina-job-calls",
+      "id": ""
+    },
+    "ND": {
+      "name": "north-dakota-job-calls",
+      "id": ""
+    },
+    "NE": {
+      "name": "nebraska-job-calls",
+      "id": ""
+    },
+    "NH": {
+      "name": "new-hampshire-job-calls",
+      "id": ""
+    },
+    "NJ": {
+      "name": "new-jersey-job-calls",
+      "id": ""
+    },
+    "NL": {
+      "name": "newfoundland-and-labrador-job-calls",
+      "id": ""
+    },
+    "NM": {
+      "name": "new-mexico-job-calls",
+      "id": ""
+    },
+    "NS": {
+      "name": "nova-scotia-job-calls",
+      "id": ""
+    },
+    "NV": {
+      "name": "nevada-job-calls",
+      "id": ""
+    },
+    "NY": {
+      "name": "new-york-job-calls",
+      "id": ""
+    },
+    "OH": {
+      "name": "ohio-job-calls",
+      "id": ""
+    },
+    "OK": {
+      "name": "oklahoma-job-calls",
+      "id": ""
+    },
+    "ON": {
+      "name": "ontario-job-calls",
+      "id": ""
+    },
+    "OR": {
+      "name": "oregon-job-calls",
+      "id": ""
+    },
+    "PA": {
+      "name": "pennsylvania-job-calls",
+      "id": ""
+    },
+    "QC": {
+      "name": "quebec-job-calls",
+      "id": ""
+    },
+    "RI": {
+      "name": "rhode-island-job-calls",
+      "id": ""
+    },
+    "SC": {
+      "name": "south-carolina-job-calls",
+      "id": ""
+    },
+    "SD": {
+      "name": "south-dakota-job-calls",
+      "id": ""
+    },
+    "SK": {
+      "name": "saskatchewan-job-calls",
+      "id": ""
+    },
+    "TN": {
+      "name": "tennessee-job-calls",
+      "id": ""
+    },
+    "TX": {
+      "name": "texas-job-calls",
+      "id": ""
+    },
+    "UT": {
+      "name": "utah-job-calls",
+      "id": ""
+    },
+    "VA": {
+      "name": "virginia-job-calls",
+      "id": ""
+    },
+    "VT": {
+      "name": "vermont-job-calls",
+      "id": ""
+    },
+    "WA": {
+      "name": "washington-job-calls",
+      "id": ""
+    },
+    "WI": {
+      "name": "wisconsin-job-calls",
+      "id": ""
+    },
+    "WV": {
+      "name": "west-virginia-job-calls",
+      "id": ""
+    },
+    "WY": {
+      "name": "wyoming-job-calls",
+      "id": ""
+    },
+    "YT": {
+      "name": "yukon-job-calls",
+      "id": ""
+    }
+  },
   "l606-orlando-fl": {
     "thread": "1546417618838102078",
     "comp": "1546417618838102078",
