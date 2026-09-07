@@ -131,6 +131,12 @@ if (!COMP_ONLY && !ALL && existsSync(DELTA)) {
 
 const threads = readJson(THREADS, {});
 let threadsDirty = false;
+// persist immediately after every forum create/move — a run that times out
+// mid-way must not lose the new channel ids and re-create them next time
+const saveThreads = () => {
+  if (!DRY) writeFileSync(THREADS, JSON.stringify(threads, null, 2) + '\n');
+  threadsDirty = false;
+};
 const entryOf = (slug) => {
   const v = threads[slug];
   if (!v) return null;
@@ -144,6 +150,10 @@ const entryOf = (slug) => {
 const forumsMap = threads.forums || (threads.forums = {});
 for (const [st, id] of Object.entries(legacyForums)) {
   if (id && forumsMap[st] && !forumsMap[st].id) { forumsMap[st].id = id; threadsDirty = true; }
+}
+if (!DRY) {
+  const have = Object.values(forumsMap).filter((f) => f && f.id).length;
+  console.log(`Discord: guild ${guildId || '(unset)'}, category ${categoryId || '(unset)'}, ${have}/${Object.keys(forumsMap).length} state forums have an id`);
 }
 
 // Resolve (and, when guild_id is set + the bot may write, CREATE) the forum
@@ -159,22 +169,21 @@ async function resolveForum(st) {
   const canCreate = fe && fe.name && guildId;
   if (canCreate && DRY) return `(new #${fe.name})`;
   if (canCreate && !COMP_ONLY && BOT_TOKEN && forumBudget > 0) {
+    const payload = { name: fe.name, type: 15 };     // 15 = GUILD_FORUM
+    if (categoryId) payload.parent_id = categoryId;
     try {
-      const ch = await discord('POST', `/guilds/${guildId}/channels`, {
-        name: fe.name,
-        type: 15,                                  // GUILD_FORUM
-        ...(categoryId ? { parent_id: categoryId } : {}),
-      });
+      const ch = await discord('POST', `/guilds/${guildId}/channels`, payload);
       fe.id = ch.id;
-      if (categoryId) fe.parent = categoryId;
-      threadsDirty = true;
+      if (categoryId) fe.parent = ch.parent_id || categoryId;
+      saveThreads();
       forumBudget -= 1;
-      console.log(`  + created forum #${fe.name} (${ch.id}) for ${st}${forumBudget === 0 ? ' — budget reached, more next run' : ''}`);
+      const where = ch.parent_id ? `under ${ch.parent_id}` : 'at server root';
+      console.log(`  + created forum #${fe.name} (${ch.id}) for ${st} ${where}${forumBudget === 0 ? ' — budget reached, more next run' : ''}`);
       await sleep(2500); // stay well under the channel-create rate limit
       return ch.id;
     } catch (e) {
       forumBudget = 0; // rate-limited or no permission — stop trying this run
-      console.warn(`  ${st}: couldn't create forum #${fe.name} (${e.status ?? e.message}) — check the bot's Manage Channels permission and discord.guild_id; retrying next run`);
+      console.warn(`  ${st}: create forum #${fe.name} FAILED — ${e.message}`);
     }
   }
   return defaultChannel || '';
@@ -309,21 +318,41 @@ async function refreshComp(entry, slug, forumId) {
   }
 }
 
-// One-time reconcile: move any state forum that isn't yet under the Job Calls
-// category into it (covers forums created before category_id was set).
+// Adopt any `<state>-job-calls` forum that already exists in the guild but whose
+// id we don't have on file (e.g. a past run created it, then lost the id). Makes
+// the whole thing idempotent — it syncs to whatever's actually in Discord.
+if (guildId && !DRY && !COMP_ONLY && BOT_TOKEN) {
+  try {
+    const list = await discord('GET', `/guilds/${guildId}/channels`);
+    const byName = new Map(list.filter((c) => c.type === 15).map((c) => [c.name, c]));
+    let adopted = 0;
+    for (const [, fe] of Object.entries(forumsMap)) {
+      if (!fe || fe.id || !fe.name) continue;
+      const found = byName.get(fe.name);
+      if (found) { fe.id = found.id; fe.parent = found.parent_id || null; adopted += 1; }
+    }
+    if (adopted) { saveThreads(); console.log(`Adopted ${adopted} existing forum(s) by name.`); }
+  } catch (e) {
+    console.warn(`  couldn't list guild channels to adopt forums — ${e.message}`);
+  }
+}
+
+// Reconcile: move any state forum that isn't yet under the Job Calls category.
 if (categoryId && !DRY && !COMP_ONLY && BOT_TOKEN) {
-  let moveBudget = 15;
-  for (const [st, fe] of Object.entries(forumsMap)) {
-    if (!fe || !fe.id || fe.parent === categoryId || moveBudget <= 0) continue;
+  const stray = Object.entries(forumsMap).filter(([, fe]) => fe && fe.id && fe.parent !== categoryId);
+  if (stray.length) console.log(`Filing ${stray.length} forum(s) under category ${categoryId}…`);
+  let moveBudget = 20;
+  for (const [st, fe] of stray) {
+    if (moveBudget <= 0) break;
     try {
-      await discord('PATCH', `/channels/${fe.id}`, { parent_id: categoryId });
-      fe.parent = categoryId;
-      threadsDirty = true;
+      const ch = await discord('PATCH', `/channels/${fe.id}`, { parent_id: categoryId });
+      fe.parent = ch.parent_id || categoryId;
+      saveThreads();
       moveBudget -= 1;
-      console.log(`  ~ filed #${fe.name || st} under the Job Calls category`);
+      console.log(`  ~ #${fe.name || st} → parent ${ch.parent_id || '(none returned!)'}`);
       await sleep(700);
     } catch (e) {
-      console.warn(`  ${st}: couldn't move #${fe.name || st} into the category (${e.status ?? e.message})`);
+      console.warn(`  ${st}: move #${fe.name || st} into category FAILED — ${e.message}`);
       break;
     }
   }
