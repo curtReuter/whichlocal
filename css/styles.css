@@ -137,15 +137,17 @@ body {
   white-space: nowrap;
 }
 
-/* sits just under the selector without widening the switch (desktop) */
+/* centered just under the selector without widening the switch (desktop) */
 .metric-switch__hint {
   position: absolute;
   top: 100%;
+  left: 0;
   right: 0;
   margin-top: 2px;
   font-size: 11.5px;
   color: var(--text-soft);
   white-space: nowrap;
+  text-align: center;
   pointer-events: none;
 }
 
