@@ -290,6 +290,12 @@ message it edits each run. Delete a row to force a recreate; a deleted thread is
 recreated automatically. If a thread's starter isn't the bot's (e.g. one you
 made by hand), it posts and pins a comp message instead.
 
+The comp card is re-synced on **every** data change, not just the 2-hourly
+job-calls run: `scrape.yml` and `apply-overrides.yml` each run
+`notify-discord.mjs --comp-only` after they rewrite `js/data/locals.json`, which
+edits the starter message on any thread that already exists (no thread creation,
+no job-call posts).
+
 **Test it:** Actions → *Job calls + Discord* → **Run workflow** with **"Post
 EVERY current job call"** ticked — posts every call on the board once
 (`notify-discord.mjs --all`). Normal runs only post calls new since the previous

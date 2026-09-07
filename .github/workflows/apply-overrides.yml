@@ -34,6 +34,12 @@ jobs:
       - name: Apply overrides to the snapshot
         run: node scripts/apply-overrides.mjs
 
+      - name: Refresh Discord comp cards
+        run: node scripts/notify-discord.mjs --comp-only
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+
       - name: Commit
         run: |
           git config user.name  "whichlocal-bot"

@@ -52,6 +52,11 @@ const API = 'https://discord.com/api/v10';
 
 const DRY = process.argv.includes('--dry-run');
 const ALL = process.argv.includes('--all') || process.env.NOTIFY_ALL === '1';
+// --comp-only: just re-sync the comp card on threads that already exist — no job
+// calls, no thread creation, no state file writes. Used by the wage-data
+// workflows (scrape.yml / apply-overrides.yml) so the card updates the moment
+// locals.json changes, not only on the 2-hourly job-calls run.
+const COMP_ONLY = process.argv.includes('--comp-only') || process.env.COMP_ONLY === '1';
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || '';
 
 const GREEN = 0x12905a;   // job-call embeds
@@ -81,7 +86,9 @@ const localBySlug = new Map(
 
 // job calls that are new since the last scrape (or every call, with --all)
 let newCalls = {};
-if (ALL) {
+if (COMP_ONLY) {
+  // leave newCalls empty
+} else if (ALL) {
   const locals = readJson(FULL, { locals: {} }).locals || {};
   newCalls = Object.fromEntries(Object.entries(locals).map(([s, l]) => [s, l.calls || []]));
 } else if (existsSync(DELTA)) {
@@ -198,6 +205,12 @@ async function refreshComp(entry, slug, forumId) {
     await discord('PATCH', `/channels/${entry.thread}/messages/${entry.comp}`, { embeds: [compEmbed(slug)] });
     return entry;
   } catch (e) {
+    // In comp-only mode never touch thread state — recreate/repin is the
+    // job-calls run's job.
+    if (COMP_ONLY && (e.status === 404 || e.status === 403)) {
+      console.warn(`  ${slug}: comp refresh failed (${e.status}) — leaving it for the job-calls run`);
+      return entry;
+    }
     if (e.status === 404) {
       if (!forumId) throw new Error('thread gone and no forum to recreate it in');
       console.warn(`  ${slug}: thread/message gone — recreating`);
@@ -225,6 +238,8 @@ for (const slug of slugs) {
   const forumId = forums[state] || defaultChannel;
   let entry = entryOf(slug);
 
+  if (COMP_ONLY && !entry) continue; // no thread yet — leave creation to job-calls.yml
+
   if (!entry && !forumId) {
     console.warn(`  ${slug}: no forum for ${state} and no default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
     skipped += 1;
@@ -247,8 +262,7 @@ for (const slug of slugs) {
       const updated = await refreshComp(entry, slug, forumId);
       if (updated.thread !== entry.thread || updated.comp !== entry.comp) entry = updated;
     }
-    threads[slug] = entry;
-    threadsDirty = true;
+    if (!COMP_ONLY && threads[slug] !== entry) { threads[slug] = entry; threadsDirty = true; }
     comps += 1;
 
     for (const c of calls) {
