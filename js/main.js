@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=48';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=48';
-import { createCityMap } from './cityMap.js?v=48';
+import { metrics } from './metrics.js?v=50';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=50';
+import { createCityMap } from './cityMap.js?v=50';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -265,9 +265,9 @@ function renderMessage(text) {
 }
 
 // The green panel that expands under the selected local. Views: the compensation
-// grid ('comp'), the local's job-calls list ('jobs'), the "Edit Data" / "Add Job
-// Call" submission forms ('edit' / 'addcall'), or — for a roster-only local — a
-// short "no wage data" note (plus its job calls if it has any).
+// grid ('comp'), the local's job-calls list ('jobs'), the submission forms
+// ('edit' / 'addcall' / 'delcall' — the last flags listed calls as filled), or —
+// for a roster-only local — a short "no wage data" note plus its job calls.
 function buildDetail(local) {
   if (!local) return '';
   const jc = jobCalls[local.id];
@@ -275,13 +275,15 @@ function buildDetail(local) {
   const noCallsNote =
     state.detailView !== 'edit' && state.detailView !== 'addcall' &&
     state.metricId === 'job_calls' && !jc
-      ? '<p class="detail__nodata">No job calls available for this local right now.</p>'
+      ? '<p class="detail__notice">No job calls available for this local right now.</p>'
       : '';
   let body;
   if (state.detailView === 'edit') {
     body = buildEditView(local);
   } else if (state.detailView === 'addcall') {
     body = buildAddCallView(local);
+  } else if (state.detailView === 'delcall' && jc) {
+    body = buildDelCallView(local, jc);
   } else if (local.dataless) {
     body =
       noCallsNote +
@@ -416,6 +418,27 @@ function buildAddCallView(local) {
   );
 }
 
+function buildDelCallView(local, jc) {
+  const items = jc.calls.map((c, i) => (
+    '<label class="detail__delitem">' +
+      `<input type="checkbox" name="del" value="${i}">` +
+      `<span>${esc(c.text)}</span>` +
+    '</label>'
+  )).join('');
+  return (
+    '<form class="detail__form" data-kind="delcall">' +
+      `<p class="detail__formhead">Flag job calls at <strong>${esc(local.name)}</strong> — ` +
+        `${esc(local.subtitle)} that are filled or no longer posted. Checked calls are emailed for review.</p>` +
+      `<div class="detail__dellist">${items}</div>` +
+      '<label class="detail__f detail__f--wide">' +
+        '<span class="detail__k">Notes (optional)</span>' +
+        '<textarea class="detail__in" name="notes" rows="2" placeholder="How do you know these are gone?"></textarea>' +
+      '</label>' +
+      FORM_TAIL +
+    '</form>'
+  );
+}
+
 function setFormStatus(el, kind, msg) {
   el.hidden = false;
   el.textContent = msg;
@@ -466,6 +489,15 @@ async function submitContribution(form, local) {
     fd.append('proposed_changes', changes.length ? changes.join('\n') : '(no figure edits — see notes / wage sheet)');
     fd.append('notes', notes);
     if (file) fd.append('wage_sheet', file, file.name);
+  } else if (kind === 'delcall') {
+    const calls = (jobCalls[local.id] || { calls: [] }).calls;
+    const picked = [...form.querySelectorAll('[name=del]:checked')]
+      .map((cb) => calls[Number(cb.value)])
+      .filter(Boolean);
+    if (!picked.length) { setFormStatus(status, 'error', 'Tick at least one job call to flag.'); return; }
+    fd.append('subject', `Remove job call(s) — Local ${local.local_no} (${local.subtitle})`);
+    fd.append('remove_calls', picked.map((c, i) => `${i + 1}. ${c.text}`).join('\n\n'));
+    fd.append('notes', form.querySelector('[name=notes]').value.trim());
   } else {
     const call = form.querySelector('[name=call]').value.trim();
     if (!call) { setFormStatus(status, 'error', 'Paste the job call text first.'); return; }
@@ -507,6 +539,9 @@ function buildJobsView(jc, { noBack = false } = {}) {
     if (CONTRIB_KEY) {
       foot.push(
         '<span class="detail__footacts">' +
+          (jc.calls.length
+            ? '<button type="button" class="detail__go detail__go--delcall">Flag filled</button>'
+            : '') +
           '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
         '</span>',
       );
@@ -597,7 +632,7 @@ function renderList(points, meta) {
       const toView = (view) => (e) => {
         e.stopPropagation();
         // remember where a form was opened from, so its "Back" returns there
-        if (view === 'edit' || view === 'addcall') {
+        if (view === 'edit' || view === 'addcall' || view === 'delcall') {
           state.detailReturn = state.detailView === 'jobs' ? 'jobs' : 'comp';
         }
         state.detailView = view;
@@ -607,6 +642,7 @@ function renderList(points, meta) {
       li.querySelector('.detail__formcancel')?.addEventListener('click', toView(state.detailReturn || 'comp'));
       li.querySelector('.detail__go--edit')?.addEventListener('click', toView('edit'));
       li.querySelector('.detail__go--call')?.addEventListener('click', toView('addcall'));
+      li.querySelector('.detail__go--delcall')?.addEventListener('click', toView('delcall'));
       const form = li.querySelector('.detail__form');
       if (form) {
         form.addEventListener('click', (e) => e.stopPropagation());

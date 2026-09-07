@@ -501,6 +501,21 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 }
 .detail__nodata + .detail__jobs-head { margin-top: 12px; }
 
+/* status callout above the data (e.g. "no job calls right now") — set apart so
+   it doesn't read as one of the figures */
+.detail__notice {
+  margin: 0 0 12px;
+  padding: 7px 10px;
+  border-left: 3px solid var(--good);
+  border-radius: 4px;
+  background: var(--good-soft);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.detail__notice + .detail__nodata { margin-top: 0; }
+
 /* ---- "Edit Data" / "Add Job Call" submission forms ------------------- */
 
 /* filled button, distinct from the link-style .detail__link */
@@ -518,7 +533,8 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 }
 .detail__go:hover { filter: brightness(1.05); }
 .detail__go:disabled { opacity: .55; cursor: default; filter: none; }
-.detail__go--edit { background: var(--surface); color: var(--good); }
+.detail__go--edit,
+.detail__go--delcall { background: var(--surface); color: var(--good); }
 
 /* the form's own Submit button is roomier than the footer pair */
 .detail__submit { font-size: 12px; padding: 7px 14px; }
@@ -540,6 +556,26 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 }
 .detail__f { display: flex; flex-direction: column; gap: 3px; }
 .detail__f--wide { margin-top: 10px; }
+
+/* "Flag filled" checklist of the local's current job calls */
+.detail__dellist { display: flex; flex-direction: column; gap: 6px; }
+.detail__delitem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 6px 8px;
+  border: 1px solid var(--good-line);
+  border-radius: 7px;
+  cursor: pointer;
+}
+.detail__delitem input { margin-top: 2px; }
+.detail__delitem:has(input:checked) {
+  background: color-mix(in srgb, var(--good) 10%, transparent);
+  border-color: var(--good);
+}
 .detail__in {
   font: inherit;
   font-size: 12.5px;

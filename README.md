@@ -188,16 +188,18 @@ Users can send corrections by opening an issue or a pull request against
 
 ## Visitor submissions
 
-The wage-data panel has two buttons (shown only when a submission key is set):
+The green detail panel has buttons (shown only when a submission key is set):
 
-* **Edit Data** — opens the metric grid as editable number fields, pre-filled
-  with the current figures, plus a wage-sheet file picker (PDF/image, ≤ 9 MB) and
-  a notes box. Submitting emails a diff (`old → new` per changed field) plus the
+* **Edit Data** (wage view) — the metric grid as editable number fields,
+  pre-filled with the current figures, plus a wage-sheet file picker (PDF/image,
+  ≤ 9 MB) and a notes box. Emails a diff (`old → new` per changed field) plus the
   attachment.
-* **Add Job Call** — a textarea to paste a posting verbatim, plus an optional
-  source link.
+* **Add Job Call** (wage or jobs view) — a textarea to paste a posting verbatim,
+  plus an optional source link.
+* **Flag filled** (jobs view, when the local has calls) — a checklist of the
+  local's current job calls; ticked ones are emailed as "please remove".
 
-Both post to **Web3Forms** (`api.web3forms.com/submit`) as `multipart/form-data`
+All post to **Web3Forms** (`api.web3forms.com/submit`) as `multipart/form-data`
 and are emailed to the address the key is registered to. Set the key in
 `js/config.js` → `web3formsKey` (a free, publishable client key from
 [web3forms.com](https://web3forms.com) — lock it to the site's domain in their
