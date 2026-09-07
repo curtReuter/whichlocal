@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=42';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=42';
-import { createCityMap } from './cityMap.js?v=42';
+import { metrics } from './metrics.js?v=43';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=43';
+import { createCityMap } from './cityMap.js?v=43';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -246,12 +246,7 @@ function buildDetail(local) {
       '<p class="detail__nodata">No wage data for this local yet — only locals with a ' +
       'published wage sheet have figures. It’s on the map so it can still be found.</p>' +
       (jc ? buildJobsView(jc, { noBack: true }) : '') +
-      (CONTRIB_KEY
-        ? '<div class="detail__actions">' +
-            '<button type="button" class="detail__go detail__go--edit">Add wage data</button>' +
-            '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
-          '</div>'
-        : '');
+      (CONTRIB_KEY ? `<div class="detail__foot">${CONTRIB_BUTTONS}</div>` : '');
   } else if (state.detailView === 'jobs' && jc) {
     body = buildJobsView(jc);
   } else {
@@ -279,24 +274,28 @@ function buildCompView(local) {
   }
 
   const foot = [];
-  if (local.sourceUpdated) foot.push(`<span>Source updated ${esc(local.sourceUpdated)}</span>`);
+  if (local.sourceUpdated) {
+    foot.push(`<span title="Wage data last updated">Updated ${esc(local.sourceUpdated)}</span>`);
+  }
   if (local.wageSheetUrl) {
     foot.push(
       `<a href="${esc(local.wageSheetUrl)}" target="_blank" rel="noopener">Wage sheet&nbsp;↗</a>`,
     );
   }
+  if (CONTRIB_KEY) foot.push(CONTRIB_BUTTONS);
 
   return (
     `<div class="detail__grid">${cells.join('')}</div>` +
-    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '') +
-    (CONTRIB_KEY
-      ? '<div class="detail__actions">' +
-          '<button type="button" class="detail__go detail__go--edit">Edit Data</button>' +
-          '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
-        '</div>'
-      : '')
+    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '')
   );
 }
+
+// the "Edit Data" / "Add Job Call" pair, sharing the compensation view's footer
+const CONTRIB_BUTTONS =
+  '<span class="detail__footacts">' +
+    '<button type="button" class="detail__go detail__go--edit">Edit Data</button>' +
+    '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
+  '</span>';
 
 const CONTRIB_METRICS = Object.entries(metrics).filter(([id]) => id !== 'job_calls');
 

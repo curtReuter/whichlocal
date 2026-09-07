@@ -444,8 +444,8 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 .detail__foot {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 14px;
-  justify-content: space-between;
+  align-items: center;
+  gap: 8px 14px;
   margin-top: 11px;
   padding-top: 9px;
   border-top: 1px solid var(--good-line);
@@ -454,6 +454,14 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 }
 .detail__foot a { color: var(--good); font-weight: 600; text-decoration: none; }
 .detail__foot a:hover { text-decoration: underline; }
+
+/* the submission buttons sit at the right end of the footer line */
+.detail__footacts {
+  margin-left: auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
 /* link-style buttons inside the green box (view job calls / go back) */
 .detail__link {
@@ -495,31 +503,25 @@ body.is-resizing .leaflet-container { pointer-events: none; }
 
 /* ---- "Edit Data" / "Add Job Call" submission forms ------------------- */
 
-.detail__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 11px;
-  padding-top: 9px;
-  border-top: 1px solid var(--good-line);
-}
-
 /* filled button, distinct from the link-style .detail__link */
 .detail__go {
   font: inherit;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
+  white-space: nowrap;
   color: var(--accent-ink);
   background: var(--good);
   border: 1px solid var(--good);
-  border-radius: 8px;
-  padding: 6px 12px;
+  border-radius: 7px;
+  padding: 5px 9px;
   cursor: pointer;
 }
 .detail__go:hover { filter: brightness(1.05); }
 .detail__go:disabled { opacity: .55; cursor: default; filter: none; }
 .detail__go--edit { background: var(--surface); color: var(--good); }
+
+/* the form's own Submit button is roomier than the footer pair */
+.detail__submit { font-size: 12px; padding: 7px 14px; }
 
 /* let the panel grow for the forms (see .city-list__detail max-height) */
 .city-list__item.is-active .city-list__detail:has(.detail__form) { max-height: 1600px; }
