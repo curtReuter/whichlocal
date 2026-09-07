@@ -157,7 +157,7 @@ function parseJobCalls(html) {
 /* ---------- run ------------------------------------------------------- */
 
 const config = JSON.parse(readFileSync(CONFIG, 'utf8'));
-const entries = Object.entries(config).filter(([k]) => !k.startsWith('_'));
+const entries = Object.entries(config).filter(([k]) => /^l\d/.test(k)); // slug keys only
 
 const prev = existsSync(OUT)
   ? JSON.parse(readFileSync(OUT, 'utf8')).locals || {}
