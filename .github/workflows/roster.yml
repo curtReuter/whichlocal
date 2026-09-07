@@ -1,0 +1,49 @@
+name: IBEW local roster
+
+# Rebuilds js/data/locals-roster.json — every active IBEW local union on the US
+# DOL OLMS register, geocoded — so the map can show locals we have no wage data
+# for as small grey dots. The roster changes rarely, so this runs monthly (and
+# on demand). Geocoding hits the shared scripts/cache/geocache.json, so most
+# runs after the first make only a handful of Nominatim calls.
+
+on:
+  schedule:
+    - cron: "23 6 3 * *"   # 06:23 UTC on the 3rd of each month
+  workflow_dispatch: {}
+
+# Serialize with the other workflows that write js/data/*.json + the geocache.
+concurrency:
+  group: data-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  roster:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30   # first run geocodes ~400 cities at 1 req/s
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Scrape the OLMS register + geocode
+        run: node scripts/scrape-ibew-roster.mjs
+        env:
+          SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+
+      - name: Commit the roster
+        run: |
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data/locals-roster.json scripts/cache/geocache.json
+          if git diff --cached --quiet; then
+            echo "No roster changes."
+          else
+            git commit -m "data: refresh IBEW local roster $(date -u +%Y-%m-%d)"
+            git push
+          fi

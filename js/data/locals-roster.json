@@ -1,0 +1,5327 @@
+{
+  "generated_at": "2026-09-07T16:51:52.837Z",
+  "source": "US DOL OLMS Online Public Disclosure Room",
+  "count": 665,
+  "items": [
+    {
+      "local_no": 1,
+      "city": "St Louis",
+      "state": "MO",
+      "slug": "l1-st-louis-mo",
+      "lat": 38.62541,
+      "lng": -90.19001
+    },
+    {
+      "local_no": 2,
+      "city": "Fenton",
+      "state": "MO",
+      "slug": "l2-fenton-mo",
+      "lat": 38.5132,
+      "lng": -90.44006
+    },
+    {
+      "local_no": 3,
+      "city": "Flushing",
+      "state": "NY",
+      "slug": "l3-flushing-ny",
+      "lat": 40.76543,
+      "lng": -73.81743
+    },
+    {
+      "local_no": 4,
+      "city": "St Louis",
+      "state": "MO",
+      "slug": "l4-st-louis-mo",
+      "lat": 38.62541,
+      "lng": -90.19001
+    },
+    {
+      "local_no": 5,
+      "city": "Pittsburgh",
+      "state": "PA",
+      "slug": "l5-pittsburgh-pa",
+      "lat": 40.4407,
+      "lng": -80.00257
+    },
+    {
+      "local_no": 6,
+      "city": "San Francisco",
+      "state": "CA",
+      "slug": "l6-san-francisco-ca",
+      "lat": 37.78794,
+      "lng": -122.40752
+    },
+    {
+      "local_no": 7,
+      "city": "Springfield",
+      "state": "MA",
+      "slug": "l7-springfield-ma",
+      "lat": 42.10188,
+      "lng": -72.58867
+    },
+    {
+      "local_no": 8,
+      "city": "Rossford",
+      "state": "OH",
+      "slug": "l8-rossford-oh",
+      "lat": 41.60977,
+      "lng": -83.56438
+    },
+    {
+      "local_no": 9,
+      "city": "Tinley Park",
+      "state": "IL",
+      "slug": "l9-tinley-park-il",
+      "lat": 41.57337,
+      "lng": -87.78449
+    },
+    {
+      "local_no": 10,
+      "city": "Johnson City",
+      "state": "NY",
+      "slug": "l10-johnson-city-ny",
+      "lat": 42.1157,
+      "lng": -75.95879
+    },
+    {
+      "local_no": 11,
+      "city": "Pasadena",
+      "state": "CA",
+      "slug": "l11-pasadena-ca",
+      "lat": 34.14765,
+      "lng": -118.14415
+    },
+    {
+      "local_no": 12,
+      "city": "Pueblo",
+      "state": "CO",
+      "slug": "l12-pueblo-co",
+      "lat": 38.264,
+      "lng": -104.61419
+    },
+    {
+      "local_no": 13,
+      "city": "Burlington",
+      "state": "IA",
+      "slug": "l13-burlington-ia",
+      "lat": 40.81269,
+      "lng": -91.10202
+    },
+    {
+      "local_no": 14,
+      "city": "Fall Creek",
+      "state": "WI",
+      "slug": "l14-fall-creek-wi",
+      "lat": 44.76357,
+      "lng": -91.2771
+    },
+    {
+      "local_no": 15,
+      "city": "Downers Grove",
+      "state": "IL",
+      "slug": "l15-downers-grove-il",
+      "lat": 41.79368,
+      "lng": -88.01023
+    },
+    {
+      "local_no": 16,
+      "city": "Evansville",
+      "state": "IN",
+      "slug": "l16-evansville-in",
+      "lat": 37.97049,
+      "lng": -87.57156
+    },
+    {
+      "local_no": 17,
+      "city": "Southfield",
+      "state": "MI",
+      "slug": "l17-southfield-mi",
+      "lat": 42.47337,
+      "lng": -83.22187
+    },
+    {
+      "local_no": 19,
+      "city": "Aurora",
+      "state": "IL",
+      "slug": "l19-aurora-il",
+      "lat": 41.75717,
+      "lng": -88.31475
+    },
+    {
+      "local_no": 20,
+      "city": "Grand Prairie",
+      "state": "TX",
+      "slug": "l20-grand-prairie-tx",
+      "lat": 32.74596,
+      "lng": -96.99778
+    },
+    {
+      "local_no": 21,
+      "city": "Lisle",
+      "state": "IL",
+      "slug": "l21-lisle-il",
+      "lat": 41.80116,
+      "lng": -88.07477
+    },
+    {
+      "local_no": 22,
+      "city": "Omaha",
+      "state": "NE",
+      "slug": "l22-omaha-ne",
+      "lat": 41.25875,
+      "lng": -95.93838
+    },
+    {
+      "local_no": 23,
+      "city": "St. Paul",
+      "state": "MN",
+      "slug": "l23-st-paul-mn",
+      "lat": 44.94975,
+      "lng": -93.0931
+    },
+    {
+      "local_no": 24,
+      "city": "Baltimore",
+      "state": "MD",
+      "slug": "l24-baltimore-md",
+      "lat": 39.29088,
+      "lng": -76.61076
+    },
+    {
+      "local_no": 25,
+      "city": "Hauppauge",
+      "state": "NY",
+      "slug": "l25-hauppauge-ny",
+      "lat": 40.82374,
+      "lng": -73.20623
+    },
+    {
+      "local_no": 26,
+      "city": "Lanham",
+      "state": "MD",
+      "slug": "l26-lanham-md",
+      "lat": 38.96536,
+      "lng": -76.84179
+    },
+    {
+      "local_no": 29,
+      "city": "Pittsburgh",
+      "state": "PA",
+      "slug": "l29-pittsburgh-pa",
+      "lat": 40.4407,
+      "lng": -80.00257
+    },
+    {
+      "local_no": 31,
+      "city": "Duluth",
+      "state": "MN",
+      "slug": "l31-duluth-mn",
+      "lat": 46.78383,
+      "lng": -92.10527
+    },
+    {
+      "local_no": 32,
+      "city": "Lima",
+      "state": "OH",
+      "slug": "l32-lima-oh",
+      "lat": 40.73998,
+      "lng": -84.10501
+    },
+    {
+      "local_no": 34,
+      "city": "Bartonville",
+      "state": "IL",
+      "slug": "l34-bartonville-il",
+      "lat": 40.65032,
+      "lng": -89.65205
+    },
+    {
+      "local_no": 35,
+      "city": "Hartford",
+      "state": "CT",
+      "slug": "l35-hartford-ct",
+      "lat": 41.76458,
+      "lng": -72.69085
+    },
+    {
+      "local_no": 36,
+      "city": "Rochester",
+      "state": "NY",
+      "slug": "l36-rochester-ny",
+      "lat": 43.15729,
+      "lng": -77.61521
+    },
+    {
+      "local_no": 38,
+      "city": "Cleveland",
+      "state": "OH",
+      "slug": "l38-cleveland-oh",
+      "lat": 41.49966,
+      "lng": -81.69368
+    },
+    {
+      "local_no": 39,
+      "city": "Cleveland",
+      "state": "OH",
+      "slug": "l39-cleveland-oh",
+      "lat": 41.49966,
+      "lng": -81.69368
+    },
+    {
+      "local_no": 40,
+      "city": "North Hollywood",
+      "state": "CA",
+      "slug": "l40-north-hollywood-ca",
+      "lat": 34.16495,
+      "lng": -118.37475
+    },
+    {
+      "local_no": 41,
+      "city": "Orchard Park",
+      "state": "NY",
+      "slug": "l41-orchard-park-ny",
+      "lat": 42.76704,
+      "lng": -78.74355
+    },
+    {
+      "local_no": 42,
+      "city": "East Windsor",
+      "state": "CT",
+      "slug": "l42-east-windsor-ct",
+      "lat": 41.91564,
+      "lng": -72.61299
+    },
+    {
+      "local_no": 43,
+      "city": "Clay",
+      "state": "NY",
+      "slug": "l43-clay-ny",
+      "lat": 43.18662,
+      "lng": -76.20654
+    },
+    {
+      "local_no": 44,
+      "city": "Butte",
+      "state": "MT",
+      "slug": "l44-butte-mt",
+      "lat": 46.01315,
+      "lng": -112.53651
+    },
+    {
+      "local_no": 45,
+      "city": "North Hollywood",
+      "state": "CA",
+      "slug": "l45-north-hollywood-ca",
+      "lat": 34.16495,
+      "lng": -118.37475
+    },
+    {
+      "local_no": 46,
+      "city": "Kent",
+      "state": "WA",
+      "slug": "l46-kent-wa",
+      "lat": 47.38269,
+      "lng": -122.22703
+    },
+    {
+      "local_no": 47,
+      "city": "Diamond Bar",
+      "state": "CA",
+      "slug": "l47-diamond-bar-ca",
+      "lat": 34.02862,
+      "lng": -117.81034
+    },
+    {
+      "local_no": 48,
+      "city": "Portland",
+      "state": "OR",
+      "slug": "l48-portland-or",
+      "lat": 45.52025,
+      "lng": -122.67419
+    },
+    {
+      "local_no": 50,
+      "city": "Highland Springs",
+      "state": "VA",
+      "slug": "l50-highland-springs-va",
+      "lat": 37.55275,
+      "lng": -77.32504
+    },
+    {
+      "local_no": 51,
+      "city": "Springfield",
+      "state": "IL",
+      "slug": "l51-springfield-il",
+      "lat": 39.79902,
+      "lng": -89.64396
+    },
+    {
+      "local_no": 53,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l53-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 55,
+      "city": "Des Moines",
+      "state": "IA",
+      "slug": "l55-des-moines-ia",
+      "lat": 41.58687,
+      "lng": -93.62495
+    },
+    {
+      "local_no": 56,
+      "city": "Erie",
+      "state": "PA",
+      "slug": "l56-erie-pa",
+      "lat": 42.12947,
+      "lng": -80.08527
+    },
+    {
+      "local_no": 57,
+      "city": "Salt Lake City",
+      "state": "UT",
+      "slug": "l57-salt-lake-city-ut",
+      "lat": 40.75962,
+      "lng": -111.8868
+    },
+    {
+      "local_no": 58,
+      "city": "Detroit",
+      "state": "MI",
+      "slug": "l58-detroit-mi",
+      "lat": 42.33155,
+      "lng": -83.04664
+    },
+    {
+      "local_no": 60,
+      "city": "San Antonio",
+      "state": "TX",
+      "slug": "l60-san-antonio-tx",
+      "lat": 29.4246,
+      "lng": -98.49514
+    },
+    {
+      "local_no": 64,
+      "city": "Youngstown",
+      "state": "OH",
+      "slug": "l64-youngstown-oh",
+      "lat": 41.10358,
+      "lng": -80.65202
+    },
+    {
+      "local_no": 66,
+      "city": "Pasadena",
+      "state": "TX",
+      "slug": "l66-pasadena-tx",
+      "lat": 29.69108,
+      "lng": -95.20921
+    },
+    {
+      "local_no": 68,
+      "city": "Denver",
+      "state": "CO",
+      "slug": "l68-denver-co",
+      "lat": 39.73924,
+      "lng": -104.98486
+    },
+    {
+      "local_no": 69,
+      "city": "Dallas",
+      "state": "TX",
+      "slug": "l69-dallas-tx",
+      "lat": 32.77627,
+      "lng": -96.79686
+    },
+    {
+      "local_no": 70,
+      "city": "Forestville",
+      "state": "MD",
+      "slug": "l70-forestville-md",
+      "lat": 38.85255,
+      "lng": -76.87234
+    },
+    {
+      "local_no": 71,
+      "city": "Columbus",
+      "state": "OH",
+      "slug": "l71-columbus-oh",
+      "lat": 39.96226,
+      "lng": -83.00071
+    },
+    {
+      "local_no": 72,
+      "city": "Waco",
+      "state": "TX",
+      "slug": "l72-waco-tx",
+      "lat": 31.55451,
+      "lng": -97.13256
+    },
+    {
+      "local_no": 73,
+      "city": "Spokane",
+      "state": "WA",
+      "slug": "l73-spokane-wa",
+      "lat": 47.65719,
+      "lng": -117.42351
+    },
+    {
+      "local_no": 76,
+      "city": "Tacoma",
+      "state": "WA",
+      "slug": "l76-tacoma-wa",
+      "lat": 47.2455,
+      "lng": -122.43833
+    },
+    {
+      "local_no": 77,
+      "city": "Seatac",
+      "state": "WA",
+      "slug": "l77-seatac-wa",
+      "lat": 47.44491,
+      "lng": -122.28308
+    },
+    {
+      "local_no": 80,
+      "city": "Norfolk",
+      "state": "VA",
+      "slug": "l80-norfolk-va",
+      "lat": 36.84937,
+      "lng": -76.28995
+    },
+    {
+      "local_no": 81,
+      "city": "Scranton",
+      "state": "PA",
+      "slug": "l81-scranton-pa",
+      "lat": 41.40869,
+      "lng": -75.66213
+    },
+    {
+      "local_no": 82,
+      "city": "Dayton",
+      "state": "OH",
+      "slug": "l82-dayton-oh",
+      "lat": 39.75895,
+      "lng": -84.19161
+    },
+    {
+      "local_no": 84,
+      "city": "Smyrna",
+      "state": "GA",
+      "slug": "l84-smyrna-ga",
+      "lat": 33.88389,
+      "lng": -84.51475
+    },
+    {
+      "local_no": 86,
+      "city": "Rochester",
+      "state": "NY",
+      "slug": "l86-rochester-ny",
+      "lat": 43.15729,
+      "lng": -77.61521
+    },
+    {
+      "local_no": 89,
+      "city": "Mount Vernon",
+      "state": "WA",
+      "slug": "l89-mount-vernon-wa",
+      "lat": 48.42005,
+      "lng": -122.32642
+    },
+    {
+      "local_no": 90,
+      "city": "Wallingford",
+      "state": "CT",
+      "slug": "l90-wallingford-ct",
+      "lat": 41.45642,
+      "lng": -72.82394
+    },
+    {
+      "local_no": 94,
+      "city": "East Windsor",
+      "state": "NJ",
+      "slug": "l94-east-windsor-nj",
+      "lat": 40.26822,
+      "lng": -74.54096
+    },
+    {
+      "local_no": 95,
+      "city": "Joplin",
+      "state": "MO",
+      "slug": "l95-joplin-mo",
+      "lat": 37.08418,
+      "lng": -94.51334
+    },
+    {
+      "local_no": 96,
+      "city": "Worcester",
+      "state": "MA",
+      "slug": "l96-worcester-ma",
+      "lat": 42.26256,
+      "lng": -71.80189
+    },
+    {
+      "local_no": 97,
+      "city": "Syracuse",
+      "state": "NY",
+      "slug": "l97-syracuse-ny",
+      "lat": 43.04812,
+      "lng": -76.14742
+    },
+    {
+      "local_no": 98,
+      "city": "Philadelphia",
+      "state": "PA",
+      "slug": "l98-philadelphia-pa",
+      "lat": 39.95272,
+      "lng": -75.16353
+    },
+    {
+      "local_no": 99,
+      "city": "Cranston",
+      "state": "RI",
+      "slug": "l99-cranston-ri",
+      "lat": 41.77959,
+      "lng": -71.43668
+    },
+    {
+      "local_no": 100,
+      "city": "Fresno",
+      "state": "CA",
+      "slug": "l100-fresno-ca",
+      "lat": 36.73944,
+      "lng": -119.78483
+    },
+    {
+      "local_no": 102,
+      "city": "Parsippany",
+      "state": "NJ",
+      "slug": "l102-parsippany-nj",
+      "lat": 40.86238,
+      "lng": -74.40324
+    },
+    {
+      "local_no": 103,
+      "city": "Dorchester",
+      "state": "MA",
+      "slug": "l103-dorchester-ma",
+      "lat": 42.29732,
+      "lng": -71.0745
+    },
+    {
+      "local_no": 104,
+      "city": "Mansfield",
+      "state": "MA",
+      "slug": "l104-mansfield-ma",
+      "lat": 42.03343,
+      "lng": -71.21894
+    },
+    {
+      "local_no": 106,
+      "city": "Jamestown",
+      "state": "NY",
+      "slug": "l106-jamestown-ny",
+      "lat": 42.09652,
+      "lng": -79.23803
+    },
+    {
+      "local_no": 108,
+      "city": "Tampa",
+      "state": "FL",
+      "slug": "l108-tampa-fl",
+      "lat": 27.94499,
+      "lng": -82.45831
+    },
+    {
+      "local_no": 109,
+      "city": "Milan",
+      "state": "IL",
+      "slug": "l109-milan-il",
+      "lat": 41.45309,
+      "lng": -90.57208
+    },
+    {
+      "local_no": 110,
+      "city": "St. Paul",
+      "state": "MN",
+      "slug": "l110-st-paul-mn",
+      "lat": 44.94975,
+      "lng": -93.0931
+    },
+    {
+      "local_no": 111,
+      "city": "Denver",
+      "state": "CO",
+      "slug": "l111-denver-co",
+      "lat": 39.73924,
+      "lng": -104.98486
+    },
+    {
+      "local_no": 112,
+      "city": "Kennewick",
+      "state": "WA",
+      "slug": "l112-kennewick-wa",
+      "lat": 46.20871,
+      "lng": -119.11992
+    },
+    {
+      "local_no": 113,
+      "city": "Colorado Springs",
+      "state": "CO",
+      "slug": "l113-colorado-springs-co",
+      "lat": 38.83396,
+      "lng": -104.82535
+    },
+    {
+      "local_no": 117,
+      "city": "Crystal Lake",
+      "state": "IL",
+      "slug": "l117-crystal-lake-il",
+      "lat": 42.24113,
+      "lng": -88.3162
+    },
+    {
+      "local_no": 124,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l124-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 125,
+      "city": "Portland",
+      "state": "OR",
+      "slug": "l125-portland-or",
+      "lat": 45.52025,
+      "lng": -122.67419
+    },
+    {
+      "local_no": 126,
+      "city": "Collegeville",
+      "state": "PA",
+      "slug": "l126-collegeville-pa",
+      "lat": 40.18547,
+      "lng": -75.45122
+    },
+    {
+      "local_no": 127,
+      "city": "Kenosha",
+      "state": "WI",
+      "slug": "l127-kenosha-wi",
+      "lat": 42.58468,
+      "lng": -87.82123
+    },
+    {
+      "local_no": 129,
+      "city": "Lorain",
+      "state": "OH",
+      "slug": "l129-lorain-oh",
+      "lat": 41.26336,
+      "lng": -82.17347
+    },
+    {
+      "local_no": 130,
+      "city": "Metairie",
+      "state": "LA",
+      "slug": "l130-metairie-la",
+      "lat": 29.98999,
+      "lng": -90.15054
+    },
+    {
+      "local_no": 131,
+      "city": "Kalamazoo",
+      "state": "MI",
+      "slug": "l131-kalamazoo-mi",
+      "lat": 42.29171,
+      "lng": -85.58723
+    },
+    {
+      "local_no": 134,
+      "city": "Chicago",
+      "state": "IL",
+      "slug": "l134-chicago-il",
+      "lat": 41.87556,
+      "lng": -87.62442
+    },
+    {
+      "local_no": 136,
+      "city": "Birmingham",
+      "state": "AL",
+      "slug": "l136-birmingham-al",
+      "lat": 33.52068,
+      "lng": -86.80243
+    },
+    {
+      "local_no": 139,
+      "city": "Elmira",
+      "state": "NY",
+      "slug": "l139-elmira-ny",
+      "lat": 42.0898,
+      "lng": -76.80773
+    },
+    {
+      "local_no": 141,
+      "city": "Wheeling",
+      "state": "WV",
+      "slug": "l141-wheeling-wv",
+      "lat": 40.06396,
+      "lng": -80.72091
+    },
+    {
+      "local_no": 143,
+      "city": "Harrisburg",
+      "state": "PA",
+      "slug": "l143-harrisburg-pa",
+      "lat": 40.26631,
+      "lng": -76.88611
+    },
+    {
+      "local_no": 145,
+      "city": "Moline",
+      "state": "IL",
+      "slug": "l145-moline-il",
+      "lat": 41.50661,
+      "lng": -90.515
+    },
+    {
+      "local_no": 146,
+      "city": "Decatur",
+      "state": "IL",
+      "slug": "l146-decatur-il",
+      "lat": 39.84542,
+      "lng": -88.95242
+    },
+    {
+      "local_no": 150,
+      "city": "Libertyville",
+      "state": "IL",
+      "slug": "l150-libertyville-il",
+      "lat": 42.28308,
+      "lng": -87.95313
+    },
+    {
+      "local_no": 153,
+      "city": "South Bend",
+      "state": "IN",
+      "slug": "l153-south-bend-in",
+      "lat": 41.68338,
+      "lng": -86.25001
+    },
+    {
+      "local_no": 158,
+      "city": "Green Bay",
+      "state": "WI",
+      "slug": "l158-green-bay-wi",
+      "lat": 44.51264,
+      "lng": -88.01258
+    },
+    {
+      "local_no": 159,
+      "city": "Madison",
+      "state": "WI",
+      "slug": "l159-madison-wi",
+      "lat": 43.07469,
+      "lng": -89.38417
+    },
+    {
+      "local_no": 160,
+      "city": "Plymouth",
+      "state": "MN",
+      "slug": "l160-plymouth-mn",
+      "lat": 45.00651,
+      "lng": -93.46651
+    },
+    {
+      "local_no": 163,
+      "city": "Hanover Township",
+      "state": "PA",
+      "slug": "l163-hanover-township-pa",
+      "lat": 41.20333,
+      "lng": -75.9233
+    },
+    {
+      "local_no": 164,
+      "city": "Paramus",
+      "state": "NJ",
+      "slug": "l164-paramus-nj",
+      "lat": 40.94529,
+      "lng": -74.07359
+    },
+    {
+      "local_no": 175,
+      "city": "Chattanooga",
+      "state": "TN",
+      "slug": "l175-chattanooga-tn",
+      "lat": 35.04572,
+      "lng": -85.30949
+    },
+    {
+      "local_no": 176,
+      "city": "Joliet",
+      "state": "IL",
+      "slug": "l176-joliet-il",
+      "lat": 41.52636,
+      "lng": -88.08402
+    },
+    {
+      "local_no": 177,
+      "city": "Jacksonville",
+      "state": "FL",
+      "slug": "l177-jacksonville-fl",
+      "lat": 30.32622,
+      "lng": -81.65792
+    },
+    {
+      "local_no": 180,
+      "city": "Napa",
+      "state": "CA",
+      "slug": "l180-napa-ca",
+      "lat": 38.48987,
+      "lng": -122.32184
+    },
+    {
+      "local_no": 191,
+      "city": "Marysville",
+      "state": "WA",
+      "slug": "l191-marysville-wa",
+      "lat": 48.05174,
+      "lng": -122.17682
+    },
+    {
+      "local_no": 193,
+      "city": "Springfield",
+      "state": "IL",
+      "slug": "l193-springfield-il",
+      "lat": 39.79902,
+      "lng": -89.64396
+    },
+    {
+      "local_no": 194,
+      "city": "Shreveport",
+      "state": "LA",
+      "slug": "l194-shreveport-la",
+      "lat": 32.51354,
+      "lng": -93.74778
+    },
+    {
+      "local_no": 196,
+      "city": "Huntley",
+      "state": "IL",
+      "slug": "l196-huntley-il",
+      "lat": 42.17225,
+      "lng": -88.42692
+    },
+    {
+      "local_no": 197,
+      "city": "Bloomington",
+      "state": "IL",
+      "slug": "l197-bloomington-il",
+      "lat": 40.47978,
+      "lng": -88.99391
+    },
+    {
+      "local_no": 201,
+      "city": "Beaver",
+      "state": "PA",
+      "slug": "l201-beaver-pa",
+      "lat": 40.69166,
+      "lng": -80.371
+    },
+    {
+      "local_no": 203,
+      "city": "Devils Lake",
+      "state": "ND",
+      "slug": "l203-devils-lake-nd",
+      "lat": 48.11278,
+      "lng": -98.86512
+    },
+    {
+      "local_no": 204,
+      "city": "Hiawatha",
+      "state": "IA",
+      "slug": "l204-hiawatha-ia",
+      "lat": 42.03853,
+      "lng": -91.67376
+    },
+    {
+      "local_no": 206,
+      "city": "Helena",
+      "state": "MT",
+      "slug": "l206-helena-mt",
+      "lat": 46.59274,
+      "lng": -112.03628
+    },
+    {
+      "local_no": 210,
+      "city": "Tuckerton",
+      "state": "NJ",
+      "slug": "l210-tuckerton-nj",
+      "lat": 39.60351,
+      "lng": -74.33812
+    },
+    {
+      "local_no": 212,
+      "city": "Cincinnati",
+      "state": "OH",
+      "slug": "l212-cincinnati-oh",
+      "lat": 39.10128,
+      "lng": -84.51274
+    },
+    {
+      "local_no": 214,
+      "city": "Lisle",
+      "state": "IL",
+      "slug": "l214-lisle-il",
+      "lat": 41.80116,
+      "lng": -88.07477
+    },
+    {
+      "local_no": 220,
+      "city": "Fort Worth",
+      "state": "TX",
+      "slug": "l220-fort-worth-tx",
+      "lat": 32.75318,
+      "lng": -97.33275
+    },
+    {
+      "local_no": 222,
+      "city": "Reddick",
+      "state": "FL",
+      "slug": "l222-reddick-fl",
+      "lat": 29.36664,
+      "lng": -82.19732
+    },
+    {
+      "local_no": 223,
+      "city": "Taunton",
+      "state": "MA",
+      "slug": "l223-taunton-ma",
+      "lat": 41.90193,
+      "lng": -71.09315
+    },
+    {
+      "local_no": 226,
+      "city": "Topeka",
+      "state": "KS",
+      "slug": "l226-topeka-ks",
+      "lat": 39.04901,
+      "lng": -95.67756
+    },
+    {
+      "local_no": 229,
+      "city": "York",
+      "state": "PA",
+      "slug": "l229-york-pa",
+      "lat": 39.96249,
+      "lng": -76.7277
+    },
+    {
+      "local_no": 231,
+      "city": "Sioux City",
+      "state": "IA",
+      "slug": "l231-sioux-city-ia",
+      "lat": 42.49668,
+      "lng": -96.40588
+    },
+    {
+      "local_no": 233,
+      "city": "Helena",
+      "state": "MT",
+      "slug": "l233-helena-mt",
+      "lat": 46.59274,
+      "lng": -112.03628
+    },
+    {
+      "local_no": 234,
+      "city": "Salinas",
+      "state": "CA",
+      "slug": "l234-salinas-ca",
+      "lat": 36.67441,
+      "lng": -121.65504
+    },
+    {
+      "local_no": 236,
+      "city": "Schenectady",
+      "state": "NY",
+      "slug": "l236-schenectady-ny",
+      "lat": 42.81424,
+      "lng": -73.93957
+    },
+    {
+      "local_no": 237,
+      "city": "Niagara Falls",
+      "state": "NY",
+      "slug": "l237-niagara-falls-ny",
+      "lat": 43.08484,
+      "lng": -79.07018
+    },
+    {
+      "local_no": 238,
+      "city": "Asheville",
+      "state": "NC",
+      "slug": "l238-asheville-nc",
+      "lat": 35.59536,
+      "lng": -82.55084
+    },
+    {
+      "local_no": 239,
+      "city": "Jamestown",
+      "state": "ND",
+      "slug": "l239-jamestown-nd",
+      "lat": 46.91054,
+      "lng": -98.70844
+    },
+    {
+      "local_no": 241,
+      "city": "Ithaca",
+      "state": "NY",
+      "slug": "l241-ithaca-ny",
+      "lat": 42.43742,
+      "lng": -76.54837
+    },
+    {
+      "local_no": 242,
+      "city": "Duluth",
+      "state": "MN",
+      "slug": "l242-duluth-mn",
+      "lat": 46.78383,
+      "lng": -92.10527
+    },
+    {
+      "local_no": 244,
+      "city": "Lincoln",
+      "state": "NE",
+      "slug": "l244-lincoln-ne",
+      "lat": 40.80889,
+      "lng": -96.70778
+    },
+    {
+      "local_no": 245,
+      "city": "Rossford",
+      "state": "OH",
+      "slug": "l245-rossford-oh",
+      "lat": 41.60977,
+      "lng": -83.56438
+    },
+    {
+      "local_no": 246,
+      "city": "Steubenville",
+      "state": "OH",
+      "slug": "l246-steubenville-oh",
+      "lat": 40.36007,
+      "lng": -80.6151
+    },
+    {
+      "local_no": 252,
+      "city": "Ann Arbor",
+      "state": "MI",
+      "slug": "l252-ann-arbor-mi",
+      "lat": 42.28137,
+      "lng": -83.74846
+    },
+    {
+      "local_no": 257,
+      "city": "Jefferson City",
+      "state": "MO",
+      "slug": "l257-jefferson-city-mo",
+      "lat": 38.57736,
+      "lng": -92.17243
+    },
+    {
+      "local_no": 261,
+      "city": "Groton",
+      "state": "CT",
+      "slug": "l261-groton-ct",
+      "lat": 41.34655,
+      "lng": -72.03888
+    },
+    {
+      "local_no": 265,
+      "city": "Lincoln",
+      "state": "NE",
+      "slug": "l265-lincoln-ne",
+      "lat": 40.80889,
+      "lng": -96.70778
+    },
+    {
+      "local_no": 266,
+      "city": "Phoenix",
+      "state": "AZ",
+      "slug": "l266-phoenix-az",
+      "lat": 33.44844,
+      "lng": -112.07414
+    },
+    {
+      "local_no": 269,
+      "city": "Trenton",
+      "state": "NJ",
+      "slug": "l269-trenton-nj",
+      "lat": 40.22031,
+      "lng": -74.7659
+    },
+    {
+      "local_no": 270,
+      "city": "Oak Ridge",
+      "state": "TN",
+      "slug": "l270-oak-ridge-tn",
+      "lat": 36.01036,
+      "lng": -84.26964
+    },
+    {
+      "local_no": 271,
+      "city": "Wichita",
+      "state": "KS",
+      "slug": "l271-wichita-ks",
+      "lat": 37.69224,
+      "lng": -97.33754
+    },
+    {
+      "local_no": 275,
+      "city": "Coopersville",
+      "state": "MI",
+      "slug": "l275-coopersville-mi",
+      "lat": 43.06391,
+      "lng": -85.93477
+    },
+    {
+      "local_no": 278,
+      "city": "Corpus Christi",
+      "state": "TX",
+      "slug": "l278-corpus-christi-tx",
+      "lat": 27.76353,
+      "lng": -97.40332
+    },
+    {
+      "local_no": 280,
+      "city": "Tangent",
+      "state": "OR",
+      "slug": "l280-tangent-or",
+      "lat": 44.54404,
+      "lng": -123.10929
+    },
+    {
+      "local_no": 283,
+      "city": "Emmett",
+      "state": "ID",
+      "slug": "l283-emmett-id",
+      "lat": 43.8735,
+      "lng": -116.4993
+    },
+    {
+      "local_no": 288,
+      "city": "Waterloo",
+      "state": "IA",
+      "slug": "l288-waterloo-ia",
+      "lat": 42.49827,
+      "lng": -92.33287
+    },
+    {
+      "local_no": 291,
+      "city": "Boise",
+      "state": "ID",
+      "slug": "l291-boise-id",
+      "lat": 43.61662,
+      "lng": -116.20089
+    },
+    {
+      "local_no": 292,
+      "city": "Brooklyn Park",
+      "state": "MN",
+      "slug": "l292-brooklyn-park-mn",
+      "lat": 45.10048,
+      "lng": -93.34436
+    },
+    {
+      "local_no": 294,
+      "city": "Nashwauk",
+      "state": "MN",
+      "slug": "l294-nashwauk-mn",
+      "lat": 47.37745,
+      "lng": -93.16641
+    },
+    {
+      "local_no": 295,
+      "city": "Little Rock",
+      "state": "AR",
+      "slug": "l295-little-rock-ar",
+      "lat": 34.74651,
+      "lng": -92.28963
+    },
+    {
+      "local_no": 300,
+      "city": "So Burlington",
+      "state": "VT",
+      "slug": "l300-so-burlington-vt",
+      "lat": 44.47616,
+      "lng": -73.21291
+    },
+    {
+      "local_no": 301,
+      "city": "Nash",
+      "state": "TX",
+      "slug": "l301-nash-tx",
+      "lat": 33.44255,
+      "lng": -94.13058
+    },
+    {
+      "local_no": 302,
+      "city": "Martinez",
+      "state": "CA",
+      "slug": "l302-martinez-ca",
+      "lat": 38.01389,
+      "lng": -122.13387
+    },
+    {
+      "local_no": 304,
+      "city": "Topeka",
+      "state": "KS",
+      "slug": "l304-topeka-ks",
+      "lat": 39.04901,
+      "lng": -95.67756
+    },
+    {
+      "local_no": 305,
+      "city": "Fort Wayne",
+      "state": "IN",
+      "slug": "l305-fort-wayne-in",
+      "lat": 41.07999,
+      "lng": -85.1386
+    },
+    {
+      "local_no": 306,
+      "city": "Akron",
+      "state": "OH",
+      "slug": "l306-akron-oh",
+      "lat": 41.08306,
+      "lng": -81.51848
+    },
+    {
+      "local_no": 307,
+      "city": "Cumberland",
+      "state": "MD",
+      "slug": "l307-cumberland-md",
+      "lat": 39.65265,
+      "lng": -78.76238
+    },
+    {
+      "local_no": 309,
+      "city": "Collinsville",
+      "state": "IL",
+      "slug": "l309-collinsville-il",
+      "lat": 38.67033,
+      "lng": -89.98455
+    },
+    {
+      "local_no": 311,
+      "city": "Ringgold",
+      "state": "GA",
+      "slug": "l311-ringgold-ga",
+      "lat": 34.91591,
+      "lng": -85.10912
+    },
+    {
+      "local_no": 312,
+      "city": "Lexington",
+      "state": "NC",
+      "slug": "l312-lexington-nc",
+      "lat": 35.82403,
+      "lng": -80.25338
+    },
+    {
+      "local_no": 313,
+      "city": "New Castle",
+      "state": "DE",
+      "slug": "l313-new-castle-de",
+      "lat": 39.61599,
+      "lng": -75.66296
+    },
+    {
+      "local_no": 317,
+      "city": "Huntington",
+      "state": "WV",
+      "slug": "l317-huntington-wv",
+      "lat": 38.41925,
+      "lng": -82.44515
+    },
+    {
+      "local_no": 320,
+      "city": "Poughkeepsie",
+      "state": "NY",
+      "slug": "l320-poughkeepsie-ny",
+      "lat": 41.70655,
+      "lng": -73.92837
+    },
+    {
+      "local_no": 322,
+      "city": "Casper",
+      "state": "WY",
+      "slug": "l322-casper-wy",
+      "lat": 42.85012,
+      "lng": -106.32514
+    },
+    {
+      "local_no": 325,
+      "city": "Binghamton",
+      "state": "NY",
+      "slug": "l325-binghamton-ny",
+      "lat": 42.0987,
+      "lng": -75.91252
+    },
+    {
+      "local_no": 326,
+      "city": "North Andover",
+      "state": "MA",
+      "slug": "l326-north-andover-ma",
+      "lat": 42.70297,
+      "lng": -71.13091
+    },
+    {
+      "local_no": 329,
+      "city": "Shreveport",
+      "state": "LA",
+      "slug": "l329-shreveport-la",
+      "lat": 32.51354,
+      "lng": -93.74778
+    },
+    {
+      "local_no": 332,
+      "city": "San Jose",
+      "state": "CA",
+      "slug": "l332-san-jose-ca",
+      "lat": 37.33617,
+      "lng": -121.89059
+    },
+    {
+      "local_no": 340,
+      "city": "Sacramento",
+      "state": "CA",
+      "slug": "l340-sacramento-ca",
+      "lat": 38.58106,
+      "lng": -121.49389
+    },
+    {
+      "local_no": 342,
+      "city": "Greensboro",
+      "state": "NC",
+      "slug": "l342-greensboro-nc",
+      "lat": 36.07264,
+      "lng": -79.79198
+    },
+    {
+      "local_no": 343,
+      "city": "Rochester",
+      "state": "MN",
+      "slug": "l343-rochester-mn",
+      "lat": 44.02344,
+      "lng": -92.46302
+    },
+    {
+      "local_no": 345,
+      "city": "Daphne",
+      "state": "AL",
+      "slug": "l345-daphne-al",
+      "lat": 30.60353,
+      "lng": -87.9036
+    },
+    {
+      "local_no": 347,
+      "city": "Ankeny",
+      "state": "IA",
+      "slug": "l347-ankeny-ia",
+      "lat": 41.73208,
+      "lng": -93.60509
+    },
+    {
+      "local_no": 349,
+      "city": "Miami",
+      "state": "FL",
+      "slug": "l349-miami-fl",
+      "lat": 25.77416,
+      "lng": -80.1936
+    },
+    {
+      "local_no": 350,
+      "city": "Hannibal",
+      "state": "MO",
+      "slug": "l350-hannibal-mo",
+      "lat": 39.70825,
+      "lng": -91.35874
+    },
+    {
+      "local_no": 351,
+      "city": "Hammonton",
+      "state": "NJ",
+      "slug": "l351-hammonton-nj",
+      "lat": 39.63665,
+      "lng": -74.80277
+    },
+    {
+      "local_no": 352,
+      "city": "Lansing",
+      "state": "MI",
+      "slug": "l352-lansing-mi",
+      "lat": 42.73383,
+      "lng": -84.55463
+    },
+    {
+      "local_no": 354,
+      "city": "West Valley City",
+      "state": "UT",
+      "slug": "l354-west-valley-city-ut",
+      "lat": 40.69679,
+      "lng": -111.9867
+    },
+    {
+      "local_no": 357,
+      "city": "Las Vegas",
+      "state": "NV",
+      "slug": "l357-las-vegas-nv",
+      "lat": 36.16743,
+      "lng": -115.14841
+    },
+    {
+      "local_no": 359,
+      "city": "Miami",
+      "state": "FL",
+      "slug": "l359-miami-fl",
+      "lat": 25.77416,
+      "lng": -80.1936
+    },
+    {
+      "local_no": 360,
+      "city": "San Jose",
+      "state": "CA",
+      "slug": "l360-san-jose-ca",
+      "lat": 37.33617,
+      "lng": -121.89059
+    },
+    {
+      "local_no": 362,
+      "city": "Riverdale",
+      "state": "MD",
+      "slug": "l362-riverdale-md",
+      "lat": 38.96295,
+      "lng": -76.93496
+    },
+    {
+      "local_no": 363,
+      "city": "Harriman",
+      "state": "NY",
+      "slug": "l363-harriman-ny",
+      "lat": 41.30843,
+      "lng": -74.14459
+    },
+    {
+      "local_no": 364,
+      "city": "Rockford",
+      "state": "IL",
+      "slug": "l364-rockford-il",
+      "lat": 42.27139,
+      "lng": -89.09397
+    },
+    {
+      "local_no": 365,
+      "city": "Knoxville",
+      "state": "TN",
+      "slug": "l365-knoxville-tn",
+      "lat": 35.96039,
+      "lng": -83.92103
+    },
+    {
+      "local_no": 366,
+      "city": "Saginaw",
+      "state": "MN",
+      "slug": "l366-saginaw-mn",
+      "lat": 46.85911,
+      "lng": -92.44436
+    },
+    {
+      "local_no": 369,
+      "city": "Louisville",
+      "state": "KY",
+      "slug": "l369-louisville-ky",
+      "lat": 38.25424,
+      "lng": -85.75941
+    },
+    {
+      "local_no": 375,
+      "city": "Allentown",
+      "state": "PA",
+      "slug": "l375-allentown-pa",
+      "lat": 40.60226,
+      "lng": -75.47161
+    },
+    {
+      "local_no": 379,
+      "city": "Charlotte",
+      "state": "NC",
+      "slug": "l379-charlotte-nc",
+      "lat": 35.22721,
+      "lng": -80.84308
+    },
+    {
+      "local_no": 386,
+      "city": "Texarkana",
+      "state": "AR",
+      "slug": "l386-texarkana-ar",
+      "lat": 33.42543,
+      "lng": -94.04309
+    },
+    {
+      "local_no": 387,
+      "city": "Phoenix",
+      "state": "AZ",
+      "slug": "l387-phoenix-az",
+      "lat": 33.44844,
+      "lng": -112.07414
+    },
+    {
+      "local_no": 388,
+      "city": "Stevens Point",
+      "state": "WI",
+      "slug": "l388-stevens-point-wi",
+      "lat": 44.52345,
+      "lng": -89.58445
+    },
+    {
+      "local_no": 391,
+      "city": "Gadsden",
+      "state": "AL",
+      "slug": "l391-gadsden-al",
+      "lat": 34.01283,
+      "lng": -86.00303
+    },
+    {
+      "local_no": 395,
+      "city": "Dickinson",
+      "state": "ND",
+      "slug": "l395-dickinson-nd",
+      "lat": 46.87918,
+      "lng": -102.78962
+    },
+    {
+      "local_no": 396,
+      "city": "Las Vegas",
+      "state": "NV",
+      "slug": "l396-las-vegas-nv",
+      "lat": 36.16743,
+      "lng": -115.14841
+    },
+    {
+      "local_no": 398,
+      "city": "Awendaw",
+      "state": "SC",
+      "slug": "l398-awendaw-sc",
+      "lat": 33.03767,
+      "lng": -79.61313
+    },
+    {
+      "local_no": 400,
+      "city": "Wall",
+      "state": "NJ",
+      "slug": "l400-wall-nj",
+      "lat": 40.17431,
+      "lng": -74.09022
+    },
+    {
+      "local_no": 401,
+      "city": "Reno",
+      "state": "NV",
+      "slug": "l401-reno-nv",
+      "lat": 39.52618,
+      "lng": -119.81266
+    },
+    {
+      "local_no": 405,
+      "city": "Cedar Rapids",
+      "state": "IA",
+      "slug": "l405-cedar-rapids-ia",
+      "lat": 41.97589,
+      "lng": -91.67041
+    },
+    {
+      "local_no": 410,
+      "city": "Sparks Glencoe",
+      "state": "MD",
+      "slug": "l410-sparks-glencoe-md",
+      "lat": 39.5257,
+      "lng": -76.65489
+    },
+    {
+      "local_no": 412,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l412-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 413,
+      "city": "Buellton",
+      "state": "CA",
+      "slug": "l413-buellton-ca",
+      "lat": 34.61347,
+      "lng": -120.19367
+    },
+    {
+      "local_no": 415,
+      "city": "Cheyenne",
+      "state": "WY",
+      "slug": "l415-cheyenne-wy",
+      "lat": 41.13998,
+      "lng": -104.82025
+    },
+    {
+      "local_no": 418,
+      "city": "Belton",
+      "state": "TX",
+      "slug": "l418-belton-tx",
+      "lat": 31.05601,
+      "lng": -97.46445
+    },
+    {
+      "local_no": 420,
+      "city": "Waterbury",
+      "state": "CT",
+      "slug": "l420-waterbury-ct",
+      "lat": 41.55411,
+      "lng": -73.04356
+    },
+    {
+      "local_no": 423,
+      "city": "Mobridge",
+      "state": "SD",
+      "slug": "l423-mobridge-sd",
+      "lat": 45.53722,
+      "lng": -100.42791
+    },
+    {
+      "local_no": 426,
+      "city": "Sioux Falls",
+      "state": "SD",
+      "slug": "l426-sioux-falls-sd",
+      "lat": 43.5476,
+      "lng": -96.72936
+    },
+    {
+      "local_no": 428,
+      "city": "Bakersfield",
+      "state": "CA",
+      "slug": "l428-bakersfield-ca",
+      "lat": 35.37387,
+      "lng": -119.01946
+    },
+    {
+      "local_no": 429,
+      "city": "Nashville",
+      "state": "TN",
+      "slug": "l429-nashville-tn",
+      "lat": 36.16228,
+      "lng": -86.7743
+    },
+    {
+      "local_no": 430,
+      "city": "Racine",
+      "state": "WI",
+      "slug": "l430-racine-wi",
+      "lat": 42.73138,
+      "lng": -87.78348
+    },
+    {
+      "local_no": 433,
+      "city": "Citrus Springs",
+      "state": "FL",
+      "slug": "l433-citrus-springs-fl",
+      "lat": 29.00044,
+      "lng": -82.456
+    },
+    {
+      "local_no": 436,
+      "city": "El Dorado",
+      "state": "AR",
+      "slug": "l436-el-dorado-ar",
+      "lat": 33.21151,
+      "lng": -92.66501
+    },
+    {
+      "local_no": 440,
+      "city": "Riverside",
+      "state": "CA",
+      "slug": "l440-riverside-ca",
+      "lat": 33.98249,
+      "lng": -117.37424
+    },
+    {
+      "local_no": 441,
+      "city": "Orange",
+      "state": "CA",
+      "slug": "l441-orange-ca",
+      "lat": 33.75063,
+      "lng": -117.87223
+    },
+    {
+      "local_no": 443,
+      "city": "Montgomery",
+      "state": "AL",
+      "slug": "l443-montgomery-al",
+      "lat": 32.37771,
+      "lng": -86.30908
+    },
+    {
+      "local_no": 444,
+      "city": "Ponca City",
+      "state": "OK",
+      "slug": "l444-ponca-city-ok",
+      "lat": 36.70365,
+      "lng": -97.0819
+    },
+    {
+      "local_no": 445,
+      "city": "Springfield",
+      "state": "MI",
+      "slug": "l445-springfield-mi",
+      "lat": 42.32643,
+      "lng": -85.23916
+    },
+    {
+      "local_no": 446,
+      "city": "Monroe",
+      "state": "LA",
+      "slug": "l446-monroe-la",
+      "lat": 32.50255,
+      "lng": -92.11622
+    },
+    {
+      "local_no": 449,
+      "city": "Pocatello",
+      "state": "ID",
+      "slug": "l449-pocatello-id",
+      "lat": 42.86203,
+      "lng": -112.45063
+    },
+    {
+      "local_no": 452,
+      "city": "Galesburg",
+      "state": "IL",
+      "slug": "l452-galesburg-il",
+      "lat": 40.94757,
+      "lng": -90.37122
+    },
+    {
+      "local_no": 453,
+      "city": "Springfield",
+      "state": "MO",
+      "slug": "l453-springfield-mo",
+      "lat": 37.20817,
+      "lng": -93.29227
+    },
+    {
+      "local_no": 454,
+      "city": "Lincoln Park",
+      "state": "NJ",
+      "slug": "l454-lincoln-park-nj",
+      "lat": 40.92427,
+      "lng": -74.30209
+    },
+    {
+      "local_no": 455,
+      "city": "Springfield",
+      "state": "MA",
+      "slug": "l455-springfield-ma",
+      "lat": 42.10188,
+      "lng": -72.58867
+    },
+    {
+      "local_no": 456,
+      "city": "North Brunswick",
+      "state": "NJ",
+      "slug": "l456-north-brunswick-nj",
+      "lat": 40.45392,
+      "lng": -74.47655
+    },
+    {
+      "local_no": 457,
+      "city": "Berlin",
+      "state": "CT",
+      "slug": "l457-berlin-ct",
+      "lat": 41.62149,
+      "lng": -72.74565
+    },
+    {
+      "local_no": 459,
+      "city": "Johnstown",
+      "state": "PA",
+      "slug": "l459-johnstown-pa",
+      "lat": 40.32674,
+      "lng": -78.92197
+    },
+    {
+      "local_no": 461,
+      "city": "Aurora",
+      "state": "IL",
+      "slug": "l461-aurora-il",
+      "lat": 41.75717,
+      "lng": -88.31475
+    },
+    {
+      "local_no": 463,
+      "city": "Somerset",
+      "state": "KY",
+      "slug": "l463-somerset-ky",
+      "lat": 37.09202,
+      "lng": -84.60411
+    },
+    {
+      "local_no": 464,
+      "city": "Covington",
+      "state": "VA",
+      "slug": "l464-covington-va",
+      "lat": 37.79345,
+      "lng": -79.99395
+    },
+    {
+      "local_no": 465,
+      "city": "San Diego",
+      "state": "CA",
+      "slug": "l465-san-diego-ca",
+      "lat": 32.71742,
+      "lng": -117.16277
+    },
+    {
+      "local_no": 466,
+      "city": "Charleston",
+      "state": "WV",
+      "slug": "l466-charleston-wv",
+      "lat": 38.3506,
+      "lng": -81.63328
+    },
+    {
+      "local_no": 474,
+      "city": "Memphis",
+      "state": "TN",
+      "slug": "l474-memphis-tn",
+      "lat": 35.14603,
+      "lng": -90.05178
+    },
+    {
+      "local_no": 477,
+      "city": "San Bernardino",
+      "state": "CA",
+      "slug": "l477-san-bernardino-ca",
+      "lat": 34.8253,
+      "lng": -116.08331
+    },
+    {
+      "local_no": 479,
+      "city": "Beaumont",
+      "state": "TX",
+      "slug": "l479-beaumont-tx",
+      "lat": 30.08293,
+      "lng": -94.09843
+    },
+    {
+      "local_no": 480,
+      "city": "Byram",
+      "state": "MS",
+      "slug": "l480-byram-ms",
+      "lat": 32.18447,
+      "lng": -90.27646
+    },
+    {
+      "local_no": 481,
+      "city": "Indianapolis",
+      "state": "IN",
+      "slug": "l481-indianapolis-in",
+      "lat": 39.76833,
+      "lng": -86.15835
+    },
+    {
+      "local_no": 483,
+      "city": "Tacoma",
+      "state": "WA",
+      "slug": "l483-tacoma-wa",
+      "lat": 47.2455,
+      "lng": -122.43833
+    },
+    {
+      "local_no": 486,
+      "city": "Auburn",
+      "state": "MA",
+      "slug": "l486-auburn-ma",
+      "lat": 42.19455,
+      "lng": -71.83581
+    },
+    {
+      "local_no": 488,
+      "city": "Monroe",
+      "state": "CT",
+      "slug": "l488-monroe-ct",
+      "lat": 41.3326,
+      "lng": -73.20734
+    },
+    {
+      "local_no": 490,
+      "city": "Concord",
+      "state": "NH",
+      "slug": "l490-concord-nh",
+      "lat": 43.20718,
+      "lng": -71.53748
+    },
+    {
+      "local_no": 494,
+      "city": "Milwaukee",
+      "state": "WI",
+      "slug": "l494-milwaukee-wi",
+      "lat": 43.03865,
+      "lng": -87.90908
+    },
+    {
+      "local_no": 495,
+      "city": "Wilmington",
+      "state": "NC",
+      "slug": "l495-wilmington-nc",
+      "lat": 34.23529,
+      "lng": -77.94873
+    },
+    {
+      "local_no": 498,
+      "city": "Traverse City",
+      "state": "MI",
+      "slug": "l498-traverse-city-mi",
+      "lat": 44.76065,
+      "lng": -85.6166
+    },
+    {
+      "local_no": 499,
+      "city": "Clive",
+      "state": "IA",
+      "slug": "l499-clive-ia",
+      "lat": 41.60966,
+      "lng": -93.77546
+    },
+    {
+      "local_no": 503,
+      "city": "Goshen",
+      "state": "NY",
+      "slug": "l503-goshen-ny",
+      "lat": 41.40215,
+      "lng": -74.32421
+    },
+    {
+      "local_no": 505,
+      "city": "Mobile",
+      "state": "AL",
+      "slug": "l505-mobile-al",
+      "lat": 30.69135,
+      "lng": -88.04375
+    },
+    {
+      "local_no": 506,
+      "city": "Roseville",
+      "state": "MN",
+      "slug": "l506-roseville-mn",
+      "lat": 45.00608,
+      "lng": -93.15661
+    },
+    {
+      "local_no": 508,
+      "city": "Savannah",
+      "state": "GA",
+      "slug": "l508-savannah-ga",
+      "lat": 32.07901,
+      "lng": -81.09213
+    },
+    {
+      "local_no": 510,
+      "city": "Ishpeming",
+      "state": "MI",
+      "slug": "l510-ishpeming-mi",
+      "lat": 46.48855,
+      "lng": -87.66764
+    },
+    {
+      "local_no": 513,
+      "city": "Mount Zion",
+      "state": "IL",
+      "slug": "l513-mount-zion-il",
+      "lat": 39.77143,
+      "lng": -88.87424
+    },
+    {
+      "local_no": 518,
+      "city": "Globe",
+      "state": "AZ",
+      "slug": "l518-globe-az",
+      "lat": 33.39591,
+      "lng": -110.78717
+    },
+    {
+      "local_no": 520,
+      "city": "Austin",
+      "state": "TX",
+      "slug": "l520-austin-tx",
+      "lat": 30.27113,
+      "lng": -97.7437
+    },
+    {
+      "local_no": 524,
+      "city": "Mapleton",
+      "state": "ND",
+      "slug": "l524-mapleton-nd",
+      "lat": 46.88914,
+      "lng": -97.05259
+    },
+    {
+      "local_no": 527,
+      "city": "Texas City",
+      "state": "TX",
+      "slug": "l527-texas-city-tx",
+      "lat": 29.39601,
+      "lng": -94.91755
+    },
+    {
+      "local_no": 531,
+      "city": "La Porte",
+      "state": "IN",
+      "slug": "l531-la-porte-in",
+      "lat": 41.6106,
+      "lng": -86.72252
+    },
+    {
+      "local_no": 532,
+      "city": "Billings",
+      "state": "MT",
+      "slug": "l532-billings-mt",
+      "lat": 45.7875,
+      "lng": -108.49607
+    },
+    {
+      "local_no": 533,
+      "city": "Plainfield",
+      "state": "IL",
+      "slug": "l533-plainfield-il",
+      "lat": 41.60867,
+      "lng": -88.20543
+    },
+    {
+      "local_no": 538,
+      "city": "Danville",
+      "state": "IL",
+      "slug": "l538-danville-il",
+      "lat": 40.12522,
+      "lng": -87.63046
+    },
+    {
+      "local_no": 540,
+      "city": "Massillon",
+      "state": "OH",
+      "slug": "l540-massillon-oh",
+      "lat": 40.79651,
+      "lng": -81.52316
+    },
+    {
+      "local_no": 543,
+      "city": "Victorville",
+      "state": "CA",
+      "slug": "l543-victorville-ca",
+      "lat": 34.53611,
+      "lng": -117.29116
+    },
+    {
+      "local_no": 544,
+      "city": "Buffalo",
+      "state": "NY",
+      "slug": "l544-buffalo-ny",
+      "lat": 42.88642,
+      "lng": -78.87815
+    },
+    {
+      "local_no": 545,
+      "city": "St Joseph",
+      "state": "MO",
+      "slug": "l545-st-joseph-mo",
+      "lat": 39.76861,
+      "lng": -94.84663
+    },
+    {
+      "local_no": 547,
+      "city": "Oskaloosa",
+      "state": "IA",
+      "slug": "l547-oskaloosa-ia",
+      "lat": 41.2951,
+      "lng": -92.64485
+    },
+    {
+      "local_no": 549,
+      "city": "Huntington",
+      "state": "WV",
+      "slug": "l549-huntington-wv",
+      "lat": 38.41925,
+      "lng": -82.44515
+    },
+    {
+      "local_no": 551,
+      "city": "Santa Rosa",
+      "state": "CA",
+      "slug": "l551-santa-rosa-ca",
+      "lat": 38.44049,
+      "lng": -122.7141
+    },
+    {
+      "local_no": 553,
+      "city": "Research Triangle Park",
+      "state": "NC",
+      "slug": "l553-research-triangle-park-nc",
+      "lat": 35.89238,
+      "lng": -78.86589
+    },
+    {
+      "local_no": 557,
+      "city": "Saginaw",
+      "state": "MI",
+      "slug": "l557-saginaw-mi",
+      "lat": 43.42004,
+      "lng": -83.94904
+    },
+    {
+      "local_no": 558,
+      "city": "Sheffield",
+      "state": "AL",
+      "slug": "l558-sheffield-al",
+      "lat": 34.76087,
+      "lng": -87.69759
+    },
+    {
+      "local_no": 567,
+      "city": "Lewiston",
+      "state": "ME",
+      "slug": "l567-lewiston-me",
+      "lat": 44.09907,
+      "lng": -70.21771
+    },
+    {
+      "local_no": 569,
+      "city": "San Diego",
+      "state": "CA",
+      "slug": "l569-san-diego-ca",
+      "lat": 32.71742,
+      "lng": -117.16277
+    },
+    {
+      "local_no": 570,
+      "city": "Tucson",
+      "state": "AZ",
+      "slug": "l570-tucson-az",
+      "lat": 32.22288,
+      "lng": -110.97485
+    },
+    {
+      "local_no": 573,
+      "city": "Warren",
+      "state": "OH",
+      "slug": "l573-warren-oh",
+      "lat": 39.4204,
+      "lng": -84.1809
+    },
+    {
+      "local_no": 574,
+      "city": "Silverdale",
+      "state": "WA",
+      "slug": "l574-silverdale-wa",
+      "lat": 47.65941,
+      "lng": -122.67663
+    },
+    {
+      "local_no": 575,
+      "city": "Portsmouth",
+      "state": "OH",
+      "slug": "l575-portsmouth-oh",
+      "lat": 38.73454,
+      "lng": -82.99627
+    },
+    {
+      "local_no": 576,
+      "city": "Alexandria",
+      "state": "LA",
+      "slug": "l576-alexandria-la",
+      "lat": 31.31195,
+      "lng": -92.44536
+    },
+    {
+      "local_no": 577,
+      "city": "Appleton",
+      "state": "WI",
+      "slug": "l577-appleton-wi",
+      "lat": 44.2614,
+      "lng": -88.40697
+    },
+    {
+      "local_no": 578,
+      "city": "Chillicothe",
+      "state": "OH",
+      "slug": "l578-chillicothe-oh",
+      "lat": 39.33312,
+      "lng": -82.9824
+    },
+    {
+      "local_no": 583,
+      "city": "El Paso",
+      "state": "TX",
+      "slug": "l583-el-paso-tx",
+      "lat": 31.7601,
+      "lng": -106.48705
+    },
+    {
+      "local_no": 584,
+      "city": "Tulsa",
+      "state": "OK",
+      "slug": "l584-tulsa-ok",
+      "lat": 36.15631,
+      "lng": -95.99275
+    },
+    {
+      "local_no": 589,
+      "city": "Patchogue",
+      "state": "NY",
+      "slug": "l589-patchogue-ny",
+      "lat": 40.76565,
+      "lng": -73.01511
+    },
+    {
+      "local_no": 595,
+      "city": "Dublin",
+      "state": "CA",
+      "slug": "l595-dublin-ca",
+      "lat": 37.70215,
+      "lng": -121.93579
+    },
+    {
+      "local_no": 596,
+      "city": "Clarksburg",
+      "state": "WV",
+      "slug": "l596-clarksburg-wv",
+      "lat": 39.28065,
+      "lng": -80.34453
+    },
+    {
+      "local_no": 601,
+      "city": "Champaign",
+      "state": "IL",
+      "slug": "l601-champaign-il",
+      "lat": 40.11648,
+      "lng": -88.24309
+    },
+    {
+      "local_no": 602,
+      "city": "Amarillo",
+      "state": "TX",
+      "slug": "l602-amarillo-tx",
+      "lat": 35.20729,
+      "lng": -101.83712
+    },
+    {
+      "local_no": 604,
+      "city": "Branchburg",
+      "state": "NJ",
+      "slug": "l604-branchburg-nj",
+      "lat": 40.56882,
+      "lng": -74.70027
+    },
+    {
+      "local_no": 605,
+      "city": "Crystal Springs",
+      "state": "MS",
+      "slug": "l605-crystal-springs-ms",
+      "lat": 31.98718,
+      "lng": -90.35618
+    },
+    {
+      "local_no": 606,
+      "city": "Orlando",
+      "state": "FL",
+      "slug": "l606-orlando-fl",
+      "lat": 28.54212,
+      "lng": -81.37905
+    },
+    {
+      "local_no": 607,
+      "city": "Shamokin",
+      "state": "PA",
+      "slug": "l607-shamokin-pa",
+      "lat": 40.78876,
+      "lng": -76.55852
+    },
+    {
+      "local_no": 611,
+      "city": "Albuquerque",
+      "state": "NM",
+      "slug": "l611-albuquerque-nm",
+      "lat": 35.0841,
+      "lng": -106.65099
+    },
+    {
+      "local_no": 612,
+      "city": "Wheatland",
+      "state": "WY",
+      "slug": "l612-wheatland-wy",
+      "lat": 42.05442,
+      "lng": -104.95273
+    },
+    {
+      "local_no": 613,
+      "city": "Atlanta",
+      "state": "GA",
+      "slug": "l613-atlanta-ga",
+      "lat": 33.75447,
+      "lng": -84.38982
+    },
+    {
+      "local_no": 614,
+      "city": "Newtown Square",
+      "state": "PA",
+      "slug": "l614-newtown-square-pa",
+      "lat": 39.98681,
+      "lng": -75.40076
+    },
+    {
+      "local_no": 617,
+      "city": "San Mateo",
+      "state": "CA",
+      "slug": "l617-san-mateo-ca",
+      "lat": 37.4969,
+      "lng": -122.33306
+    },
+    {
+      "local_no": 618,
+      "city": "Omaha",
+      "state": "NE",
+      "slug": "l618-omaha-ne",
+      "lat": 41.25875,
+      "lng": -95.93838
+    },
+    {
+      "local_no": 622,
+      "city": "Lake City",
+      "state": "FL",
+      "slug": "l622-lake-city-fl",
+      "lat": 30.18943,
+      "lng": -82.63948
+    },
+    {
+      "local_no": 626,
+      "city": "Winter Haven",
+      "state": "FL",
+      "slug": "l626-winter-haven-fl",
+      "lat": 28.02224,
+      "lng": -81.73286
+    },
+    {
+      "local_no": 627,
+      "city": "Port St. Lucie",
+      "state": "FL",
+      "slug": "l627-port-st-lucie-fl",
+      "lat": 27.29393,
+      "lng": -80.35033
+    },
+    {
+      "local_no": 632,
+      "city": "Lithia Springs",
+      "state": "GA",
+      "slug": "l632-lithia-springs-ga",
+      "lat": 33.77975,
+      "lng": -84.65064
+    },
+    {
+      "local_no": 633,
+      "city": "Saint Louis",
+      "state": "MO",
+      "slug": "l633-saint-louis-mo",
+      "lat": 38.62541,
+      "lng": -90.19001
+    },
+    {
+      "local_no": 639,
+      "city": "San Luis Obispo",
+      "state": "CA",
+      "slug": "l639-san-luis-obispo-ca",
+      "lat": 35.35402,
+      "lng": -120.37572
+    },
+    {
+      "local_no": 640,
+      "city": "Phoenix",
+      "state": "AZ",
+      "slug": "l640-phoenix-az",
+      "lat": 33.44844,
+      "lng": -112.07414
+    },
+    {
+      "local_no": 641,
+      "city": "Fort Myers",
+      "state": "FL",
+      "slug": "l641-fort-myers-fl",
+      "lat": 26.64063,
+      "lng": -81.87231
+    },
+    {
+      "local_no": 647,
+      "city": "Conway",
+      "state": "AR",
+      "slug": "l647-conway-ar",
+      "lat": 35.08919,
+      "lng": -92.43984
+    },
+    {
+      "local_no": 648,
+      "city": "Hamilton",
+      "state": "OH",
+      "slug": "l648-hamilton-oh",
+      "lat": 39.20854,
+      "lng": -84.55019
+    },
+    {
+      "local_no": 649,
+      "city": "Alton",
+      "state": "IL",
+      "slug": "l649-alton-il",
+      "lat": 38.89086,
+      "lng": -90.18431
+    },
+    {
+      "local_no": 650,
+      "city": "Salt Lake City",
+      "state": "UT",
+      "slug": "l650-salt-lake-city-ut",
+      "lat": 40.75962,
+      "lng": -111.8868
+    },
+    {
+      "local_no": 653,
+      "city": "Miles City",
+      "state": "MT",
+      "slug": "l653-miles-city-mt",
+      "lat": 46.40702,
+      "lng": -105.84784
+    },
+    {
+      "local_no": 654,
+      "city": "Boothwyn",
+      "state": "PA",
+      "slug": "l654-boothwyn-pa",
+      "lat": 39.83094,
+      "lng": -75.43969
+    },
+    {
+      "local_no": 656,
+      "city": "Birmingham",
+      "state": "AL",
+      "slug": "l656-birmingham-al",
+      "lat": 33.52068,
+      "lng": -86.80243
+    },
+    {
+      "local_no": 659,
+      "city": "Central Point",
+      "state": "OR",
+      "slug": "l659-central-point-or",
+      "lat": 42.37678,
+      "lng": -122.91272
+    },
+    {
+      "local_no": 661,
+      "city": "Hutchinson",
+      "state": "KS",
+      "slug": "l661-hutchinson-ks",
+      "lat": 38.06084,
+      "lng": -97.92977
+    },
+    {
+      "local_no": 663,
+      "city": "Mukwonago",
+      "state": "WI",
+      "slug": "l663-mukwonago-wi",
+      "lat": 42.86668,
+      "lng": -88.33343
+    },
+    {
+      "local_no": 665,
+      "city": "Lansing",
+      "state": "MI",
+      "slug": "l665-lansing-mi",
+      "lat": 42.73383,
+      "lng": -84.55463
+    },
+    {
+      "local_no": 666,
+      "city": "Highland Springs",
+      "state": "VA",
+      "slug": "l666-highland-springs-va",
+      "lat": 37.55275,
+      "lng": -77.32504
+    },
+    {
+      "local_no": 667,
+      "city": "Pueblo",
+      "state": "CO",
+      "slug": "l667-pueblo-co",
+      "lat": 38.264,
+      "lng": -104.61419
+    },
+    {
+      "local_no": 668,
+      "city": "Lafayette",
+      "state": "IN",
+      "slug": "l668-lafayette-in",
+      "lat": 40.41912,
+      "lng": -86.8919
+    },
+    {
+      "local_no": 673,
+      "city": "Mentor",
+      "state": "OH",
+      "slug": "l673-mentor-oh",
+      "lat": 41.66648,
+      "lng": -81.33998
+    },
+    {
+      "local_no": 674,
+      "city": "Cambridge",
+      "state": "MA",
+      "slug": "l674-cambridge-ma",
+      "lat": 42.36563,
+      "lng": -71.104
+    },
+    {
+      "local_no": 676,
+      "city": "Pensacola",
+      "state": "FL",
+      "slug": "l676-pensacola-fl",
+      "lat": 30.42131,
+      "lng": -87.21691
+    },
+    {
+      "local_no": 681,
+      "city": "Wichita Falls",
+      "state": "TX",
+      "slug": "l681-wichita-falls-tx",
+      "lat": 33.90046,
+      "lng": -98.50208
+    },
+    {
+      "local_no": 682,
+      "city": "New Port Richey",
+      "state": "FL",
+      "slug": "l682-new-port-richey-fl",
+      "lat": 28.24418,
+      "lng": -82.71927
+    },
+    {
+      "local_no": 683,
+      "city": "Columbus",
+      "state": "OH",
+      "slug": "l683-columbus-oh",
+      "lat": 39.96226,
+      "lng": -83.00071
+    },
+    {
+      "local_no": 684,
+      "city": "Modesto",
+      "state": "CA",
+      "slug": "l684-modesto-ca",
+      "lat": 37.63934,
+      "lng": -120.99689
+    },
+    {
+      "local_no": 688,
+      "city": "Mansfield",
+      "state": "OH",
+      "slug": "l688-mansfield-oh",
+      "lat": 40.75839,
+      "lng": -82.51545
+    },
+    {
+      "local_no": 692,
+      "city": "Bay City",
+      "state": "MI",
+      "slug": "l692-bay-city-mi",
+      "lat": 43.59621,
+      "lng": -83.88817
+    },
+    {
+      "local_no": 696,
+      "city": "Wellsville",
+      "state": "OH",
+      "slug": "l696-wellsville-oh",
+      "lat": 40.60996,
+      "lng": -80.64189
+    },
+    {
+      "local_no": 697,
+      "city": "Merrillville",
+      "state": "IN",
+      "slug": "l697-merrillville-in",
+      "lat": 41.48281,
+      "lng": -87.33281
+    },
+    {
+      "local_no": 700,
+      "city": "Fort Smith",
+      "state": "AR",
+      "slug": "l700-fort-smith-ar",
+      "lat": 35.38803,
+      "lng": -94.4265
+    },
+    {
+      "local_no": 701,
+      "city": "Warrenville",
+      "state": "IL",
+      "slug": "l701-warrenville-il",
+      "lat": 41.81793,
+      "lng": -88.1741
+    },
+    {
+      "local_no": 702,
+      "city": "West Frankfort",
+      "state": "IL",
+      "slug": "l702-west-frankfort-il",
+      "lat": 37.89783,
+      "lng": -88.93146
+    },
+    {
+      "local_no": 704,
+      "city": "Dubuque",
+      "state": "IA",
+      "slug": "l704-dubuque-ia",
+      "lat": 42.50062,
+      "lng": -90.6648
+    },
+    {
+      "local_no": 712,
+      "city": "Beaver",
+      "state": "PA",
+      "slug": "l712-beaver-pa",
+      "lat": 40.69166,
+      "lng": -80.371
+    },
+    {
+      "local_no": 714,
+      "city": "Minot",
+      "state": "ND",
+      "slug": "l714-minot-nd",
+      "lat": 48.23251,
+      "lng": -101.29627
+    },
+    {
+      "local_no": 716,
+      "city": "Houston",
+      "state": "TX",
+      "slug": "l716-houston-tx",
+      "lat": 29.75894,
+      "lng": -95.3677
+    },
+    {
+      "local_no": 723,
+      "city": "Huntertown",
+      "state": "IN",
+      "slug": "l723-huntertown-in",
+      "lat": 41.22838,
+      "lng": -85.17247
+    },
+    {
+      "local_no": 724,
+      "city": "Beaver",
+      "state": "PA",
+      "slug": "l724-beaver-pa",
+      "lat": 40.69166,
+      "lng": -80.371
+    },
+    {
+      "local_no": 725,
+      "city": "Terre Haute",
+      "state": "IN",
+      "slug": "l725-terre-haute-in",
+      "lat": 39.4667,
+      "lng": -87.41391
+    },
+    {
+      "local_no": 726,
+      "city": "El Paso",
+      "state": "TX",
+      "slug": "l726-el-paso-tx",
+      "lat": 31.7601,
+      "lng": -106.48705
+    },
+    {
+      "local_no": 728,
+      "city": "Fort Lauderdale",
+      "state": "FL",
+      "slug": "l728-fort-lauderdale-fl",
+      "lat": 26.12231,
+      "lng": -80.14338
+    },
+    {
+      "local_no": 731,
+      "city": "International Falls",
+      "state": "MN",
+      "slug": "l731-international-falls-mn",
+      "lat": 48.60103,
+      "lng": -93.41059
+    },
+    {
+      "local_no": 733,
+      "city": "Pascagoula",
+      "state": "MS",
+      "slug": "l733-pascagoula-ms",
+      "lat": 30.36468,
+      "lng": -88.5586
+    },
+    {
+      "local_no": 736,
+      "city": "Bluefield",
+      "state": "VA",
+      "slug": "l736-bluefield-va",
+      "lat": 37.25261,
+      "lng": -81.27134
+    },
+    {
+      "local_no": 738,
+      "city": "Longview",
+      "state": "TX",
+      "slug": "l738-longview-tx",
+      "lat": 32.5007,
+      "lng": -94.74049
+    },
+    {
+      "local_no": 743,
+      "city": "Reading",
+      "state": "PA",
+      "slug": "l743-reading-pa",
+      "lat": 40.33534,
+      "lng": -75.92795
+    },
+    {
+      "local_no": 744,
+      "city": "Conshohocken",
+      "state": "PA",
+      "slug": "l744-conshohocken-pa",
+      "lat": 40.07388,
+      "lng": -75.30625
+    },
+    {
+      "local_no": 747,
+      "city": "Prospect",
+      "state": "CT",
+      "slug": "l747-prospect-ct",
+      "lat": 41.50232,
+      "lng": -72.97872
+    },
+    {
+      "local_no": 753,
+      "city": "Springfield",
+      "state": "MO",
+      "slug": "l753-springfield-mo",
+      "lat": 37.20817,
+      "lng": -93.29227
+    },
+    {
+      "local_no": 756,
+      "city": "Port Orange",
+      "state": "FL",
+      "slug": "l756-port-orange-fl",
+      "lat": 29.13869,
+      "lng": -80.99683
+    },
+    {
+      "local_no": 757,
+      "city": "Hammond",
+      "state": "IN",
+      "slug": "l757-hammond-in",
+      "lat": 41.6174,
+      "lng": -87.52201
+    },
+    {
+      "local_no": 758,
+      "city": "Plentywood",
+      "state": "MT",
+      "slug": "l758-plentywood-mt",
+      "lat": 48.77475,
+      "lng": -104.56246
+    },
+    {
+      "local_no": 759,
+      "city": "Pompano Beach",
+      "state": "FL",
+      "slug": "l759-pompano-beach-fl",
+      "lat": 26.23786,
+      "lng": -80.12477
+    },
+    {
+      "local_no": 760,
+      "city": "Knoxville",
+      "state": "TN",
+      "slug": "l760-knoxville-tn",
+      "lat": 35.96039,
+      "lng": -83.92103
+    },
+    {
+      "local_no": 765,
+      "city": "Athens",
+      "state": "AL",
+      "slug": "l765-athens-al",
+      "lat": 34.80455,
+      "lng": -86.97117
+    },
+    {
+      "local_no": 767,
+      "city": "Zachary",
+      "state": "LA",
+      "slug": "l767-zachary-la",
+      "lat": 30.64852,
+      "lng": -91.1565
+    },
+    {
+      "local_no": 768,
+      "city": "Kalispell",
+      "state": "MT",
+      "slug": "l768-kalispell-mt",
+      "lat": 48.20216,
+      "lng": -114.31532
+    },
+    {
+      "local_no": 769,
+      "city": "Gilbert",
+      "state": "AZ",
+      "slug": "l769-gilbert-az",
+      "lat": 33.35276,
+      "lng": -111.78904
+    },
+    {
+      "local_no": 770,
+      "city": "Troy",
+      "state": "NY",
+      "slug": "l770-troy-ny",
+      "lat": 42.72841,
+      "lng": -73.69179
+    },
+    {
+      "local_no": 772,
+      "city": "Lexington",
+      "state": "SC",
+      "slug": "l772-lexington-sc",
+      "lat": 33.89868,
+      "lng": -81.27505
+    },
+    {
+      "local_no": 774,
+      "city": "Oxford",
+      "state": "OH",
+      "slug": "l774-oxford-oh",
+      "lat": 39.5103,
+      "lng": -84.74205
+    },
+    {
+      "local_no": 776,
+      "city": "Charleston",
+      "state": "SC",
+      "slug": "l776-charleston-sc",
+      "lat": 32.78844,
+      "lng": -79.93993
+    },
+    {
+      "local_no": 777,
+      "city": "Middletown",
+      "state": "PA",
+      "slug": "l777-middletown-pa",
+      "lat": 40.17014,
+      "lng": -74.8852
+    },
+    {
+      "local_no": 778,
+      "city": "Nixa",
+      "state": "MO",
+      "slug": "l778-nixa-mo",
+      "lat": 37.04339,
+      "lng": -93.29866
+    },
+    {
+      "local_no": 783,
+      "city": "Aitkin",
+      "state": "MN",
+      "slug": "l783-aitkin-mn",
+      "lat": 46.57148,
+      "lng": -93.38476
+    },
+    {
+      "local_no": 784,
+      "city": "Franklin",
+      "state": "IN",
+      "slug": "l784-franklin-in",
+      "lat": 39.4149,
+      "lng": -85.05632
+    },
+    {
+      "local_no": 794,
+      "city": "Chicago",
+      "state": "IL",
+      "slug": "l794-chicago-il",
+      "lat": 41.87556,
+      "lng": -87.62442
+    },
+    {
+      "local_no": 796,
+      "city": "Ashford",
+      "state": "AL",
+      "slug": "l796-ashford-al",
+      "lat": 31.18383,
+      "lng": -85.23584
+    },
+    {
+      "local_no": 799,
+      "city": "Umatilla",
+      "state": "OR",
+      "slug": "l799-umatilla-or",
+      "lat": 45.6417,
+      "lng": -118.76711
+    },
+    {
+      "local_no": 801,
+      "city": "Deatsville",
+      "state": "AL",
+      "slug": "l801-deatsville-al",
+      "lat": 32.60819,
+      "lng": -86.39581
+    },
+    {
+      "local_no": 807,
+      "city": "Hensley",
+      "state": "AR",
+      "slug": "l807-hensley-ar",
+      "lat": 34.50441,
+      "lng": -92.20846
+    },
+    {
+      "local_no": 812,
+      "city": "Montoursville",
+      "state": "PA",
+      "slug": "l812-montoursville-pa",
+      "lat": 41.24954,
+      "lng": -76.9267
+    },
+    {
+      "local_no": 813,
+      "city": "Copper Hill",
+      "state": "VA",
+      "slug": "l813-copper-hill-va",
+      "lat": 37.0818,
+      "lng": -80.13421
+    },
+    {
+      "local_no": 816,
+      "city": "Paducah",
+      "state": "KY",
+      "slug": "l816-paducah-ky",
+      "lat": 37.08339,
+      "lng": -88.60005
+    },
+    {
+      "local_no": 817,
+      "city": "Fishkill",
+      "state": "NY",
+      "slug": "l817-fishkill-ny",
+      "lat": 41.53557,
+      "lng": -73.8987
+    },
+    {
+      "local_no": 820,
+      "city": "Palmetto",
+      "state": "FL",
+      "slug": "l820-palmetto-fl",
+      "lat": 27.52143,
+      "lng": -82.57232
+    },
+    {
+      "local_no": 824,
+      "city": "Tampa",
+      "state": "FL",
+      "slug": "l824-tampa-fl",
+      "lat": 27.94499,
+      "lng": -82.45831
+    },
+    {
+      "local_no": 827,
+      "city": "East Windsor",
+      "state": "NJ",
+      "slug": "l827-east-windsor-nj",
+      "lat": 40.26822,
+      "lng": -74.54096
+    },
+    {
+      "local_no": 833,
+      "city": "Townley",
+      "state": "AL",
+      "slug": "l833-townley-al",
+      "lat": 33.829,
+      "lng": -87.43167
+    },
+    {
+      "local_no": 840,
+      "city": "Geneva",
+      "state": "NY",
+      "slug": "l840-geneva-ny",
+      "lat": 42.86903,
+      "lng": -76.97861
+    },
+    {
+      "local_no": 841,
+      "city": "Pell City",
+      "state": "AL",
+      "slug": "l841-pell-city-al",
+      "lat": 33.58621,
+      "lng": -86.28609
+    },
+    {
+      "local_no": 843,
+      "city": "Scottsbluff",
+      "state": "NE",
+      "slug": "l843-scottsbluff-ne",
+      "lat": 41.8623,
+      "lng": -103.66271
+    },
+    {
+      "local_no": 852,
+      "city": "Corinth",
+      "state": "MS",
+      "slug": "l852-corinth-ms",
+      "lat": 34.93436,
+      "lng": -88.52234
+    },
+    {
+      "local_no": 855,
+      "city": "Muncie",
+      "state": "IN",
+      "slug": "l855-muncie-in",
+      "lat": 40.19369,
+      "lng": -85.38653
+    },
+    {
+      "local_no": 859,
+      "city": "Stamford",
+      "state": "CT",
+      "slug": "l859-stamford-ct",
+      "lat": 41.05343,
+      "lng": -73.53873
+    },
+    {
+      "local_no": 861,
+      "city": "Lake Charles",
+      "state": "LA",
+      "slug": "l861-lake-charles-la",
+      "lat": 30.23051,
+      "lng": -93.21698
+    },
+    {
+      "local_no": 862,
+      "city": "Saint Augustine",
+      "state": "FL",
+      "slug": "l862-saint-augustine-fl",
+      "lat": 29.8947,
+      "lng": -81.31454
+    },
+    {
+      "local_no": 864,
+      "city": "Jersey City",
+      "state": "NJ",
+      "slug": "l864-jersey-city-nj",
+      "lat": 40.72157,
+      "lng": -74.04745
+    },
+    {
+      "local_no": 865,
+      "city": "Baltimore",
+      "state": "MD",
+      "slug": "l865-baltimore-md",
+      "lat": 39.29088,
+      "lng": -76.61076
+    },
+    {
+      "local_no": 866,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l866-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 870,
+      "city": "Keyser",
+      "state": "WV",
+      "slug": "l870-keyser-wv",
+      "lat": 39.44093,
+      "lng": -78.97392
+    },
+    {
+      "local_no": 871,
+      "city": "Satsuma",
+      "state": "FL",
+      "slug": "l871-satsuma-fl",
+      "lat": 29.55497,
+      "lng": -81.65591
+    },
+    {
+      "local_no": 873,
+      "city": "Kokomo",
+      "state": "IN",
+      "slug": "l873-kokomo-in",
+      "lat": 40.48644,
+      "lng": -86.13364
+    },
+    {
+      "local_no": 876,
+      "city": "Mount Pleasant",
+      "state": "MI",
+      "slug": "l876-mount-pleasant-mi",
+      "lat": 43.59765,
+      "lng": -84.76685
+    },
+    {
+      "local_no": 881,
+      "city": "Southaven",
+      "state": "MS",
+      "slug": "l881-southaven-ms",
+      "lat": 34.98738,
+      "lng": -90.00349
+    },
+    {
+      "local_no": 886,
+      "city": "Ogilvie",
+      "state": "MN",
+      "slug": "l886-ogilvie-mn",
+      "lat": 45.83218,
+      "lng": -93.42634
+    },
+    {
+      "local_no": 889,
+      "city": "Los Angeles",
+      "state": "CA",
+      "slug": "l889-los-angeles-ca",
+      "lat": 34.05369,
+      "lng": -118.24277
+    },
+    {
+      "local_no": 890,
+      "city": "Janesville",
+      "state": "WI",
+      "slug": "l890-janesville-wi",
+      "lat": 42.68298,
+      "lng": -89.02268
+    },
+    {
+      "local_no": 903,
+      "city": "Gulfport",
+      "state": "MS",
+      "slug": "l903-gulfport-ms",
+      "lat": 30.36742,
+      "lng": -89.09282
+    },
+    {
+      "local_no": 904,
+      "city": "Montgomery",
+      "state": "AL",
+      "slug": "l904-montgomery-al",
+      "lat": 32.37771,
+      "lng": -86.30908
+    },
+    {
+      "local_no": 910,
+      "city": "Watertown",
+      "state": "NY",
+      "slug": "l910-watertown-ny",
+      "lat": 43.97478,
+      "lng": -75.91076
+    },
+    {
+      "local_no": 915,
+      "city": "Tampa",
+      "state": "FL",
+      "slug": "l915-tampa-fl",
+      "lat": 27.94499,
+      "lng": -82.45831
+    },
+    {
+      "local_no": 917,
+      "city": "Meridian",
+      "state": "MS",
+      "slug": "l917-meridian-ms",
+      "lat": 32.36431,
+      "lng": -88.70366
+    },
+    {
+      "local_no": 932,
+      "city": "North Bend",
+      "state": "OR",
+      "slug": "l932-north-bend-or",
+      "lat": 43.40651,
+      "lng": -124.22428
+    },
+    {
+      "local_no": 934,
+      "city": "Blountville",
+      "state": "TN",
+      "slug": "l934-blountville-tn",
+      "lat": 36.53316,
+      "lng": -82.32681
+    },
+    {
+      "local_no": 942,
+      "city": "Fort Worth",
+      "state": "TX",
+      "slug": "l942-fort-worth-tx",
+      "lat": 32.75318,
+      "lng": -97.33275
+    },
+    {
+      "local_no": 946,
+      "city": "Los Angeles",
+      "state": "CA",
+      "slug": "l946-los-angeles-ca",
+      "lat": 34.05369,
+      "lng": -118.24277
+    },
+    {
+      "local_no": 948,
+      "city": "Flint",
+      "state": "MI",
+      "slug": "l948-flint-mi",
+      "lat": 43.01617,
+      "lng": -83.69002
+    },
+    {
+      "local_no": 949,
+      "city": "Burnsville",
+      "state": "MN",
+      "slug": "l949-burnsville-mn",
+      "lat": 44.76706,
+      "lng": -93.27739
+    },
+    {
+      "local_no": 952,
+      "city": "Ventura",
+      "state": "CA",
+      "slug": "l952-ventura-ca",
+      "lat": 34.44582,
+      "lng": -119.07794
+    },
+    {
+      "local_no": 953,
+      "city": "Eau Claire",
+      "state": "WI",
+      "slug": "l953-eau-claire-wi",
+      "lat": 44.81135,
+      "lng": -91.49849
+    },
+    {
+      "local_no": 958,
+      "city": "Baker",
+      "state": "MT",
+      "slug": "l958-baker-mt",
+      "lat": 46.36781,
+      "lng": -104.27523
+    },
+    {
+      "local_no": 959,
+      "city": "Topeka",
+      "state": "KS",
+      "slug": "l959-topeka-ks",
+      "lat": 39.04901,
+      "lng": -95.67756
+    },
+    {
+      "local_no": 960,
+      "city": "El Paso",
+      "state": "TX",
+      "slug": "l960-el-paso-tx",
+      "lat": 31.7601,
+      "lng": -106.48705
+    },
+    {
+      "local_no": 962,
+      "city": "Greensboro",
+      "state": "NC",
+      "slug": "l962-greensboro-nc",
+      "lat": 36.07264,
+      "lng": -79.79198
+    },
+    {
+      "local_no": 965,
+      "city": "Madison",
+      "state": "WI",
+      "slug": "l965-madison-wi",
+      "lat": 43.07469,
+      "lng": -89.38417
+    },
+    {
+      "local_no": 968,
+      "city": "Parkersburg",
+      "state": "WV",
+      "slug": "l968-parkersburg-wv",
+      "lat": 39.26673,
+      "lng": -81.56208
+    },
+    {
+      "local_no": 971,
+      "city": "Williston",
+      "state": "ND",
+      "slug": "l971-williston-nd",
+      "lat": 48.14655,
+      "lng": -103.62181
+    },
+    {
+      "local_no": 972,
+      "city": "Reno",
+      "state": "OH",
+      "slug": "l972-reno-oh",
+      "lat": 39.37285,
+      "lng": -81.39567
+    },
+    {
+      "local_no": 975,
+      "city": "Bismarck",
+      "state": "ND",
+      "slug": "l975-bismarck-nd",
+      "lat": 46.80833,
+      "lng": -100.78374
+    },
+    {
+      "local_no": 978,
+      "city": "Charleston",
+      "state": "WV",
+      "slug": "l978-charleston-wv",
+      "lat": 38.3506,
+      "lng": -81.63328
+    },
+    {
+      "local_no": 984,
+      "city": "Richland",
+      "state": "WA",
+      "slug": "l984-richland-wa",
+      "lat": 46.28043,
+      "lng": -119.2752
+    },
+    {
+      "local_no": 985,
+      "city": "Cleveland",
+      "state": "MS",
+      "slug": "l985-cleveland-ms",
+      "lat": 33.744,
+      "lng": -90.72482
+    },
+    {
+      "local_no": 988,
+      "city": "Sidney",
+      "state": "MT",
+      "slug": "l988-sidney-mt",
+      "lat": 47.71673,
+      "lng": -104.15597
+    },
+    {
+      "local_no": 995,
+      "city": "Baton Rouge",
+      "state": "LA",
+      "slug": "l995-baton-rouge-la",
+      "lat": 30.44942,
+      "lng": -91.18697
+    },
+    {
+      "local_no": 1000,
+      "city": "Van Buren",
+      "state": "IN",
+      "slug": "l1000-van-buren-in",
+      "lat": 40.61727,
+      "lng": -85.5047
+    },
+    {
+      "local_no": 1002,
+      "city": "Tulsa",
+      "state": "OK",
+      "slug": "l1002-tulsa-ok",
+      "lat": 36.15631,
+      "lng": -95.99275
+    },
+    {
+      "local_no": 1015,
+      "city": "McAllen",
+      "state": "TX",
+      "slug": "l1015-mcallen-tx",
+      "lat": 26.20411,
+      "lng": -98.23006
+    },
+    {
+      "local_no": 1022,
+      "city": "Lincoln",
+      "state": "NE",
+      "slug": "l1022-lincoln-ne",
+      "lat": 40.80889,
+      "lng": -96.70778
+    },
+    {
+      "local_no": 1023,
+      "city": "Barstow",
+      "state": "CA",
+      "slug": "l1023-barstow-ca",
+      "lat": 34.89862,
+      "lng": -117.02443
+    },
+    {
+      "local_no": 1024,
+      "city": "Houston",
+      "state": "PA",
+      "slug": "l1024-houston-pa",
+      "lat": 40.24646,
+      "lng": -80.21145
+    },
+    {
+      "local_no": 1040,
+      "city": "Worcester",
+      "state": "MA",
+      "slug": "l1040-worcester-ma",
+      "lat": 42.26256,
+      "lng": -71.80189
+    },
+    {
+      "local_no": 1042,
+      "city": "Lake Monroe",
+      "state": "FL",
+      "slug": "l1042-lake-monroe-fl",
+      "lat": 28.82471,
+      "lng": -81.32701
+    },
+    {
+      "local_no": 1047,
+      "city": "Northwood",
+      "state": "OH",
+      "slug": "l1047-northwood-oh",
+      "lat": 41.60727,
+      "lng": -83.46882
+    },
+    {
+      "local_no": 1048,
+      "city": "Crawfordsville",
+      "state": "IN",
+      "slug": "l1048-crawfordsville-in",
+      "lat": 40.04086,
+      "lng": -86.89974
+    },
+    {
+      "local_no": 1049,
+      "city": "Holtsville",
+      "state": "NY",
+      "slug": "l1049-holtsville-ny",
+      "lat": 40.80931,
+      "lng": -73.03206
+    },
+    {
+      "local_no": 1053,
+      "city": "Demopolis",
+      "state": "AL",
+      "slug": "l1053-demopolis-al",
+      "lat": 32.51783,
+      "lng": -87.83682
+    },
+    {
+      "local_no": 1055,
+      "city": "Gonzalez",
+      "state": "FL",
+      "slug": "l1055-gonzalez-fl",
+      "lat": 30.58717,
+      "lng": -87.28922
+    },
+    {
+      "local_no": 1057,
+      "city": "Baileyville",
+      "state": "ME",
+      "slug": "l1057-baileyville-me",
+      "lat": 45.15495,
+      "lng": -67.40501
+    },
+    {
+      "local_no": 1066,
+      "city": "Palm Coast",
+      "state": "FL",
+      "slug": "l1066-palm-coast-fl",
+      "lat": 29.55414,
+      "lng": -81.22077
+    },
+    {
+      "local_no": 1077,
+      "city": "Bogalusa",
+      "state": "LA",
+      "slug": "l1077-bogalusa-la",
+      "lat": 30.79102,
+      "lng": -89.84869
+    },
+    {
+      "local_no": 1096,
+      "city": "Bolivar",
+      "state": "PA",
+      "slug": "l1096-bolivar-pa",
+      "lat": 40.39701,
+      "lng": -79.1517
+    },
+    {
+      "local_no": 1105,
+      "city": "Nashport",
+      "state": "OH",
+      "slug": "l1105-nashport-oh",
+      "lat": 40.07062,
+      "lng": -82.1757
+    },
+    {
+      "local_no": 1106,
+      "city": "Lansing",
+      "state": "MI",
+      "slug": "l1106-lansing-mi",
+      "lat": 42.73383,
+      "lng": -84.55463
+    },
+    {
+      "local_no": 1108,
+      "city": "Upper Sandusky",
+      "state": "OH",
+      "slug": "l1108-upper-sandusky-oh",
+      "lat": 40.82728,
+      "lng": -83.28131
+    },
+    {
+      "local_no": 1116,
+      "city": "Tucson",
+      "state": "AZ",
+      "slug": "l1116-tucson-az",
+      "lat": 32.22288,
+      "lng": -110.97485
+    },
+    {
+      "local_no": 1141,
+      "city": "Oklahoma City",
+      "state": "OK",
+      "slug": "l1141-oklahoma-city-ok",
+      "lat": 35.47299,
+      "lng": -97.51705
+    },
+    {
+      "local_no": 1142,
+      "city": "Moyock",
+      "state": "NC",
+      "slug": "l1142-moyock-nc",
+      "lat": 36.5151,
+      "lng": -76.17147
+    },
+    {
+      "local_no": 1146,
+      "city": "Canyon",
+      "state": "TX",
+      "slug": "l1146-canyon-tx",
+      "lat": 34.97898,
+      "lng": -101.92819
+    },
+    {
+      "local_no": 1147,
+      "city": "Wisconsin Rapids",
+      "state": "WI",
+      "slug": "l1147-wisconsin-rapids-wi",
+      "lat": 44.39176,
+      "lng": -89.82288
+    },
+    {
+      "local_no": 1155,
+      "city": "Billings",
+      "state": "MT",
+      "slug": "l1155-billings-mt",
+      "lat": 45.7875,
+      "lng": -108.49607
+    },
+    {
+      "local_no": 1158,
+      "city": "Clifton",
+      "state": "NJ",
+      "slug": "l1158-clifton-nj",
+      "lat": 40.85843,
+      "lng": -74.16376
+    },
+    {
+      "local_no": 1181,
+      "city": "Gordonsville",
+      "state": "VA",
+      "slug": "l1181-gordonsville-va",
+      "lat": 38.13472,
+      "lng": -78.1865
+    },
+    {
+      "local_no": 1183,
+      "city": "Plymouth",
+      "state": "NC",
+      "slug": "l1183-plymouth-nc",
+      "lat": 35.86683,
+      "lng": -76.74856
+    },
+    {
+      "local_no": 1186,
+      "city": "Honolulu",
+      "state": "HI",
+      "slug": "l1186-honolulu-hi",
+      "lat": 21.30455,
+      "lng": -157.85568
+    },
+    {
+      "local_no": 1189,
+      "city": "Fulton",
+      "state": "NY",
+      "slug": "l1189-fulton-ny",
+      "lat": 43.10615,
+      "lng": -74.44618
+    },
+    {
+      "local_no": 1191,
+      "city": "West Palm Beach",
+      "state": "FL",
+      "slug": "l1191-west-palm-beach-fl",
+      "lat": 26.71536,
+      "lng": -80.05329
+    },
+    {
+      "local_no": 1193,
+      "city": "Conyers",
+      "state": "GA",
+      "slug": "l1193-conyers-ga",
+      "lat": 33.66761,
+      "lng": -84.01769
+    },
+    {
+      "local_no": 1194,
+      "city": "Brewster",
+      "state": "OH",
+      "slug": "l1194-brewster-oh",
+      "lat": 40.707,
+      "lng": -81.59818
+    },
+    {
+      "local_no": 1196,
+      "city": "Cumberland",
+      "state": "RI",
+      "slug": "l1196-cumberland-ri",
+      "lat": 41.96677,
+      "lng": -71.43284
+    },
+    {
+      "local_no": 1199,
+      "city": "Belen",
+      "state": "NM",
+      "slug": "l1199-belen-nm",
+      "lat": 34.66275,
+      "lng": -106.7762
+    },
+    {
+      "local_no": 1200,
+      "city": "Cabin John",
+      "state": "MD",
+      "slug": "l1200-cabin-john-md",
+      "lat": 38.97466,
+      "lng": -77.16173
+    },
+    {
+      "local_no": 1204,
+      "city": "Petal",
+      "state": "MS",
+      "slug": "l1204-petal-ms",
+      "lat": 31.34656,
+      "lng": -89.26006
+    },
+    {
+      "local_no": 1205,
+      "city": "Gainesville",
+      "state": "FL",
+      "slug": "l1205-gainesville-fl",
+      "lat": 29.65197,
+      "lng": -82.32498
+    },
+    {
+      "local_no": 1206,
+      "city": "Newark",
+      "state": "OH",
+      "slug": "l1206-newark-oh",
+      "lat": 40.05812,
+      "lng": -82.40126
+    },
+    {
+      "local_no": 1209,
+      "city": "Meridian",
+      "state": "MS",
+      "slug": "l1209-meridian-ms",
+      "lat": 32.36431,
+      "lng": -88.70366
+    },
+    {
+      "local_no": 1211,
+      "city": "Gulfport",
+      "state": "MS",
+      "slug": "l1211-gulfport-ms",
+      "lat": 30.36742,
+      "lng": -89.09282
+    },
+    {
+      "local_no": 1212,
+      "city": "New York",
+      "state": "NY",
+      "slug": "l1212-new-york-ny",
+      "lat": 40.71273,
+      "lng": -74.00602
+    },
+    {
+      "local_no": 1220,
+      "city": "Downers Grove",
+      "state": "IL",
+      "slug": "l1220-downers-grove-il",
+      "lat": 41.79368,
+      "lng": -88.01023
+    },
+    {
+      "local_no": 1228,
+      "city": "Simsbury",
+      "state": "CT",
+      "slug": "l1228-simsbury-ct",
+      "lat": 41.87592,
+      "lng": -72.80122
+    },
+    {
+      "local_no": 1238,
+      "city": "Wilmington",
+      "state": "DE",
+      "slug": "l1238-wilmington-de",
+      "lat": 39.74595,
+      "lng": -75.54659
+    },
+    {
+      "local_no": 1245,
+      "city": "Vacaville",
+      "state": "CA",
+      "slug": "l1245-vacaville-ca",
+      "lat": 38.35658,
+      "lng": -121.98774
+    },
+    {
+      "local_no": 1249,
+      "city": "Cicero",
+      "state": "NY",
+      "slug": "l1249-cicero-ny",
+      "lat": 43.17562,
+      "lng": -76.11937
+    },
+    {
+      "local_no": 1250,
+      "city": "Rapid City",
+      "state": "SD",
+      "slug": "l1250-rapid-city-sd",
+      "lat": 44.0806,
+      "lng": -103.22802
+    },
+    {
+      "local_no": 1253,
+      "city": "Newport",
+      "state": "ME",
+      "slug": "l1253-newport-me",
+      "lat": 44.83534,
+      "lng": -69.27394
+    },
+    {
+      "local_no": 1260,
+      "city": "Honolulu",
+      "state": "HI",
+      "slug": "l1260-honolulu-hi",
+      "lat": 21.30455,
+      "lng": -157.85568
+    },
+    {
+      "local_no": 1263,
+      "city": "San Mateo",
+      "state": "FL",
+      "slug": "l1263-san-mateo-fl",
+      "lat": 29.60676,
+      "lng": -81.5847
+    },
+    {
+      "local_no": 1288,
+      "city": "Memphis",
+      "state": "TN",
+      "slug": "l1288-memphis-tn",
+      "lat": 35.14603,
+      "lng": -90.05178
+    },
+    {
+      "local_no": 1289,
+      "city": "Wall",
+      "state": "NJ",
+      "slug": "l1289-wall-nj",
+      "lat": 40.17431,
+      "lng": -74.09022
+    },
+    {
+      "local_no": 1293,
+      "city": "Ocean View",
+      "state": "NJ",
+      "slug": "l1293-ocean-view-nj",
+      "lat": 39.19147,
+      "lng": -74.73203
+    },
+    {
+      "local_no": 1307,
+      "city": "Delmar",
+      "state": "MD",
+      "slug": "l1307-delmar-md",
+      "lat": 38.45588,
+      "lng": -75.5776
+    },
+    {
+      "local_no": 1316,
+      "city": "Macon",
+      "state": "GA",
+      "slug": "l1316-macon-ga",
+      "lat": 32.84069,
+      "lng": -83.6324
+    },
+    {
+      "local_no": 1317,
+      "city": "Laurel",
+      "state": "MS",
+      "slug": "l1317-laurel-ms",
+      "lat": 31.69405,
+      "lng": -89.13061
+    },
+    {
+      "local_no": 1319,
+      "city": "Kingston",
+      "state": "PA",
+      "slug": "l1319-kingston-pa",
+      "lat": 41.26201,
+      "lng": -75.8972
+    },
+    {
+      "local_no": 1323,
+      "city": "Soddy Daisy",
+      "state": "TN",
+      "slug": "l1323-soddy-daisy-tn",
+      "lat": 35.2359,
+      "lng": -85.19079
+    },
+    {
+      "local_no": 1340,
+      "city": "Newport News",
+      "state": "VA",
+      "slug": "l1340-newport-news-va",
+      "lat": 36.9775,
+      "lng": -76.42977
+    },
+    {
+      "local_no": 1346,
+      "city": "Miami",
+      "state": "FL",
+      "slug": "l1346-miami-fl",
+      "lat": 25.77416,
+      "lng": -80.1936
+    },
+    {
+      "local_no": 1347,
+      "city": "Cincinnati",
+      "state": "OH",
+      "slug": "l1347-cincinnati-oh",
+      "lat": 39.10128,
+      "lng": -84.51274
+    },
+    {
+      "local_no": 1357,
+      "city": "Honolulu",
+      "state": "HI",
+      "slug": "l1357-honolulu-hi",
+      "lat": 21.30455,
+      "lng": -157.85568
+    },
+    {
+      "local_no": 1362,
+      "city": "Cedar Rapids",
+      "state": "IA",
+      "slug": "l1362-cedar-rapids-ia",
+      "lat": 41.97589,
+      "lng": -91.67041
+    },
+    {
+      "local_no": 1377,
+      "city": "North Ridgeville",
+      "state": "OH",
+      "slug": "l1377-north-ridgeville-oh",
+      "lat": 41.38949,
+      "lng": -82.01903
+    },
+    {
+      "local_no": 1379,
+      "city": "Bettendorf",
+      "state": "IA",
+      "slug": "l1379-bettendorf-ia",
+      "lat": 41.52538,
+      "lng": -90.50986
+    },
+    {
+      "local_no": 1383,
+      "city": "Baltimore",
+      "state": "MD",
+      "slug": "l1383-baltimore-md",
+      "lat": 39.29088,
+      "lng": -76.61076
+    },
+    {
+      "local_no": 1392,
+      "city": "South Bend",
+      "state": "IN",
+      "slug": "l1392-south-bend-in",
+      "lat": 41.68338,
+      "lng": -86.25001
+    },
+    {
+      "local_no": 1393,
+      "city": "Indianapolis",
+      "state": "IN",
+      "slug": "l1393-indianapolis-in",
+      "lat": 39.76833,
+      "lng": -86.15835
+    },
+    {
+      "local_no": 1395,
+      "city": "Indianapolis",
+      "state": "IN",
+      "slug": "l1395-indianapolis-in",
+      "lat": 39.76833,
+      "lng": -86.15835
+    },
+    {
+      "local_no": 1400,
+      "city": "Indianapolis",
+      "state": "IN",
+      "slug": "l1400-indianapolis-in",
+      "lat": 39.76833,
+      "lng": -86.15835
+    },
+    {
+      "local_no": 1412,
+      "city": "Tavares",
+      "state": "FL",
+      "slug": "l1412-tavares-fl",
+      "lat": 28.80218,
+      "lng": -81.73133
+    },
+    {
+      "local_no": 1413,
+      "city": "Perrysburg",
+      "state": "OH",
+      "slug": "l1413-perrysburg-oh",
+      "lat": 41.55712,
+      "lng": -83.62793
+    },
+    {
+      "local_no": 1426,
+      "city": "Grand Forks",
+      "state": "ND",
+      "slug": "l1426-grand-forks-nd",
+      "lat": 47.92521,
+      "lng": -97.03063
+    },
+    {
+      "local_no": 1430,
+      "city": "Armonk",
+      "state": "NY",
+      "slug": "l1430-armonk-ny",
+      "lat": 41.13297,
+      "lng": -73.71261
+    },
+    {
+      "local_no": 1431,
+      "city": "Myrtle Beach",
+      "state": "SC",
+      "slug": "l1431-myrtle-beach-sc",
+      "lat": 33.69565,
+      "lng": -78.89004
+    },
+    {
+      "local_no": 1434,
+      "city": "Richmond",
+      "state": "VA",
+      "slug": "l1434-richmond-va",
+      "lat": 37.53851,
+      "lng": -77.43428
+    },
+    {
+      "local_no": 1439,
+      "city": "St Louis",
+      "state": "MO",
+      "slug": "l1439-st-louis-mo",
+      "lat": 38.62541,
+      "lng": -90.19001
+    },
+    {
+      "local_no": 1451,
+      "city": "York",
+      "state": "PA",
+      "slug": "l1451-york-pa",
+      "lat": 39.96249,
+      "lng": -76.7277
+    },
+    {
+      "local_no": 1455,
+      "city": "St Louis",
+      "state": "MO",
+      "slug": "l1455-st-louis-mo",
+      "lat": 38.62541,
+      "lng": -90.19001
+    },
+    {
+      "local_no": 1464,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l1464-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 1465,
+      "city": "Somerset",
+      "state": "MA",
+      "slug": "l1465-somerset-ma",
+      "lat": 41.76955,
+      "lng": -71.12866
+    },
+    {
+      "local_no": 1466,
+      "city": "Columbus",
+      "state": "OH",
+      "slug": "l1466-columbus-oh",
+      "lat": 39.96226,
+      "lng": -83.00071
+    },
+    {
+      "local_no": 1474,
+      "city": "Carl Junction",
+      "state": "MO",
+      "slug": "l1474-carl-junction-mo",
+      "lat": 37.17671,
+      "lng": -94.56499
+    },
+    {
+      "local_no": 1491,
+      "city": "Deland",
+      "state": "FL",
+      "slug": "l1491-deland-fl",
+      "lat": 29.02811,
+      "lng": -81.30342
+    },
+    {
+      "local_no": 1499,
+      "city": "Fall River",
+      "state": "MA",
+      "slug": "l1499-fall-river-ma",
+      "lat": 41.70106,
+      "lng": -71.15464
+    },
+    {
+      "local_no": 1505,
+      "city": "Woburn",
+      "state": "MA",
+      "slug": "l1505-woburn-ma",
+      "lat": 42.47926,
+      "lng": -71.15228
+    },
+    {
+      "local_no": 1507,
+      "city": "Diamond",
+      "state": "OH",
+      "slug": "l1507-diamond-oh",
+      "lat": 41.09895,
+      "lng": -81.02287
+    },
+    {
+      "local_no": 1516,
+      "city": "Jonesboro",
+      "state": "AR",
+      "slug": "l1516-jonesboro-ar",
+      "lat": 35.83481,
+      "lng": -90.70453
+    },
+    {
+      "local_no": 1517,
+      "city": "Bayard",
+      "state": "NE",
+      "slug": "l1517-bayard-ne",
+      "lat": 41.75552,
+      "lng": -103.32429
+    },
+    {
+      "local_no": 1523,
+      "city": "Wichita",
+      "state": "KS",
+      "slug": "l1523-wichita-ks",
+      "lat": 37.69224,
+      "lng": -97.33754
+    },
+    {
+      "local_no": 1525,
+      "city": "Omaha",
+      "state": "NE",
+      "slug": "l1525-omaha-ne",
+      "lat": 41.25875,
+      "lng": -95.93838
+    },
+    {
+      "local_no": 1531,
+      "city": "Albany",
+      "state": "GA",
+      "slug": "l1531-albany-ga",
+      "lat": 31.57821,
+      "lng": -84.15568
+    },
+    {
+      "local_no": 1532,
+      "city": "Minot",
+      "state": "ND",
+      "slug": "l1532-minot-nd",
+      "lat": 48.23251,
+      "lng": -101.29627
+    },
+    {
+      "local_no": 1537,
+      "city": "High Point",
+      "state": "NC",
+      "slug": "l1537-high-point-nc",
+      "lat": 35.95569,
+      "lng": -80.00532
+    },
+    {
+      "local_no": 1545,
+      "city": "Jesup",
+      "state": "GA",
+      "slug": "l1545-jesup-ga",
+      "lat": 31.60744,
+      "lng": -81.88539
+    },
+    {
+      "local_no": 1547,
+      "city": "Anchorage",
+      "state": "AK",
+      "slug": "l1547-anchorage-ak",
+      "lat": 61.21631,
+      "lng": -149.89485
+    },
+    {
+      "local_no": 1559,
+      "city": "Duluth",
+      "state": "MN",
+      "slug": "l1559-duluth-mn",
+      "lat": 46.78383,
+      "lng": -92.10527
+    },
+    {
+      "local_no": 1570,
+      "city": "Beulah",
+      "state": "ND",
+      "slug": "l1570-beulah-nd",
+      "lat": 47.26334,
+      "lng": -101.77795
+    },
+    {
+      "local_no": 1573,
+      "city": "Darien",
+      "state": "CT",
+      "slug": "l1573-darien-ct",
+      "lat": 41.07871,
+      "lng": -73.46929
+    },
+    {
+      "local_no": 1579,
+      "city": "Augusta",
+      "state": "GA",
+      "slug": "l1579-augusta-ga",
+      "lat": 33.47097,
+      "lng": -81.97484
+    },
+    {
+      "local_no": 1583,
+      "city": "Palatka",
+      "state": "FL",
+      "slug": "l1583-palatka-fl",
+      "lat": 29.64879,
+      "lng": -81.63721
+    },
+    {
+      "local_no": 1587,
+      "city": "Pomeroy",
+      "state": "OH",
+      "slug": "l1587-pomeroy-oh",
+      "lat": 39.02805,
+      "lng": -82.03422
+    },
+    {
+      "local_no": 1588,
+      "city": "Augusta",
+      "state": "GA",
+      "slug": "l1588-augusta-ga",
+      "lat": 33.47097,
+      "lng": -81.97484
+    },
+    {
+      "local_no": 1591,
+      "city": "Conway",
+      "state": "SC",
+      "slug": "l1591-conway-sc",
+      "lat": 33.836,
+      "lng": -79.04781
+    },
+    {
+      "local_no": 1593,
+      "city": "Hazen",
+      "state": "ND",
+      "slug": "l1593-hazen-nd",
+      "lat": 47.29445,
+      "lng": -101.62266
+    },
+    {
+      "local_no": 1600,
+      "city": "Allentown",
+      "state": "PA",
+      "slug": "l1600-allentown-pa",
+      "lat": 40.60226,
+      "lng": -75.47161
+    },
+    {
+      "local_no": 1613,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l1613-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 1616,
+      "city": "Spearfish",
+      "state": "SD",
+      "slug": "l1616-spearfish-sd",
+      "lat": 44.48939,
+      "lng": -103.86096
+    },
+    {
+      "local_no": 1619,
+      "city": "Delta",
+      "state": "UT",
+      "slug": "l1619-delta-ut",
+      "lat": 39.35218,
+      "lng": -112.57717
+    },
+    {
+      "local_no": 1629,
+      "city": "Talladega",
+      "state": "AL",
+      "slug": "l1629-talladega-al",
+      "lat": 33.39671,
+      "lng": -86.15971
+    },
+    {
+      "local_no": 1631,
+      "city": "Croton On Hudson",
+      "state": "NY",
+      "slug": "l1631-croton-on-hudson-ny",
+      "lat": 41.20882,
+      "lng": -73.89052
+    },
+    {
+      "local_no": 1634,
+      "city": "North Liberty",
+      "state": "IA",
+      "slug": "l1634-north-liberty-ia",
+      "lat": 41.74783,
+      "lng": -91.60644
+    },
+    {
+      "local_no": 1637,
+      "city": "Erie",
+      "state": "PA",
+      "slug": "l1637-erie-pa",
+      "lat": 42.12947,
+      "lng": -80.08527
+    },
+    {
+      "local_no": 1638,
+      "city": "Colstrip",
+      "state": "MT",
+      "slug": "l1638-colstrip-mt",
+      "lat": 45.88416,
+      "lng": -106.62364
+    },
+    {
+      "local_no": 1649,
+      "city": "Hampton",
+      "state": "SC",
+      "slug": "l1649-hampton-sc",
+      "lat": 32.78618,
+      "lng": -81.12373
+    },
+    {
+      "local_no": 1658,
+      "city": "Pine Bluff",
+      "state": "AR",
+      "slug": "l1658-pine-bluff-ar",
+      "lat": 34.22289,
+      "lng": -92.00433
+    },
+    {
+      "local_no": 1666,
+      "city": "Mount Joy",
+      "state": "PA",
+      "slug": "l1666-mount-joy-pa",
+      "lat": 40.10986,
+      "lng": -76.50334
+    },
+    {
+      "local_no": 1671,
+      "city": "Birdsboro",
+      "state": "PA",
+      "slug": "l1671-birdsboro-pa",
+      "lat": 40.26443,
+      "lng": -75.80441
+    },
+    {
+      "local_no": 1682,
+      "city": "Roseville",
+      "state": "CA",
+      "slug": "l1682-roseville-ca",
+      "lat": 38.75212,
+      "lng": -121.28801
+    },
+    {
+      "local_no": 1684,
+      "city": "Brick",
+      "state": "NJ",
+      "slug": "l1684-brick-nj",
+      "lat": 40.07072,
+      "lng": -74.12806
+    },
+    {
+      "local_no": 1688,
+      "city": "Ft Pierre",
+      "state": "SD",
+      "slug": "l1688-ft-pierre-sd",
+      "lat": 44.35352,
+      "lng": -100.37382
+    },
+    {
+      "local_no": 1700,
+      "city": "Prairieville",
+      "state": "LA",
+      "slug": "l1700-prairieville-la",
+      "lat": 30.31225,
+      "lng": -90.94973
+    },
+    {
+      "local_no": 1701,
+      "city": "Owensboro",
+      "state": "KY",
+      "slug": "l1701-owensboro-ky",
+      "lat": 37.77422,
+      "lng": -87.11333
+    },
+    {
+      "local_no": 1703,
+      "city": "El Dorado",
+      "state": "AR",
+      "slug": "l1703-el-dorado-ar",
+      "lat": 33.21151,
+      "lng": -92.66501
+    },
+    {
+      "local_no": 1710,
+      "city": "El Monte",
+      "state": "CA",
+      "slug": "l1710-el-monte-ca",
+      "lat": 34.07516,
+      "lng": -118.03685
+    },
+    {
+      "local_no": 1718,
+      "city": "Leonardtown",
+      "state": "MD",
+      "slug": "l1718-leonardtown-md",
+      "lat": 38.29124,
+      "lng": -76.63579
+    },
+    {
+      "local_no": 1737,
+      "city": "Manassas",
+      "state": "VA",
+      "slug": "l1737-manassas-va",
+      "lat": 38.75095,
+      "lng": -77.47527
+    },
+    {
+      "local_no": 1749,
+      "city": "New Johnsonville",
+      "state": "TN",
+      "slug": "l1749-new-johnsonville-tn",
+      "lat": 36.02117,
+      "lng": -87.96698
+    },
+    {
+      "local_no": 1759,
+      "city": "Cody",
+      "state": "WY",
+      "slug": "l1759-cody-wy",
+      "lat": 44.52631,
+      "lng": -109.05639
+    },
+    {
+      "local_no": 1768,
+      "city": "Hinckley",
+      "state": "ME",
+      "slug": "l1768-hinckley-me",
+      "lat": 44.68562,
+      "lng": -69.63255
+    },
+    {
+      "local_no": 1769,
+      "city": "Yacolt",
+      "state": "WA",
+      "slug": "l1769-yacolt-wa",
+      "lat": 45.8655,
+      "lng": -122.40703
+    },
+    {
+      "local_no": 1791,
+      "city": "Wausau",
+      "state": "WI",
+      "slug": "l1791-wausau-wi",
+      "lat": 44.95979,
+      "lng": -89.62728
+    },
+    {
+      "local_no": 1805,
+      "city": "Glen Burnie",
+      "state": "MD",
+      "slug": "l1805-glen-burnie-md",
+      "lat": 39.15954,
+      "lng": -76.61515
+    },
+    {
+      "local_no": 1814,
+      "city": "Sugar Land",
+      "state": "TX",
+      "slug": "l1814-sugar-land-tx",
+      "lat": 29.61968,
+      "lng": -95.63495
+    },
+    {
+      "local_no": 1820,
+      "city": "Freehold",
+      "state": "NJ",
+      "slug": "l1820-freehold-nj",
+      "lat": 40.26011,
+      "lng": -74.27376
+    },
+    {
+      "local_no": 1829,
+      "city": "Bossier City",
+      "state": "LA",
+      "slug": "l1829-bossier-city-la",
+      "lat": 32.51589,
+      "lng": -93.73365
+    },
+    {
+      "local_no": 1832,
+      "city": "Kansas City",
+      "state": "MO",
+      "slug": "l1832-kansas-city-mo",
+      "lat": 39.1001,
+      "lng": -94.57814
+    },
+    {
+      "local_no": 1833,
+      "city": "Elmira",
+      "state": "NY",
+      "slug": "l1833-elmira-ny",
+      "lat": 42.0898,
+      "lng": -76.80773
+    },
+    {
+      "local_no": 1837,
+      "city": "Manchester",
+      "state": "ME",
+      "slug": "l1837-manchester-me",
+      "lat": 44.32451,
+      "lng": -69.86033
+    },
+    {
+      "local_no": 1856,
+      "city": "Havre",
+      "state": "MT",
+      "slug": "l1856-havre-mt",
+      "lat": 48.5537,
+      "lng": -109.6778
+    },
+    {
+      "local_no": 1871,
+      "city": "Birmingham",
+      "state": "AL",
+      "slug": "l1871-birmingham-al",
+      "lat": 33.52068,
+      "lng": -86.80243
+    },
+    {
+      "local_no": 1900,
+      "city": "Largo",
+      "state": "MD",
+      "slug": "l1900-largo-md",
+      "lat": 38.88245,
+      "lng": -76.82857
+    },
+    {
+      "local_no": 1902,
+      "city": "Harrisburg",
+      "state": "NC",
+      "slug": "l1902-harrisburg-nc",
+      "lat": 35.32583,
+      "lng": -80.6455
+    },
+    {
+      "local_no": 1908,
+      "city": "Merritt Island",
+      "state": "FL",
+      "slug": "l1908-merritt-island-fl",
+      "lat": 28.26628,
+      "lng": -80.6637
+    },
+    {
+      "local_no": 1911,
+      "city": "New Braunfels",
+      "state": "TX",
+      "slug": "l1911-new-braunfels-tx",
+      "lat": 29.70283,
+      "lng": -98.12573
+    },
+    {
+      "local_no": 1912,
+      "city": "Angier",
+      "state": "NC",
+      "slug": "l1912-angier-nc",
+      "lat": 35.5071,
+      "lng": -78.73918
+    },
+    {
+      "local_no": 1914,
+      "city": "Harwick",
+      "state": "PA",
+      "slug": "l1914-harwick-pa",
+      "lat": 40.55408,
+      "lng": -79.80638
+    },
+    {
+      "local_no": 1919,
+      "city": "Pittsburgh",
+      "state": "PA",
+      "slug": "l1919-pittsburgh-pa",
+      "lat": 40.4407,
+      "lng": -80.00257
+    },
+    {
+      "local_no": 1920,
+      "city": "North Platte",
+      "state": "NE",
+      "slug": "l1920-north-platte-ne",
+      "lat": 41.13683,
+      "lng": -100.76128
+    },
+    {
+      "local_no": 1922,
+      "city": "Uniondale",
+      "state": "NY",
+      "slug": "l1922-uniondale-ny",
+      "lat": 40.71575,
+      "lng": -73.58989
+    },
+    {
+      "local_no": 1923,
+      "city": "Hampstead",
+      "state": "NC",
+      "slug": "l1923-hampstead-nc",
+      "lat": 34.36767,
+      "lng": -77.71053
+    },
+    {
+      "local_no": 1924,
+      "city": "Fernandina Beach",
+      "state": "FL",
+      "slug": "l1924-fernandina-beach-fl",
+      "lat": 30.67123,
+      "lng": -81.463
+    },
+    {
+      "local_no": 1925,
+      "city": "Martin",
+      "state": "TN",
+      "slug": "l1925-martin-tn",
+      "lat": 36.34328,
+      "lng": -88.85035
+    },
+    {
+      "local_no": 1929,
+      "city": "Waynesburg",
+      "state": "PA",
+      "slug": "l1929-waynesburg-pa",
+      "lat": 39.89563,
+      "lng": -80.18483
+    },
+    {
+      "local_no": 1933,
+      "city": "North Fort Myers",
+      "state": "FL",
+      "slug": "l1933-north-fort-myers-fl",
+      "lat": 26.71074,
+      "lng": -81.81301
+    },
+    {
+      "local_no": 1937,
+      "city": "Pensacola",
+      "state": "FL",
+      "slug": "l1937-pensacola-fl",
+      "lat": 30.42131,
+      "lng": -87.21691
+    },
+    {
+      "local_no": 1947,
+      "city": "Tifton",
+      "state": "GA",
+      "slug": "l1947-tifton-ga",
+      "lat": 31.45497,
+      "lng": -83.51083
+    },
+    {
+      "local_no": 1950,
+      "city": "Waynesboro",
+      "state": "VA",
+      "slug": "l1950-waynesboro-va",
+      "lat": 38.06867,
+      "lng": -78.8894
+    },
+    {
+      "local_no": 1959,
+      "city": "Watertown",
+      "state": "SD",
+      "slug": "l1959-watertown-sd",
+      "lat": 44.89921,
+      "lng": -97.11529
+    },
+    {
+      "local_no": 1963,
+      "city": "Youngwood",
+      "state": "PA",
+      "slug": "l1963-youngwood-pa",
+      "lat": 40.24035,
+      "lng": -79.57671
+    },
+    {
+      "local_no": 1974,
+      "city": "North Liberty",
+      "state": "IA",
+      "slug": "l1974-north-liberty-ia",
+      "lat": 41.74783,
+      "lng": -91.60644
+    },
+    {
+      "local_no": 1976,
+      "city": "Plymouth",
+      "state": "IN",
+      "slug": "l1976-plymouth-in",
+      "lat": 41.34366,
+      "lng": -86.30973
+    },
+    {
+      "local_no": 1980,
+      "city": "Cedar Springs",
+      "state": "GA",
+      "slug": "l1980-cedar-springs-ga",
+      "lat": 31.18619,
+      "lng": -85.03205
+    },
+    {
+      "local_no": 1984,
+      "city": "Waycross",
+      "state": "GA",
+      "slug": "l1984-waycross-ga",
+      "lat": 31.21355,
+      "lng": -82.35402
+    },
+    {
+      "local_no": 1988,
+      "city": "Albuquerque",
+      "state": "NM",
+      "slug": "l1988-albuquerque-nm",
+      "lat": 35.0841,
+      "lng": -106.65099
+    },
+    {
+      "local_no": 1996,
+      "city": "Warren",
+      "state": "OH",
+      "slug": "l1996-warren-oh",
+      "lat": 39.4204,
+      "lng": -84.1809
+    },
+    {
+      "local_no": 1997,
+      "city": "Atlanta",
+      "state": "GA",
+      "slug": "l1997-atlanta-ga",
+      "lat": 33.75447,
+      "lng": -84.38982
+    },
+    {
+      "local_no": 1999,
+      "city": "North Mankato",
+      "state": "MN",
+      "slug": "l1999-north-mankato-mn",
+      "lat": 44.17329,
+      "lng": -94.03381
+    },
+    {
+      "local_no": 2001,
+      "city": "Fremont",
+      "state": "NE",
+      "slug": "l2001-fremont-ne",
+      "lat": 41.43384,
+      "lng": -96.49604
+    },
+    {
+      "local_no": 2009,
+      "city": "Huntingdon",
+      "state": "PA",
+      "slug": "l2009-huntingdon-pa",
+      "lat": 40.34463,
+      "lng": -78.02812
+    },
+    {
+      "local_no": 2033,
+      "city": "Pine Bluff",
+      "state": "AR",
+      "slug": "l2033-pine-bluff-ar",
+      "lat": 34.22289,
+      "lng": -92.00433
+    },
+    {
+      "local_no": 2035,
+      "city": "Romney",
+      "state": "WV",
+      "slug": "l2035-romney-wv",
+      "lat": 39.34197,
+      "lng": -78.75645
+    },
+    {
+      "local_no": 2040,
+      "city": "Brewton",
+      "state": "AL",
+      "slug": "l2040-brewton-al",
+      "lat": 31.10392,
+      "lng": -87.07227
+    },
+    {
+      "local_no": 2048,
+      "city": "Pennington",
+      "state": "AL",
+      "slug": "l2048-pennington-al",
+      "lat": 32.20709,
+      "lng": -88.05613
+    },
+    {
+      "local_no": 2064,
+      "city": "Valdosta",
+      "state": "GA",
+      "slug": "l2064-valdosta-ga",
+      "lat": 30.8327,
+      "lng": -83.27849
+    },
+    {
+      "local_no": 2071,
+      "city": "Scarborough",
+      "state": "ME",
+      "slug": "l2071-scarborough-me",
+      "lat": 43.58997,
+      "lng": -70.33461
+    },
+    {
+      "local_no": 2077,
+      "city": "Wilsonville",
+      "state": "AL",
+      "slug": "l2077-wilsonville-al",
+      "lat": 33.23428,
+      "lng": -86.48359
+    },
+    {
+      "local_no": 2080,
+      "city": "Lafayette",
+      "state": "TN",
+      "slug": "l2080-lafayette-tn",
+      "lat": 36.52082,
+      "lng": -86.02604
+    },
+    {
+      "local_no": 2084,
+      "city": "Syracuse",
+      "state": "NY",
+      "slug": "l2084-syracuse-ny",
+      "lat": 43.04812,
+      "lng": -76.14742
+    },
+    {
+      "local_no": 2088,
+      "city": "Merritt Island",
+      "state": "FL",
+      "slug": "l2088-merritt-island-fl",
+      "lat": 28.26628,
+      "lng": -80.6637
+    },
+    {
+      "local_no": 2089,
+      "city": "Meadville",
+      "state": "PA",
+      "slug": "l2089-meadville-pa",
+      "lat": 41.64144,
+      "lng": -80.15145
+    },
+    {
+      "local_no": 2100,
+      "city": "Louisville",
+      "state": "KY",
+      "slug": "l2100-louisville-ky",
+      "lat": 38.25424,
+      "lng": -85.75941
+    },
+    {
+      "local_no": 2109,
+      "city": "Athens",
+      "state": "GA",
+      "slug": "l2109-athens-ga",
+      "lat": 33.95977,
+      "lng": -83.3764
+    },
+    {
+      "local_no": 2113,
+      "city": "Manchester",
+      "state": "TN",
+      "slug": "l2113-manchester-tn",
+      "lat": 35.4832,
+      "lng": -86.08873
+    },
+    {
+      "local_no": 2129,
+      "city": "Chickasaw",
+      "state": "AL",
+      "slug": "l2129-chickasaw-al",
+      "lat": 30.7638,
+      "lng": -88.07472
+    },
+    {
+      "local_no": 2144,
+      "city": "Rumford",
+      "state": "ME",
+      "slug": "l2144-rumford-me",
+      "lat": 44.5367,
+      "lng": -70.61561
+    },
+    {
+      "local_no": 2149,
+      "city": "River Ridge",
+      "state": "LA",
+      "slug": "l2149-river-ridge-la",
+      "lat": 29.9602,
+      "lng": -90.21563
+    },
+    {
+      "local_no": 2150,
+      "city": "Menomonee Falls",
+      "state": "WI",
+      "slug": "l2150-menomonee-falls-wi",
+      "lat": 43.17908,
+      "lng": -88.11708
+    },
+    {
+      "local_no": 2152,
+      "city": "Samson",
+      "state": "AL",
+      "slug": "l2152-samson-al",
+      "lat": 31.11089,
+      "lng": -86.04763
+    },
+    {
+      "local_no": 2154,
+      "city": "Orchard Park",
+      "state": "NY",
+      "slug": "l2154-orchard-park-ny",
+      "lat": 42.76704,
+      "lng": -78.74355
+    },
+    {
+      "local_no": 2159,
+      "city": "Montrose",
+      "state": "CO",
+      "slug": "l2159-montrose-co",
+      "lat": 38.43754,
+      "lng": -108.24039
+    },
+    {
+      "local_no": 2172,
+      "city": "Bellevue",
+      "state": "OH",
+      "slug": "l2172-bellevue-oh",
+      "lat": 41.27421,
+      "lng": -82.84098
+    },
+    {
+      "local_no": 2173,
+      "city": "Lynchburg",
+      "state": "VA",
+      "slug": "l2173-lynchburg-va",
+      "lat": 37.41375,
+      "lng": -79.14225
+    },
+    {
+      "local_no": 2179,
+      "city": "Sandy Lake",
+      "state": "PA",
+      "slug": "l2179-sandy-lake-pa",
+      "lat": 41.34867,
+      "lng": -80.08228
+    },
+    {
+      "local_no": 2194,
+      "city": "Americus",
+      "state": "GA",
+      "slug": "l2194-americus-ga",
+      "lat": 32.07239,
+      "lng": -84.23269
+    },
+    {
+      "local_no": 2199,
+      "city": "West Seneca",
+      "state": "NY",
+      "slug": "l2199-west-seneca-ny",
+      "lat": 42.83958,
+      "lng": -78.75415
+    },
+    {
+      "local_no": 2213,
+      "city": "Schenectady",
+      "state": "NY",
+      "slug": "l2213-schenectady-ny",
+      "lat": 42.81424,
+      "lng": -73.93957
+    },
+    {
+      "local_no": 2219,
+      "city": "Branson",
+      "state": "MO",
+      "slug": "l2219-branson-mo",
+      "lat": 36.64408,
+      "lng": -93.21693
+    },
+    {
+      "local_no": 2220,
+      "city": "Lexington",
+      "state": "KY",
+      "slug": "l2220-lexington-ky",
+      "lat": 38.04641,
+      "lng": -84.49704
+    },
+    {
+      "local_no": 2221,
+      "city": "Iron Mountain",
+      "state": "MI",
+      "slug": "l2221-iron-mountain-mi",
+      "lat": 45.82023,
+      "lng": -88.06596
+    },
+    {
+      "local_no": 2222,
+      "city": "Quincy",
+      "state": "MA",
+      "slug": "l2222-quincy-ma",
+      "lat": 42.25099,
+      "lng": -71.00374
+    },
+    {
+      "local_no": 2230,
+      "city": "Coram",
+      "state": "NY",
+      "slug": "l2230-coram-ny",
+      "lat": 40.87971,
+      "lng": -73.004
+    },
+    {
+      "local_no": 2233,
+      "city": "Poland",
+      "state": "ME",
+      "slug": "l2233-poland-me",
+      "lat": 44.06163,
+      "lng": -70.39447
+    },
+    {
+      "local_no": 2241,
+      "city": "West Middlesex",
+      "state": "PA",
+      "slug": "l2241-west-middlesex-pa",
+      "lat": 41.17422,
+      "lng": -80.4534
+    },
+    {
+      "local_no": 2244,
+      "city": "Dunmore",
+      "state": "PA",
+      "slug": "l2244-dunmore-pa",
+      "lat": 41.4198,
+      "lng": -75.63241
+    },
+    {
+      "local_no": 2251,
+      "city": "Red Level",
+      "state": "AL",
+      "slug": "l2251-red-level-al",
+      "lat": 31.40711,
+      "lng": -86.61219
+    },
+    {
+      "local_no": 2265,
+      "city": "Vicksburg",
+      "state": "MS",
+      "slug": "l2265-vicksburg-ms",
+      "lat": 32.35281,
+      "lng": -90.87773
+    },
+    {
+      "local_no": 2269,
+      "city": "McAlisterville",
+      "state": "PA",
+      "slug": "l2269-mcalisterville-pa",
+      "lat": 40.63937,
+      "lng": -77.27733
+    },
+    {
+      "local_no": 2270,
+      "city": "Wilmington",
+      "state": "DE",
+      "slug": "l2270-wilmington-de",
+      "lat": 39.74595,
+      "lng": -75.54659
+    },
+    {
+      "local_no": 2271,
+      "city": "Hatboro",
+      "state": "PA",
+      "slug": "l2271-hatboro-pa",
+      "lat": 40.17463,
+      "lng": -75.10683
+    },
+    {
+      "local_no": 2273,
+      "city": "Altoona",
+      "state": "PA",
+      "slug": "l2273-altoona-pa",
+      "lat": 40.51936,
+      "lng": -78.39683
+    },
+    {
+      "local_no": 2284,
+      "city": "Eldorado",
+      "state": "AR",
+      "slug": "l2284-eldorado-ar",
+      "lat": 34.78706,
+      "lng": -92.41831
+    },
+    {
+      "local_no": 2285,
+      "city": "Wadsworth",
+      "state": "IL",
+      "slug": "l2285-wadsworth-il",
+      "lat": 42.42868,
+      "lng": -87.90672
+    },
+    {
+      "local_no": 2286,
+      "city": "Beaumont",
+      "state": "TX",
+      "slug": "l2286-beaumont-tx",
+      "lat": 30.08293,
+      "lng": -94.09843
+    },
+    {
+      "local_no": 2287,
+      "city": "Oxford",
+      "state": "OH",
+      "slug": "l2287-oxford-oh",
+      "lat": 39.5103,
+      "lng": -84.74205
+    },
+    {
+      "local_no": 2295,
+      "city": "El Monte",
+      "state": "CA",
+      "slug": "l2295-el-monte-ca",
+      "lat": 34.07516,
+      "lng": -118.03685
+    },
+    {
+      "local_no": 2298,
+      "city": "Leroy",
+      "state": "AL",
+      "slug": "l2298-leroy-al",
+      "lat": 31.49372,
+      "lng": -87.96583
+    },
+    {
+      "local_no": 2304,
+      "city": "Madison",
+      "state": "WI",
+      "slug": "l2304-madison-wi",
+      "lat": 43.07469,
+      "lng": -89.38417
+    },
+    {
+      "local_no": 2320,
+      "city": "Manchester",
+      "state": "NH",
+      "slug": "l2320-manchester-nh",
+      "lat": 42.99564,
+      "lng": -71.45479
+    },
+    {
+      "local_no": 2321,
+      "city": "North Andover",
+      "state": "MA",
+      "slug": "l2321-north-andover-ma",
+      "lat": 42.70297,
+      "lng": -71.13091
+    },
+    {
+      "local_no": 2322,
+      "city": "Middleboro",
+      "state": "MA",
+      "slug": "l2322-middleboro-ma",
+      "lat": 41.89316,
+      "lng": -70.91115
+    },
+    {
+      "local_no": 2323,
+      "city": "Cranston",
+      "state": "RI",
+      "slug": "l2323-cranston-ri",
+      "lat": 41.77959,
+      "lng": -71.43668
+    },
+    {
+      "local_no": 2324,
+      "city": "Ludlow",
+      "state": "MA",
+      "slug": "l2324-ludlow-ma",
+      "lat": 42.159,
+      "lng": -72.48033
+    },
+    {
+      "local_no": 2325,
+      "city": "Worcester",
+      "state": "MA",
+      "slug": "l2325-worcester-ma",
+      "lat": 42.26256,
+      "lng": -71.80189
+    },
+    {
+      "local_no": 2326,
+      "city": "Essex Junction",
+      "state": "VT",
+      "slug": "l2326-essex-junction-vt",
+      "lat": 44.49068,
+      "lng": -73.11136
+    },
+    {
+      "local_no": 2327,
+      "city": "Augusta",
+      "state": "ME",
+      "slug": "l2327-augusta-me",
+      "lat": 44.3148,
+      "lng": -69.77439
+    },
+    {
+      "local_no": 2337,
+      "city": "Tatum",
+      "state": "TX",
+      "slug": "l2337-tatum-tx",
+      "lat": 32.31505,
+      "lng": -94.51637
+    },
+    {
+      "local_no": 2355,
+      "city": "Laporte",
+      "state": "IN",
+      "slug": "l2355-laporte-in",
+      "lat": 41.57189,
+      "lng": -86.74901
+    },
+    {
+      "local_no": 2356,
+      "city": "Richmond",
+      "state": "KY",
+      "slug": "l2356-richmond-ky",
+      "lat": 37.74786,
+      "lng": -84.29465
+    },
+    {
+      "local_no": 2357,
+      "city": "Fairmont",
+      "state": "WV",
+      "slug": "l2357-fairmont-wv",
+      "lat": 39.4849,
+      "lng": -80.14265
+    },
+    {
+      "local_no": 2359,
+      "city": "Chillicothe",
+      "state": "OH",
+      "slug": "l2359-chillicothe-oh",
+      "lat": 39.33312,
+      "lng": -82.9824
+    },
+    {
+      "local_no": 2362,
+      "city": "Selma",
+      "state": "AL",
+      "slug": "l2362-selma-al",
+      "lat": 32.40786,
+      "lng": -87.02075
+    },
+    {
+      "local_no": 2366,
+      "city": "Lincoln",
+      "state": "NE",
+      "slug": "l2366-lincoln-ne",
+      "lat": 40.80889,
+      "lng": -96.70778
+    },
+    {
+      "local_no": 2374,
+      "city": "Jamestown",
+      "state": "NY",
+      "slug": "l2374-jamestown-ny",
+      "lat": 42.09652,
+      "lng": -79.23803
+    }
+  ]
+}

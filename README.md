@@ -203,6 +203,22 @@ general crawling (`User-agent: * → Allow: /`) while blocking AI-company crawle
 you are responsible for complying with the site's Terms of Use, and the app
 credits the source in its footer.
 
+## Full local roster
+
+`scripts/scrape-ibew-roster.mjs` builds `js/data/locals-roster.json` — every
+active IBEW local union on the **US DOL OLMS** (Office of Labor-Management
+Standards) Online Public Disclosure Room register (`affAbbr = IBEW`, designation
+*LOCAL UNION*, not terminated), geocoded through the same shared
+`scripts/cache/geocache.json`. `js/main.js` adds any roster local that isn't in
+the wage data as a **`dataless`** local: a small grey dot on the map with a
+"no wage data yet" panel, not ranked in the list. The `.github/workflows/roster.yml`
+workflow refreshes it monthly.
+
+OLMS serves an incomplete TLS chain that Node's `fetch` rejects, so the roster
+scraper shells out to `curl` for those calls. OLMS is a US registry — it has no
+Canadian locals, so the handful of Canadian locals in the wage data are
+unaffected (they keep their wage figures and normal colouring).
+
 ## Job calls
 
 Some locals publish a live "job calls" / referral list on their own site.
@@ -327,3 +343,9 @@ Plus `slug`, `local_no`, `city`, `state`, `lat`, `lng`, `wage_sheet_url`,
 minus `raw` and geo-miss rows — `scripts/export-snapshot.mjs` mirrors the exact
 query `js/dataSource.js` runs against PocketBase, so the two data paths return
 identical results.
+
+`js/data/locals-roster.json` — `{ generated_at, source, count, items[] }`, each
+item `{ local_no, city, state, slug, lat, lng }` — is the full IBEW local roster
+from OLMS (see **Full local roster** above). It's independent of PocketBase; the
+frontend loads it alongside `locals.json` and shows the locals it adds as grey
+dots.

@@ -40,6 +40,7 @@ export async function loadLocals(pbUrl = '') {
       }
       return {
         id: r.slug,
+        local_no: r.local_no,
         name: `IBEW Local ${r.local_no}`,
         subtitle: [r.city, r.state].filter(Boolean).join(', '),
         lat: r.lat,
@@ -67,6 +68,24 @@ async function loadFromPocketBase(base) {
   }
   const { items = [] } = await res.json();
   return items;
+}
+
+/**
+ * The full IBEW local roster from the US DOL OLMS register (see
+ * scripts/scrape-ibew-roster.mjs): { local_no, city, state, slug, lat, lng } for
+ * every active local, including ones with no wage data. main.js adds the ones
+ * missing from the wage set to the map as grey dots. Optional — [] if absent.
+ */
+export async function loadRoster() {
+  const url = new URL('data/locals-roster.json', import.meta.url);
+  try {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) return [];
+    const { items = [] } = await res.json();
+    return items;
+  } catch {
+    return [];
+  }
 }
 
 /**

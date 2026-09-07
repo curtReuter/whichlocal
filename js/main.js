@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=36';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=36';
-import { createCityMap } from './cityMap.js?v=36';
+import { metrics } from './metrics.js?v=38';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=38';
+import { createCityMap } from './cityMap.js?v=38';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -36,6 +36,28 @@ try {
 } catch (e) {
   loadError = e.message;
   console.error(e);
+}
+
+// Fold in every other IBEW local from the DOL OLMS roster — the ones we have no
+// wage data for. They ride along as `dataless` locals: a small grey dot on the
+// map, a minimal detail panel, no place in the ranked list.
+try {
+  const haveNo = new Set(locals.map((l) => l.local_no));
+  for (const r of await loadRoster()) {
+    if (haveNo.has(r.local_no) || !r.lat || !r.lng) continue;
+    locals.push({
+      id: r.slug,
+      local_no: r.local_no,
+      name: `IBEW Local ${r.local_no}`,
+      subtitle: [r.city, r.state].filter(Boolean).join(', '),
+      lat: r.lat,
+      lng: r.lng,
+      values: {},
+      dataless: true,
+    });
+  }
+} catch (e) {
+  console.warn('roster merge skipped:', e.message);
 }
 
 // id → full local (all metric values, wage-sheet URL, source date) for the
@@ -145,10 +167,22 @@ function pointsForMetric(metricId) {
   return locals
     .map((c) => {
       const n = jobCallCount(c.id);
+      const base = { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng };
+
+      // roster-only local: a grey dot on every metric except job calls (where it
+      // only shows if it actually has calls, and then it's a normal green point)
+      if (c.dataless && !(isJobs && n != null)) {
+        if (isJobs) return null;
+        return {
+          ...base, value: null, dataless: true,
+          badge: n != null ? jobCallLabel(n) : null,
+          tp: null,
+        };
+      }
+
       let value;
       if (isJobs) {
-        // filter: only locals that publish a job-calls list
-        if (n == null) return null;
+        if (n == null) return null; // only locals that publish a job-calls list
         value = n;
       } else {
         value = c.values[metricId];
@@ -161,7 +195,7 @@ function pointsForMetric(metricId) {
         }
       }
       return {
-        id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value,
+        ...base, value,
         // green "N job calls" line in the map tooltip for any local that has
         // calls; on the job-calls metric it stands in for the plain value line
         badge: n != null ? jobCallLabel(n) : null,
@@ -184,14 +218,23 @@ function renderMessage(text) {
   els.list.innerHTML = `<li class="city-list__empty">${text}</li>`;
 }
 
-// The green panel that expands under the selected local. Two views: the
-// compensation grid ('comp') or the local's job-calls list ('jobs').
+// The green panel that expands under the selected local. Views: the compensation
+// grid ('comp'), the local's job-calls list ('jobs'), or — for a roster-only
+// local — a short "no wage data" note (plus its job calls if it has any).
 function buildDetail(local) {
   if (!local) return '';
   const jc = jobCalls[local.id];
-  const body = state.detailView === 'jobs' && jc
-    ? buildJobsView(jc)
-    : buildCompView(local);
+  let body;
+  if (local.dataless) {
+    body =
+      '<p class="detail__nodata">No wage data for this local yet — only locals with a ' +
+      'published wage sheet have figures. It’s on the map so it can still be found.</p>' +
+      (jc ? buildJobsView(jc, { noBack: true }) : '');
+  } else if (state.detailView === 'jobs' && jc) {
+    body = buildJobsView(jc);
+  } else {
+    body = buildCompView(local);
+  }
   return (
     '<div class="city-list__detail"><div class="detail__inner">' +
       '<button type="button" class="detail__close" aria-label="Close details">×</button>' +
@@ -227,7 +270,7 @@ function buildCompView(local) {
   );
 }
 
-function buildJobsView(jc) {
+function buildJobsView(jc, { noBack = false } = {}) {
   const calls = jc.calls
     .map((c) => `<p class="detail__call">${esc(c.text)}</p>`)
     .join('');
@@ -236,9 +279,11 @@ function buildJobsView(jc) {
       (jc.posted ? ` <span class="detail__jobs-date">· ${esc(jc.posted)}</span>` : '') +
     '</div>' +
     (calls || '<p class="detail__call">No open calls listed right now.</p>') +
-    '<div class="detail__foot">' +
-      '<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>' +
-    '</div>'
+    (noBack
+      ? ''
+      : '<div class="detail__foot">' +
+          '<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>' +
+        '</div>')
   );
 }
 
@@ -250,12 +295,17 @@ function renderList(points, meta) {
     );
     return;
   }
-  if (points.length === 0) {
+  // Roster-only locals (no value for this metric) aren't ranked; the only one
+  // that can appear in the list is a selected one, shown pinned at the top.
+  const valued = points.filter((p) => Number.isFinite(p.value));
+  const dataless = points.filter((p) => !Number.isFinite(p.value));
+
+  if (valued.length === 0 && !dataless.some((p) => p.id === state.selectedId)) {
     renderMessage(`No locals have a value for “${meta.label}”.`);
     return;
   }
 
-  const sorted = [...points].sort((a, b) =>
+  const sorted = [...valued].sort((a, b) =>
     state.sortDesc ? b.value - a.value : a.value - b.value
   );
   const rankById = new Map(sorted.map((p, i) => [p.id, i + 1]));
@@ -265,6 +315,9 @@ function renderList(points, meta) {
   const selIdx = sorted.findIndex((p) => p.id === state.selectedId);
   if (selIdx > 0) {
     ordered = [sorted[selIdx], ...sorted.slice(0, selIdx), ...sorted.slice(selIdx + 1)];
+  } else if (selIdx === -1) {
+    const selDataless = dataless.find((p) => p.id === state.selectedId);
+    if (selDataless) ordered = [selDataless, ...sorted];
   }
 
   // When ranking by job calls, the list value column still shows total package.
@@ -273,16 +326,20 @@ function renderList(points, meta) {
   els.list.innerHTML = '';
   ordered.forEach((p) => {
     const isSel = p.id === state.selectedId;
+    const isDataless = !Number.isFinite(p.value);
     const li = document.createElement('li');
-    li.className = 'city-list__item' + (isSel ? ' is-active' : '');
+    li.className = 'city-list__item' + (isSel ? ' is-active' : '') +
+      (isDataless ? ' city-list__item--nodata' : '');
     li.dataset.id = p.id;
     const n = jobCallCount(p.id);
-    const valueText = showTp
-      ? (Number.isFinite(p.tp) && p.tp !== 0 ? metrics.total_package.format(p.tp) : '—')
-      : meta.format(p.value);
+    const valueText = isDataless
+      ? 'no data'
+      : showTp
+        ? (Number.isFinite(p.tp) && p.tp !== 0 ? metrics.total_package.format(p.tp) : '—')
+        : meta.format(p.value);
     li.innerHTML =
       `<div class="city-list__row${n != null ? ' city-list__row--calls' : ''}">` +
-        `<span class="city-list__rank">${rankById.get(p.id)}</span>` +
+        `<span class="city-list__rank">${rankById.get(p.id) ?? '·'}</span>` +
         '<span class="city-list__body">' +
           `<span class="city-list__name">${esc(p.name)}</span>` +
           `<span class="city-list__sub">${esc(p.subtitle)}</span>` +
@@ -368,9 +425,10 @@ function update() {
   });
   map.renderLegend('#legend');
 
+  const ranked = points.filter((p) => Number.isFinite(p.value)).length;
   els.panelTitle.textContent = loadError
     ? 'IBEW Locals'
-    : `${meta.label}${cmp ? ' vs cost of living' : ''} · ${points.length} locals`;
+    : `${meta.label}${cmp ? ' vs cost of living' : ''} · ${ranked} locals`;
   els.readout.textContent = loadError
     ? 'Data unavailable — see the list.'
     : cmp

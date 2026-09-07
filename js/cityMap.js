@@ -155,11 +155,23 @@ export function createCityMap(target, userOptions = {}) {
     (listeners[name] || []).forEach((fn) => fn(payload));
   }
 
-  function styleFor(value, isSelected) {
+  function styleFor(p, isSelected) {
+    // roster-only local (no value for this metric): a small grey dot
+    if (p.dataless || !Number.isFinite(p.value)) {
+      const base = Math.max(3, (opts.minRadius ?? 8) * 0.6);
+      return {
+        radius: isSelected ? base + 2.5 : base,
+        color: isSelected ? '#111827' : '#ffffff',
+        weight: isSelected ? 2 : 1,
+        opacity: 1,
+        fillColor: '#9aa3af',
+        fillOpacity: 0.5,
+      };
+    }
     const { min, max } = current;
-    const t = max > min ? (value - min) / (max - min) : 0.5;
+    const t = max > min ? (p.value - min) / (max - min) : 0.5;
     return {
-      radius: radiusFor(value, min, max, opts.minRadius, opts.maxRadius),
+      radius: radiusFor(p.value, min, max, opts.minRadius, opts.maxRadius),
       color: isSelected ? '#111827' : '#ffffff',
       weight: isSelected ? 3 : 1.5,
       opacity: 1,
@@ -173,27 +185,32 @@ export function createCityMap(target, userOptions = {}) {
     markersById.clear();
 
     current.points.forEach((p) => {
+      const dataless = p.dataless || !Number.isFinite(p.value);
       const marker = L.circleMarker([p.lat, p.lng], {
-        ...styleFor(p.value, p.id === selectedId),
-        className: 'city-hotspot',
+        ...styleFor(p, p.id === selectedId),
+        className: 'city-hotspot' + (dataless ? ' city-hotspot--nodata' : ''),
         bubblingMouseEvents: false,
       });
 
-      const valueText = current.meta.formatValue(p.value);
+      // formatValue is only safe for a real number — some formatters (e.g.
+      // "$X.XX/hr") throw on the null value a grey dot carries
+      const valueLine = dataless
+        ? '<span class="tt-note">No wage data yet</span>'
+        : p.hideValue
+          ? ''
+          : `<span class="tt-val">${escapeHtml(current.meta.valueLabel)}: <b>${escapeHtml(current.meta.formatValue(p.value))}</b></span>`;
       marker.bindTooltip(
         `<strong>${escapeHtml(p.name)}</strong>` +
           (p.subtitle ? `<span class="tt-sub">${escapeHtml(p.subtitle)}</span>` : '') +
-          (p.hideValue
-            ? ''
-            : `<span class="tt-val">${escapeHtml(current.meta.valueLabel)}: <b>${escapeHtml(valueText)}</b></span>`) +
+          valueLine +
           (p.badge ? `<span class="tt-badge">${escapeHtml(p.badge)}</span>` : ''),
         { direction: 'top', offset: [0, -4], className: 'city-tooltip', sticky: false }
       );
 
-      marker.on('mouseover', () => marker.setStyle({ weight: 3 }));
-      marker.on('mouseout', () =>
-        marker.setStyle({ weight: p.id === selectedId ? 3 : 1.5 })
-      );
+      const hoverW = dataless ? 2 : 3;
+      const restW = p.id === selectedId ? (dataless ? 2 : 3) : (dataless ? 1 : 1.5);
+      marker.on('mouseover', () => marker.setStyle({ weight: hoverW }));
+      marker.on('mouseout', () => marker.setStyle({ weight: restW }));
       marker.on('click', () => select(p.id, { pan: false }));
 
       marker.addTo(layer);
@@ -205,9 +222,11 @@ export function createCityMap(target, userOptions = {}) {
 
   function setData(points, meta = {}) {
     const clean = (points || []).filter(
-      (p) => Number.isFinite(p.lat) && Number.isFinite(p.lng) && Number.isFinite(p.value)
+      (p) => Number.isFinite(p.lat) && Number.isFinite(p.lng) &&
+        (Number.isFinite(p.value) || p.dataless)
     );
-    const values = clean.map((p) => p.value);
+    // colour ramp + legend scale from the points that actually have a value
+    const values = clean.filter((p) => Number.isFinite(p.value)).map((p) => p.value);
     current = {
       points: clean,
       min: values.length ? Math.min(...values) : 0,
@@ -232,7 +251,7 @@ export function createCityMap(target, userOptions = {}) {
 
     markersById.forEach((marker, markerId) => {
       const p = current.points.find((c) => c.id === markerId);
-      if (p) marker.setStyle(styleFor(p.value, markerId === selectedId));
+      if (p) marker.setStyle(styleFor(p, markerId === selectedId));
     });
 
     if (point) {
