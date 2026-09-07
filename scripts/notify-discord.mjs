@@ -193,7 +193,7 @@ function compEmbed(slug) {
 
 // A second, minimal embed so the call-to-action renders *below* the comp
 // card's footer — the very bottom of the starter message.
-const FOLLOW_EMBED = { color: BLUE, description: '**FOLLOW FOR NOTIFICATIONS** ⬇️' };
+const FOLLOW_EMBED = { color: BLUE, description: '**FOLLOW FOR NOTIFICATIONS** ⬇️⬇️⬇️' };
 const compMessage = (slug) => ({ embeds: [compEmbed(slug), FOLLOW_EMBED] });
 
 function callEmbed(slug, c) {
