@@ -1,5 +1,6 @@
 {
-  "__doc__": "Locals whose own site publishes a job-calls / referral list, keyed by slug (the `id` in the ranked list). Add an entry to scrape another local; `scripts/scrape-job-calls.mjs` parses each `url` into js/data/job-calls.json. Spot-check a new one with `node scripts/scrape-job-calls.mjs --only <slug>`. The `discord` block routes notifications: one forum channel per state, one thread per local (created on first post; ids kept in scripts/discord-threads.json). Channel ids aren't secret — the bot token is (repo secret DISCORD_BOT_TOKEN).",
+  "__doc__": "Locals whose own site publishes a job-calls / referral list, keyed by slug (the `id` in the ranked list). Add an entry to scrape another local; `scripts/scrape-job-calls.mjs` parses each `url` into js/data/job-calls.json. Spot-check a new one with `node scripts/scrape-job-calls.mjs --only <slug>`. `site_url` is the public site, linked from every Discord message — update it if the site moves. The `discord` block routes notifications: one forum channel per state, one thread per local (created on first post; ids kept in scripts/discord-threads.json). Channel ids aren't secret — the bot token is (repo secret DISCORD_BOT_TOKEN).",
+  "site_url": "https://curtreuter.github.io/whichlocal/",
   "discord": {
     "forums": {
       "FL": ""

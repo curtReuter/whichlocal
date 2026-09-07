@@ -69,9 +69,11 @@ if (!DRY && !BOT_TOKEN) {
   process.exit(0);
 }
 
-const discordCfg = readJson(CONFIG, {}).discord || {};
+const cfg = readJson(CONFIG, {});
+const discordCfg = cfg.discord || {};
 const forums = discordCfg.forums || {};
 const defaultChannel = discordCfg.default_channel_id || '';
+const siteUrl = cfg.site_url ? cfg.site_url.replace(/\/?$/, '/') : ''; // normalised, '' if unset
 const threads = readJson(THREADS, {});
 let threadsDirty = false;
 
@@ -107,8 +109,11 @@ function embedsFor(slug) {
     title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
     // NOTE: no `url` — Discord merges same-message embeds that share a url, and
     // one message per call also reads better in a thread.
-    description: trunc(`${c.text}\n\n[full list](${l.url})`, 4000) +
-      (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
+    description: trunc(
+      `${c.text}\n\n[full list](${l.url})` +
+      (siteUrl ? ` · [view map](${siteUrl})` : ''),
+      4000,
+    ) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
     footer: { text: l.posted ? `List posted ${l.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
   }));
