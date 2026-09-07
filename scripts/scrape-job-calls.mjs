@@ -7,11 +7,13 @@
  *   node scripts/scrape-job-calls.mjs --only l606-orlando-fl
  *   node scripts/scrape-job-calls.mjs --offline       # re-parse the cached HTML
  *
- * State: each call gets a stable `id` (hash of its text) plus `first_seen` /
- * `last_seen`. The previous js/data/job-calls.json is read and those timestamps
- * are carried forward, so a call that persists across runs keeps its original
- * `first_seen`. Calls that are new this run are also written to
- * scripts/cache/job-calls-delta.json for scripts/notify-discord.mjs.
+ * State: each call gets a stable `id` (hash of its exact text), a `key` (hash of
+ * the text with the leading count stripped — the listing identity, unchanged by
+ * "10 → 9"), plus `first_seen` / `last_seen`. The previous js/data/job-calls.json
+ * is read and those timestamps carried forward. scripts/cache/job-calls-delta.json
+ * records this run's `added` (new listings), `edited` (same `key`, wording/count
+ * changed — carries `prev_id` / `prev_count`) and `filled` (gone) for
+ * scripts/notify-discord.mjs.
  *
  * Conduct: one request per local per run; the HTML is cached to scripts/cache/
  * so `--offline` re-runs never touch the sites. Identifies itself with a
@@ -78,7 +80,14 @@ const plain = (html) => decode(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' 
 const normKey = (t) =>
   t.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
     .replace(/\s+/g, ' ').trim();
-const callId = (t) => createHash('sha1').update(normKey(t)).digest('hex').slice(0, 16);
+const sha16 = (s) => createHash('sha1').update(s).digest('hex').slice(0, 16);
+
+// `id` identifies the exact wording of a call — it changes on any edit.
+const callId = (t) => sha16(normKey(t));
+// `key` identifies the *listing* regardless of how many are left on it: drop the
+// leading count ("10 Journeyman…" / "5 - JW…") so "10 → 9" is seen as the same
+// listing edited, not one call filled and a different one opened.
+const listingKey = (t) => sha16(normKey(t).replace(/^\d+\s*(?:[-–—]\s*)?/, ''));
 
 const prettyPlace = (slug) => {
   const parts = slug.replace(/^l\d+-/, '').split('-');
@@ -166,7 +175,10 @@ function parseJobCalls(html, formatNames) {
     for (const f of active) {
       const hit = f.match(t);
       if (hit) {
-        calls.push({ id: callId(t), count: hit.count, classification: hit.classification, text: t });
+        calls.push({
+          id: callId(t), key: listingKey(t),
+          count: hit.count, classification: hit.classification, text: t,
+        });
         break;
       }
     }
@@ -188,51 +200,67 @@ const prev = existsSync(OUT)
   : {};
 
 const out = { generated_at: RUN_TS, locals: {} };
-const delta = { generated_at: RUN_TS, added: {}, filled: {} };
+const delta = { generated_at: RUN_TS, added: {}, edited: {}, filled: {} };
 let ok = 0;
 let failed = 0;
 let newTotal = 0;
+let editedTotal = 0;
 
 for (const [slug, { local_no, url, format }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
     const parsed = parseJobCalls(await getHtml(slug, url), [].concat(format || []));
 
-    // index the previous run's calls by id and by normalised text (older files
-    // may predate `id`, so match on text too)
+    // index the previous run's calls two ways: `byId` = exact wording, `byKey` =
+    // the listing regardless of how many are left on it (older files may predate
+    // either field, so fall back to hashing the stored text).
     const prevCalls = (prev[slug] && prev[slug].calls) || [];
-    const byId = new Map();
-    const byText = new Map();
-    for (const pc of prevCalls) {
-      const id = pc.id || callId(pc.text);
-      const seen = pc.first_seen || prev[slug].scraped_at || RUN_TS;
-      byId.set(id, seen);
-      byText.set(normKey(pc.text), seen);
-    }
+    const seenOf = (pc) => pc.first_seen || prev[slug].scraped_at || RUN_TS;
+    const pcId = (pc) => pc.id || callId(pc.text);
+    const pcKey = (pc) => pc.key || listingKey(pc.text);
+    const byId = new Map(prevCalls.map((pc) => [pcId(pc), pc]));
+    const byKey = new Map(prevCalls.map((pc) => [pcKey(pc), pc]));
 
     const fresh = [];
+    const changed = [];
     for (const c of parsed.calls) {
-      const priorSeen = byId.get(c.id) ?? byText.get(normKey(c.text));
-      c.first_seen = priorSeen ?? RUN_TS;
+      const exact = byId.get(c.id);
+      const sameListing = exact || byKey.get(c.key);
+      c.first_seen = sameListing ? seenOf(sameListing) : RUN_TS;
       c.last_seen = RUN_TS;
-      if (priorSeen == null) fresh.push(c);
+      if (exact) continue;                         // unchanged
+      if (sameListing) {                           // same listing, wording/count edited
+        changed.push({ ...c, prev_id: pcId(sameListing), prev_count: sameListing.count });
+      } else {
+        fresh.push(c);                             // a listing we've not seen before
+      }
     }
 
+    // a previous call is "gone" only when neither its exact id nor its listing
+    // key turns up this run — an edited listing is a change, not a removal
+    const curIds = new Set(parsed.calls.map((c) => c.id));
+    const curKeys = new Set(parsed.calls.map((c) => c.key));
     const gone = prevCalls
-      .map((pc) => pc.id || callId(pc.text))
-      .filter((id) => !parsed.calls.some((c) => c.id === id));
+      .filter((pc) => !curIds.has(pcId(pc)) && !curKeys.has(pcKey(pc)))
+      .map(pcId);
 
     out.locals[slug] = { local_no, url, scraped_at: RUN_TS, ...parsed };
     if (fresh.length) {
       newTotal += fresh.length;
       delta.added[slug] = { local_no, url, ...prettyPlace(slug), posted: parsed.posted, calls: fresh };
     }
+    if (changed.length) {
+      editedTotal += changed.length;
+      delta.edited[slug] = { local_no, url, ...prettyPlace(slug), posted: parsed.posted, calls: changed };
+    }
     if (gone.length) delta.filled[slug] = { local_no, ids: gone };
 
     ok++;
     console.log(
       `${slug}: ${parsed.total} job calls, ${parsed.calls.length} listings` +
-      `${fresh.length ? `, ${fresh.length} NEW` : ''}${gone.length ? `, ${gone.length} filled/removed` : ''}`,
+      `${fresh.length ? `, ${fresh.length} NEW` : ''}` +
+      `${changed.length ? `, ${changed.length} EDITED` : ''}` +
+      `${gone.length ? `, ${gone.length} filled/removed` : ''}`,
     );
   } catch (e) {
     failed++;
@@ -248,7 +276,7 @@ writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');
 writeFileSync(DELTA, JSON.stringify(delta, null, 2) + '\n');
 console.log(
   `Wrote ${OUT} (${Object.keys(out.locals).length} local(s), ${ok} ok, ${failed} failed) ` +
-  `and ${DELTA} (${newTotal} new call(s)).`,
+  `and ${DELTA} (${newTotal} new, ${editedTotal} edited call(s)).`,
 );
 
 if (failed && !ok) process.exit(1);

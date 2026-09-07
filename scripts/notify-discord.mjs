@@ -3,6 +3,8 @@
  *   • the thread's opening post is a live compensation card (rebuilt every run
  *     from js/data/locals.json — Total package, hourly, pensions, COL, dues …);
  *   • new job calls are posted below it as individual messages;
+ *   • when a listing's count/wording changes (e.g. 10 → 9 left), its message
+ *     is edited in place;
  *   • when a call drops off the local's list, its message is deleted.
  *
  * Layout: one forum channel per state (ids in scripts/job-calls.config.json →
@@ -111,9 +113,14 @@ if (COMP_ONLY) {
 // job calls that dropped off a local's list since the last scrape → their
 // Discord messages get deleted (slug → [callId, …]). Not in --comp-only or --all.
 let filledCalls = {};
+// job calls whose wording/count changed on the same listing (e.g. 10 → 9 left)
+// → the existing message is edited in place (slug → [call, …], each with
+// prev_id / prev_count). Not in --comp-only or --all.
+let editedCalls = {};
 if (!COMP_ONLY && !ALL && existsSync(DELTA)) {
-  const filled = readJson(DELTA, { filled: {} }).filled || {};
-  filledCalls = Object.fromEntries(Object.entries(filled).map(([s, f]) => [s, f.ids || []]));
+  const d = readJson(DELTA, { filled: {}, edited: {} });
+  filledCalls = Object.fromEntries(Object.entries(d.filled || {}).map(([s, f]) => [s, f.ids || []]));
+  editedCalls = Object.fromEntries(Object.entries(d.edited || {}).map(([s, e]) => [s, e.calls || []]));
 }
 
 const threads = readJson(THREADS, {});
@@ -135,6 +142,7 @@ const slugs = [...new Set([
   ...Object.keys(cfg).filter((k) => /^l\d/.test(k)),
   ...Object.keys(newCalls).filter((s) => newCalls[s].length),
   ...Object.keys(filledCalls).filter((s) => filledCalls[s].length),
+  ...Object.keys(editedCalls).filter((s) => editedCalls[s].length),
 ])];
 if (!slugs.length) {
   console.log('No locals configured for job calls.');
@@ -199,13 +207,18 @@ const compMessage = (slug) => ({ embeds: [compEmbed(slug), FOLLOW_EMBED] });
 function callEmbed(slug, c) {
   // No local header — every call message is posted inside that local's own thread.
   const jc = readJson(FULL, { locals: {} }).locals?.[slug] || {};
+  const kind = c.prev_id ? 'job call updated' : ALL ? 'job call' : 'new job call';
+  const countNote =
+    c.prev_id && typeof c.prev_count === 'number' && c.prev_count !== c.count
+      ? `\n\n_${c.prev_count}× → ${c.count}× ${c.classification}_`
+      : '';
+  const links = jc.url
+    ? `\n\n[full list](${jc.url}) · [view map](${siteUrl})`
+    : `\n\n[view map](${siteUrl})`;
   return {
     color: GREEN,
-    title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
-    description: trunc(
-      `${c.text}` + (jc.url ? `\n\n[full list](${jc.url}) · [view map](${siteUrl})` : `\n\n[view map](${siteUrl})`),
-      4000,
-    ),
+    title: trunc(`${c.count}× ${c.classification} — ${kind}`, 256),
+    description: trunc(`${c.text}${countNote}${links}`, 4000),
     footer: { text: jc.posted ? `List posted ${jc.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
   };
@@ -251,12 +264,14 @@ async function refreshComp(entry, slug, forumId) {
 
 let comps = 0;
 let posts = 0;
+let edits = 0;
 let deletes = 0;
 let skipped = 0;
 
 for (const slug of slugs) {
   const calls = newCalls[slug] || [];
   const filled = filledCalls[slug] || [];
+  const edited = editedCalls[slug] || [];
   const { state } = localBySlug.get(slug)
     ? { state: localBySlug.get(slug).state }
     : place(slug);
@@ -273,11 +288,14 @@ for (const slug of slugs) {
 
   if (DRY) {
     const canDelete = entry ? filled.filter((id) => entry.calls[id]).length : 0;
+    const canEdit = entry ? edited.filter((c) => c.prev_id && entry.calls[c.prev_id]).length : 0;
     console.log(`  ${slug}: ${entry ? `refresh comp on ${entry.comp}` : `create thread in forum ${forumId} (comp card as starter)`}` +
       (calls.length ? ` · post ${calls.length} call message(s)` : '') +
+      (canEdit ? ` · edit ${canEdit} changed-call message(s)` : '') +
       (canDelete ? ` · delete ${canDelete} filled-call message(s)` : ''));
     comps += 1;
     posts += calls.length;
+    edits += canEdit;
     deletes += canDelete;
     continue;
   }
@@ -297,6 +315,38 @@ for (const slug of slugs) {
       const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
       if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
       posts += 1;
+      await sleep(700);
+    }
+
+    // a listing whose count/wording changed → edit its message in place, then
+    // re-key entry.calls from the old text-hash to the new one
+    for (const c of edited) {
+      const msgId = c.prev_id && entry.calls[c.prev_id];
+      if (!msgId) {
+        // we never posted the original — treat it as a new call
+        const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+        if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
+        posts += 1;
+        await sleep(700);
+        continue;
+      }
+      try {
+        await discord('PATCH', `/channels/${entry.thread}/messages/${msgId}`, { embeds: [callEmbed(slug, c)] });
+        edits += 1;
+        if (c.id) entry.calls[c.id] = msgId;
+        if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
+        threadsDirty = true;
+      } catch (e) {
+        if (e.status === 404) {
+          const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+          if (c.id && msg.id) entry.calls[c.id] = msg.id;
+          if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
+          posts += 1;
+          threadsDirty = true;
+        } else {
+          console.warn(`  ${slug}: couldn't edit changed-call message ${msgId} (${e.status ?? e.message})`);
+        }
+      }
       await sleep(700);
     }
 
@@ -328,6 +378,7 @@ if (threadsDirty && !DRY) {
 console.log(
   `${DRY ? 'Would refresh' : 'Refreshed'} ${comps} comp card(s), ` +
   `${DRY ? 'post' : 'posted'} ${posts} job-call message(s), ` +
+  `${DRY ? 'edit' : 'edited'} ${edits} changed-call message(s), ` +
   `${DRY ? 'delete' : 'deleted'} ${deletes} filled-call message(s)` +
   `${skipped ? `, ${skipped} skipped` : ''}.`,
 );

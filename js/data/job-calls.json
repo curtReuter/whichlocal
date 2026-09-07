@@ -11,6 +11,7 @@
       "calls": [
         {
           "id": "1900a3a2ce1cab4f",
+          "key": "51d5467957a9059a",
           "count": 1,
           "classification": "Journeyman Wireman",
           "text": "1 Journeyman Wireman calls for Maddox Electric at Animal Kingdom working 4-10’s and an 8 with a 10 pm start time. The scale is $32.64 an hour plus a 15% night shift differential. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
@@ -19,6 +20,7 @@
         },
         {
           "id": "c9906727ab351a2c",
+          "key": "c4e6b2d76f72199e",
           "count": 1,
           "classification": "Journeyman Wireman",
           "text": "1 Journeyman Wireman call for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with occasional overtime. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
@@ -27,6 +29,7 @@
         },
         {
           "id": "6e3ce8b5fdf6d286",
+          "key": "9e52fd62ab81fcfb",
           "count": 10,
           "classification": "Journeyman Wireman",
           "text": "10 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm to 7:30am, Monday through Friday the scale is $33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
@@ -45,6 +48,7 @@
       "calls": [
         {
           "id": "ff174a956a8367c9",
+          "key": "6e7ef5d39c5c2f29",
           "count": 1,
           "classification": "Journeyman Wireman",
           "text": "1 - JW ESU, Working at Patrick Space Force Station, Working 5 - 8's with a 7am start time, Possible OT in the next month. Report after badge is approved $40.30",
@@ -53,6 +57,7 @@
         },
         {
           "id": "c611e60b7601da51",
+          "key": "afeee8a58a21b09e",
           "count": 5,
           "classification": "Journeyman Wireman",
           "text": "5 - JW Cache Valley Electric, Working at LC-37 at the Space Center, Working 6 - 10's with a start time of 7am. Report after badge is approved $40.30",
