@@ -177,6 +177,7 @@ async function resolveForum(st) {
       const ch = await discord('POST', `/guilds/${guildId}/channels`, payload);
       fe.id = ch.id;
       if (categoryId) fe.parent = ch.parent_id || categoryId;
+      liveChannelIds?.add(ch.id); // it exists now — don't let forumAlive reject it this run
       saveThreads();
       forumBudget -= 1;
       const where = ch.parent_id ? `under ${ch.parent_id}` : 'at server root';
@@ -371,6 +372,7 @@ if (guildId && !DRY && !COMP_ONLY && BOT_TOKEN) {
         const ch = await discord('POST', `/guilds/${guildId}/channels`, payload);
         fe.id = ch.id;
         fe.parent = ch.parent_id || (categoryId || null);
+        liveChannelIds.add(ch.id); // usable this run, not just next
         saveThreads();
         forumBudget -= 1;
         console.log(`  + created forum #${fe.name} (${ch.id}) for ${st} ${ch.parent_id ? `under ${ch.parent_id}` : 'at server root'}`);
@@ -463,6 +465,7 @@ for (const slug of slugs) {
     if (!entry) {
       entry = await createThread(forumId, slug);
       console.log(`  ${slug}: created thread ${entry.thread}`);
+      if (!COMP_ONLY) { threads[slug] = entry; saveThreads(); } // persist now — a timeout mustn't orphan it into a dupe
     } else {
       const updated = await refreshComp(entry, slug, forumId);
       if (updated.thread !== entry.thread || updated.comp !== entry.comp) entry = updated;
