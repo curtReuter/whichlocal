@@ -137,6 +137,14 @@ body {
   white-space: nowrap;
 }
 
+/* full-width line under the toggle + selector */
+.metric-switch__hint {
+  flex: 1 0 100%;
+  margin-top: -2px;
+  font-size: 11.5px;
+  color: var(--text-soft);
+}
+
 .metric-switch__select {
   appearance: none;
   padding: 9px 34px 9px 12px;
@@ -595,6 +603,7 @@ body.is-resizing .leaflet-container { pointer-events: none; }
     flex: 1 0 100%;
     justify-content: center;
   }
+  .metric-switch__hint { text-align: center; }
 
   .app__body {
     flex: 1 0 auto;
