@@ -32,8 +32,8 @@ whichlocal/
 │   ├── overrides.json           hand-entered data corrections (see Manual corrections)
 │   ├── scrape-job-calls.mjs     scrape locals' own job-call pages → js/data/job-calls.json
 │   ├── job-calls.config.json    which locals' sites to scrape for job calls
-│   ├── notify-discord.mjs       post new job calls into per-local Discord forum threads
-│   ├── discord-threads.json     slug → forum-thread id (committed by job-calls.yml)
+│   ├── notify-discord.mjs       per-local forum threads: comp card + new job calls
+│   ├── discord-threads.json     slug → { thread, comp } message ids (committed by job-calls.yml)
 │   ├── lib/pb.mjs               .env loader + PocketBase auth helpers
 │   ├── lib/overrides.mjs        override loader + merge rule (shared)
 │   └── cache/                   cached page HTML + geocache.json
@@ -254,10 +254,12 @@ publish a list.
 
 ### Discord notifications
 
-`scripts/notify-discord.mjs` posts each new job call into its local's Discord
-**forum thread**. Layout: one forum channel per state, one thread per local.
-It's *outbound only* — no gateway, no slash commands — so it runs as a one-shot
-step in `job-calls.yml`.
+`scripts/notify-discord.mjs` keeps a **forum thread per local**: the thread's
+opening post is a live **compensation card** (rebuilt from `js/data/locals.json`
+every run — total package, hourly, pensions, COL, dues, wage-sheet link), and
+new job calls are posted below it. Layout: one forum channel per state. Outbound
+only — no gateway, no slash commands — so it runs as a one-shot step in
+`job-calls.yml`.
 
 **Setup (once):**
 
@@ -265,7 +267,7 @@ step in `job-calls.yml`.
    Bot → Reset Token). This is the only secret.
 2. **Invite the bot** (OAuth2 → URL Generator → scope `bot`) with: *View
    Channels, Send Messages, Send Messages in Threads, Create Public Threads,
-   Embed Links, Read Message History*.
+   Manage Messages, Embed Links, Read Message History*.
 3. Create a **Forum channel per state** you cover (e.g. `job-calls-florida`),
    right-click → **Copy Channel ID**, and add it to
    `scripts/job-calls.config.json`:
@@ -281,11 +283,12 @@ Channel ids aren't secret. A local whose state has no forum falls back to
 `default_channel_id`; if that's blank too it's skipped with a warning, so you can
 roll out state by state. Without `DISCORD_BOT_TOKEN` the step is a no-op.
 
-The bot creates each local's thread (`IBEW Local 606 — Orlando`) the first time
-it has a call to post and records the id in `scripts/discord-threads.json`
-(committed by the workflow) so later runs reuse it. **Pre-seed a row there to
-point at a thread you made by hand.** Posting to an archived thread reopens it;
-a deleted thread is recreated next run.
+The bot creates each configured local's thread (`IBEW Local 606 — Orlando`) with
+the comp card as the starter message, and records `{ thread, comp }` in
+`scripts/discord-threads.json` (committed by the workflow) — `comp` is the
+message it edits each run. Delete a row to force a recreate; a deleted thread is
+recreated automatically. If a thread's starter isn't the bot's (e.g. one you
+made by hand), it posts and pins a comp message instead.
 
 **Test it:** Actions → *Job calls + Discord* → **Run workflow** with **"Post
 EVERY current job call"** ticked — posts every call on the board once

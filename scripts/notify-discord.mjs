@@ -1,30 +1,51 @@
 /**
- * Post each new job call into its local's Discord forum thread.
+ * Keep each local's Discord **forum thread** current:
+ *   • the thread's opening post is a live compensation card (rebuilt every run
+ *     from js/data/locals.json — Total package, hourly, pensions, COL, dues …);
+ *   • new job calls are posted below it as individual messages.
  *
- * Layout: one **forum channel per state** (ids in scripts/job-calls.config.json
- * → discord.forums), one **thread per local** inside it. The thread is created
- * the first time a local has a call to post; its id is saved to
- * scripts/discord-threads.json so later runs post to the same thread (pre-seed a
- * row there to reuse a thread you made by hand). Members "Follow" the threads
- * for the locals they care about.
+ * Layout: one forum channel per state (ids in scripts/job-calls.config.json →
+ * discord.forums), one thread per local. Threads are created on first run and
+ * their ids saved to scripts/discord-threads.json as { thread, comp } — `comp`
+ * is the message the bot edits (the forum starter message when the bot made the
+ * thread, otherwise a pinned bot message).
  *
  *   node scripts/notify-discord.mjs
  *   node scripts/notify-discord.mjs --dry-run     # print what it would do
- *   node scripts/notify-discord.mjs --all         # post EVERY current call (test)
+ *   node scripts/notify-discord.mjs --all         # also (re)post every current call
  *
  * Needs the repo secret DISCORD_BOT_TOKEN (bot invited with: View Channels,
- * Send Messages, Send Messages in Threads, Create Public Threads, Embed Links,
- * Read Message History). Missing token → exits quietly. A local whose state has
- * no forum configured falls back to discord.default_channel_id, else is skipped.
- * Outbound only — no gateway, no slash commands, safe as a one-shot Action.
+ * Send Messages, Send Messages in Threads, Create Public Threads, Manage
+ * Messages, Embed Links, Read Message History). Missing token → exits quietly.
+ * A local whose state has no forum falls back to discord.default_channel_id,
+ * else is skipped. Outbound only — no gateway, no slash commands.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+// Compensation fields for the thread's opening card — keep labels/formats in
+// sync with js/metrics.js (order = display order). Kept inline because that file
+// is a browser ES module Node can't import here.
+const perHr = (v) => `$${v.toFixed(2)}/hr`;
+const COMP_METRICS = [
+  ['total_package', 'Total package', perHr],
+  ['hourly_rate', 'Hourly rate', perHr],
+  ['yearly_salary', 'Yearly salary', (v) => `$${Math.round(v).toLocaleString('en-US')}`],
+  ['col_pct', 'Cost of living', (v) => `${Math.round(v)}%`],
+  ['defined_pension', 'Defined pension', perHr],
+  ['contribution_pension', 'Contribution pension', perHr],
+  ['k401', '401(k)', perHr],
+  ['vacation', 'Vacation', perHr],
+  ['hw', 'Health & welfare', perHr],
+  ['nebf_pension', 'NEBF pension', perHr],
+  ['dues', 'Union dues', (v) => `${v}%`],
+];
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DELTA = join(ROOT, 'scripts', 'cache', 'job-calls-delta.json');
 const FULL = join(ROOT, 'js', 'data', 'job-calls.json');
+const LOCALS = join(ROOT, 'js', 'data', 'locals.json');
 const CONFIG = join(ROOT, 'scripts', 'job-calls.config.json');
 const THREADS = join(ROOT, 'scripts', 'discord-threads.json');
 const API = 'https://discord.com/api/v10';
@@ -33,49 +54,62 @@ const DRY = process.argv.includes('--dry-run');
 const ALL = process.argv.includes('--all') || process.env.NOTIFY_ALL === '1';
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || '';
 
-const GREEN = 0x12905a;
+const GREEN = 0x12905a;   // job-call embeds
+const BLUE = 0x2c7bb6;    // compensation card (the app's --accent)
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const trunc = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
+const readJson = (p, fallback) => {
+  try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; }
+};
 const place = (slug) => {
   const parts = slug.replace(/^l\d+-/, '').split('-');
   const state = (parts.pop() || '').toUpperCase();
   return { city: parts.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), state };
 };
-const readJson = (p, fallback) => {
-  try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; }
-};
+const localNoOf = (slug) => Number(slug.match(/^l(\d+)/)?.[1]) || null;
 
-/* ---------- what to post -------------------------------------------------- */
-
-let added;
-if (ALL) {
-  const locals = readJson(FULL, { locals: {} }).locals || {};
-  added = Object.fromEntries(Object.entries(locals).map(([slug, l]) =>
-    [slug, { local_no: l.local_no, url: l.url, posted: l.posted, ...place(slug), calls: l.calls || [] }]));
-} else {
-  if (!existsSync(DELTA)) {
-    console.log('No job-calls-delta.json — run scrape-job-calls.mjs first. Nothing to send.');
-    process.exit(0);
-  }
-  added = readJson(DELTA, { added: {} }).added || {};
-}
-
-const slugs = Object.keys(added).filter((s) => (added[s].calls || []).length);
-if (!slugs.length) {
-  console.log(ALL ? 'No job calls at all.' : 'No new job calls.');
-  process.exit(0);
-}
-if (!DRY && !BOT_TOKEN) {
-  console.warn('DISCORD_BOT_TOKEN not set — skipping notifications.');
-  process.exit(0);
-}
+/* ---------- inputs ---------------------------------------------------- */
 
 const cfg = readJson(CONFIG, {});
-const discordCfg = cfg.discord || {};
-const forums = discordCfg.forums || {};
-const defaultChannel = discordCfg.default_channel_id || '';
-const siteUrl = cfg.site_url ? cfg.site_url.replace(/\/?$/, '/') : ''; // normalised, '' if unset
+const forums = cfg.discord?.forums || {};
+const defaultChannel = cfg.discord?.default_channel_id || '';
+const siteUrl = (cfg.site_url || 'https://curtreuter.github.io/whichlocal/').replace(/\/?$/, '/');
+
+const localBySlug = new Map(
+  (readJson(LOCALS, { items: [] }).items || []).map((i) => [i.slug, i]),
+);
+
+// job calls that are new since the last scrape (or every call, with --all)
+let newCalls = {};
+if (ALL) {
+  const locals = readJson(FULL, { locals: {} }).locals || {};
+  newCalls = Object.fromEntries(Object.entries(locals).map(([s, l]) => [s, l.calls || []]));
+} else if (existsSync(DELTA)) {
+  const added = readJson(DELTA, { added: {} }).added || {};
+  newCalls = Object.fromEntries(Object.entries(added).map(([s, a]) => [s, a.calls || []]));
+}
+
 const threads = readJson(THREADS, {});
 let threadsDirty = false;
+const entryOf = (slug) => {
+  const v = threads[slug];
+  if (!v) return null;
+  return typeof v === 'string' ? { thread: v, comp: v } : v; // migrate legacy string form
+};
+
+if (!DRY && !BOT_TOKEN) {
+  console.warn('DISCORD_BOT_TOKEN not set — skipping.');
+  process.exit(0);
+}
+
+const slugs = [...new Set([
+  ...Object.keys(cfg).filter((k) => /^l\d/.test(k)),
+  ...Object.keys(newCalls).filter((s) => newCalls[s].length),
+])];
+if (!slugs.length) {
+  console.log('No locals configured for job calls.');
+  process.exit(0);
+}
 
 /* ---------- Discord REST ----------------------------------------------- */
 
@@ -88,98 +122,145 @@ async function discord(method, path, body) {
     });
     if (res.status === 429) {
       const wait = ((await res.json().catch(() => ({}))).retry_after ?? 1) * 1000 + 300;
-      console.warn(`rate limited — waiting ${wait}ms`);
-      await new Promise((r) => setTimeout(r, wait));
+      console.warn(`  rate limited — waiting ${wait}ms`);
+      await sleep(wait);
       continue;
     }
     const text = await res.text();
-    if (!res.ok) { const e = new Error(`Discord ${res.status}: ${text}`); e.status = res.status; throw e; }
+    if (!res.ok) { const e = new Error(`${method} ${path} → ${res.status}: ${text}`); e.status = res.status; throw e; }
     return text ? JSON.parse(text) : {};
   }
   throw new Error('gave up after repeated 429s');
 }
 
-function embedsFor(slug) {
-  const l = added[slug];
-  const city = l.city || place(slug).city;
-  const state = l.state || place(slug).state;
-  return l.calls.map((c) => ({
-    color: GREEN,
-    author: { name: `IBEW Local ${l.local_no} — ${city}, ${state}` },
-    title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
-    // NOTE: no `url` — Discord merges same-message embeds that share a url, and
-    // one message per call also reads better in a thread.
-    description: trunc(
-      `${c.text}\n\n[full list](${l.url})` +
-      (siteUrl ? ` · [view map](${siteUrl})` : ''),
-      4000,
-    ) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
-    footer: { text: l.posted ? `List posted ${l.posted} · whichlocal` : 'whichlocal' },
+/* ---------- embeds --------------------------------------------------- */
+
+function compEmbed(slug) {
+  const l = localBySlug.get(slug);
+  const p = place(slug);
+  const name = `IBEW Local ${localNoOf(slug) ?? ''}`.trim() +
+    (l ? ` — ${l.city}, ${l.state}` : p.city ? ` — ${p.city}, ${p.state}` : '');
+
+  const fields = [];
+  if (l) {
+    for (const [id, label, fmt] of COMP_METRICS) {
+      const v = l[id];
+      if (typeof v === 'number' && v !== 0) fields.push({ name: label, value: fmt(v), inline: true });
+    }
+  }
+
+  const links = [`[view on the map](${siteUrl})`];
+  if (l?.wage_sheet_url) links.push(`[wage sheet](${l.wage_sheet_url})`);
+
+  return {
+    color: BLUE,
+    title: trunc(name, 256),
+    description:
+      'Journeyman compensation for this local. New job calls appear below as they’re listed.\n\n' +
+      links.join(' · '),
+    fields: fields.length ? fields : undefined,
+    footer: { text: l?.source_updated ? `Wage data updated ${l.source_updated} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
-  }));
+  };
 }
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+function callEmbed(slug, c) {
+  const l = localBySlug.get(slug);
+  const p = place(slug);
+  const jc = readJson(FULL, { locals: {} }).locals?.[slug] || {};
+  return {
+    color: GREEN,
+    author: { name: `IBEW Local ${localNoOf(slug)} — ${l?.city || p.city}, ${l?.state || p.state}` },
+    title: trunc(`${c.count}× ${c.classification} — ${ALL ? 'job call' : 'new job call'}`, 256),
+    description: trunc(
+      `${c.text}` + (jc.url ? `\n\n[full list](${jc.url}) · [view map](${siteUrl})` : `\n\n[view map](${siteUrl})`),
+      4000,
+    ) + (c.open_until_filled ? '\n\n**OPEN UNTIL FILLED**' : ''),
+    footer: { text: jc.posted ? `List posted ${jc.posted} · whichlocal` : 'whichlocal' },
+    timestamp: new Date().toISOString(),
+  };
+}
 
 /* ---------- run ------------------------------------------------------- */
 
-let posted = 0;
+async function createThread(forumId, slug) {
+  const l = localBySlug.get(slug);
+  const name = trunc(`IBEW Local ${localNoOf(slug)} — ${l?.city || place(slug).city}`, 100);
+  const t = await discord('POST', `/channels/${forumId}/threads`, {
+    name,
+    message: { embeds: [compEmbed(slug)] },
+  });
+  return { thread: t.id, comp: t.id }; // forum starter message id == thread id
+}
+
+async function refreshComp(entry, slug, forumId) {
+  try {
+    await discord('PATCH', `/channels/${entry.thread}/messages/${entry.comp}`, { embeds: [compEmbed(slug)] });
+    return entry;
+  } catch (e) {
+    if (e.status === 404) {
+      if (!forumId) throw new Error('thread gone and no forum to recreate it in');
+      console.warn(`  ${slug}: thread/message gone — recreating`);
+      return createThread(forumId, slug);
+    }
+    if (e.status === 403 || String(e.message).includes('50005')) {
+      // comp message isn't ours to edit — post a fresh one and pin it
+      const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [compEmbed(slug)] });
+      await discord('PUT', `/channels/${entry.thread}/pins/${msg.id}`).catch(() => {});
+      return { thread: entry.thread, comp: msg.id };
+    }
+    throw e;
+  }
+}
+
+let comps = 0;
+let posts = 0;
 let skipped = 0;
 
 for (const slug of slugs) {
-  const l = added[slug];
-  const state = l.state || place(slug).state;
+  const calls = newCalls[slug] || [];
+  const { state } = localBySlug.get(slug)
+    ? { state: localBySlug.get(slug).state }
+    : place(slug);
   const forumId = forums[state] || defaultChannel;
-  const embeds = embedsFor(slug); // one per call — sent as one message each
-  let threadId = threads[slug];
+  let entry = entryOf(slug);
 
-  if (!threadId && !forumId) {
-    console.warn(`  ${slug}: no forum for ${state} and no default_channel_id — skipped`);
+  if (!entry && !forumId) {
+    console.warn(`  ${slug}: no forum for ${state} and no default_channel_id — skipped${calls.length ? ` (${calls.length} new call[s])` : ''}`);
     skipped += 1;
     continue;
   }
 
   if (DRY) {
-    console.log(`  ${slug}: ${threadId
-      ? `post ${embeds.length} message(s) to thread ${threadId}`
-      : `create thread "IBEW Local ${l.local_no} — ${l.city || place(slug).city}" in forum ${forumId}, then ${embeds.length} message(s)`}`);
-    posted += embeds.length;
+    console.log(`  ${slug}: ${entry ? `refresh comp on ${entry.comp}` : `create thread in forum ${forumId} (comp card as starter)`}` +
+      (calls.length ? ` · post ${calls.length} call message(s)` : ''));
+    comps += 1;
+    posts += calls.length;
     continue;
   }
 
   try {
-    let start = 0;
-    if (!threadId) {
-      const thread = await discord('POST', `/channels/${forumId}/threads`, {
-        name: trunc(`IBEW Local ${l.local_no} — ${l.city || place(slug).city}`, 100),
-        message: { embeds: [embeds[0]] },
-      });
-      threadId = thread.id;
-      threads[slug] = threadId;
-      threadsDirty = true;
-      start = 1;
-      console.log(`  ${slug}: created thread ${threadId}`);
+    if (!entry) {
+      entry = await createThread(forumId, slug);
+      console.log(`  ${slug}: created thread ${entry.thread}`);
+    } else {
+      const updated = await refreshComp(entry, slug, forumId);
+      if (updated.thread !== entry.thread || updated.comp !== entry.comp) entry = updated;
     }
-    for (let i = start; i < embeds.length; i += 1) {
-      try {
-        await discord('POST', `/channels/${threadId}/messages`, { embeds: [embeds[i]] });
-      } catch (e) {
-        if (e.status === 404 && start === 0) {
-          // stored thread is gone — drop it and recreate on the next run
-          delete threads[slug];
-          threadsDirty = true;
-          console.warn(`  ${slug}: thread ${threadId} missing (404) — cleared, will recreate next run`);
-          break;
-        }
-        throw e;
-      }
+    threads[slug] = entry;
+    threadsDirty = true;
+    comps += 1;
+
+    for (const c of calls) {
+      await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+      posts += 1;
       await sleep(700);
     }
-    posted += embeds.length;
   } catch (e) {
     console.error(`  ${slug}: ${e.message}`);
     skipped += 1;
   }
+  await sleep(400);
 }
 
 if (threadsDirty && !DRY) {
@@ -187,6 +268,7 @@ if (threadsDirty && !DRY) {
 }
 
 console.log(
-  `${DRY ? 'Would post' : 'Posted'} ${posted} embed(s) across ${slugs.length - skipped} local(s)` +
+  `${DRY ? 'Would refresh' : 'Refreshed'} ${comps} comp card(s), ` +
+  `${DRY ? 'post' : 'posted'} ${posts} job-call message(s)` +
   `${skipped ? `, ${skipped} skipped` : ''}.`,
 );

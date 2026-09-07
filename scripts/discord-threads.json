@@ -1,5 +1,3 @@
 {
-  "__doc__": "slug → Discord forum-thread id. scripts/notify-discord.mjs reads this to post a local's job calls into its own thread, and appends an entry the first time it creates one. Pre-seed a row to point at a thread you made by hand.",
-  "l606-orlando-fl": "1546379032021438464",
-  "l756-daytona-beach-fl": "1546387503890829353"
+  "__doc__": "slug → { thread, comp }. scripts/notify-discord.mjs creates a forum thread per local, keeps a live compensation card as its opening post (`comp` = the message id it edits), and posts new job calls below. Rows are appended automatically on first run; delete a row to make the bot recreate that thread."
 }
