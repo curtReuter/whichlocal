@@ -137,12 +137,15 @@ body {
   white-space: nowrap;
 }
 
-/* centered just under the selector without widening the switch (desktop) */
+/* wraps just the <select> so the hint can anchor to it */
+.metric-switch__field { position: relative; display: inline-flex; align-items: center; }
+
+/* centered under the selector only, out of flow so the switch keeps its width */
 .metric-switch__hint {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   margin-top: 2px;
   font-size: 11.5px;
   color: var(--text-soft);
@@ -608,13 +611,14 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   .metric-switch {
     flex: 1 0 100%;
     justify-content: center;
+    align-items: flex-start;   /* keep "Showing" level with the select, hint hangs below */
   }
-  /* hint drops back into flow as a centered line under the selector */
+  /* selector + hint stack, hint back in flow as a centered line beneath it */
+  .metric-switch__field { flex-direction: column; }
   .metric-switch__hint {
     position: static;
-    flex: 1 0 100%;
-    margin-top: 0;
-    text-align: center;
+    transform: none;
+    margin-top: 3px;
     white-space: normal;
   }
 
