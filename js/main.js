@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=34';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=34';
-import { createCityMap } from './cityMap.js?v=34';
+import { metrics } from './metrics.js?v=35';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=35';
+import { createCityMap } from './cityMap.js?v=35';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -234,7 +234,7 @@ function buildJobsView(jc) {
     '</div>' +
     (calls || '<p class="detail__call">No open calls listed right now.</p>') +
     '<div class="detail__foot">' +
-      '<button type="button" class="detail__link detail__back">←&nbsp;Compensation data</button>' +
+      '<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>' +
     '</div>'
   );
 }
