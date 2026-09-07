@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=43';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=43';
-import { createCityMap } from './cityMap.js?v=43';
+import { metrics } from './metrics.js?v=44';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=44';
+import { createCityMap } from './cityMap.js?v=44';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -85,8 +85,10 @@ const state = {
   metricId: 'job_calls',   // default view: locals ranked by open job calls
   sortDesc: true,
   selectedId: null,
-  // Which view the green detail panel shows: 'comp' (metric grid) or 'jobs'.
+  // Which face of the green detail panel shows: 'comp' | 'jobs' | 'edit' | 'addcall'.
   detailView: 'comp',
+  // where a submission form was opened from, so its "Back" returns there.
+  detailReturn: 'comp',
   // "Compare" mode: divide the chosen metric by local cost of living, so values
   // read as national-average dollars (how far the pay actually goes).
   compare: false,
@@ -166,7 +168,7 @@ for (const [id, meta] of Object.entries(metrics)) {
 
 // Default to the job-calls view; fall back to total package if no local has a
 // job-calls list yet (so the app still shows something on first load).
-if (state.metricId === 'job_calls' && pointsForMetric('job_calls').length === 0) {
+if (state.metricId === 'job_calls' && Object.keys(jobCalls).length === 0) {
   state.metricId = 'total_package';
 }
 els.select.value = state.metricId;
@@ -179,38 +181,31 @@ function pointsForMetric(metricId) {
     .map((c) => {
       const n = jobCallCount(c.id);
       const base = { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng };
+      const grey = { ...base, value: null, dataless: true, tp: null };
 
-      // roster-only local: a grey dot on every metric except job calls (where it
-      // only shows if it actually has calls, and then it's a normal green point)
-      if (c.dataless && !(isJobs && n != null)) {
-        if (isJobs) return null;
-        return {
-          ...base, value: null, dataless: true,
-          badge: n != null ? jobCallLabel(n) : null,
-          tp: null,
-        };
+      if (isJobs) {
+        // the whole roster shows on the job-calls view: a green dot with the
+        // count for locals that have calls, a grey "no calls" dot for the rest
+        return n != null
+          ? { ...base, value: n, badge: jobCallLabel(n), hideValue: true, tp: c.values.total_package }
+          : grey;
       }
 
-      let value;
-      if (isJobs) {
-        if (n == null) return null; // only locals that publish a job-calls list
-        value = n;
-      } else {
-        value = c.values[metricId];
-        if (!Number.isFinite(value)) return null;
-        if (state.compare) {
-          // divide by cost of living (as a fraction of the national average)
-          const col = c.values.col_pct;
-          if (!Number.isFinite(col) || col <= 0) return null;
-          value /= col / 100;
-        }
+      // roster-only local: a grey dot on any wage metric
+      if (c.dataless) return { ...grey, badge: n != null ? jobCallLabel(n) : null };
+
+      let value = c.values[metricId];
+      if (!Number.isFinite(value)) return null;
+      if (state.compare) {
+        // divide by cost of living (as a fraction of the national average)
+        const col = c.values.col_pct;
+        if (!Number.isFinite(col) || col <= 0) return null;
+        value /= col / 100;
       }
       return {
         ...base, value,
-        // green "N job calls" line in the map tooltip for any local that has
-        // calls; on the job-calls metric it stands in for the plain value line
+        // green "N job calls" tooltip line for any local that has calls
         badge: n != null ? jobCallLabel(n) : null,
-        hideValue: isJobs,
         tp: c.values.total_package, // shown in the list when metric = job_calls
       };
     })
@@ -457,16 +452,25 @@ function buildJobsView(jc, { noBack = false } = {}) {
   const calls = jc.calls
     .map((c) => `<p class="detail__call">${esc(c.text)}</p>`)
     .join('');
+  // the dataless local's inline jobs view (noBack) gets its buttons from the
+  // trailing CONTRIB_BUTTONS instead, so skip the footer there
+  const foot = [];
+  if (!noBack) {
+    foot.push('<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>');
+    if (CONTRIB_KEY) {
+      foot.push(
+        '<span class="detail__footacts">' +
+          '<button type="button" class="detail__go detail__go--call">Add Job Call</button>' +
+        '</span>',
+      );
+    }
+  }
   return (
     `<div class="detail__jobs-head">${esc(jobCallLabel(jc.total))}` +
       (jc.posted ? ` <span class="detail__jobs-date">· ${esc(jc.posted)}</span>` : '') +
     '</div>' +
     (calls || '<p class="detail__call">No open calls listed right now.</p>') +
-    (noBack
-      ? ''
-      : '<div class="detail__foot">' +
-          '<button type="button" class="detail__link detail__back">←&nbsp;Wage data</button>' +
-        '</div>')
+    (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '')
   );
 }
 
@@ -545,11 +549,15 @@ function renderList(points, meta) {
       });
       const toView = (view) => (e) => {
         e.stopPropagation();
+        // remember where a form was opened from, so its "Back" returns there
+        if (view === 'edit' || view === 'addcall') {
+          state.detailReturn = state.detailView === 'jobs' ? 'jobs' : 'comp';
+        }
         state.detailView = view;
         rerenderList();
       };
       li.querySelector('.detail__back')?.addEventListener('click', toView('comp'));
-      li.querySelector('.detail__formcancel')?.addEventListener('click', toView('comp'));
+      li.querySelector('.detail__formcancel')?.addEventListener('click', toView(state.detailReturn || 'comp'));
       li.querySelector('.detail__go--edit')?.addEventListener('click', toView('edit'));
       li.querySelector('.detail__go--call')?.addEventListener('click', toView('addcall'));
       const form = li.querySelector('.detail__form');
