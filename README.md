@@ -263,7 +263,9 @@ publish a list.
 `scripts/notify-discord.mjs` keeps a **forum thread per local**: the thread's
 opening post is a live **compensation card** (rebuilt from `js/data/locals.json`
 every run — total package, hourly, pensions, COL, dues, wage-sheet link), and
-new job calls are posted below it. Layout: one forum channel per state. Outbound
+new job calls are posted below it. When a call drops off the local's list, the
+message posted for it is deleted (the call id → message id map lives in
+`scripts/discord-threads.json`). Layout: one forum channel per state. Outbound
 only — no gateway, no slash commands — so it runs as a one-shot step in
 `job-calls.yml`.
 

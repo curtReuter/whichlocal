@@ -2,13 +2,16 @@
  * Keep each local's Discord **forum thread** current:
  *   • the thread's opening post is a live compensation card (rebuilt every run
  *     from js/data/locals.json — Total package, hourly, pensions, COL, dues …);
- *   • new job calls are posted below it as individual messages.
+ *   • new job calls are posted below it as individual messages;
+ *   • when a call drops off the local's list, its message is deleted.
  *
  * Layout: one forum channel per state (ids in scripts/job-calls.config.json →
  * discord.forums), one thread per local. Threads are created on first run and
- * their ids saved to scripts/discord-threads.json as { thread, comp } — `comp`
- * is the message the bot edits (the forum starter message when the bot made the
- * thread, otherwise a pinned bot message).
+ * their ids saved to scripts/discord-threads.json as { thread, comp, calls } —
+ * `comp` is the message the bot edits (the forum starter message when the bot
+ * made the thread, otherwise a pinned bot message); `calls` maps each posted
+ * job call's id to its Discord message id, so the message can be removed when
+ * scrape-job-calls.mjs reports the call as gone.
  *
  *   node scripts/notify-discord.mjs
  *   node scripts/notify-discord.mjs --dry-run     # print what it would do
@@ -105,12 +108,22 @@ if (COMP_ONLY) {
   newCalls = Object.fromEntries(Object.entries(added).map(([s, a]) => [s, a.calls || []]));
 }
 
+// job calls that dropped off a local's list since the last scrape → their
+// Discord messages get deleted (slug → [callId, …]). Not in --comp-only or --all.
+let filledCalls = {};
+if (!COMP_ONLY && !ALL && existsSync(DELTA)) {
+  const filled = readJson(DELTA, { filled: {} }).filled || {};
+  filledCalls = Object.fromEntries(Object.entries(filled).map(([s, f]) => [s, f.ids || []]));
+}
+
 const threads = readJson(THREADS, {});
 let threadsDirty = false;
 const entryOf = (slug) => {
   const v = threads[slug];
   if (!v) return null;
-  return typeof v === 'string' ? { thread: v, comp: v } : v; // migrate legacy string form
+  const e = typeof v === 'string' ? { thread: v, comp: v } : v; // migrate legacy string form
+  if (!e.calls) e.calls = {}; // callId → Discord message id
+  return e;
 };
 
 if (!DRY && !BOT_TOKEN) {
@@ -121,6 +134,7 @@ if (!DRY && !BOT_TOKEN) {
 const slugs = [...new Set([
   ...Object.keys(cfg).filter((k) => /^l\d/.test(k)),
   ...Object.keys(newCalls).filter((s) => newCalls[s].length),
+  ...Object.keys(filledCalls).filter((s) => filledCalls[s].length),
 ])];
 if (!slugs.length) {
   console.log('No locals configured for job calls.');
@@ -206,7 +220,7 @@ async function createThread(forumId, slug) {
     name,
     message: { embeds: [compEmbed(slug)] },
   });
-  return { thread: t.id, comp: t.id }; // forum starter message id == thread id
+  return { thread: t.id, comp: t.id, calls: {} }; // forum starter message id == thread id
 }
 
 async function refreshComp(entry, slug, forumId) {
@@ -229,7 +243,7 @@ async function refreshComp(entry, slug, forumId) {
       // comp message isn't ours to edit — post a fresh one and pin it
       const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [compEmbed(slug)] });
       await discord('PUT', `/channels/${entry.thread}/pins/${msg.id}`).catch(() => {});
-      return { thread: entry.thread, comp: msg.id };
+      return { thread: entry.thread, comp: msg.id, calls: entry.calls || {} };
     }
     throw e;
   }
@@ -237,10 +251,12 @@ async function refreshComp(entry, slug, forumId) {
 
 let comps = 0;
 let posts = 0;
+let deletes = 0;
 let skipped = 0;
 
 for (const slug of slugs) {
   const calls = newCalls[slug] || [];
+  const filled = filledCalls[slug] || [];
   const { state } = localBySlug.get(slug)
     ? { state: localBySlug.get(slug).state }
     : place(slug);
@@ -256,10 +272,13 @@ for (const slug of slugs) {
   }
 
   if (DRY) {
+    const canDelete = entry ? filled.filter((id) => entry.calls[id]).length : 0;
     console.log(`  ${slug}: ${entry ? `refresh comp on ${entry.comp}` : `create thread in forum ${forumId} (comp card as starter)`}` +
-      (calls.length ? ` · post ${calls.length} call message(s)` : ''));
+      (calls.length ? ` · post ${calls.length} call message(s)` : '') +
+      (canDelete ? ` · delete ${canDelete} filled-call message(s)` : ''));
     comps += 1;
     posts += calls.length;
+    deletes += canDelete;
     continue;
   }
 
@@ -275,9 +294,25 @@ for (const slug of slugs) {
     comps += 1;
 
     for (const c of calls) {
-      await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+      const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+      if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
       posts += 1;
       await sleep(700);
+    }
+
+    // a call that vanished from the local's list → delete the message we posted
+    for (const id of filled) {
+      const msgId = entry.calls[id];
+      if (!msgId) continue;
+      try {
+        await discord('DELETE', `/channels/${entry.thread}/messages/${msgId}`);
+        deletes += 1;
+      } catch (e) {
+        if (e.status !== 404) console.warn(`  ${slug}: couldn't delete filled-call message ${msgId} (${e.status ?? e.message})`);
+      }
+      delete entry.calls[id];
+      threadsDirty = true;
+      await sleep(500);
     }
   } catch (e) {
     console.error(`  ${slug}: ${e.message}`);
@@ -292,6 +327,7 @@ if (threadsDirty && !DRY) {
 
 console.log(
   `${DRY ? 'Would refresh' : 'Refreshed'} ${comps} comp card(s), ` +
-  `${DRY ? 'post' : 'posted'} ${posts} job-call message(s)` +
+  `${DRY ? 'post' : 'posted'} ${posts} job-call message(s), ` +
+  `${DRY ? 'delete' : 'deleted'} ${deletes} filled-call message(s)` +
   `${skipped ? `, ${skipped} skipped` : ''}.`,
 );

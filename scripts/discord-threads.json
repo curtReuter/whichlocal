@@ -1,5 +1,5 @@
 {
-  "__doc__": "slug → { thread, comp }. scripts/notify-discord.mjs creates a forum thread per local, keeps a live compensation card as its opening post (`comp` = the message id it edits), and posts new job calls below. Rows are appended automatically on first run; delete a row to make the bot recreate that thread.",
+  "__doc__": "slug → { thread, comp, calls }. scripts/notify-discord.mjs creates a forum thread per local, keeps a live compensation card as its opening post (`comp` = the message id it edits), posts new job calls below, and deletes a call's message when it drops off the local's list. `calls` maps each job call's id (from js/data/job-calls.json) to the Discord message id posted for it. Rows are appended automatically on first run; delete a row to make the bot recreate that thread.",
   "l606-orlando-fl": {
     "thread": "1546391902927192137",
     "comp": "1546391902927192137"
