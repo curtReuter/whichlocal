@@ -162,10 +162,12 @@ if (!DRY) {
 // hard, so cap creates per run — the rest get made on the next 2-hourly run,
 // so a full roll-out spreads over a few runs instead of timing out.
 let forumBudget = Number(process.env.FORUM_CREATE_BUDGET || 8);
+let liveChannelIds = null; // Set of the guild's channel ids, once fetched below
+const forumAlive = (id) => id && (!liveChannelIds || liveChannelIds.has(id));
 async function resolveForum(st) {
   const fe = forumsMap[st];
-  if (fe && fe.id) return fe.id;
-  if (legacyForums[st]) return legacyForums[st];
+  if (fe && forumAlive(fe.id)) return fe.id;
+  if (forumAlive(legacyForums[st])) return legacyForums[st];
   const canCreate = fe && fe.name && guildId;
   if (canCreate && DRY) return `(new #${fe.name})`;
   if (canCreate && !COMP_ONLY && BOT_TOKEN && forumBudget > 0) {
@@ -326,6 +328,7 @@ if (guildId && !DRY && !COMP_ONLY && BOT_TOKEN) {
   try {
     const list = await discord('GET', `/guilds/${guildId}/channels`);
     const liveById = new Map(list.map((c) => [c.id, c]));
+    liveChannelIds = new Set(liveById.keys()); // resolveForum now rejects dead ids
     const forumByName = new Map(list.filter((c) => c.type === 15).map((c) => [c.name, c]));
     const stateOf = (slug) => normState((localBySlug.get(slug) || place(slug)).state);
 
