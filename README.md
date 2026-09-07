@@ -242,26 +242,52 @@ to Web3Forms.
 
 ### Approving a submission (Worker path)
 
-Add the label **`approved`** to a submission issue and
-`.github/workflows/apply-submission.yml` folds its JSON snippet into the right
-file and opens a PR:
+Each submission arrives as a GitHub **issue**, tagged with its kind
+(`wage-correction` / `job-call` / `job-call-removal`) and carrying a ready-to-paste
+JSON snippet. Approving one is a two-step review: the bot writes the actual file
+change as a **pull request** (a proposed edit on its own branch — nothing in the
+live site changes until you merge it), and you merge it once the diff looks right.
 
-* `wage-correction` → merges the fields into `scripts/overrides.json`
-* `job-call` → appends the call(s) to `scripts/job-calls.overrides.json`
-  (skipping any whose text is already there)
-* `job-call-removal` → no auto-apply; the bot comments to say do it by hand
+**Setup — do these three things once:**
 
-Review the PR diff and merge — that triggers `apply-overrides.yml` /
-`apply-job-calls.yml`, which take it live (and, for calls, drive Discord). Only
-people with repo write access can add labels, so a visitor can't approve their
-own submission. Re-labelling updates the existing `submission/<n>` PR.
+1. Create the labels `wage-correction`, `job-call`, `job-call-removal`, `approved`
+   (repo → **Issues → Labels → New label**, or `gh label create <name>`).
+2. **Settings → Actions → General → Workflow permissions →** tick *Allow GitHub
+   Actions to create and approve pull requests*.
+3. Push `scripts/apply-submission.mjs` + `.github/workflows/apply-submission.yml`
+   to `main`.
 
-Two one-time repo settings: create the `approved` label, and switch on
-**Settings → Actions → General → Allow GitHub Actions to create and approve pull
-requests** (otherwise the PR step can't run).
+**Per submission:**
 
-Without the label, act on a submission by hand-editing `scripts/overrides.json`
-or `scripts/job-calls.overrides.json` — the issue body has the snippet to paste.
+1. **Read the issue.** Check the numbers / call text against the linked wage
+   sheet or source.
+2. **Add the `approved` label** (issue → right sidebar → **Labels**). Leave the
+   kind label on. That's the whole approval gesture — only people with repo write
+   access can label, so a visitor can't approve their own.
+3. **The bot opens a PR.** `.github/workflows/apply-submission.yml` reads the
+   kind label and the snippet, then:
+   * `wage-correction` → merges the fields into `scripts/overrides.json`
+   * `job-call` → appends the call(s) to `scripts/job-calls.overrides.json`
+     (skips any whose text is already there)
+   * `job-call-removal` → comments "no auto-apply" and stops (removals are
+     manual — delete the entry from `scripts/job-calls.overrides.json` yourself;
+     scraped calls drop off on their own)
+
+   It pushes a `submission/<n>` branch and opens a PR whose body says
+   `Closes #<n>`. Follow the run in the repo's **Actions** tab if you want.
+4. **Review the diff and merge.** The PR is a one- or two-line change to an
+   overrides file. If it's right, click **Merge**.
+5. **It goes live.** Merging to `main` triggers `apply-overrides.yml` (wages) or
+   `apply-job-calls.yml` (calls): the override is folded into `js/data/*.json`,
+   committed, the site redeploys, and for calls the Discord bot posts/edits. The
+   issue auto-closes.
+
+**Other cases:** to reject, just close the issue without the `approved` label.
+Editing the issue body then re-adding `approved` updates the same
+`submission/<n>` PR. Approving something already applied → the bot comments
+"nothing to change" and skips the PR. You can always bypass the whole thing —
+hand-edit `scripts/overrides.json` / `scripts/job-calls.overrides.json` (the
+issue body has the snippet) and close the issue.
 
 ## The scraper
 
