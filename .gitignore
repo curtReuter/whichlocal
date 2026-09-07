@@ -15,3 +15,5 @@ pb/LICENSE.md
 
 # Scraper — cache the raw HTML locally, but keep geocache.json tracked
 scripts/cache/*.html
+# per-run "what's new" delta consumed by notify-discord.mjs
+scripts/cache/job-calls-delta.json

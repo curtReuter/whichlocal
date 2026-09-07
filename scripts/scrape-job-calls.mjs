@@ -7,6 +7,12 @@
  *   node scripts/scrape-job-calls.mjs --only l606-orlando-fl
  *   node scripts/scrape-job-calls.mjs --offline       # re-parse the cached HTML
  *
+ * State: each call gets a stable `id` (hash of its text) plus `first_seen` /
+ * `last_seen`. The previous js/data/job-calls.json is read and those timestamps
+ * are carried forward, so a call that persists across runs keeps its original
+ * `first_seen`. Calls that are new this run are also written to
+ * scripts/cache/job-calls-delta.json for scripts/notify-discord.mjs.
+ *
  * Conduct: one request per local per run; the HTML is cached to scripts/cache/
  * so `--offline` re-runs never touch the sites. Identifies itself with a
  * descriptive User-Agent including SCRAPER_CONTACT.
@@ -14,12 +20,14 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { loadEnv } from './lib/pb.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE_DIR = join(ROOT, 'scripts', 'cache');
 const CONFIG = join(ROOT, 'scripts', 'job-calls.config.json');
 const OUT = join(ROOT, 'js', 'data', 'job-calls.json');
+const DELTA = join(CACHE_DIR, 'job-calls-delta.json');
 
 const args = new Set(process.argv.slice(2));
 const OFFLINE = args.has('--offline');
@@ -31,6 +39,7 @@ const ONLY = (() => {
 loadEnv();
 const CONTACT = process.env.SCRAPER_CONTACT || 'unknown';
 const UA = `WhichLocal-jobcalls/1.0 (+${CONTACT})`;
+const RUN_TS = new Date().toISOString();
 
 mkdirSync(CACHE_DIR, { recursive: true });
 
@@ -65,12 +74,24 @@ function decode(s) {
 }
 const plain = (html) => decode(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
 
+// Normalised key for identity — tolerant of whitespace and curly-quote churn.
+const normKey = (t) =>
+  t.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
+    .replace(/\s+/g, ' ').trim();
+const callId = (t) => createHash('sha1').update(normKey(t)).digest('hex').slice(0, 16);
+
+const prettyPlace = (slug) => {
+  const parts = slug.replace(/^l\d+-/, '').split('-');
+  const state = (parts.pop() || '').toUpperCase();
+  const city = parts.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return { city, state };
+};
+
 /**
  * Pull the job-call blocks out of a UnionActive "Job Calls" page. Each call is
  * its own <p> starting with a count, e.g. "10 Journeyman Wireman calls for …".
  */
 function parseJobCalls(html) {
-  // Narrow to the page-content region, ending before the standing referral policy.
   const start = html.search(/class=["']pageheader["']/i);
   const body = start >= 0 ? html.slice(start) : html;
   const cut = body.search(/last call was taken by/i);
@@ -88,7 +109,7 @@ function parseJobCalls(html) {
     const t = plain(block);
     const m = t.match(/^(\d+)\s+(.+?)\s+calls?\s+for\b/i);
     if (!m) continue;
-    calls.push({ count: parseInt(m[1], 10), classification: m[2].trim(), text: t });
+    calls.push({ id: callId(t), count: parseInt(m[1], 10), classification: m[2].trim(), text: t });
   }
 
   return {
@@ -104,24 +125,56 @@ function parseJobCalls(html) {
 const config = JSON.parse(readFileSync(CONFIG, 'utf8'));
 const entries = Object.entries(config).filter(([k]) => !k.startsWith('_'));
 
-const out = { generated_at: new Date().toISOString(), locals: {} };
+const prev = existsSync(OUT)
+  ? JSON.parse(readFileSync(OUT, 'utf8')).locals || {}
+  : {};
+
+const out = { generated_at: RUN_TS, locals: {} };
+const delta = { generated_at: RUN_TS, added: {}, filled: {} };
 let ok = 0;
 let failed = 0;
+let newTotal = 0;
 
 for (const [slug, { local_no, url }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
     const parsed = parseJobCalls(await getHtml(slug, url));
-    out.locals[slug] = {
-      local_no,
-      url,
-      scraped_at: new Date().toISOString(),
-      ...parsed,
-    };
+
+    // index the previous run's calls by id and by normalised text (older files
+    // may predate `id`, so match on text too)
+    const prevCalls = (prev[slug] && prev[slug].calls) || [];
+    const byId = new Map();
+    const byText = new Map();
+    for (const pc of prevCalls) {
+      const id = pc.id || callId(pc.text);
+      const seen = pc.first_seen || prev[slug].scraped_at || RUN_TS;
+      byId.set(id, seen);
+      byText.set(normKey(pc.text), seen);
+    }
+
+    const fresh = [];
+    for (const c of parsed.calls) {
+      const priorSeen = byId.get(c.id) ?? byText.get(normKey(c.text));
+      c.first_seen = priorSeen ?? RUN_TS;
+      c.last_seen = RUN_TS;
+      if (priorSeen == null) fresh.push(c);
+    }
+
+    const gone = prevCalls
+      .map((pc) => pc.id || callId(pc.text))
+      .filter((id) => !parsed.calls.some((c) => c.id === id));
+
+    out.locals[slug] = { local_no, url, scraped_at: RUN_TS, ...parsed };
+    if (fresh.length) {
+      newTotal += fresh.length;
+      delta.added[slug] = { local_no, url, ...prettyPlace(slug), posted: parsed.posted, calls: fresh };
+    }
+    if (gone.length) delta.filled[slug] = { local_no, ids: gone };
+
     ok++;
     console.log(
-      `${slug}: ${parsed.total} job calls (${parsed.calls.length} listings)` +
-      `${parsed.total !== parsed.count_sum ? ` — header ${parsed.total} vs listed ${parsed.count_sum}` : ''}`,
+      `${slug}: ${parsed.total} job calls, ${parsed.calls.length} listings` +
+      `${fresh.length ? `, ${fresh.length} NEW` : ''}${gone.length ? `, ${gone.length} filled/removed` : ''}`,
     );
   } catch (e) {
     failed++;
@@ -129,16 +182,15 @@ for (const [slug, { local_no, url }] of entries) {
   }
 }
 
-// Preserve locals not scraped this run (e.g. when using --only).
-if (ONLY && existsSync(OUT)) {
-  try {
-    const prev = JSON.parse(readFileSync(OUT, 'utf8'));
-    out.locals = { ...prev.locals, ...out.locals };
-  } catch { /* rewrite from scratch */ }
-}
+// keep locals not scraped this run (e.g. with --only)
+if (ONLY) out.locals = { ...prev, ...out.locals };
 
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');
-console.log(`Wrote ${OUT} — ${Object.keys(out.locals).length} local(s), ${ok} ok, ${failed} failed.`);
+writeFileSync(DELTA, JSON.stringify(delta, null, 2) + '\n');
+console.log(
+  `Wrote ${OUT} (${Object.keys(out.locals).length} local(s), ${ok} ok, ${failed} failed) ` +
+  `and ${DELTA} (${newTotal} new call(s)).`,
+);
 
 if (failed && !ok) process.exit(1);

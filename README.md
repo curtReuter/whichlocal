@@ -32,12 +32,14 @@ whichlocal/
 │   ├── overrides.json           hand-entered data corrections (see Manual corrections)
 │   ├── scrape-job-calls.mjs     scrape locals' own job-call pages → js/data/job-calls.json
 │   ├── job-calls.config.json    which locals' sites to scrape for job calls
+│   ├── notify-discord.mjs       post new job calls to Discord (webhook or bot)
 │   ├── lib/pb.mjs               .env loader + PocketBase auth helpers
 │   ├── lib/overrides.mjs        override loader + merge rule (shared)
 │   └── cache/                   cached page HTML + geocache.json
 ├── .github/workflows/
 │   ├── scrape.yml               daily scrape → export → commit
-│   └── apply-overrides.yml      on overrides.json push → re-export → commit
+│   ├── apply-overrides.yml      on overrides.json push → re-export → commit
+│   └── job-calls.yml            every 2h: scrape job calls → notify Discord → commit
 └── .env                         local secrets (gitignored)
 ```
 
@@ -204,12 +206,21 @@ credits the source in its footer.
 
 Some locals publish a live "job calls" / referral list on their own site.
 `scripts/scrape-job-calls.mjs` scrapes those into **`js/data/job-calls.json`**
-(keyed by slug) and the daily workflow commits it alongside `locals.json`.
+(keyed by slug). `.github/workflows/job-calls.yml` runs it **every 2 hours**,
+posts a Discord message for any call that's new since the previous run, and
+commits the file (the site picks it up on its next deploy).
+
+Each call carries a stable `id` (hash of its text) plus `first_seen` /
+`last_seen`; those timestamps are read from the committed file and carried
+forward, so a persisting call keeps its original `first_seen` and only genuinely
+new calls trigger a notification. The per-run "what's new" list is written to
+`scripts/cache/job-calls-delta.json` (gitignored) for the notifier.
 
 ```sh
 node scripts/scrape-job-calls.mjs                    # every configured local
 node scripts/scrape-job-calls.mjs --only l606-orlando-fl
 node scripts/scrape-job-calls.mjs --offline          # re-parse cached HTML
+node scripts/notify-discord.mjs --dry-run            # preview the Discord posts
 ```
 
 **Adding a local:** append to `scripts/job-calls.config.json`:
@@ -229,7 +240,29 @@ HTML cached, descriptive `User-Agent`.
 
 In the app a local with job calls gets an **"N job calls"** button in its list
 row and the count in its map tooltip; the button opens the calls list in the
-green panel, with a link back to the compensation view.
+green panel, with a link back to the compensation view. First load defaults to
+the **Open job calls** metric, which filters the map + list to locals that
+publish a list.
+
+### Discord notifications
+
+`scripts/notify-discord.mjs` posts one message per new job call. It's *outbound
+only* — no gateway connection, no slash-command handling — so it runs as a
+one-shot step in `job-calls.yml`. Set **one** destination as a repo secret:
+
+| approach | secrets | notes |
+|---|---|---|
+| **Webhook** (simplest) | `DISCORD_WEBHOOK_URL` | Channel → Edit → Integrations → Webhooks → *New Webhook* → copy URL. Posts as the webhook's name/avatar. |
+| **Bot** (posts as your app) | `DISCORD_BOT_TOKEN` + `DISCORD_CHANNEL_ID` | Add the bot to the server with *Send Messages*; token from the Developer Portal → Bot. |
+
+With neither set the step is a no-op, so the workflow is safe to enable before
+you add secrets. Tighten the `cron:` in `job-calls.yml` for faster alerts.
+
+Your Discord app: **application ID `1533086814875947068`**, public key
+`3b50e1a1b14f35e21a49879dacab70840b047dc3b820976155b1e621c3073e5e`. Neither is
+used by the notifier above — they're only needed if you later add an
+*interactions* endpoint (slash commands / buttons), which requires a hosted
+HTTPS handler (e.g. a Cloudflare Worker) to verify requests with the public key.
 
 ## Data
 

@@ -1,0 +1,55 @@
+name: Job calls + Discord
+
+# Every couple of hours: re-scrape the configured locals' job-call pages, post a
+# Discord message for any call that's new since last run, and commit the updated
+# js/data/job-calls.json (which the site picks up on its next deploy).
+
+on:
+  schedule:
+    - cron: "7 */2 * * *"   # every 2 hours, at :07
+  workflow_dispatch: {}
+
+# Serialize with the other workflows that write js/data/*.json.
+concurrency:
+  group: data-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  job-calls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Scrape job calls (stamps first_seen, writes the run delta)
+        run: node scripts/scrape-job-calls.mjs
+        env:
+          SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+
+      - name: Notify Discord of new calls
+        run: node scripts/notify-discord.mjs
+        continue-on-error: true   # a Discord hiccup shouldn't block the commit
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+
+      - name: Commit refreshed job calls
+        run: |
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data/job-calls.json
+          if git diff --cached --quiet; then
+            echo "No job-call changes."
+          else
+            git commit -m "data: job calls $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
