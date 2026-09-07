@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=35';
-import { loadLocals, loadJobCalls } from './dataSource.js?v=35';
-import { createCityMap } from './cityMap.js?v=35';
+import { metrics } from './metrics.js?v=36';
+import { loadLocals, loadJobCalls } from './dataSource.js?v=36';
+import { createCityMap } from './cityMap.js?v=36';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -162,7 +162,10 @@ function pointsForMetric(metricId) {
       }
       return {
         id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng, value,
-        badge: !isJobs && n != null ? jobCallLabel(n) : null, // map tooltip line
+        // green "N job calls" line in the map tooltip for any local that has
+        // calls; on the job-calls metric it stands in for the plain value line
+        badge: n != null ? jobCallLabel(n) : null,
+        hideValue: isJobs,
         tp: c.values.total_package, // shown in the list when metric = job_calls
       };
     })

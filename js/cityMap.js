@@ -183,7 +183,9 @@ export function createCityMap(target, userOptions = {}) {
       marker.bindTooltip(
         `<strong>${escapeHtml(p.name)}</strong>` +
           (p.subtitle ? `<span class="tt-sub">${escapeHtml(p.subtitle)}</span>` : '') +
-          `<span class="tt-val">${escapeHtml(current.meta.valueLabel)}: <b>${escapeHtml(valueText)}</b></span>` +
+          (p.hideValue
+            ? ''
+            : `<span class="tt-val">${escapeHtml(current.meta.valueLabel)}: <b>${escapeHtml(valueText)}</b></span>`) +
           (p.badge ? `<span class="tt-badge">${escapeHtml(p.badge)}</span>` : ''),
         { direction: 'top', offset: [0, -4], className: 'city-tooltip', sticky: false }
       );
