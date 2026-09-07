@@ -7,6 +7,13 @@
  *   node scripts/scrape-job-calls.mjs --only l606-orlando-fl
  *   node scripts/scrape-job-calls.mjs --offline       # re-parse the cached HTML
  *
+ * Manual calls: scripts/job-calls.overrides.json is merged in on every run — for
+ * locals we can't scrape (no `url`) or to add a call a scraped page missed. It's
+ * keyed by local number ("915") or slug, each entry an optional `posted` label +
+ * a `calls` array (`text` required; `count` / `classification` parsed from the
+ * text or defaulted). Manual calls flow through the same new/edited/filled diff,
+ * so adding or removing one drives the Discord bot exactly like a scraped change.
+ *
  * State: each call gets a stable `id` (hash of its exact text), a `key` (hash of
  * the text with the leading count stripped — the listing identity, unchanged by
  * "10 → 9"), plus `first_seen` / `last_seen`. The previous js/data/job-calls.json
@@ -28,6 +35,7 @@ import { loadEnv } from './lib/pb.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE_DIR = join(ROOT, 'scripts', 'cache');
 const CONFIG = join(ROOT, 'scripts', 'job-calls.config.json');
+const OVERRIDES = join(ROOT, 'scripts', 'job-calls.overrides.json');
 const OUT = join(ROOT, 'js', 'data', 'job-calls.json');
 const DELTA = join(CACHE_DIR, 'job-calls-delta.json');
 
@@ -188,12 +196,60 @@ function parseJobCalls(html, formatNames) {
   return { posted, total: headerTotal ?? countSum, count_sum: countSum, calls };
 }
 
-/* ---------- run ------------------------------------------------------- */
+/* ---------- manual overrides ---------------------------------------------- */
 
 const config = JSON.parse(readFileSync(CONFIG, 'utf8'));
-// slug keys with a `url` — the registry lists every local, but only those
-// pointing at a UnionActive job-calls page get scraped here.
-const entries = Object.entries(config).filter(([k, v]) => /^l\d/.test(k) && v && v.url);
+
+// local number → [slug]  (from the registry), to resolve a numeric override key
+const slugsByNo = {};
+for (const [k, v] of Object.entries(config)) {
+  if (!/^l\d/.test(k) || !v || typeof v.local_no !== 'number') continue;
+  (slugsByNo[v.local_no] ||= []).push(k);
+}
+
+/** Build { slug → { posted, calls[] } } from job-calls.overrides.json. */
+function loadManual() {
+  if (!existsSync(OVERRIDES)) return {};
+  const raw = JSON.parse(readFileSync(OVERRIDES, 'utf8'));
+  const bySlug = {};
+  for (const [rawKey, entry] of Object.entries(raw)) {
+    if (rawKey.startsWith('_') || !entry || typeof entry !== 'object') continue;
+    let slug = rawKey;
+    if (!/^l\d/.test(rawKey)) {
+      const list = slugsByNo[Number(rawKey)] || [];
+      if (list.length === 1) [slug] = list;
+      else {
+        console.warn(list.length
+          ? `overrides: local ${rawKey} is ambiguous — use a slug (${list.join(', ')})`
+          : `overrides: no local numbered ${rawKey}`);
+        continue;
+      }
+    }
+    const calls = (entry.calls || []).map((c) => {
+      const text = String(c.text || '').trim();
+      if (!text) return null;
+      let count = Number.isFinite(c.count) ? c.count : null;
+      let classification = c.classification || null;
+      if (count == null || !classification) {
+        for (const f of FORMATS) {
+          const hit = f.match(text);
+          if (hit) { count ??= hit.count; classification ||= hit.classification; break; }
+        }
+      }
+      return {
+        id: callId(text), key: listingKey(text),
+        count: count ?? 1, classification: classification || 'Journeyman Wireman',
+        text, source: 'manual',
+        ...(c.open_until_filled ? { open_until_filled: true } : {}),
+      };
+    }).filter(Boolean);
+    if (calls.length) bySlug[slug] = { posted: entry.posted || null, calls };
+  }
+  return bySlug;
+}
+const manual = loadManual();
+
+/* ---------- diff a local's current calls against the last run ----------- */
 
 const prev = existsSync(OUT)
   ? JSON.parse(readFileSync(OUT, 'utf8')).locals || {}
@@ -206,69 +262,108 @@ let failed = 0;
 let newTotal = 0;
 let editedTotal = 0;
 
+/**
+ * Stamp first_seen/last_seen on `parsed.calls`, record this local's new/edited/
+ * filled calls into `delta`, and write out.locals[slug]. `extra` is merged into
+ * the stored record (e.g. { url } or { manual: true }).
+ */
+function commitLocal(slug, local_no, parsed, extra) {
+  const prevCalls = (prev[slug] && prev[slug].calls) || [];
+  const seenOf = (pc) => pc.first_seen || prev[slug].scraped_at || RUN_TS;
+  const pcId = (pc) => pc.id || callId(pc.text);
+  const pcKey = (pc) => pc.key || listingKey(pc.text);
+  const byId = new Map(prevCalls.map((pc) => [pcId(pc), pc]));
+  const byKey = new Map(prevCalls.map((pc) => [pcKey(pc), pc]));
+
+  const fresh = [];
+  const changed = [];
+  for (const c of parsed.calls) {
+    const exact = byId.get(c.id);
+    const sameListing = exact || byKey.get(c.key);
+    c.first_seen = sameListing ? seenOf(sameListing) : RUN_TS;
+    c.last_seen = RUN_TS;
+    if (exact) continue;
+    if (sameListing) changed.push({ ...c, prev_id: pcId(sameListing), prev_count: sameListing.count });
+    else fresh.push(c);
+  }
+
+  const curIds = new Set(parsed.calls.map((c) => c.id));
+  const curKeys = new Set(parsed.calls.map((c) => c.key));
+  const gone = prevCalls
+    .filter((pc) => !curIds.has(pcId(pc)) && !curKeys.has(pcKey(pc)))
+    .map(pcId);
+
+  out.locals[slug] = { local_no, ...extra, scraped_at: RUN_TS, ...parsed };
+  const dbase = { local_no, url: extra.url, ...prettyPlace(slug), posted: parsed.posted };
+  if (fresh.length) { newTotal += fresh.length; delta.added[slug] = { ...dbase, calls: fresh }; }
+  if (changed.length) { editedTotal += changed.length; delta.edited[slug] = { ...dbase, calls: changed }; }
+  if (gone.length) delta.filled[slug] = { local_no, ids: gone };
+
+  console.log(
+    `${slug}: ${parsed.total} job calls, ${parsed.calls.length} listings` +
+    `${extra.manual ? ' (manual)' : ''}` +
+    `${fresh.length ? `, ${fresh.length} NEW` : ''}` +
+    `${changed.length ? `, ${changed.length} EDITED` : ''}` +
+    `${gone.length ? `, ${gone.length} filled/removed` : ''}`,
+  );
+}
+
+/** Fold this local's manual calls into a parsed result (scraped listing wins). */
+function withManual(slug, parsed) {
+  const man = manual[slug];
+  if (!man) return parsed;
+  delete manual[slug]; // consumed — the rest get their own pass below
+  const have = new Set(parsed.calls.map((c) => c.key));
+  const add = man.calls.filter((c) => !have.has(c.key));
+  return {
+    posted: parsed.posted || man.posted,
+    calls: [...parsed.calls, ...add],
+    count_sum: [...parsed.calls, ...add].reduce((a, c) => a + c.count, 0),
+    total: (parsed.total ?? 0) + add.reduce((a, c) => a + c.count, 0),
+  };
+}
+
+/* ---------- run ------------------------------------------------------- */
+
+// slug keys with a `url` — the registry lists every local, but only those
+// pointing at a UnionActive job-calls page get scraped here.
+const entries = Object.entries(config).filter(([k, v]) => /^l\d/.test(k) && v && v.url);
+
 for (const [slug, { local_no, url, format }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
-    const parsed = parseJobCalls(await getHtml(slug, url), [].concat(format || []));
-
-    // index the previous run's calls two ways: `byId` = exact wording, `byKey` =
-    // the listing regardless of how many are left on it (older files may predate
-    // either field, so fall back to hashing the stored text).
-    const prevCalls = (prev[slug] && prev[slug].calls) || [];
-    const seenOf = (pc) => pc.first_seen || prev[slug].scraped_at || RUN_TS;
-    const pcId = (pc) => pc.id || callId(pc.text);
-    const pcKey = (pc) => pc.key || listingKey(pc.text);
-    const byId = new Map(prevCalls.map((pc) => [pcId(pc), pc]));
-    const byKey = new Map(prevCalls.map((pc) => [pcKey(pc), pc]));
-
-    const fresh = [];
-    const changed = [];
-    for (const c of parsed.calls) {
-      const exact = byId.get(c.id);
-      const sameListing = exact || byKey.get(c.key);
-      c.first_seen = sameListing ? seenOf(sameListing) : RUN_TS;
-      c.last_seen = RUN_TS;
-      if (exact) continue;                         // unchanged
-      if (sameListing) {                           // same listing, wording/count edited
-        changed.push({ ...c, prev_id: pcId(sameListing), prev_count: sameListing.count });
-      } else {
-        fresh.push(c);                             // a listing we've not seen before
-      }
-    }
-
-    // a previous call is "gone" only when neither its exact id nor its listing
-    // key turns up this run — an edited listing is a change, not a removal
-    const curIds = new Set(parsed.calls.map((c) => c.id));
-    const curKeys = new Set(parsed.calls.map((c) => c.key));
-    const gone = prevCalls
-      .filter((pc) => !curIds.has(pcId(pc)) && !curKeys.has(pcKey(pc)))
-      .map(pcId);
-
-    out.locals[slug] = { local_no, url, scraped_at: RUN_TS, ...parsed };
-    if (fresh.length) {
-      newTotal += fresh.length;
-      delta.added[slug] = { local_no, url, ...prettyPlace(slug), posted: parsed.posted, calls: fresh };
-    }
-    if (changed.length) {
-      editedTotal += changed.length;
-      delta.edited[slug] = { local_no, url, ...prettyPlace(slug), posted: parsed.posted, calls: changed };
-    }
-    if (gone.length) delta.filled[slug] = { local_no, ids: gone };
-
-    ok++;
-    console.log(
-      `${slug}: ${parsed.total} job calls, ${parsed.calls.length} listings` +
-      `${fresh.length ? `, ${fresh.length} NEW` : ''}` +
-      `${changed.length ? `, ${changed.length} EDITED` : ''}` +
-      `${gone.length ? `, ${gone.length} filled/removed` : ''}`,
-    );
+    const parsed = withManual(slug, parseJobCalls(await getHtml(slug, url), [].concat(format || [])));
+    commitLocal(slug, local_no, parsed, { url });
+    ok += 1;
   } catch (e) {
-    failed++;
+    failed += 1;
     console.error(`${slug}: ${e.message}`);
   }
 }
 
-// keep locals not scraped this run (e.g. with --only)
+// locals that appear only in the overrides file (no url to scrape)
+for (const [slug, man] of Object.entries(manual)) {
+  if (ONLY && slug !== ONLY) continue;
+  const local_no = config[slug]?.local_no ?? (Number((slug.match(/^l(\d+)/) || [])[1]) || null);
+  const count_sum = man.calls.reduce((a, c) => a + c.count, 0);
+  commitLocal(slug, local_no, { posted: man.posted, calls: man.calls, count_sum, total: count_sum }, { manual: true });
+  ok += 1;
+}
+
+// a local that had calls last run but isn't produced this run (its last
+// manual-only entry was removed) — report every call gone so Discord cleans up
+if (!ONLY) {
+  for (const [slug, pl] of Object.entries(prev)) {
+    if (out.locals[slug] || !(pl.calls && pl.calls.length)) continue;
+    delta.filled[slug] = {
+      local_no: pl.local_no ?? null,
+      ids: pl.calls.map((pc) => pc.id || callId(pc.text)),
+    };
+    console.log(`${slug}: dropped — ${pl.calls.length} call(s) removed`);
+  }
+}
+
+// keep locals not touched this run (e.g. with --only)
 if (ONLY) out.locals = { ...prev, ...out.locals };
 
 mkdirSync(dirname(OUT), { recursive: true });

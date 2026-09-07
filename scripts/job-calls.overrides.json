@@ -1,0 +1,12 @@
+{
+  "__doc__": "Hand-added job calls, merged into js/data/job-calls.json by scripts/scrape-job-calls.mjs on every run (and by .github/workflows/apply-job-calls.yml when this file is pushed). Use it for locals we can't scrape (no `url` in job-calls.config.json) or to add a call a scraped page missed. Key = local number (\"915\") or, if that number covers more than one local, the slug (\"l26-roanoke-va\"). Each entry: an optional `posted` label plus a `calls` array; every call needs `text` (paste the posting verbatim), optionally `count` / `classification` (otherwise parsed from the text, else 1 / Journeyman Wireman), optionally `open_until_filled: true`. Manual calls run through the same new/edited/filled diff as scraped ones, so adding an entry posts it to Discord and removing it deletes that message. If the same listing later shows up on a scraped page, the scraped copy wins. Keys starting with `_` are ignored (this doc, and the example below).",
+  "_example": {
+    "915": {
+      "posted": "week of Sep 8",
+      "calls": [
+        { "count": 2, "classification": "Journeyman Wireman", "text": "2 Journeyman Wireman calls for ABC Electric at the Tampa convention center. 5x8s, 6:00 am start, $34.10/hr. Report to the hall Monday at 6 am with tools." },
+        { "text": "1 JW call, open until filled, for a service shop in Brandon — $33.00/hr plus truck.", "open_until_filled": true }
+      ]
+    }
+  }
+}

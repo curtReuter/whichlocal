@@ -297,6 +297,34 @@ otherwise every parser is tried.
 Same conduct as the main scraper — one request per local per run, HTML cached,
 descriptive `User-Agent`.
 
+**Manual job calls (`scripts/job-calls.overrides.json`).** For a local with no
+scrapeable page, or to add a call a page missed, put it here — same idea as
+`scripts/overrides.json` for wages. Key by **local number** (`"915"`) or slug
+(`"l26-roanoke-va"` when the number is ambiguous); each entry has an optional
+`posted` label and a `calls` array, each call needing `text` (paste the posting
+verbatim) plus optional `count` / `classification` (parsed from the text
+otherwise):
+
+```json
+{
+  "915": {
+    "posted": "week of Sep 8",
+    "calls": [
+      { "text": "2 Journeyman Wireman calls for ABC Electric, 5x8s, $34.10/hr." }
+    ]
+  }
+}
+```
+
+`scrape-job-calls.mjs` merges these every run: a manual-only local becomes a
+`{ manual: true, … }` record in `job-calls.json`; a manual call on a scraped
+local is appended (a scraped listing with the same text wins). Manual calls run
+through the same new/edited/filled diff, so **adding an entry posts it to
+Discord, editing a count edits that message, and deleting the entry deletes the
+message** — same as a scraped change. Pushing the file triggers
+`.github/workflows/apply-job-calls.yml` for a ~1-minute turnaround; otherwise the
+2-hourly `job-calls.yml` picks it up.
+
 In the app a local with job calls gets an **"N job calls"** button in its list
 row and the count in its map tooltip; the button opens the calls list in the
 green panel, with a link back to the compensation view. First load defaults to

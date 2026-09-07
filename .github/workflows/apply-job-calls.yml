@@ -1,0 +1,58 @@
+name: Apply manual job calls
+
+# When scripts/job-calls.overrides.json changes on main, re-run the job-calls
+# pipeline right away (instead of waiting up to 2h for the scheduled job-calls
+# workflow): merge the manual calls into js/data/job-calls.json, post/edit/delete
+# the corresponding Discord messages, and commit.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/job-calls.overrides.json
+      - scripts/scrape-job-calls.mjs
+  workflow_dispatch: {}
+
+# Serialize with the daily scrape + the 2-hourly job-calls run (all write
+# js/data/*.json).
+concurrency:
+  group: data-write
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Merge manual job calls (also refreshes the scraped locals)
+        run: node scripts/scrape-job-calls.mjs
+        env:
+          SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+
+      - name: Notify Discord
+        run: node scripts/notify-discord.mjs
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+
+      - name: Commit
+        run: |
+          git config user.name  "whichlocal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data/job-calls.json scripts/discord-threads.json
+          if git diff --cached --quiet; then
+            echo "No job-call changes."
+          else
+            git commit -m "data: apply manual job calls"
+            git push
+          fi
