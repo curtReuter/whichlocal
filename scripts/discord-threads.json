@@ -1,4 +1,5 @@
 {
   "__doc__": "slug → Discord forum-thread id. scripts/notify-discord.mjs reads this to post a local's job calls into its own thread, and appends an entry the first time it creates one. Pre-seed a row to point at a thread you made by hand.",
-  "l606-orlando-fl": "1546379032021438464"
+  "l606-orlando-fl": "1546379032021438464",
+  "l756-daytona-beach-fl": "1546387503890829353"
 }
