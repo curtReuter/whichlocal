@@ -173,8 +173,8 @@ export function createCityMap(target, userOptions = {}) {
         }
         : {
           radius: r,
-          color: '#000000', weight: 13, opacity: 0, // invisible tap target
-          fillColor: '#9aa3af', fillOpacity: 0.5,
+          color: '#000000', weight: 13, opacity: 0, // invisible finger-sized tap target
+          fillColor: '#8b93a1', fillOpacity: 0.7,
         };
     }
     const { min, max } = current;

@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=45';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=45';
-import { createCityMap } from './cityMap.js?v=45';
+import { metrics } from './metrics.js?v=46';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=46';
+import { createCityMap } from './cityMap.js?v=46';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -116,14 +116,21 @@ const mqMobile = window.matchMedia('(max-width: 820px)');
 function hotspotRadii() {
   const w = document.querySelector('#map')?.clientWidth || window.innerWidth;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const dataless = clamp(w / 380, 1.6, 4);
   return {
     minRadius: clamp(w / 170, 4, 9),
     maxRadius: clamp(w / 45, 15, 40),
-    // roster-only greys: a tiny dot (px radius → constant across zoom) that
-    // doesn't swamp the map; cityMap wraps it in a finger-sized invisible tap
-    // target so it's still clickable
-    datalessRadius: clamp(w / 380, 1.6, 4),
+    // roster-only greys elsewhere are a faint speck so they don't swamp the
+    // coloured data; on the job-calls view they ARE the data (every local with
+    // no open calls), so show them bigger and bolder there
+    datalessRadius: state.metricId === 'job_calls' ? clamp(w / 150, 4.5, 9) : dataless,
   };
+}
+
+// re-apply the width- and metric-aware circle sizes and redraw
+function syncRadii() {
+  const { minRadius, maxRadius, datalessRadius } = hotspotRadii();
+  map.setRadii(minRadius, maxRadius, datalessRadius);
 }
 
 const map = createCityMap('#map', {
@@ -139,10 +146,7 @@ const map = createCityMap('#map', {
 let radiiTimer;
 window.addEventListener('resize', () => {
   clearTimeout(radiiTimer);
-  radiiTimer = setTimeout(() => {
-    const { minRadius, maxRadius, datalessRadius } = hotspotRadii();
-    map.setRadii(minRadius, maxRadius, datalessRadius);
-  }, 200);
+  radiiTimer = setTimeout(syncRadii, 200);
 });
 
 // On phones, tuck the map attribution into the bottom-left corner and drop the
@@ -630,6 +634,7 @@ function update() {
   const points = pointsForMetric(state.metricId);
   const cmp = state.compare;
 
+  syncRadii(); // grey-dot size depends on whether we're on the job-calls view
   map.setData(points, {
     valueLabel: cmp ? `${meta.label} vs cost of living` : meta.label,
     formatValue: meta.format,
