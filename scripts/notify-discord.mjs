@@ -263,11 +263,24 @@ function compEmbed(slug) {
 const FOLLOW_EMBED = { color: BLUE, description: '**FOLLOW FOR NOTIFICATIONS** ⬇️⬇️⬇️' };
 const compMessage = (slug) => ({ embeds: [compEmbed(slug), FOLLOW_EMBED] });
 
-// plain-text line on each call message — this is what a follower's phone push
-// shows (an embed-only message pushes nothing useful)
-const noteLine = (slug, updated = false) =>
-  `🔔 ${updated ? 'Job call updated' : 'New job call'} at IBEW Local ${localNoOf(slug)}`;
-const callMessage = (slug, c) => ({ content: noteLine(slug, Boolean(c.prev_id)), embeds: [callEmbed(slug, c)] });
+// A brand-new call is posted WITH a plain-text line (that text is what a
+// follower's phone push shows — an embed-only message pushes nothing useful),
+// then the line is immediately edited out so the thread stays clean. Editing a
+// message doesn't re-notify, so the push keeps the text.
+const noteLine = (slug) => `🔔 New job call at IBEW Local ${localNoOf(slug)}`;
+
+async function postCall(threadId, slug, c) {
+  const msg = await discord('POST', `/channels/${threadId}/messages`, {
+    content: noteLine(slug),
+    embeds: [callEmbed(slug, c)],
+  });
+  if (msg && msg.id) {
+    try {
+      await discord('PATCH', `/channels/${threadId}/messages/${msg.id}`, { content: '' });
+    } catch { /* leave the line if the edit fails */ }
+  }
+  return msg;
+}
 
 function callEmbed(slug, c) {
   // No title, no local header — just the job call verbatim, posted inside that
@@ -505,7 +518,7 @@ for (const slug of slugs) {
         ? currentCalls
         : [...calls, ...currentCalls.filter((c) => c.id && !entry.calls[c.id] && !calls.some((n) => n.id === c.id))];
     for (const c of toPost) {
-      const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
+      const msg = await postCall(entry.thread, slug, c);
       if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
       posts += 1;
       await sleep(700);
@@ -517,21 +530,21 @@ for (const slug of slugs) {
       const msgId = c.prev_id && entry.calls[c.prev_id];
       if (!msgId) {
         // we never posted the original — treat it as a new call
-        const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
+        const msg = await postCall(entry.thread, slug, c);
         if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
         posts += 1;
         await sleep(700);
         continue;
       }
       try {
-        await discord('PATCH', `/channels/${entry.thread}/messages/${msgId}`, callMessage(slug, c));
+        await discord('PATCH', `/channels/${entry.thread}/messages/${msgId}`, { content: '', embeds: [callEmbed(slug, c)] });
         edits += 1;
         if (c.id) entry.calls[c.id] = msgId;
         if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
         threadsDirty = true;
       } catch (e) {
         if (e.status === 404) {
-          const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
+          const msg = await postCall(entry.thread, slug, c);
           if (c.id && msg.id) entry.calls[c.id] = msg.id;
           if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
           posts += 1;
