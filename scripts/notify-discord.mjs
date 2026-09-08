@@ -481,6 +481,21 @@ for (const slug of slugs) {
     if (!COMP_ONLY && threads[slug] !== entry) { threads[slug] = entry; threadsDirty = true; }
     comps += 1;
 
+    // drop any recorded call message that's been deleted from the thread, so the
+    // next block reposts it (covers someone clearing a thread by hand)
+    if (!COMP_ONLY && !ALL && !wasNew && Object.keys(entry.calls).length) {
+      let gone = 0;
+      for (const [cid, mid] of Object.entries(entry.calls)) {
+        try {
+          await discord('GET', `/channels/${entry.thread}/messages/${mid}`);
+        } catch (e) {
+          if (e.status === 404) { delete entry.calls[cid]; threadsDirty = true; gone += 1; }
+        }
+        await sleep(300);
+      }
+      if (gone) console.log(`  ${slug}: ${gone} call message(s) missing — reposting`);
+    }
+
     // a fresh thread has no call messages yet — post the local's whole current
     // list; an existing thread only gets the new ones from the scrape delta,
     // plus any current call it's somehow missing a message for
