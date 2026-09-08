@@ -270,9 +270,9 @@ const noteLine = (slug, updated = false) =>
 const callMessage = (slug, c) => ({ content: noteLine(slug, Boolean(c.prev_id)), embeds: [callEmbed(slug, c)] });
 
 function callEmbed(slug, c) {
-  // No local header — every call message is posted inside that local's own thread.
+  // No title, no local header — just the job call verbatim, posted inside that
+  // local's own thread. The plain-text line on the message carries the "new" cue.
   const jc = readJson(FULL, { locals: {} }).locals?.[slug] || {};
-  const kind = c.prev_id ? 'job call updated' : ALL ? 'job call' : 'new job call';
   const countNote =
     c.prev_id && typeof c.prev_count === 'number' && c.prev_count !== c.count
       ? `\n\n_${c.prev_count}× → ${c.count}× ${c.classification}_`
@@ -282,7 +282,6 @@ function callEmbed(slug, c) {
     : `\n\n[view map](${siteUrl})`;
   return {
     color: GREEN,
-    title: trunc(`${c.count}× ${c.classification} — ${kind}`, 256),
     description: trunc(`${c.text}${countNote}${links}`, 4000),
     footer: { text: jc.posted ? `List posted ${jc.posted} · whichlocal` : 'whichlocal' },
     timestamp: new Date().toISOString(),
