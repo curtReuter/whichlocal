@@ -263,6 +263,12 @@ function compEmbed(slug) {
 const FOLLOW_EMBED = { color: BLUE, description: '**FOLLOW FOR NOTIFICATIONS** ⬇️⬇️⬇️' };
 const compMessage = (slug) => ({ embeds: [compEmbed(slug), FOLLOW_EMBED] });
 
+// plain-text line on each call message — this is what a follower's phone push
+// shows (an embed-only message pushes nothing useful)
+const noteLine = (slug, updated = false) =>
+  `🔔 ${updated ? 'Job call updated' : 'New job call'} at IBEW Local ${localNoOf(slug)}`;
+const callMessage = (slug, c) => ({ content: noteLine(slug, Boolean(c.prev_id)), embeds: [callEmbed(slug, c)] });
+
 function callEmbed(slug, c) {
   // No local header — every call message is posted inside that local's own thread.
   const jc = readJson(FULL, { locals: {} }).locals?.[slug] || {};
@@ -485,7 +491,7 @@ for (const slug of slugs) {
         ? currentCalls
         : [...calls, ...currentCalls.filter((c) => c.id && !entry.calls[c.id] && !calls.some((n) => n.id === c.id))];
     for (const c of toPost) {
-      const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+      const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
       if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
       posts += 1;
       await sleep(700);
@@ -497,21 +503,21 @@ for (const slug of slugs) {
       const msgId = c.prev_id && entry.calls[c.prev_id];
       if (!msgId) {
         // we never posted the original — treat it as a new call
-        const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+        const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
         if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
         posts += 1;
         await sleep(700);
         continue;
       }
       try {
-        await discord('PATCH', `/channels/${entry.thread}/messages/${msgId}`, { embeds: [callEmbed(slug, c)] });
+        await discord('PATCH', `/channels/${entry.thread}/messages/${msgId}`, callMessage(slug, c));
         edits += 1;
         if (c.id) entry.calls[c.id] = msgId;
         if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
         threadsDirty = true;
       } catch (e) {
         if (e.status === 404) {
-          const msg = await discord('POST', `/channels/${entry.thread}/messages`, { embeds: [callEmbed(slug, c)] });
+          const msg = await discord('POST', `/channels/${entry.thread}/messages`, callMessage(slug, c));
           if (c.id && msg.id) entry.calls[c.id] = msg.id;
           if (c.prev_id !== c.id) delete entry.calls[c.prev_id];
           posts += 1;
