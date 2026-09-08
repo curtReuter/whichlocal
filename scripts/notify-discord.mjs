@@ -510,13 +510,22 @@ for (const slug of slugs) {
 
     // a fresh thread has no call messages yet — post the local's whole current
     // list; an existing thread only gets the new ones from the scrape delta,
-    // plus any current call it's somehow missing a message for
+    // plus any current call it's somehow missing a message for — but NOT ones the
+    // edit loop below will handle in place (a count change gets a new id but must
+    // not spawn a second message)
+    const editedIds = new Set(edited.map((c) => c.id).filter(Boolean));
     const currentCalls = COMP_ONLY ? [] : (readJson(FULL, { locals: {} }).locals?.[slug]?.calls || []);
     const toPost = COMP_ONLY
       ? []
       : (wasNew || ALL)
         ? currentCalls
-        : [...calls, ...currentCalls.filter((c) => c.id && !entry.calls[c.id] && !calls.some((n) => n.id === c.id))];
+        : [
+          ...calls,
+          ...currentCalls.filter((c) =>
+            c.id && !entry.calls[c.id]
+            && !calls.some((n) => n.id === c.id)
+            && !editedIds.has(c.id)),
+        ];
     for (const c of toPost) {
       const msg = await postCall(entry.thread, slug, c);
       if (c.id && msg.id) { entry.calls[c.id] = msg.id; threadsDirty = true; }
