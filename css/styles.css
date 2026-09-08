@@ -108,6 +108,27 @@ body {
 .discord-link:focus-visible { opacity: 1; }
 .discord-link svg { display: block; }
 
+/* realtor ad — sits between the brand and the metric switch (header is
+   justify-content: space-between, so three children land left / centre / right) */
+.realtor-ad {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  padding: 6px 13px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.realtor-ad:hover,
+.realtor-ad:focus-visible { background: var(--accent); color: var(--accent-ink); }
+.realtor-ad__icon { display: block; flex: none; }
+
 /* "Showing" ⇄ "Compare" toggle */
 .metric-switch__toggle {
   font: inherit;
@@ -756,6 +777,22 @@ input[type="file"].detail__in { padding: 5px; font-size: 11.5px; }
     right: 18px;
     z-index: 800;
   }
+
+  /* realtor ad collapses to a bare tappable house icon, pinned top-left
+     opposite the Discord logo */
+  .realtor-ad {
+    position: fixed;
+    top: 13px;
+    left: 16px;
+    z-index: 800;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+  .realtor-ad:hover,
+  .realtor-ad:focus-visible { background: none; color: var(--accent); }
+  .realtor-ad__text { display: none; }
+  .realtor-ad__icon { width: 26px; height: 26px; }
 
   /* "Showing" selector gets its own full-width row, centered */
   .metric-switch {

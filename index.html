@@ -14,7 +14,7 @@
   <!-- ?v= busts GitHub Pages' 10-min asset cache. Bump it (here + in the
        matching imports at the top of js/main.js) whenever a frontend file
        changes, so reloads pick the change up without a hard refresh. -->
-  <link rel="stylesheet" href="css/styles.css?v=52">
+  <link rel="stylesheet" href="css/styles.css?v=53">
 </head>
 <body>
   <div class="app">
@@ -26,6 +26,20 @@
           <p class="brand__tag">IBEW Inside Wireman Pay & Job Calls</p>
         </div>
       </div>
+
+      <a
+        class="realtor-ad"
+        href="https://curtreuter.daltonwade.com/contact.php"
+        target="_blank"
+        rel="noopener"
+        title="Buying a house? Contact me — Curt Reuter, Realtor"
+      >
+        <svg class="realtor-ad__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M5.5 10.5V19h13v-8.5"/>
+          <text x="12" y="16.7" text-anchor="middle" font-size="8.5" font-weight="700" fill="currentColor">$</text>
+        </svg>
+        <span class="realtor-ad__text">Buying a House? Contact Me</span>
+      </a>
 
       <div class="app__header-actions">
         <div class="metric-switch" role="group" aria-label="Choose a metric">
@@ -102,6 +116,6 @@
   <!-- hCaptcha for the "Edit Data" / "Add Job Call" forms (Web3Forms spam
        protection); explicit render — js/main.js renders a widget per form -->
   <script src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
-  <script type="module" src="js/main.js?v=52"></script>
+  <script type="module" src="js/main.js?v=53"></script>
 </body>
 </html>
