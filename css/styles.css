@@ -778,21 +778,31 @@ input[type="file"].detail__in { padding: 5px; font-size: 11.5px; }
     z-index: 800;
   }
 
-  /* realtor ad collapses to a bare tappable house icon, pinned top-left
-     opposite the Discord logo */
+  /* realtor ad collapses to a tappable house icon with a tiny caption,
+     pinned top-left opposite the Discord logo */
   .realtor-ad {
     position: fixed;
-    top: 13px;
-    left: 16px;
+    top: 8px;
+    left: 8px;
     z-index: 800;
+    flex-direction: column;
+    gap: 1px;
+    max-width: 88px;
     padding: 0;
     border: 0;
     border-radius: 0;
+    text-align: center;
   }
   .realtor-ad:hover,
   .realtor-ad:focus-visible { background: none; color: var(--accent); }
-  .realtor-ad__text { display: none; }
-  .realtor-ad__icon { width: 26px; height: 26px; }
+  .realtor-ad__icon { width: 24px; height: 24px; }
+  .realtor-ad__text {
+    display: block;
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 1.15;
+    white-space: normal;
+  }
 
   /* "Showing" selector gets its own full-width row, centered */
   .metric-switch {
