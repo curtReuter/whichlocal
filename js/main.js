@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=54';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=54';
-import { createCityMap } from './cityMap.js?v=54';
+import { metrics } from './metrics.js?v=55';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=55';
+import { createCityMap } from './cityMap.js?v=55';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -227,13 +227,13 @@ function pointsForMetric(metricId) {
     .map((c) => {
       const n = jobCallCount(c.id);
       const base = { id: c.id, name: c.name, subtitle: c.subtitle, lat: c.lat, lng: c.lng };
-      const grey = { ...base, value: null, dataless: true, tp: null };
+      const grey = { ...base, value: null, dataless: true, hr: null };
 
       if (isJobs) {
         // the whole roster shows on the job-calls view: a green dot with the
         // count for locals that have calls, a grey "no calls" dot for the rest
         return n != null
-          ? { ...base, value: n, badge: jobCallLabel(n), hideValue: true, tp: c.values.total_package }
+          ? { ...base, value: n, badge: jobCallLabel(n), hideValue: true, hr: c.values.hourly_rate }
           : { ...grey, note: 'no job calls available' };
       }
 
@@ -252,7 +252,7 @@ function pointsForMetric(metricId) {
         ...base, value,
         // green "N job calls" tooltip line for any local that has calls
         badge: n != null ? jobCallLabel(n) : null,
-        tp: c.values.total_package, // shown in the list when metric = job_calls
+        hr: c.values.hourly_rate, // shown in the list when metric = job_calls
       };
     })
     .filter(Boolean);
@@ -605,8 +605,8 @@ function renderList(points, meta) {
     if (selDataless) ordered = [selDataless, ...sorted];
   }
 
-  // When ranking by job calls, the list value column still shows total package.
-  const showTp = state.metricId === 'job_calls';
+  // When ranking by job calls, the list value column shows the base $/hr wage.
+  const showHr = state.metricId === 'job_calls';
 
   els.list.innerHTML = '';
   ordered.forEach((p) => {
@@ -619,8 +619,8 @@ function renderList(points, meta) {
     const n = jobCallCount(p.id);
     const valueText = isDataless
       ? (state.metricId === 'job_calls' ? 'no calls' : 'no data')
-      : showTp
-        ? (Number.isFinite(p.tp) && p.tp !== 0 ? metrics.total_package.format(p.tp) : '—')
+      : showHr
+        ? (Number.isFinite(p.hr) && p.hr !== 0 ? metrics.hourly_rate.format(p.hr) : '—')
         : meta.format(p.value);
     li.innerHTML =
       `<div class="city-list__row${n != null ? ' city-list__row--calls' : ''}">` +
