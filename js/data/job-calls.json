@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-09T16:32:16.508Z",
+  "generated_at": "2026-09-09T20:52:26.362Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-09T16:32:16.508Z",
-      "posted": "September 08, 2026",
+      "scraped_at": "2026-09-09T20:52:26.362Z",
+      "posted": "September 09, 2026",
       "total": 9,
       "count_sum": 9,
       "calls": [
@@ -16,32 +16,32 @@
           "classification": "Journeyman Wireman",
           "text": "1 Journeyman Wireman calls for Maddox Electric at Animal Kingdom working 4-10’s and an 8 with a 10 pm start time. The scale is $32.64 an hour plus a 15% night shift differential. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-09-07T03:22:41.022Z",
-          "last_seen": "2026-09-09T16:32:16.508Z"
+          "last_seen": "2026-09-09T20:52:26.362Z"
         },
         {
-          "id": "c9906727ab351a2c",
+          "id": "cd3e3d93d025ad57",
           "key": "c4e6b2d76f72199e",
-          "count": 1,
+          "count": 2,
           "classification": "Journeyman Wireman",
-          "text": "1 Journeyman Wireman call for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with occasional overtime. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
+          "text": "2 Journeyman Wireman call for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with occasional overtime. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-09-07T03:22:41.022Z",
-          "last_seen": "2026-09-09T16:32:16.508Z"
+          "last_seen": "2026-09-09T20:52:26.362Z"
         },
         {
-          "id": "99d079017740ba90",
+          "id": "d7e10eac3cd8a40c",
           "key": "9e52fd62ab81fcfb",
-          "count": 7,
+          "count": 6,
           "classification": "Journeyman Wireman",
-          "text": "7 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm to 7:30am, Monday through Friday the scale is $33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
+          "text": "6 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm to 7:30am, Monday through Friday the scale is $33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
           "first_seen": "2026-09-07T03:53:17.449Z",
-          "last_seen": "2026-09-09T16:32:16.508Z"
+          "last_seen": "2026-09-09T20:52:26.362Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-09T16:32:16.508Z",
+      "scraped_at": "2026-09-09T20:52:26.362Z",
       "posted": "OPEN UNTIL FILLED",
       "total": 1,
       "count_sum": 1,
@@ -53,7 +53,7 @@
           "classification": "Journeyman Wireman",
           "text": "1 - JW Cache Valley Electric, Working at LC-37 at the Space Center, Working 6 - 10's with a start time of 7am. Report after badge is approved $40.30",
           "first_seen": "2026-09-07T04:14:25.903Z",
-          "last_seen": "2026-09-09T16:32:16.508Z"
+          "last_seen": "2026-09-09T20:52:26.362Z"
         }
       ]
     }
