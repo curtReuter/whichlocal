@@ -19,6 +19,9 @@ scripts/cache/*.html
 scripts/cache/job-calls-delta.json
 # raw OLMS filer dump — 20+ MB, only used for scrape-ibew-roster.mjs --offline
 scripts/cache/olms-filers.json
+# discover-job-call-urls.mjs's raw HTML pulls (sparkshift pages + each local's
+# site) — scripts/job-call-discovery.json is the committed result, not this
+scripts/cache/discover/
 
 # Cloudflare Worker (worker/)
 worker/node_modules/
