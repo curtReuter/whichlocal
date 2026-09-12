@@ -193,7 +193,17 @@ export function createCityMap(target, userOptions = {}) {
     layer.clearLayers();
     markersById.clear();
 
-    current.points.forEach((p) => {
+    // Grey (dataless) dots draw first, coloured ones after — Leaflet's SVG
+    // renderer stacks paths in DOM order, so whatever's added last sits on top
+    // both visually and for pointer events. That keeps a coloured dot's hover
+    // target from getting shadowed by an overlapping grey one.
+    const ordered = [...current.points].sort((a, b) => {
+      const ad = a.dataless || !Number.isFinite(a.value);
+      const bd = b.dataless || !Number.isFinite(b.value);
+      return ad === bd ? 0 : ad ? -1 : 1;
+    });
+
+    ordered.forEach((p) => {
       const dataless = p.dataless || !Number.isFinite(p.value);
       const marker = L.circleMarker([p.lat, p.lng], {
         ...styleFor(p, p.id === selectedId),
