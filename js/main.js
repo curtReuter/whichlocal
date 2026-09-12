@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=55';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=55';
-import { createCityMap } from './cityMap.js?v=55';
+import { metrics } from './metrics.js?v=56';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=56';
+import { createCityMap } from './cityMap.js?v=56';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -164,8 +164,10 @@ function hotspotRadii() {
     maxRadius: jobs ? clamp(w / 70, 14, 22) : clamp(w / 45, 15, 40),
     // roster-only greys elsewhere are a faint speck so they don't swamp the
     // coloured data; on the job-calls view they ARE the data (every local with
-    // no open calls), so show them a bit bigger there — but not much
-    datalessRadius: jobs ? clamp(w / 175, 4, 7) : clamp(w / 380, 1.6, 4),
+    // no open calls), so show them a bit bigger there — but not much. Kept
+    // small on both views since a pixel-radius dot doesn't shrink on its own
+    // when zoomed out and hundreds of them get packed into the same screen.
+    datalessRadius: jobs ? clamp(w / 210, 3.4, 5.5) : clamp(w / 480, 1.2, 3),
   };
 }
 
