@@ -1,0 +1,11 @@
+{
+  "name": "whichlocal",
+  "private": true,
+  "description": "Scraper/bot scripts for the Which Local site — the site itself is static and ships no build. See scripts/ and README.md.",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/genai": "^2.22.0"
+  }
+}

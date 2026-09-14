@@ -33,11 +33,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+
+      - run: npm ci
 
       - name: Scrape job calls (stamps first_seen, writes the run delta)
         run: node scripts/scrape-job-calls.mjs
         env:
           SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+          # Opt-in LLM fallback (Gemini free tier) for locals whose page
+          # matches no FORMATS regex — off unless both a repo variable and
+          # secret are set (Settings -> Secrets and variables -> Actions).
+          # See scripts/lib/llm-extract.mjs.
+          LLM_EXTRACT: ${{ vars.LLM_EXTRACT }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Notify Discord of new calls
         run: node scripts/notify-discord.mjs

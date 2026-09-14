@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T17:00:38.126Z",
+  "generated_at": "2026-09-14T21:21:35.764Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
@@ -81,6 +81,276 @@
           "text": "1 - JW Cache Valley Electric, Working at LC-37 at the Space Center, Working 6 - 10's with a start time of 7am. Report after badge is approved $40.30",
           "first_seen": "2026-09-07T04:14:25.903Z",
           "last_seen": "2026-09-12T17:00:38.126Z"
+        }
+      ]
+    },
+    "l20-dallas-tx": {
+      "local_no": 20,
+      "url": "https://www.ibew20.org/job-calls",
+      "scraped_at": "2026-09-14T21:21:35.764Z",
+      "posted": "September 14, 2026",
+      "total": 124,
+      "count_sum": 124,
+      "calls": [
+        {
+          "id": "9c4640a4aa3a5839",
+          "key": "9c4640a4aa3a5839",
+          "count": 5,
+          "classification": "Journeyman",
+          "text": "Requesting ( 5 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 44.72 work schedule 4-12's 1-8's 5AM call type Long Location QTS LANCASTER call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22. IF ALL HRS WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE. THIS CALL IS FOR QAQC, IT IS PAYING 110% ABOVE JIW SCALE AS THE BASE PAY",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "db647a3d862b59ac",
+          "key": "db647a3d862b59ac",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor FISK ELECTRIC pay scale 60.98 work schedule 5-10's 5PM SCATTERED OVERTIME call type Long Location UNT in FORT WORTH call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 9/16 7:30AM. CONDUIT BENDING SKILLS REQUIRED. JIW THAT TAKES THIS CALL WILL BE PLACED ON OTHER DFW JOBS DURING THE DAY AT ($40.65) UNTIL BADGING IS COMPLETE AND PROJECT ACCEPTS WORKERS IN MID SEPTEMBER. WHEN THE NIGHT SHIFT WORK STARTS, OT WILL BE PAID IN LIEU OF 2ND SHIFT DIFFERENTIAL PAY ($60.98)",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "d148e41ded93f5c2",
+          "key": "d148e41ded93f5c2",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor A&G SERVICES pay scale 40.65 work schedule 5-8's 7AM SCATTERED OVERTIME (SUNDAY OVERTIME IS COMMON) call type Long Location DFW AREA call details DRUG TEST and ORIENTATION AFTER DISPATCH. MISC JOBS AROUND THE METRO PLEX. TX JOURNEYMAN LICENSE and VALID DRIVER LICENSE REQUIRED.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "4bc6f15cd4aef1bf",
+          "key": "4bc6f15cd4aef1bf",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor H&K ELECTRIC pay scale 40.65 work schedule 5-8s 7AM SCATTERED OVERTIME and VARIOUS SHIFTS call type Long Location DFW AREA (SERVICE POSITION) call details Must be able to pass a Background Check, Valid driver's license, Valid TX Journeyman License Required . OSHA 10. SAME DAY ORIENTATION – 1 hour orientation then report to job site same day.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "31e2f778c88b58a9",
+          "key": "31e2f778c88b58a9",
+          "count": 3,
+          "classification": "Journeyman",
+          "text": "Requesting ( 3 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 47.68 work schedule 5-10s 5PM START (2nd SHIFT) call type Long Location QTS LANCASTER call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22. IF ALL HRS WORKED, AS AN INCENTIVE THE 2ND SHIFT DIFFERENTIAL RATE WILL BE PAID AS OT ($60.98) AND OVERTIME PAID AS DOUBLE TIME. INCENTIVE PAY IS CALCULATED FROM THE CURRENT JIW PAY $40.65",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "2b480a43ffaf7621",
+          "key": "2b480a43ffaf7621",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor Allied Power pay scale 40.65 work schedule 4-10's 5:30AM call type Long Location Comanche Peak Nuclear Power Plant in Glen Rose, TX call details These calls will report to the site on 8/10 for pre outage work up until the next outage in October which will more than likely go to a heavy overtime schedule. If you accept one of these calls there will be an extensive background check that can take a couple of weeks.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "3d55f422aa444616",
+          "key": "3d55f422aa444616",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor RPM ELECTRICAL pay scale 40.65 work schedule 5-8's 7AM SCATTERED OVERTIME call type Long Location DFW Area call details SERVICE TRUCK POSITION. CLEAN DRIVING RECORD. DRUG TEST. ORIENTATION RIGHT AFTER DISPATCH. MUST BE ABLE TO TROUBLESHOOT CONTROL SYSTEMS INCLUDING PLCs, VFDs, HMIs, SENSORS, AND INDUSTRIAL NETWORKS. JOURNEYMAN LICENSE REQUIRED .",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "b734ab6591d0e2aa",
+          "key": "b734ab6591d0e2aa",
+          "count": 3,
+          "classification": "Journeyman",
+          "text": "Requesting ( 3 ) Journeyman Contractor ROSENDIN ELECTRIC pay scale 40.65 work schedule 5-8's 6AM call type Long Location MPS LEWISVILLE call details ORIENTATION 9/22 7AM",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "9bdf9cc9cc6c9bbc",
+          "key": "9bdf9cc9cc6c9bbc",
+          "count": 1,
+          "classification": "Journeyman",
+          "text": "Requesting ( 1 ) Journeyman Contractor H&K ELECTRIC pay scale 40.65 work schedule 5-8s 7AM SCATTERED OVERTIME call type Long Location DFW AREA call details Must be able to pass a Background Check, Valid driver's license, Valid TX Journeyman License Required . OSHA 10. SAME DAY ORIENTATION – 1 hour orientation then report to job site same day.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "fe5793e6dd168f42",
+          "key": "fe5793e6dd168f42",
+          "count": 5,
+          "classification": "Journeyman",
+          "text": "Requesting ( 5 ) Journeyman Contractor ROSENDIN ELECTRIC pay scale 40.65 work schedule 4-10's 1-8 6AM call type Long Location MPS McKinney call details ORIENTATION 9/22 7AM",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "ebe4fea140ebdef3",
+          "key": "ebe4fea140ebdef3",
+          "count": 8,
+          "classification": "Journeyman",
+          "text": "Requesting ( 8 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 40.65 work schedule 4-12's 1-8's 5AM call type Long Location QTS LANCASTER call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22. IF ALL HRS WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "b9c51e6a5c27d476",
+          "key": "b9c51e6a5c27d476",
+          "count": 6,
+          "classification": "Journeyman",
+          "text": "Requesting ( 6 ) Journeyman Contractor PAYNE CREST ELECTRIC pay scale 40.65 work schedule START TIME BETWEEN 12AM-6AM, 12HR SHIFTS call type Long Location GM ARLINGTON call details DRUG TEST. ORIENTATION THE DAY AFTER YOU PICK UP REFERRAL @8AM. SUNDAYS and SHUTDOWNS ONLY ( THERE IS NO GUARANTEE THAT SAID PERSON WILL WORK EVERY WEEKEND AND OR HOLIDAY )",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "cfe877ad7da0e282",
+          "key": "cfe877ad7da0e282",
+          "count": 1,
+          "classification": "Foreman",
+          "text": "Requesting ( 1 ) Foreman Call By Name Contractor MORLEY MOSS ELECTRIC pay scale 46.75 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule call type Long Location DFW AREA call details FOREMAN CALL BY NAME FOR SALVADOR FLORES.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "2a3e6eed99a49073",
+          "key": "2a3e6eed99a49073",
+          "count": 3,
+          "classification": "CW/CE",
+          "text": "Requesting ( 3 ) CW/CE Contractor SOUTHLAND INDUSTRIES pay scale HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM SCATTERED OVERTIME call type Long Location MERCANTILE FACILITY IN HALTOM CITY call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 9/21 @7AM.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "0fb36b2f30b08abd",
+          "key": "0fb36b2f30b08abd",
+          "count": 2,
+          "classification": "CW/CE",
+          "text": "Requesting ( 2 ) CW/CE Contractor PDK ELECTRICAL SERVICES pay scale MID LEVEL CE1 TO HIGH LEVEL CE2 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 7AM SCATTERED OVERTIME call type Long Location THE CRESCENT IN DALLAS call details MUST BE ABLE TO PASS DRUG TEST. TENANT FINISH EXPERIENCE. HEAD TO JOB SITE AFTER DISPATCH BE (READY TO WORK).",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "b0775570253ab862",
+          "key": "b0775570253ab862",
+          "count": 7,
+          "classification": "CW/CE",
+          "text": "Requesting ( 7 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale (4) LOW LEVEL CW1 TO LOW LEVEL CW2 and (3) LOW LEVEL CW3 TO MID LEVEL CE1 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-10s 5PM START (2nd SHIFT) call type Long Location QTS LANCASTER call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22. IF ALL HRS WORKED, AS AN INCENTIVE THE 2ND SHIFT DIFFERENTIAL RATE WILL BE PAID AS OT AND OVERTIME PAID AS DOUBLE TIME.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "3da5e7075152e02a",
+          "key": "3da5e7075152e02a",
+          "count": 1,
+          "classification": "CW/CE",
+          "text": "Requesting ( 1 ) CW/CE Contractor HARGROVE ELECTRIC pay scale LOW LEVEL CW3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM SCATTERED OVERTIME call type Long Location LOCKHEED MARTIN in GRAND PRAIRIE call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 9/15. BADGING REQUIRED-ALLOW 2-3 DAYS FOR PROCESSING, TEMPORARY ASSIGNMENT WHILE WAITING FOR BADGE APPROVAL. MUST BE A US CITIZEN and HAVE VALID US PASSPORT OR DRIVER'S LICENSE and A BIRTH CERTIFICATE.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "e67b49db058e37a9",
+          "key": "e67b49db058e37a9",
+          "count": 4,
+          "classification": "CW/CE",
+          "text": "Requesting ( 4 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale HIGH LEVEL CE2 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM SCATTERED OVERTIME call type Long Location BANK OF AMERICA 4200 AMON CARTER BLVD IN FORT WORTH call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22 AT 8:30AM. AFTER YOU TAKE THE CALL, EXPECT A 4-DAY SECURITY CLEARANCE. YOU WILL WORK ON ANOTHER PROJECT, ONCE CLEARED YOU WILL REPORT TO THE BANK OF AMERICA JOB.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "7b777257743364a3",
+          "key": "7b777257743364a3",
+          "count": 3,
+          "classification": "CW/CE",
+          "text": "Requesting ( 3 ) CW/CE Contractor ROSENDIN ELECTRIC pay scale LOW LEVEL CW2 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 1-8 6AM SCATTERED OVERTIME call type Long Location COMPASS IN RED OAK call details DRUG TEST. ORIENTATION 9/16 @6AM. AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "2ef2cb0ae68a2ee1",
+          "key": "2ef2cb0ae68a2ee1",
+          "count": 1,
+          "classification": "CW/CE",
+          "text": "Requesting ( 1 ) CW/CE Contractor ALMAN CONSTRUCTION SERVICES pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-10's 5AM call type Long Location DATABANK CAMPUS in RED OAK call details DRUG TEST. ORIENTATIONS ONLY MONDAYS and WEDNESDAYS RIGHT AFTER DISPATCH. AS AN INCENTIVE ALL OVERTIME HOURS WILL BE PAID AT DOUBLE TIME RATE.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "6a07c75e818ae12d",
+          "key": "6a07c75e818ae12d",
+          "count": 11,
+          "classification": "CW/CE",
+          "text": "Requesting ( 11 ) CW/CE Contractor FISK ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM call type Long Location NPC DALLAS call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 9/16 @7:30AM. CONDUIT BENDING SKILLS REQUIRED.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "f4297413c27b6e5b",
+          "key": "f4297413c27b6e5b",
+          "count": 2,
+          "classification": "CW/CE",
+          "text": "Requesting ( 2 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale HIGH LEVEL CE2 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 6AM SCATTERED OVERTIME call type Long Location 3325 INNOVATIVE WAY in MESQUITE call details DRUG TEST MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22 @8:30AM",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "72de6adebe4683f9",
+          "key": "72de6adebe4683f9",
+          "count": 10,
+          "classification": "CW/CE",
+          "text": "Requesting ( 10 ) CW/CE Contractor ROSENDIN ELECTRIC pay scale MID LEVEL CW4 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM call type Long Location MPS LEWISVILLE call details ORIENTATION 9/22 7AM",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "90f81ca6468b8754",
+          "key": "90f81ca6468b8754",
+          "count": 2,
+          "classification": "CW/CE",
+          "text": "Requesting ( 2 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-10s 5AM call type Long Location DATABANK RED OAK DFW11 call details DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 9/22 @8:30AM. IF ALL HRS WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE.",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "c56d49321e00b148",
+          "key": "c56d49321e00b148",
+          "count": 3,
+          "classification": "CW/CE",
+          "text": "Requesting ( 3 ) CW/CE Contractor ROSENDIN ELECTRIC pay scale MID CW4- HIGH CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 1-8 6AM call type Long Location MPS MCKINNEY call details ORIENTATION 9/22 7AM",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
+        },
+        {
+          "id": "00ceeb1f6cd11203",
+          "key": "00ceeb1f6cd11203",
+          "count": 38,
+          "classification": "CW/CE",
+          "text": "Requesting ( 38 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale (12) LOW LEVEL CW1 TO LOW LEVEL CW2, (12) LOW LEVEL CW3 TO MID LEVEL CE1, and (14) HIGH LEVEL CE2 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-12's 1-8 5AM START call type Long Location QTS LANCASTER call d",
+          "source": "llm",
+          "first_seen": "2026-09-14T21:21:35.764Z",
+          "last_seen": "2026-09-14T21:21:35.764Z"
         }
       ]
     }

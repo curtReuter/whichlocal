@@ -33,11 +33,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+
+      - run: npm ci
 
       - name: Merge manual job calls (also refreshes the scraped locals)
         run: node scripts/scrape-job-calls.mjs
         env:
           SCRAPER_CONTACT: ${{ secrets.SCRAPER_CONTACT }}
+          LLM_EXTRACT: ${{ vars.LLM_EXTRACT }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Notify Discord
         run: node scripts/notify-discord.mjs

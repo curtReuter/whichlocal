@@ -49,6 +49,9 @@ whichlocal/
 Requires **Node 20+**. PocketBase is downloaded once as a single binary.
 
 ```sh
+# 0. Scripts' one npm dependency (@google/genai, for the job-calls LLM fallback)
+npm install
+
 # 1. PocketBase binary (macOS arm64 shown — see pocketbase.io/docs for others)
 mkdir -p pb && cd pb
 curl -sL -o pb.zip https://github.com/pocketbase/pocketbase/releases/download/v0.40.3/pocketbase_0.40.3_darwin_arm64.zip
@@ -72,6 +75,7 @@ cp js/config.example.js js/config.local.js      # dev override: point the fronte
 | `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` | superuser used by the scripts |
 | `SCRAPER_CONTACT` | email/URL sent as the `User-Agent` contact when scraping |
 | `CARTO_API_KEY` | reference copy; the browser reads it from `js/config.js` |
+| `GEMINI_API_KEY` / `LLM_EXTRACT=1` | optional — enables the job-calls LLM fallback (free tier), see [Job calls](#job-calls) |
 
 ## Run
 
@@ -370,6 +374,40 @@ otherwise every parser is tried.
 
 Same conduct as the main scraper — one request per local per run, HTML cached,
 descriptive `User-Agent`.
+
+**Finding locals worth adding.** `scripts/discover-job-call-urls.mjs` looks each
+local up on sparkshift.app's public union directory, fetches its site, and sorts
+it into `scripts/job-call-discovery.json` as `public` (real listings — worth
+adding a `url`), `gated` (member-login only — not scrapable), `none`/`no-website`,
+or `unclear`:
+
+```sh
+node scripts/discover-job-call-urls.mjs              # next batch (60 by default)
+node scripts/discover-job-call-urls.mjs --state FL   # just one state
+node scripts/discover-job-call-urls.mjs --only l20-dallas-tx
+```
+
+It's a triage tool, not a scraper — it never reads a call, it only tells you
+which locals have a page worth pointing `scrape-job-calls.mjs` at.
+
+**LLM fallback for pages that don't match a `FORMATS` regex.** Not every local
+that publishes calls uses UnionActive — the `public` locals in the discovery
+report turned up WordPress, Webflow, Wix, and a few unidentified custom systems,
+each with its own free-text wording. Rather than writing (and maintaining) a
+regex per platform per local, set `LLM_EXTRACT=1` and `GEMINI_API_KEY` and
+`scrape-job-calls.mjs` asks Gemini 3.5 Flash-Lite to read the plain text of any
+local's page that matched **zero** `FORMATS` entries and return the same
+`{count, classification, text}` shape a regex matcher would — see
+`scripts/lib/llm-extract.mjs`. It never runs when a regex already found calls,
+and a failure just leaves that local empty for the run, same as without it.
+Gemini 3.5 Flash-Lite is free on Google AI Studio's free tier (1,500
+requests/day, no credit card) as of this writing — comfortably enough for
+checking a couple dozen locals every 2 hours. Get a key at
+[aistudio.google.com/apikey](https://aistudio.google.com/apikey). Needs
+`npm install` once at the repo root (adds `@google/genai`). To enable it in CI:
+add repo secret `GEMINI_API_KEY` and repo variable `LLM_EXTRACT=1` (Settings →
+Secrets and variables → Actions) — both `job-calls.yml` and
+`apply-job-calls.yml` already pass them through.
 
 **Manual job calls (`scripts/job-calls.overrides.json`).** For a local with no
 scrapeable page, or to add a call a page missed, put it here — same idea as

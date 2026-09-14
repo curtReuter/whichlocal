@@ -25,12 +25,23 @@
  * Conduct: one request per local per run; the HTML is cached to scripts/cache/
  * so `--offline` re-runs never touch the sites. Identifies itself with a
  * descriptive User-Agent including SCRAPER_CONTACT.
+ *
+ * LLM fallback: a local's page only needs a FORMATS regex if its wording
+ * doesn't already match one. When a configured local's page parses to zero
+ * calls, and LLM_EXTRACT=1 + GEMINI_API_KEY are set, scripts/lib/llm-
+ * extract.mjs (Gemini 3.5 Flash-Lite — free tier) reads the page's plain text
+ * and returns calls in the same shape a regex matcher would — this is the
+ * "adaptable" part of the scraper: a brand-new local's page can be added to
+ * job-calls.config.json without writing it a matcher first. Never overrides
+ * a working regex match. Use scripts/job-call-discovery.json (discover-job-
+ * call-urls.mjs) to find locals worth adding a `url` for in the first place.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { loadEnv } from './lib/pb.mjs';
+import { extractCallsWithLLM } from './lib/llm-extract.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE_DIR = join(ROOT, 'scripts', 'cache');
@@ -50,6 +61,8 @@ loadEnv();
 const CONTACT = process.env.SCRAPER_CONTACT || 'unknown';
 const UA = `WhichLocal-jobcalls/1.0 (+${CONTACT})`;
 const RUN_TS = new Date().toISOString();
+const LLM_EXTRACT = process.env.LLM_EXTRACT === '1' && !OFFLINE;
+let llmWarned = false;
 
 mkdirSync(CACHE_DIR, { recursive: true });
 
@@ -83,6 +96,10 @@ function decode(s) {
       (name.toLowerCase() in NAMED ? NAMED[name.toLowerCase()] : m));
 }
 const plain = (html) => decode(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+// Only used ahead of the LLM fallback, which (unlike the per-<p> regex path)
+// runs plain() over the whole page — strip script/style bodies first so their
+// contents don't leak into the "plain text" the model reads.
+const stripNoise = (html) => html.replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ');
 
 // Normalised key for identity — tolerant of whitespace and curly-quote churn.
 const normKey = (t) =>
@@ -153,6 +170,7 @@ function parseJobCalls(html, formatNames) {
   const active = formatNames && formatNames.length
     ? FORMATS.filter((f) => formatNames.includes(f.name))
     : FORMATS;
+  html = stripNoise(html);
   // widest content region across the UnionActive page templates
   let start = -1;
   for (const a of [/class=["']pageheader["']/i, /id=["']pagecontent["']/i, /id=["']maincolumnspot["']/i]) {
@@ -193,7 +211,49 @@ function parseJobCalls(html, formatNames) {
   }
 
   const countSum = calls.reduce((a, c) => a + c.count, 0);
-  return { posted, total: headerTotal ?? countSum, count_sum: countSum, calls };
+  // _plainText rides along only for maybeLlmFallback() below to read when no
+  // FORMATS matcher hit anything — stripped before a local's parsed result is
+  // ever written to js/data/job-calls.json.
+  return { posted, total: headerTotal ?? countSum, count_sum: countSum, calls, _plainText: flat };
+}
+
+/**
+ * A local's page matched none of FORMATS — try the LLM extractor on the same
+ * plain text, when LLM_EXTRACT=1 and a Gemini key are both present. Never
+ * runs when the regex path already found calls, and never throws: a failure
+ * here just means this local stays empty for the run, same as it would
+ * without the fallback at all.
+ */
+async function maybeLlmFallback(slug, parsed) {
+  const text = parsed._plainText;
+  delete parsed._plainText;
+  if (parsed.calls.length || !LLM_EXTRACT) return parsed;
+  if (!process.env.GEMINI_API_KEY && !process.env.GOOGLE_API_KEY) {
+    if (!llmWarned) {
+      console.warn('  LLM_EXTRACT=1 but GEMINI_API_KEY/GOOGLE_API_KEY is not set — skipping the LLM fallback.');
+      llmWarned = true;
+    }
+    return parsed;
+  }
+  if (!text) return parsed;
+  try {
+    const { calls: llmCalls } = await extractCallsWithLLM(text);
+    if (!llmCalls.length) {
+      console.log(`  ${slug}: LLM fallback found no calls`);
+      return parsed;
+    }
+    const calls = llmCalls.map((c) => ({
+      id: callId(c.text), key: listingKey(c.text),
+      count: c.count, classification: c.classification, text: c.text,
+      source: 'llm',
+    }));
+    const countSum = calls.reduce((a, c) => a + c.count, 0);
+    console.log(`  ${slug}: LLM fallback found ${calls.length} call(s)`);
+    return { ...parsed, total: parsed.total || countSum, count_sum: countSum, calls };
+  } catch (e) {
+    console.warn(`  ${slug}: LLM fallback failed — ${e.message}`);
+    return parsed;
+  }
 }
 
 /* ---------- manual overrides ---------------------------------------------- */
@@ -332,7 +392,8 @@ const entries = Object.entries(config).filter(([k, v]) => /^l\d/.test(k) && v &&
 for (const [slug, { local_no, url, format }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
-    const parsed = withManual(slug, parseJobCalls(await getHtml(slug, url), [].concat(format || [])));
+    const scraped = await maybeLlmFallback(slug, parseJobCalls(await getHtml(slug, url), [].concat(format || [])));
+    const parsed = withManual(slug, scraped);
     commitLocal(slug, local_no, parsed, { url });
     ok += 1;
   } catch (e) {
