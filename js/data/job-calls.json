@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-14T23:05:12.414Z",
+  "generated_at": "2026-09-15T04:45:03.207Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-14T23:05:12.414Z",
+      "scraped_at": "2026-09-15T04:45:03.207Z",
       "posted": "September 14, 2026",
       "total": 4,
       "count_sum": 4,
@@ -16,7 +16,7 @@
           "classification": "Journeyman Wireman",
           "text": "1 Journeyman Wireman calls for Maddox Electric at Animal Kingdom working 4-10’s and an 8 with a 10 pm start time. The scale is $32.64 an hour plus a 15% night shift differential. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-09-07T03:22:41.022Z",
-          "last_seen": "2026-09-14T23:05:12.414Z"
+          "last_seen": "2026-09-15T04:45:03.207Z"
         },
         {
           "id": "3ca4030049dd6133",
@@ -25,14 +25,14 @@
           "classification": "Journeyman Wireman",
           "text": "3 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm to 7:30am, Monday through Friday the scale is $33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
           "first_seen": "2026-09-07T03:53:17.449Z",
-          "last_seen": "2026-09-14T23:05:12.414Z"
+          "last_seen": "2026-09-15T04:45:03.207Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-14T23:05:12.414Z",
+      "scraped_at": "2026-09-15T04:45:03.207Z",
       "posted": "Tuesday, September 15th",
       "total": 6,
       "count_sum": 6,
@@ -44,7 +44,7 @@
           "classification": "Journeyman Wireman",
           "text": "4 - JW Miller Electric, Working at LC-16 at the Space Center for Relativity, Doing Duct Bank, Working 5 - 8's with possible OT, 6am start time, $40.30",
           "first_seen": "2026-09-14T23:05:12.414Z",
-          "last_seen": "2026-09-14T23:05:12.414Z"
+          "last_seen": "2026-09-15T04:45:03.207Z"
         },
         {
           "id": "d17f7f123f3e1eb0",
@@ -53,7 +53,7 @@
           "classification": "Journeyman Wireman",
           "text": "1- JW HFT for Various locations at KSC, Working 5-10's, $40.30 Hr. , report after Badging",
           "first_seen": "2026-09-10T20:47:34.852Z",
-          "last_seen": "2026-09-14T23:05:12.414Z"
+          "last_seen": "2026-09-15T04:45:03.207Z"
         },
         {
           "id": "fea4691cb6d0418a",
@@ -62,7 +62,7 @@
           "classification": "Journeyman Wireman",
           "text": "1- JW Cache Valley Electric, Working at LC-37 at the Space Center, Working Night Shift, 6 - 10's with a 5pm start time. Night shift will begin on 9/14/26, Shift Differential is 17.3% over scale $47.27",
           "first_seen": "2026-09-10T00:06:53.187Z",
-          "last_seen": "2026-09-14T23:05:12.414Z"
+          "last_seen": "2026-09-15T04:45:03.207Z"
         }
       ]
     }
