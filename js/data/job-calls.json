@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-16T13:26:29.749Z",
+  "generated_at": "2026-09-16T18:08:45.726Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-16T13:26:29.749Z",
+      "scraped_at": "2026-09-16T18:08:45.726Z",
       "posted": "September 15, 2026",
       "total": 5,
       "count_sum": 5,
@@ -16,7 +16,7 @@
           "classification": "Journeyman Wireman",
           "text": "3 Journeyman Wireman calls for Maddox Electric at Animal Kingdom working 5-10s with a 10 pm start time. The scale is $32.64 an hour plus a 15% night shift differential. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-09-16T00:11:27.542Z",
-          "last_seen": "2026-09-16T13:26:29.749Z"
+          "last_seen": "2026-09-16T18:08:45.726Z"
         },
         {
           "id": "a0fd99c17b0be38a",
@@ -25,15 +25,15 @@
           "classification": "Journeyman Wireman",
           "text": "2 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm to 7:30am, Monday through Friday the scale is $33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
           "first_seen": "2026-09-07T03:53:17.449Z",
-          "last_seen": "2026-09-16T13:26:29.749Z"
+          "last_seen": "2026-09-16T18:08:45.726Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-16T13:26:29.749Z",
-      "posted": "Wednesday, September 16th",
+      "scraped_at": "2026-09-16T18:08:45.726Z",
+      "posted": "OPEN UNTIL FILLED",
       "total": 3,
       "count_sum": 3,
       "calls": [
@@ -44,7 +44,7 @@
           "classification": "Journeyman Wireman",
           "text": "3 - JW Miller Electric, Working at LC-16 at the Space Center for Relativity, Doing Duct Bank, Working 5 - 8's with possible OT, 6am start time, $40.30",
           "first_seen": "2026-09-14T23:05:12.414Z",
-          "last_seen": "2026-09-16T13:26:29.749Z"
+          "last_seen": "2026-09-16T18:08:45.726Z"
         }
       ]
     }
