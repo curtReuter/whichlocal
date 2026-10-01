@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-30T23:41:36.555Z",
+  "generated_at": "2026-10-01T05:40:40.049Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-30T23:41:36.555Z",
+      "scraped_at": "2026-10-01T05:40:40.049Z",
       "posted": "September 30, 2026",
       "total": 2,
       "count_sum": 2,
@@ -16,14 +16,14 @@
           "classification": "Journeyman Wireman",
           "text": "2 Journeyman Wireman calls for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with overtime opportunities. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesday for Spanish.",
           "first_seen": "2026-09-22T21:12:58.278Z",
-          "last_seen": "2026-09-30T23:41:36.555Z"
+          "last_seen": "2026-10-01T05:40:40.049Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-09-30T23:41:36.555Z",
+      "scraped_at": "2026-10-01T05:40:40.049Z",
       "posted": "OPEN UNTIL FILLED",
       "total": 19,
       "count_sum": 19,
@@ -35,7 +35,7 @@
           "classification": "Journeyman Wireman",
           "text": "1 - JW Icon Electrical, Working for Blue Origin at LC-36, Working 7 - 12's doing Control Wiring, report after badge is approved, $40.30",
           "first_seen": "2026-09-22T21:12:58.278Z",
-          "last_seen": "2026-09-30T23:41:36.555Z"
+          "last_seen": "2026-10-01T05:40:40.049Z"
         },
         {
           "id": "c5873e89c87e1f87",
@@ -44,7 +44,7 @@
           "classification": "Journeyman Wireman",
           "text": "4- JW HFT, Working for SpaceX at the Gigabay, Night Shift 4pm to 2:30am, Mandatory 6 - 10's, Must Work At Heights, Work week is Sunday night through Friday night, report after badge is approved, $52.95",
           "first_seen": "2026-09-28T13:43:41.338Z",
-          "last_seen": "2026-09-30T23:41:36.555Z"
+          "last_seen": "2026-10-01T05:40:40.049Z"
         },
         {
           "id": "c8755fe2276b152f",
@@ -53,7 +53,7 @@
           "classification": "Journeyman Wireman",
           "text": "14 - JW Cache Valley, Working at LC-37 at the Space Center, Day shift Working 6 - 10's with a 7am start time, report after badge is approved, $40.30",
           "first_seen": "2026-09-29T16:28:15.510Z",
-          "last_seen": "2026-09-30T23:41:36.555Z"
+          "last_seen": "2026-10-01T05:40:40.049Z"
         }
       ]
     }
