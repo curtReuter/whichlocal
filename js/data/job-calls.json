@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-02T05:25:30.594Z",
+  "generated_at": "2026-10-02T12:23:09.404Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-02T05:25:30.594Z",
+      "scraped_at": "2026-10-02T12:23:09.404Z",
       "posted": "October 01, 2026",
       "total": 5,
       "count_sum": 5,
@@ -16,26 +16,26 @@
           "classification": "Journeyman Wireman",
           "text": "5 Journeyman Wireman calls for BVCC’s Holiday Services. The hours are 11pm-7:30am, Monday through Friday the scale is 33.08 an hour plus a $3.50 night shift differential. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
           "first_seen": "2026-10-01T23:51:06.971Z",
-          "last_seen": "2026-10-02T05:25:30.594Z"
+          "last_seen": "2026-10-02T12:23:09.404Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-02T05:25:30.594Z",
+      "scraped_at": "2026-10-02T12:23:09.404Z",
       "posted": "OPEN UNTIL FILLED",
       "total": 23,
       "count_sum": 23,
       "calls": [
         {
-          "id": "3da6e1542773ed3e",
-          "key": "5047b743a0ff1dc1",
+          "id": "14596b0c8521db88",
+          "key": "83db09a5a94caf54",
           "count": 4,
           "classification": "Journeyman Wireman",
-          "text": "4- JW HFT , Working for SpaceX at Gigabay , Day Shift, 7:00 AM start time, Must be able to work at Heights, $40.30, Report after Badge is approved.",
-          "first_seen": "2026-10-01T19:27:41.000Z",
-          "last_seen": "2026-10-02T05:25:30.594Z"
+          "text": "4- JW HFT , Working for SpaceX at Gigabay , Day Shift, 7:00 AM start time, 6- 10's,Must be able to work at Heights, $40.30, Report after Badge is approved.",
+          "first_seen": "2026-10-02T12:23:09.404Z",
+          "last_seen": "2026-10-02T12:23:09.404Z"
         },
         {
           "id": "a949d1f28854800d",
@@ -44,7 +44,7 @@
           "classification": "Journeyman Wireman",
           "text": "1 - JW Icon Electrical, Working for Blue Origin at LC-36, Working 7 - 12's doing Control Wiring, report after badge is approved, $40.30",
           "first_seen": "2026-09-22T21:12:58.278Z",
-          "last_seen": "2026-10-02T05:25:30.594Z"
+          "last_seen": "2026-10-02T12:23:09.404Z"
         },
         {
           "id": "c5873e89c87e1f87",
@@ -53,7 +53,7 @@
           "classification": "Journeyman Wireman",
           "text": "4- JW HFT, Working for SpaceX at the Gigabay, Night Shift 4pm to 2:30am, Mandatory 6 - 10's, Must Work At Heights, Work week is Sunday night through Friday night, report after badge is approved, $52.95",
           "first_seen": "2026-09-28T13:43:41.338Z",
-          "last_seen": "2026-10-02T05:25:30.594Z"
+          "last_seen": "2026-10-02T12:23:09.404Z"
         },
         {
           "id": "c8755fe2276b152f",
@@ -62,7 +62,7 @@
           "classification": "Journeyman Wireman",
           "text": "14 - JW Cache Valley, Working at LC-37 at the Space Center, Day shift Working 6 - 10's with a 7am start time, report after badge is approved, $40.30",
           "first_seen": "2026-09-29T16:28:15.510Z",
-          "last_seen": "2026-10-02T05:25:30.594Z"
+          "last_seen": "2026-10-02T12:23:09.404Z"
         }
       ]
     }
