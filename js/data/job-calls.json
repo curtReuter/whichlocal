@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-06T20:55:08.269Z",
+  "generated_at": "2026-10-07T01:26:39.926Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-06T20:55:08.269Z",
+      "scraped_at": "2026-10-07T01:26:39.926Z",
       "posted": "October 06, 2026",
       "total": 4,
       "count_sum": 4,
@@ -16,14 +16,14 @@
           "classification": "Journeyman Wireman",
           "text": "4 Journeyman Wireman calls for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with overtime opportunities. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-10-02T23:43:08.415Z",
-          "last_seen": "2026-10-06T20:55:08.269Z"
+          "last_seen": "2026-10-07T01:26:39.926Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-06T20:55:08.269Z",
+      "scraped_at": "2026-10-07T01:26:39.926Z",
       "posted": "OPEN UNTIL FILLED",
       "total": 10,
       "count_sum": 10,
@@ -35,7 +35,7 @@
           "classification": "Journeyman Wireman",
           "text": "3 - JW HFT, Working for SpaceX at Gigabay , Day Shift, 7:00 AM start time, 6- 10's,Must be able to work at Heights, $40.30, Report after Badge is approved.",
           "first_seen": "2026-10-05T22:33:09.204Z",
-          "last_seen": "2026-10-06T20:55:08.269Z"
+          "last_seen": "2026-10-07T01:26:39.926Z"
         },
         {
           "id": "12bc9b02e9b13326",
@@ -44,7 +44,7 @@
           "classification": "Journeyman Wireman",
           "text": "7 - JW Cache Valley, Working at LC-37 at the Space Center, Day shift Working 6 - 10's with a 7am start time, report after badge is approved, $40.30",
           "first_seen": "2026-09-29T16:28:15.510Z",
-          "last_seen": "2026-10-06T20:55:08.269Z"
+          "last_seen": "2026-10-07T01:26:39.926Z"
         }
       ]
     }
