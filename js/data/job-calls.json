@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-07T23:00:50.151Z",
+  "generated_at": "2026-10-08T05:52:21.501Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-07T23:00:50.151Z",
+      "scraped_at": "2026-10-08T05:52:21.501Z",
       "posted": "October 07, 2026",
       "total": 3,
       "count_sum": 0,
@@ -13,7 +13,7 @@
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-07T23:00:50.151Z",
+      "scraped_at": "2026-10-08T05:52:21.501Z",
       "posted": "OPEN UNTIL FILLED",
       "total": 7,
       "count_sum": 7,
@@ -25,7 +25,7 @@
           "classification": "Journeyman Wireman",
           "text": "7 - JW Cache Valley, Working at LC-37 at the Space Center, Day shift Working 6 - 10's with a 7am start time, report after badge is approved, $40.30",
           "first_seen": "2026-09-29T16:28:15.510Z",
-          "last_seen": "2026-10-07T23:00:50.151Z"
+          "last_seen": "2026-10-08T05:52:21.501Z"
         }
       ]
     }
