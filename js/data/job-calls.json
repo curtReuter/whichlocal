@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-16T07:03:18.420Z",
+  "generated_at": "2026-10-16T13:11:45.610Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-16T07:03:18.420Z",
+      "scraped_at": "2026-10-16T13:11:45.610Z",
       "posted": "October 15, 2026",
       "total": 5,
       "count_sum": 5,
@@ -16,7 +16,7 @@
           "classification": "Journeyman Wireman",
           "text": "3 Journeyman Wireman calls for Maddox Electric at Animal Kingdom. The hours are 5am to 1:30 pm, Monday through Friday with overtime opportunities. The scale is $32.64 an hour. Site orientation is on Monday’s for English and Tuesdays for Spanish.",
           "first_seen": "2026-10-08T19:50:52.226Z",
-          "last_seen": "2026-10-16T07:03:18.420Z"
+          "last_seen": "2026-10-16T13:11:45.610Z"
         },
         {
           "id": "88f7f3f6d74b15e6",
@@ -25,18 +25,37 @@
           "classification": "Journeyman Wireman",
           "text": "2 Journeyman Wireman call for BVCC on dayshift for Shomari. They are working 5-10’s Monday through Friday with a 5am start time. The scale is $33.08 an hour. You will need scaffold safety, working at heights, and confined space certificates. You will also need to pass Disney’s background check.",
           "first_seen": "2026-10-08T19:50:52.226Z",
-          "last_seen": "2026-10-16T07:03:18.420Z"
+          "last_seen": "2026-10-16T13:11:45.610Z"
         }
       ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-16T07:03:18.420Z",
-      "posted": null,
-      "total": 0,
-      "count_sum": 0,
-      "calls": []
+      "scraped_at": "2026-10-16T13:11:45.610Z",
+      "posted": "OPEN UNTIL FILLED",
+      "total": 5,
+      "count_sum": 5,
+      "calls": [
+        {
+          "id": "5db12eb374b82b09",
+          "key": "c816fa7fd7dafeac",
+          "count": 4,
+          "classification": "Journeyman Wireman",
+          "text": "4 - JW HFT at Gigabay on KSC, 6-10's Day Shift, $40.30 Hr. report after badge is approved.",
+          "first_seen": "2026-10-16T13:11:45.610Z",
+          "last_seen": "2026-10-16T13:11:45.610Z"
+        },
+        {
+          "id": "e91a7a286b9899b0",
+          "key": "006254c82f88ab0b",
+          "count": 1,
+          "classification": "Journeyman Wireman",
+          "text": "1 - JW HFT at Gigabay on KSC 6–10's Night shift 4:00 pm - 2:30 AM , $52.95 Hr. report after badge is approved.",
+          "first_seen": "2026-10-16T13:11:45.610Z",
+          "last_seen": "2026-10-16T13:11:45.610Z"
+        }
+      ]
     }
   }
 }
