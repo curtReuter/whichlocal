@@ -504,6 +504,16 @@ body.is-resizing .leaflet-container { pointer-events: none; }
   margin-bottom: 8px;
 }
 .detail__jobs-date { font-weight: 400; color: var(--text-soft); }
+
+/* a local can publish dozens of calls — scroll them in their own bounded
+   region so the panel doesn't balloon past the footer buttons below it */
+.detail__calls {
+  max-height: min(400px, 50vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
 .detail__call {
   margin: 0;
   padding: 8px 0;

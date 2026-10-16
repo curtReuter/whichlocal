@@ -6,9 +6,9 @@
 
 // ?v= must match index.html — bump both together on any frontend change so
 // browsers don't serve a stale module past GitHub Pages' 10-minute cache.
-import { metrics } from './metrics.js?v=57';
-import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=57';
-import { createCityMap } from './cityMap.js?v=57';
+import { metrics } from './metrics.js?v=58';
+import { loadLocals, loadJobCalls, loadRoster } from './dataSource.js?v=58';
+import { createCityMap } from './cityMap.js?v=58';
 
 // Runtime config (CARTO key + PocketBase URL), resolved in order:
 //   1. js/config.local.js  — gitignored local overrides (e.g. pointing at a live
@@ -549,6 +549,12 @@ function buildJobsView(jc, { noBack = false } = {}) {
   const calls = jc.calls
     .map((c) => `<p class="detail__call">${esc(c.text)}</p>`)
     .join('');
+  // A local can publish dozens of calls (Milwaukee's run 40+) — scroll the
+  // calls themselves in their own bounded region rather than let the whole
+  // green panel balloon past the footer buttons.
+  const callsBlock = calls
+    ? `<div class="detail__calls">${calls}</div>`
+    : '<p class="detail__call">No open calls listed right now.</p>';
   // the dataless local's inline jobs view (noBack) gets its buttons from the
   // trailing CONTRIB_BUTTONS instead, so skip the footer there
   const foot = [];
@@ -569,7 +575,7 @@ function buildJobsView(jc, { noBack = false } = {}) {
     `<div class="detail__jobs-head">${esc(jobCallLabel(jc.total))}` +
       (jc.posted ? ` <span class="detail__jobs-date">· ${esc(jc.posted)}</span>` : '') +
     '</div>' +
-    (calls || '<p class="detail__call">No open calls listed right now.</p>') +
+    callsBlock +
     (foot.length ? `<div class="detail__foot">${foot.join('')}</div>` : '')
   );
 }
