@@ -78,19 +78,22 @@
     "local_no": 8
   },
   "l11-los-angeles-ca": {
-    "local_no": 11
+    "local_no": 11,
+    "url": "https://www.ibew11.org/work/dispatch-procedures"
   },
   "l12-pueblo-co": {
     "local_no": 12
   },
   "l13-burlington-ia": {
-    "local_no": 13
+    "local_no": 13,
+    "url": "https://www.ibewlocal13.com/referral-policy"
   },
   "l14-eau-claire-fall-creek-wi": {
     "local_no": 14
   },
   "l16-evansville-in": {
-    "local_no": 16
+    "local_no": 16,
+    "url": "https://www.ibewlocal16.com/?zone=/unionactive/view_page.cfm&page=OPEN2FAVAILABLE20JOBS"
   },
   "l20-dallas-tx": {
     "local_no": 20,
@@ -160,7 +163,8 @@
     "local_no": 64
   },
   "l68-denver-co": {
-    "local_no": 68
+    "local_no": 68,
+    "url": "https://ibewlu68.com/job-board/"
   },
   "l72-waco-tx": {
     "local_no": 72
@@ -202,7 +206,8 @@
     "local_no": 99
   },
   "l100-fresno-ca": {
-    "local_no": 100
+    "local_no": 100,
+    "url": "https://www.ibew100.org/?zone=/unionactive/view_page.cfm&page=Job20Calls202"
   },
   "l102-paterson-nj": {
     "local_no": 102
@@ -220,13 +225,15 @@
     "local_no": 110
   },
   "l111-denver-co": {
-    "local_no": 111
+    "local_no": 111,
+    "url": "https://www.ibew111.org/dispatch"
   },
   "l112-kennewick-wa": {
     "local_no": 112
   },
   "l113-colorado-springs-co": {
-    "local_no": 113
+    "local_no": 113,
+    "url": "https://www.ibew113.com/dispatch"
   },
   "l117-elgin-il": {
     "local_no": 117
@@ -304,7 +311,8 @@
     "local_no": 177
   },
   "l180-napa-ca": {
-    "local_no": 180
+    "local_no": 180,
+    "url": "https://www.ibewlu180.org/index.cfm?zone=/unionactive/jobcalls_view.cfm"
   },
   "l191-everett-wa": {
     "local_no": 191
@@ -346,7 +354,8 @@
     "local_no": 234
   },
   "l236-albany-ny": {
-    "local_no": 236
+    "local_no": 236,
+    "url": "https://www.ibew236.org/job-referrals/"
   },
   "l237-niagara-falls-ny": {
     "local_no": 237
@@ -412,7 +421,8 @@
     "local_no": 301
   },
   "l302-martinez-ca": {
-    "local_no": 302
+    "local_no": 302,
+    "url": "https://www.ibewlu302.com/dispatch/"
   },
   "l303-niagara-peninsula-ont": {
     "local_no": 303
@@ -448,7 +458,8 @@
     "local_no": 332
   },
   "l340-sacramento-ca": {
-    "local_no": 340
+    "local_no": 340,
+    "url": "https://www.ibewlocal340.org/referral-policy/"
   },
   "l342-greensboro-nc": {
     "local_no": 342
@@ -505,7 +516,8 @@
     "local_no": 402
   },
   "l405-cedar-rapids-n-ia": {
-    "local_no": 405
+    "local_no": 405,
+    "url": "https://ibew405.org/job-calls/"
   },
   "l413-santa-barbara-ca": {
     "local_no": 413
@@ -520,22 +532,26 @@
     "local_no": 426
   },
   "l428-bakersfield-ca": {
-    "local_no": 428
+    "local_no": 428,
+    "url": "https://www.ibew428.org/?zone=/unionactive/view_page.cfm&page=Job20Calls"
   },
   "l429-nashville-tn": {
     "local_no": 429
   },
   "l430-racine-wi": {
-    "local_no": 430
+    "local_no": 430,
+    "url": "https://www.ibewlu430.org/?zone=/unionactive/view_page.cfm&page=Job20Calls"
   },
   "l436-el-dorado-ar": {
     "local_no": 436
   },
   "l440-riverside-ca": {
-    "local_no": 440
+    "local_no": 440,
+    "url": "https://www.ibew440.org/dispatch/"
   },
   "l441-orange-county-ca": {
-    "local_no": 441
+    "local_no": 441,
+    "url": "https://www.ibewoc.com/calls-for-dispatch"
   },
   "l443-montgomery-al": {
     "local_no": 443
@@ -568,10 +584,12 @@
     "local_no": 474
   },
   "l477-san-bernadino-zone-a-ca": {
-    "local_no": 477
+    "local_no": 477,
+    "url": "https://ibew477.org/job-calls/"
   },
   "l477-san-bernadino-zone-b-ca": {
-    "local_no": 477
+    "local_no": 477,
+    "url": "https://ibew477.org/job-calls/"
   },
   "l479-beaumont-tx": {
     "local_no": 479
@@ -580,7 +598,8 @@
     "local_no": 480
   },
   "l481-indianapolis-in": {
-    "local_no": 481
+    "local_no": 481,
+    "url": "https://www.ibew481.org/AvailableJobs/"
   },
   "l488-bridgeport-ct": {
     "local_no": 488
@@ -589,7 +608,8 @@
     "local_no": 490
   },
   "l494-milwaukee-wi": {
-    "local_no": 494
+    "local_no": 494,
+    "url": "https://www.ibew494.com/?zone=/unionactive/view_page.cfm&page=Referral"
   },
   "l495-wilmington-nc": {
     "local_no": 495
@@ -658,7 +678,8 @@
     "local_no": 569
   },
   "l570-tucson-az": {
-    "local_no": 570
+    "local_no": 570,
+    "url": "https://www.ibew570.org/job-board/"
   },
   "l573-warren-oh": {
     "local_no": 573
@@ -670,7 +691,8 @@
     "local_no": 576
   },
   "l577-appleton-wi": {
-    "local_no": 577
+    "local_no": 577,
+    "url": "https://www.ibewlu577.com/OpenJobs"
   },
   "l583-el-paso-zone-1-tx": {
     "local_no": 583
@@ -785,7 +807,8 @@
     "local_no": 702
   },
   "l704-dubuque-ia": {
-    "local_no": 704
+    "local_no": 704,
+    "url": "https://www.ibew704.com/job-calls"
   },
   "l712-beaver-pa": {
     "local_no": 712
@@ -849,7 +872,8 @@
     "local_no": 873
   },
   "l890-janesville-wi": {
-    "local_no": 890
+    "local_no": 890,
+    "url": "https://ibew890.org/resign-referral/"
   },
   "l903-gulfport-ms": {
     "local_no": 903
@@ -900,7 +924,8 @@
     "local_no": 1077
   },
   "l1105-newark-oh": {
-    "local_no": 1105
+    "local_no": 1105,
+    "url": "https://www.ibewlocal1105.org/job-calls/"
   },
   "l1141-oklahoma-city-ok": {
     "local_no": 1141
