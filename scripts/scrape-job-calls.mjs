@@ -148,9 +148,12 @@ const FORMATS = [
   },
   {
     // "5 - JW Cache Valley Electric, Working at …  $40.30"  (e.g. Local 756)
+    // The dash can land on either side of the code — "14 JW - Cache Valley
+    // working at …" posts just as often as "5 - JW Cache Valley …" — so both
+    // the leading and trailing dash are optional here, not either/or.
     name: 'dash-code',
     match(t) {
-      const m = t.match(/^(\d+)\s*[-–—]\s*([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b/);
+      const m = t.match(/^(\d+)\s*(?:[-–—]\s*)?([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b\s*(?:[-–—]\s*)?/);
       if (!m) return null;
       return {
         count: parseInt(m[1], 10),

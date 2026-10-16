@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T21:15:18.021Z",
+  "generated_at": "2026-10-16T21:46:55.509Z",
   "locals": {
     "l11-los-angeles-ca": {
       "local_no": 11,
@@ -1894,10 +1894,10 @@
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-16T21:15:18.021Z",
+      "scraped_at": "2026-10-16T21:46:55.509Z",
       "posted": "October 19, 2026",
-      "total": 8,
-      "count_sum": 8,
+      "total": 22,
+      "count_sum": 22,
       "calls": [
         {
           "id": "f8998f28d1078979",
@@ -1906,7 +1906,7 @@
           "classification": "Journeyman Wireman",
           "text": "4- JW Central Florida Electrical Solutions, work at the Space Center at SpaceX Gigabay. This is a short to indefinite call working 5-10's dayshift $40.30 Hr. You will be installing 3/4 conduit for the fire alarm system. You will report once badging is approved.",
           "first_seen": "2026-10-16T21:15:18.021Z",
-          "last_seen": "2026-10-16T21:15:18.021Z"
+          "last_seen": "2026-10-16T21:46:55.509Z"
         },
         {
           "id": "5db12eb374b82b09",
@@ -1915,7 +1915,16 @@
           "classification": "Journeyman Wireman",
           "text": "4 - JW HFT at Gigabay on KSC, 6-10's Day Shift, $40.30 Hr. report after badge is approved.",
           "first_seen": "2026-10-16T21:15:18.021Z",
-          "last_seen": "2026-10-16T21:15:18.021Z"
+          "last_seen": "2026-10-16T21:46:55.509Z"
+        },
+        {
+          "id": "81b6e66a30a0cfec",
+          "key": "9438cb3281fffb66",
+          "count": 14,
+          "classification": "Journeyman Wireman",
+          "text": "14 JW - Cache Valley working at the Space Center at various locations. They are working 6-10's with a start time of 7am. You will start once your badge is approved. $40.30 Hr.",
+          "first_seen": "2026-10-16T21:46:55.509Z",
+          "last_seen": "2026-10-16T21:46:55.509Z"
         }
       ]
     },
