@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-21T13:41:58.294Z",
+  "generated_at": "2026-10-21T18:33:07.165Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-21T13:41:58.294Z",
+      "scraped_at": "2026-10-21T18:33:07.165Z",
       "posted": "October 20, 2026",
       "total": 0,
       "count_sum": 0,
@@ -13,10 +13,10 @@
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-21T13:41:58.294Z",
+      "scraped_at": "2026-10-21T18:33:07.165Z",
       "posted": "OPEN UNTIL FILLED",
-      "total": 13,
-      "count_sum": 13,
+      "total": 17,
+      "count_sum": 17,
       "calls": [
         {
           "id": "34824d7a29bcfb1f",
@@ -25,7 +25,7 @@
           "classification": "Journeyman Wireman",
           "text": "1- JW Central Florida Electrical Solutions, work at the Space Center at SpaceX Gigabay. This is a short to indefinite call working 5-10's dayshift $40.30 Hr. You will be installing 3/4 conduit for the fire alarm system. You will report once badging is approved.",
           "first_seen": "2026-10-16T20:58:02.219Z",
-          "last_seen": "2026-10-21T13:41:58.294Z"
+          "last_seen": "2026-10-21T18:33:07.165Z"
         },
         {
           "id": "b64d4edff6387fc5",
@@ -34,16 +34,16 @@
           "classification": "Journeyman Wireman",
           "text": "1 - JW HFT at Gigabay on KSC, 6-10's Day Shift, $40.30 Hr. report after badge is approved.",
           "first_seen": "2026-10-16T13:11:45.610Z",
-          "last_seen": "2026-10-21T13:41:58.294Z"
+          "last_seen": "2026-10-21T18:33:07.165Z"
         },
         {
-          "id": "e59b0fc1894546e7",
+          "id": "9cedf9ebf67f38ce",
           "key": "41ad0f711b5bae4f",
-          "count": 11,
+          "count": 15,
           "classification": "Journeyman Wireman",
-          "text": "11- JW Cache Valley working at the Space Center at various locations. They are working 6-10's with a start time of 7am. You will start once your badge is approved. $40.30 Hr.",
+          "text": "15- JW Cache Valley working at the Space Center at various locations. They are working 6-10's with a start time of 7am. You will start once your badge is approved. $40.30 Hr.",
           "first_seen": "2026-10-19T19:48:11.205Z",
-          "last_seen": "2026-10-21T13:41:58.294Z"
+          "last_seen": "2026-10-21T18:33:07.165Z"
         }
       ]
     }
