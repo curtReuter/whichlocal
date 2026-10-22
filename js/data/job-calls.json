@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-22T11:40:29.941Z",
+  "generated_at": "2026-10-22T17:03:54.879Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-22T11:40:29.941Z",
+      "scraped_at": "2026-10-22T17:03:54.879Z",
       "posted": "October 21, 2026",
       "total": 0,
       "count_sum": 0,
@@ -13,10 +13,10 @@
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-22T11:40:29.941Z",
+      "scraped_at": "2026-10-22T17:03:54.879Z",
       "posted": "Thursday October 22nd",
-      "total": 3,
-      "count_sum": 3,
+      "total": 2,
+      "count_sum": 2,
       "calls": [
         {
           "id": "898ced9836fd3074",
@@ -25,16 +25,7 @@
           "classification": "Journeyman Wireman",
           "text": "1- JW Electric Solutions Unlimited for work at Patrick Air Force Base , 5- 8's , 7:00 AM start time",
           "first_seen": "2026-10-21T23:12:15.660Z",
-          "last_seen": "2026-10-22T11:40:29.941Z"
-        },
-        {
-          "id": "34824d7a29bcfb1f",
-          "key": "d6e5f21bbe377da3",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "1- JW Central Florida Electrical Solutions, work at the Space Center at SpaceX Gigabay. This is a short to indefinite call working 5-10's dayshift $40.30 Hr. You will be installing 3/4 conduit for the fire alarm system. You will report once badging is approved.",
-          "first_seen": "2026-10-16T20:58:02.219Z",
-          "last_seen": "2026-10-22T11:40:29.941Z"
+          "last_seen": "2026-10-22T17:03:54.879Z"
         },
         {
           "id": "b64d4edff6387fc5",
@@ -43,7 +34,7 @@
           "classification": "Journeyman Wireman",
           "text": "1 - JW HFT at Gigabay on KSC, 6-10's Day Shift, $40.30 Hr. report after badge is approved.",
           "first_seen": "2026-10-16T13:11:45.610Z",
-          "last_seen": "2026-10-22T11:40:29.941Z"
+          "last_seen": "2026-10-22T17:03:54.879Z"
         }
       ]
     }
