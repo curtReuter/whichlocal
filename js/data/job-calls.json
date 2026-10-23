@@ -1,19 +1,29 @@
 {
-  "generated_at": "2026-10-23T18:15:06.603Z",
+  "generated_at": "2026-10-23T23:03:52.122Z",
   "locals": {
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-23T18:15:06.603Z",
-      "posted": "October 22, 2026",
-      "total": 0,
-      "count_sum": 0,
-      "calls": []
+      "scraped_at": "2026-10-23T23:03:52.122Z",
+      "posted": "October 23, 2026",
+      "total": 10,
+      "count_sum": 10,
+      "calls": [
+        {
+          "id": "53bdaaf53bfa4b4c",
+          "key": "7e7ec1ee69d04177",
+          "count": 10,
+          "classification": "Journeyman Wireman",
+          "text": "10 Journeyman Wireman calls for Miller Electric at project daisy in melbourne. The hours are 6 am to 4:30 pm, Monday through Sunday. This is a seven day short call. The scale is $32.64 an hour. Sunday is double time if all hours are worked. You must be able to pass a background check and be a U.S. Citizen. You will need a birth certificate for onboarding.",
+          "first_seen": "2026-10-23T23:03:52.122Z",
+          "last_seen": "2026-10-23T23:03:52.122Z"
+        }
+      ]
     },
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-23T18:15:06.603Z",
+      "scraped_at": "2026-10-23T23:03:52.122Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
