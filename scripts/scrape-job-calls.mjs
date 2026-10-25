@@ -149,15 +149,24 @@ const FORMATS = [
   {
     // "5 - JW Cache Valley Electric, Working at …  $40.30"  (e.g. Local 756)
     // The dash can land on either side of the code — "14 JW - Cache Valley
-    // working at …" posts just as often as "5 - JW Cache Valley …" — so both
-    // the leading and trailing dash are optional here, not either/or.
+    // working at …" posts just as often as "5 - JW Cache Valley …". But the
+    // dash has to be there on ONE of those two sides: making it optional on
+    // both (as an earlier version of this did) means "no dash at all" also
+    // matches, which turns this into "a paragraph starting with a number
+    // near a short word" — matched real addresses ("14298 St Andrews Dr."),
+    // years ("2026 Golf Tournament"), and times ("630am") as if they were
+    // job calls. The alternation below requires exactly one dash position,
+    // not zero.
     name: 'dash-code',
     match(t) {
-      const m = t.match(/^(\d+)\s*(?:[-–—]\s*)?([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b\s*(?:[-–—]\s*)?/);
+      const m = t.match(
+        /^(\d+)\s*(?:[-–—]\s*([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\b|([A-Za-z]{2,4}(?:\/[A-Za-z]{2,4})?)\s*[-–—])/,
+      );
       if (!m) return null;
+      const code = m[2] || m[3];
       return {
         count: parseInt(m[1], 10),
-        classification: CLASSES[m[2].toUpperCase()] || m[2].toUpperCase(),
+        classification: CLASSES[code.toUpperCase()] || code.toUpperCase(),
       };
     },
   },

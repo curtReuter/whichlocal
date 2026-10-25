@@ -7,7 +7,6 @@
         { "count": 2, "classification": "Journeyman Wireman", "text": "2 Journeyman Wireman calls for ABC Electric at the Tampa convention center. 5x8s, 6:00 am start, $34.10/hr. Report to the hall Monday at 6 am with tools." },
         { "text": "1 JW call, open until filled, for a service shop in Brandon — $33.00/hr plus truck.", "open_until_filled": true }
       ]
-    },
-    "756": { "calls": [ { "text": "Standing open Call for JW's to Cache Valley working at the Space Center at various locations pad. They are working 6-10's with a start time of 7am. You will start once your badge is approved. $40.30 Hr. They are looking for 10 JW to work at the Gigabay. If interested, let the Local know you would like to go to the Gigabay project." } ] }
+    }
   }
 }
