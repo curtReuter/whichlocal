@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-25T12:14:28.846Z",
+  "generated_at": "2026-10-25T12:17:24.427Z",
   "locals": {
     "l11-los-angeles-ca": {
       "local_no": 11,
       "url": "https://www.ibew11.org/work/dispatch-procedures",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -13,517 +13,61 @@
     "l13-burlington-ia": {
       "local_no": 13,
       "url": "https://www.ibewlocal13.com/referral-policy",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "June 1, 2026",
-      "total": 1,
-      "count_sum": 1,
-      "calls": [
-        {
-          "id": "4333d5fc6eaf5a99",
-          "key": "4333d5fc6eaf5a99",
-          "count": 1,
-          "classification": "Journeyman",
-          "text": "Frank Millard & Co. - Long Call Burlington and surrounding areas \n Hours: 4-10's & 5-8's (Depending on location) \nRequirements: two forms of id, steel toed work shoes, Iowa Electrical license, OSHA 10-hour, 70E Training. Checks are direct deposited",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l16-evansville-in": {
       "local_no": 16,
       "url": "https://www.ibewlocal16.com/?zone=/unionactive/view_page.cfm&page=OPEN2FAVAILABLE20JOBS",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 2,
-      "count_sum": 2,
-      "calls": [
-        {
-          "id": "f7202ef61886d3fd",
-          "key": "f7202ef61886d3fd",
-          "count": 1,
-          "classification": "Inside Wireman",
-          "text": "Job #4428 State Group- 1 JW for a regular call. Report to the shop ASAP. Paying general foremans scale. Work at various locations in the jurisdiction. Job requirements: city license, ARSC or OSHA10, long sleeve shirt, 100% cotton clothing and BICSI certs or FIBER certs.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "669298282f2f0d07",
-          "key": "669298282f2f0d07",
-          "count": 1,
-          "classification": "Residential Wireman",
-          "text": "Job # 4587 Completely Wired 1 RW for a regular call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l20-dallas-tx": {
       "local_no": 20,
       "url": "https://www.ibew20.org/job-calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "October 23, 2026",
-      "total": 113,
-      "count_sum": 113,
-      "calls": [
-        {
-          "id": "002a55f8b6326d8f",
-          "key": "002a55f8b6326d8f",
-          "count": 1,
-          "classification": "Journeyman",
-          "text": "Requesting ( 1 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 40.65 work schedule 4-10's 1-8 6AM call type Long Location QTS Dallas at 4501 Cleveland Dr. call details BACKGROUND CHECK. DRUG TEST MUST BE COMPLETED BEFORE ORIENTATION. ORIENTATION 10/27 @8:30AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "51b6b91a6fb5f048",
-          "key": "51b6b91a6fb5f048",
-          "count": 3,
-          "classification": "Journeyman",
-          "text": "Requesting ( 3 ) Journeyman Contractor ROSENDIN ELECTRIC pay scale 40.65 work schedule 4-10's 1-8 6AM call type Long Location MPS McKinney call details ORIENTATION 10/27 7AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "3b344d99c1cb32cc",
-          "key": "3b344d99c1cb32cc",
-          "count": 2,
-          "classification": "Journeyman",
-          "text": "Requesting ( 2 ) Journeyman Contractor HARGROVE ELECTRIC pay scale 40.65 work schedule 5-10's 7AM SCATTERED OVERTIME call type Long Location GIS in MIDLOTHIAN call details DRUG TEST AND BACKGROUND CHECK. ORIENTATIONS ARE ONLY ON TUESDAYS and THURSDAYS @8AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "2b480a43ffaf7621",
-          "key": "2b480a43ffaf7621",
-          "count": 1,
-          "classification": "Journeyman",
-          "text": "Requesting ( 1 ) Journeyman Contractor Allied Power pay scale 40.65 work schedule 4-10's 5:30AM call type Long Location Comanche Peak Nuclear Power Plant in Glen Rose, TX call details These calls will report to the site on 8/10 for pre outage work up until the next outage in October which will more than likely go to a heavy overtime schedule. If you accept one of these calls there will be an extensive background check that can take a couple of weeks.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "a13b8a2d3fc577af",
-          "key": "a13b8a2d3fc577af",
-          "count": 2,
-          "classification": "Journeyman",
-          "text": "Requesting ( 2 ) Journeyman Contractor HARGROVE ELECTRIC pay scale 40.65 work schedule 4-10's 1-8 6AM SCATTERED OVERTIME call type Long Location LOCKHEED MARTIN in GRAND PRAIRIE call details DRUG TEST & BACKGROUND CHECK. ORIENTATIONS ARE ONLY TUESDAYS and THURSDAYS @8AM. BADGING REQUIRED-ALLOW 2-3 DAYS FOR PROCESSING OF BADGE APPROVAL. MUST BE A US CITIZEN and HAVE VALID DRIVER'S LICENSE AND BIRTH CERTIFICATE OR VALID US PASSPORT.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "49e6acc80e3fbb86",
-          "key": "49e6acc80e3fbb86",
-          "count": 3,
-          "classification": "Journeyman",
-          "text": "Requesting ( 3 ) Journeyman Contractor LONE STAR ELECTRIC pay scale 40.65 work schedule 5-10's 7AM SCATTERED OVERTIME call type Long Location ARMY RESERVE BASE IN SEAGOVILLE call details DRUG TEST. TX JOURNEYMAN LICENSE REQUIRED . ORIENTATION AFTER DISPATCH.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c475e6af3ae9ae1e",
-          "key": "c475e6af3ae9ae1e",
-          "count": 8,
-          "classification": "Journeyman",
-          "text": "Requesting ( 8 ) Journeyman Contractor FISK ELECTRIC pay scale 40.65 work schedule 5-8's 6AM call type Long Location COOK CHILDREN'S MEDICAL CENTER IN FORT WORTH call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 10/27 @7:30AM. CONDUIT BENDING SKILLS REQUIRED.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "15f46564a54ca762",
-          "key": "15f46564a54ca762",
-          "count": 2,
-          "classification": "Journeyman",
-          "text": "Requesting ( 2 ) Journeyman Contractor ALTERMAN ELECTRIC pay scale 40.65 work schedule 5-8's 6:30AM call type Long Location CHARLIE 2 PUMP STATION NEAR DOWNTOWN DALLAS call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 11/2 @8AM. JIW TAKING THIS CALL MUST KNOW HOW TO RUN RIGID CONDUIT.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d2e6e30b0e349f91",
-          "key": "d2e6e30b0e349f91",
-          "count": 3,
-          "classification": "Journeyman",
-          "text": "Requesting ( 3 ) Journeyman Contractor DIVERSIFIED ELECTRICAL SOLUTIONS pay scale 40.65 work schedule 5-8's 6:30AM call type Long Location DFW AIRPORT call details MUST HAVE A CLEAN BACKGROUND CHECK, PASS A DRUG TEST. YOU WILL TAKE THE CALL, THEN GO DO DRUG TEST AND THEN REPORT TO THE SHOP. TEXAS JOURNEYMAN LICENSE AND OSHA 10 ARE REQUIRED. WORKING ACROSS MULTIPLE PROJECTS AT DFW AIRPORT. RIGID CONDUIT EXPERIENCE. NO SMOKING ON THE JOB.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "dd9aa625e2a58380",
-          "key": "dd9aa625e2a58380",
-          "count": 10,
-          "classification": "Journeyman",
-          "text": "Requesting ( 10 ) Journeyman Contractor FISK ELECTRIC pay scale 50.65 work schedule 5-8's 6AM SCATTERED OVERTIME call type Long Location New Pediatric Campus - UT Southwestern Medical Center/ Children's Hospital in Dallas call details THE PROJECT IS PAYING AN INCENTIVE OF $10.00 ABOVE CURRENT JIW BASE WAGE . DRUG TEST AND BACKGROUND CHECK. ORIENTATION 10/27 7:30AM. CONDUIT BENDING SKILLS REQUIRED. 5-8's 6AM SCHEDULE BUT WORKING MOST SATURDAYS. MUST WORK A MINIMUM OF THE NORMAL SCHEDULED 8 HOURS, MONDAY - FRIDAY (40 HOURS TOTAL) TO RECEIVE INCENTIVE PAY.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "50dda003587ee399",
-          "key": "50dda003587ee399",
-          "count": 3,
-          "classification": "Journeyman",
-          "text": "Requesting ( 3 ) Journeyman Contractor H&K ELECTRIC pay scale 40.65 work schedule 5-8s 7AM SCATTERED OVERTIME call type Long Location DFW AREA call details DRUG TEST AND BACKGROUND CHECK. VALID DRIVER LICENSE. OSHA 10. SAME DAY ORIENTATION, THEN REPORT TO JOB SITE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ab69b7d2b78b7c96",
-          "key": "ab69b7d2b78b7c96",
-          "count": 7,
-          "classification": "Journeyman",
-          "text": "Requesting ( 7 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 40.65 work schedule 4-12's 1-8's 5AM call type Long Location QTS LANCASTER call details BACKGROUND CHECK. DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. ORIENTATION 11/3. IF ALL HRS WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "0638a7b616585832",
-          "key": "0638a7b616585832",
-          "count": 5,
-          "classification": "Journeyman",
-          "text": "Requesting ( 5 ) Journeyman Contractor MORLEY MOSS ELECTRIC pay scale 40.65 work schedule 4-10's 2-8's 6AM call type Long Location STACK IN LANCASTER call details BACKGROUND CHECK. DRUG TESTING WILL NEED TO BE COMPLETED BEFORE ORIENTATION. ORIENTATION 10/27 AT 8:30AM. IF ALL HOURS ARE WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AS DOUBLE TIME.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c3749b124cb62d22",
-          "key": "c3749b124cb62d22",
-          "count": 7,
-          "classification": "Journeyman",
-          "text": "Requesting ( 7 ) Journeyman Contractor ALMAN CONSTRUCTION SERVICES pay scale 40.65 work schedule 5-10's SCATTERED OVERTIME 5AM call type Long Location DATABANK CAMPUS in RED OAK call details DRUG TEST. SHOP ORIENTATIONS ARE ONLY ON MONDAYS and WEDNESDAYS RIGHT AFTER DISPATCH. AS AN INCENTIVE ALL OVERTIME HOURS WILL BE PAID AT DOUBLE TIME RATE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "0c7804d3d54889ba",
-          "key": "0c7804d3d54889ba",
-          "count": 1,
-          "classification": "Foreman",
-          "text": "Requesting ( 1 ) Foreman Call By Name Contractor HARGROVE ELECTRIC pay scale 46.75 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule call type Long Location LANCASTER IN LANCASTER call details FOREMAN CALL BY NAME FOR CECILIO PUENTES MARQUEZ",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "2315c1194f86bd6e",
-          "key": "2315c1194f86bd6e",
-          "count": 1,
-          "classification": "CW/CE",
-          "text": "Requesting ( 1 ) CW/CE Contractor ANGIEL ELECTRIC pay scale MID LEVEL CW4 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 7-12's 6PM-6AM SCATTERED OVERTME call type Long Location WEST ROCK at 1120 CLARENDON DR in DALLAS call details DRUG TEST AND ORIENTATION RIGHT AFTER DISPATCH. MUST BE ABLE ABLE TO START MONDAY NIGHT. JOB IS PAYING OVERTIME RATE AS REGULAR PAY (x1.5).",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c7410dc352799b6a",
-          "key": "c7410dc352799b6a",
-          "count": 1,
-          "classification": "CW/CE",
-          "text": "Requesting ( 1 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM SCATTERED OVERTIME SCATTERED NIGHTS call type Long Location BANK OF AMERICA 4200 AMON CARTER BLVD IN FORT WORTH call details BACKGROUND CHECK. DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. ORIENTATION 10/27 AT 8:30AM. AFTER YOU TAKE THE CALL, EXPECT A 4-DAY SECURITY CLEARANCE. YOU WILL WORK ON ANOTHER PROJECT, ONCE CLEARED YOU WILL REPORT TO THE BANK OF AMERICA JOB.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "f8f8f3bd672f5954",
-          "key": "f8f8f3bd672f5954",
-          "count": 3,
-          "classification": "CW/CE",
-          "text": "Requesting ( 3 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 6AM SCATTERED OVERTIME call type Long Location MESQUITE PROJECT 3325 INNOVATIVE WAY call details DRUG TEST MUST BE COMPLETED BEFORE ORIENTATION. BACKGROUND CHECK. ORIENTATION 10/27 @8:30AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d1e3cba83de1e8fd",
-          "key": "d1e3cba83de1e8fd",
-          "count": 3,
-          "classification": "CW/CE",
-          "text": "Requesting ( 3 ) CW/CE Contractor FISK ELECTRIC pay scale (4)MID LEVEL CW4 TO MID LEVEL CW5 (2)HIGH LEVEL CE2 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM call type Long Location COOK CHILDREN'S MEDICAL CENTER IN FORT WORTH call details DRUG TEST AND BACKGROUND CHECK. ORIENTATION 10/27 @7:30AM. CONDUIT BENDING SKILLS REQUIRED.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "6f8354e282d56d39",
-          "key": "6f8354e282d56d39",
-          "count": 1,
-          "classification": "CW/CE",
-          "text": "Requesting ( 1 ) CW/CE Contractor HARGROVE ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-10's 7AM SCATTERED OVERTIME call type Long Location GIS in MIDLOTHIAN call details DRUG TEST AND BACKGROUND CHECK. ORIENTATIONS ARE ONLY ON TUESDAYS and THURSDAYS @8AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ed5e3a969e04ba2d",
-          "key": "ed5e3a969e04ba2d",
-          "count": 1,
-          "classification": "CW/CE",
-          "text": "Requesting ( 1 ) CW/CE Contractor A&G SERVICES pay scale HIGH LEVEL CE2 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 7AM call type Long Location DFW AREA call details DRUG TEST AND ORIENTATION RIGHT AFTER DISPATCH. MISC JOBS AROUND THE METROPLEX. VALID TX DRIVER LICENSE REQUIRED.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c6149bfaebc3fdd6",
-          "key": "c6149bfaebc3fdd6",
-          "count": 1,
-          "classification": "CW/CE",
-          "text": "Requesting ( 1 ) CW/CE Contractor HARGROVE ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 1-8 6AM SCATTERED OVERTIME call type Long Location LOCKHEED MARTIN in GRAND PRAIRIE call details DRUG TEST AND BACKGROUND CHECK. ORIENTATIONS ARE ONLY ON TUESDAYS and THURSDAYS @8AM. BADGING REQUIRED-ALLOW 2-3 DAYS FOR PROCESSING FOR BADGE APPROVAL. MUST BE A US CITIZEN and HAVE VALID DRIVER'S LICENSE AND BIRTH CERTIFICATE OR VALID US PASSPORT",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "973f10832fcaedf7",
-          "key": "973f10832fcaedf7",
-          "count": 5,
-          "classification": "CW/CE",
-          "text": "Requesting ( 5 ) CW/CE Contractor ALMAN CONSTRUCTION SERVICES pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-10's SCATTERED OVERTIME 5AM call type Long Location DATABANK CAMPUS in RED OAK call details DRUG TEST. SHOP ORIENTATIONS ARE ONLY ON MONDAYS and WEDNESDAYS RIGHT AFTER DISPATCH. AS AN INCENTIVE ALL OVERTIME HOURS WILL BE PAID AT DOUBLE TIME RATE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "dfe152010edc1685",
-          "key": "dfe152010edc1685",
-          "count": 20,
-          "classification": "CW/CE",
-          "text": "Requesting ( 20 ) CW/CE Contractor FISK ELECTRIC pay scale (10) LOW LEVEL CW3 TO MID LEVEL CW5 (10) MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 5-8's 6AM Scattered Overtime call type Long Location New Pediatric Campus - UT Southwestern Medical Center call details THE PROJECT IS PAYING AN INCENTIVE OF $10.00 ABOVE CURRENT JIW BASE WAGE . DRUG TEST AND BACKGROUND CHECK. ORIENTATION 10/27 @7:30AM. CONDUIT BENDING SKILLS REQUIRED. 5-8's 6AM SCHEDULE BUT WORKING MOST SATURDAYS. MUST WORK A MINIMUM OF THE NORMAL SCHEDULED 8 HOURS, MONDAY - FRIDAY (40 HOURS TOTAL) TO RECEIVE INCENTIVE PAY. SUB JOURNEYMAN CLASSIFICATIONS RECEIVE A PRO-RATED INCENTIVE EQUIVALENT TO THEIR CLASSIFICATION OF JIW RATE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "fa4053d0b68b3390",
-          "key": "fa4053d0b68b3390",
-          "count": 10,
-          "classification": "CW/CE",
-          "text": "Requesting ( 10 ) CW/CE Contractor ROSENDIN ELECTRIC pay scale (1) LOW LEVEL CW1 TO LOW LEVEL CW3 (9) MID LEVEL CW4 to HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-10's 1-8 6AM SCATTERED OVERTIME call type Long Location MPS MCKINNEY call details ORIENTATION 10/27 7AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "0c39326d468a03c8",
-          "key": "0c39326d468a03c8",
-          "count": 9,
-          "classification": "CW/CE",
-          "text": "Requesting ( 9 ) CW/CE Contractor MORLEY MOSS ELECTRIC pay scale MID LEVEL CE1 TO HIGH LEVEL CE3 zone Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. work schedule 4-12's 1-8 5AM START call type Long Location QTS LANCASTER call details BACKGROUND CHECK. DRUG TESTING MUST BE COMPLETED BEFORE ORIENTATION. ORIENTATION 11/3. IF ALL HRS WORKED, AS AN INCENTIVE ALL OVERTIME WILL BE PAID AT DOUBLE TIME RATE.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l68-denver-co": {
       "local_no": 68,
       "url": "https://ibewlu68.com/job-board/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "Union 68 5660",
-      "total": 8,
-      "count_sum": 8,
-      "calls": [
-        {
-          "id": "ad052f1824cb59b1",
-          "key": "ad052f1824cb59b1",
-          "count": 1,
-          "classification": "JRY WRMN (I)",
-          "text": "JOB CLASS - JRY WRMN (I) Book Name Employer Job Location Start Date Start Time INSIDE METRO STURGEON ELECTRIC QTS-B.A.S. 10/27/2026 8:00AM Request Date Requested Positions Positions Filled 10/23/2026 1 0 Special Qualifications MUST BRING TWO FORMS OF GOVERNMENT-ISSUED ID (DRIVER'S LICENSE, PASSPORT, PHOTO ID, OR SOCIAL SECURITY CARD) NO PHOTOCOPIES OR SCREENSHOTS,BIRTH CERTIFICATE OR PASSPORT MUST PROVIDE BRING VOIDED CHECK FOR DIRECT DEPOSIT OR A BANK ISSUED DIRECT DEPOSIT FORM,DRUG TEST REQUIRED MUST HAVE CURRENT COLORADO JOURNEYMAN WIREMAN (JW) LICENSE REPORT TO: SHOP 10/27/2026 8:00AM WORK HOURS: MONDAY-FRIDAY, 6:00 AM-2:30 PM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c99474a0d66b15f4",
-          "key": "c99474a0d66b15f4",
-          "count": 4,
-          "classification": "JRY WRMN (I)",
-          "text": "JOB CLASS - JRY WRMN (I) Book Name Employer Job Location Start Date Start Time INSIDE METRO STURGEON ELECTRIC BLUE MARLIN 10/27/2026 8:00AM Request Date Requested Positions Positions Filled 10/22/2026 4 0 Special Qualifications MUST BRING TWO FORMS OF GOVERNMENT-ISSUED ID (DRIVER'S LICENSE, PASSPORT, PHOTO ID, OR SOCIAL SECURITY CARD) NO PHOTOCOPIES OR SCREENSHOTS,MUST PROVIDE A VOIDED CHECK FOR DIRECT DEPOSIT OR A BANK ISSUED DIRECT DEPOSIT FORM - MUST HAVE A CURRENT COLORADO JOURNEYMAN WIREMAN (JW) LICENSE DRUG TEST REQUIRED,MUST BE ABLE TO PASS BUCKLEY SPACE FORCE BACKGROUND WILL SIT UNTIL BADGING CLEARS AND IS COMPLETE, MUST BRING AN ORIGINAL BIRTH CERTIFICATE OR PASSPORT TO GAIN ACCESS TO THE JOBSITE,REPORT TO: SHOP TUESDAY, OCTOBER 27, 2026, 8:00 AM HOURS 6:30AM-3:00PM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e2db6d5d750715bb",
-          "key": "e2db6d5d750715bb",
-          "count": 3,
-          "classification": "JRY WRMN (I)",
-          "text": "JOB CLASS - JRY WRMN (I) Book Name Employer Job Location Start Date Start Time INSIDE NORTH KIEWIT POWER CONSTRUCTORS FORT SAINT VRAIN NIGHTS 10/27/2026 7:00AM Request Date Requested Positions Positions Filled 10/23/2026 3 0 Special Qualifications MUST BRING TWO FORMS OF GOVERNMENT-ISSUED ID (DRIVER'S LICENSE, PASSPORT, PHOTO ID, OR SOCIAL SECURITY CARD) NO PHOTOCOPIES OR SCREENSHOTS - MUST PROVIDE A VOIDED CHECK FOR DIRECT DEPOSIT OR A BANK-ISSUED DIRECT DEPOSIT FORM- NIGHT SHIFT CALL - EMPLOYEES WILL SPEND TWO DAYS ON DAY SHIFT FOR ORIENTATION AND TRAINING WILL START NIGHTS ON NOVEMBER 3, 2026 @ 5:00PM - DRUG TEST TO BE PREFORMED AT ORIENTATION BY KIEWIT POWER CONSTRUCTORS - LIFTING, CLIMBING, CABLE PULLING, AND WORKING AT HEIGHTS INVOLVED - HAVING EXPERIENCE WORKING FOR KIEWIT OR TIC IS AN ASSET - PREVIOUS CONDUIT THREADING AND BENDING EXPERIENCE PREFERRED - DO NOT BRING A KNIFE WITH YOUR TOOLS WHEN REQUIRED THE CONTRACTOR WILL SUPPLY - ORIENTATION TO BE COMPLETED ON SITE USE NORTH GATE MARKED WITH YELLOW KIEWIT SIGNAGE FOR SITE ENTRANCE NOT THE DELIVERY OR XCEL ENTRANCE ORIENTATION TO TAKE PLACE IN THE KIEWIT SAFETY OFFICE 7:00AM 10/27/2026 9.5 BEING PAID FOR 10.5 10% ABOVE SCALE HOURS 5:00PM-3:00AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l100-fresno-ca": {
       "local_no": 100,
       "url": "https://www.ibew100.org/?zone=/unionactive/view_page.cfm&page=Job20Calls202",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 1,
-      "count_sum": 1,
-      "calls": [
-        {
-          "id": "ed2dbff19d474d8c",
-          "key": "ed2dbff19d474d8c",
-          "count": 1,
-          "classification": "Installer",
-          "text": "Contra Costa Electric has 1 long call for an Installer after dispatch. You will drug test, then report to their shop for onboarding. You must have your VDV or Fire/Life Safety Certification. They are requesting that you have fiber splicing experience. 8634",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l111-denver-co": {
       "local_no": 111,
       "url": "https://www.ibew111.org/dispatch",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 15,
-      "count_sum": 15,
-      "calls": [
-        {
-          "id": "5d8cf27505ed0f8f",
-          "key": "5d8cf27505ed0f8f",
-          "count": 2,
-          "classification": "Journeyman Lineman",
-          "text": "# company MICHELS - JL - ARVADA date of request 10/22/2026 class Journeyman Lineman number of jobs 2 Job Location Arvada, CO Hours 5/8's starting date 10/23/2026 wage starting time 7:00AM SUB SPECIAL QUALIFICATIONS DIST. WORK/ENERGIZED WORK*MOUNTAIN WORK *BACKYARD WORK *CDL REQUIRED *FIRST AID/CPR REQUIRED AGREEMENT file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "58b251285da11a1b",
-          "key": "58b251285da11a1b",
-          "count": 1,
-          "classification": "Journeyman Lineman",
-          "text": "# company PAR - JL - AURORA date of request 10/20/2026 class Journeyman Lineman number of jobs 1 Job Location Aurora Hours 5/8's starting date 10/21/26 wage 64.53 starting time 7:00am SUB 0 SPECIAL QUALIFICATIONS CDLA/ET&D/CPR/FA AGREEMENT CSLCA file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "46b9777d6e3b4c1a",
-          "key": "46b9777d6e3b4c1a",
-          "count": 1,
-          "classification": "Journeyman Lineman",
-          "text": "# company HOOPER - JL date of request 10/13/2026 class Journeyman Lineman number of jobs 1 Job Location Commerce City Hours 4/10's+ starting date 10/14/26 wage 64.53 starting time 6:30 SUB 0 SPECIAL QUALIFICATIONS FA,CPR,Clean MVR,Valid CDL No Restriction Ucr EXP AGREEMENT CSLCA file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d1ba5fc4a64203bf",
-          "key": "d1ba5fc4a64203bf",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "# company B&B ELECTRIC - JRY WIREMAN date of request 10/12/2026 class Journeyman Wireman number of jobs 1 Job Location Zone -1 Montrose Hours 5/8's starting date Immediate wage 40 Hour starting time 6:30am SUB $ 8.00 day SPECIAL QUALIFICATIONS Employment Subject to Background check AGREEMENT Inside agreement file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "6260295c6bfe03e7",
-          "key": "6260295c6bfe03e7",
-          "count": 1,
-          "classification": "Line Equipment Operator",
-          "text": "# company STURGEON - LEO date of request 9/29/2026 class Line Equipment Operator number of jobs 1 Job Location Monaco Yard Hours 5-8's starting date 9-30-2026 wage 46.48 starting time 0700 SUB 0 SPECIAL QUALIFICATIONS Valid CDL Class A No restrictions,FA/CPR , Med Card OSHA 10 , NCCO or EICA Cert , LEO Cert Bring 2 forms of ID and must bring Certs. AGREEMENT CSLCA file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "22ff1778b7ba548e",
-          "key": "22ff1778b7ba548e",
-          "count": 1,
-          "classification": "Operator",
-          "text": "# company HOOPER - OPERATOR date of request 10/9/2026 class Operator number of jobs 1 Job Location Commerce City, CO Hours 4/10's starting date 10/12/2026 wage 43.83 starting time 6:30AM SUB 0 SPECIAL QUALIFICATIONS CDL A - No Restrictions, First Aid/CPR, Clean MVR AGREEMENT CSLCA ADDM 1 file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "383ed77e703005c9",
-          "key": "383ed77e703005c9",
-          "count": 2,
-          "classification": "Operator",
-          "text": "# company STURGEON - OPERATOR date of request 10/20/2026 class Operator number of jobs 2 Job Location 68th Yard Hours 4-10's starting date 10/21/2026 wage $43.83 starting time 6:30am SUB SPECIAL QUALIFICATIONS VALID CDL NORESTRICTIONS, MED CARD, FA/CPR. 2 forms of ID, Must BringCertificates AGREEMENT CSLCA ADD I file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c53d396049509b83",
-          "key": "c53d396049509b83",
-          "count": 1,
-          "classification": "Traffic Technician",
-          "text": "# company STURGEON - TRAFFIC TECH date of request 5/26/2026 class Traffic Technician number of jobs 1 Job Location Denver metro Hours 5-8's starting date 5/28/2026 wage $33.89 starting time 7:00am SUB $0 SPECIAL QUALIFICATIONS Previous fiber installation/ splicing experience. AGREEMENT Traffic Signal Agreement file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "3e336693dfe947ee",
-          "key": "3e336693dfe947ee",
-          "count": 1,
-          "classification": "Traffic Technician",
-          "text": "# company ADIONA - TRAFFIC TECH date of request 2/17/2026 class Traffic Technician number of jobs 1 Job Location Denver Hours 5/8's starting date 2/18/26 wage 38.97 starting time 6:30am SUB 0 SPECIAL QUALIFICATIONS CDL Required no restrictions AGREEMENT Traffic file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "03f9352804e7ca50",
-          "key": "03f9352804e7ca50",
-          "count": 1,
-          "classification": "Traffic Technician",
-          "text": "# company ADIONA - TRAFFIC TECH date of request 2/4/2026 class Traffic Technician number of jobs 1 Job Location Denver, CO Hours 5-8's starting date 2/5/2026 wage $39.47 starting time 630am SUB 0 SPECIAL QUALIFICATIONS CDL Required & Crane Cert required AGREEMENT Traffic Signal Agreement file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "12485bb24619221c",
-          "key": "12485bb24619221c",
-          "count": 1,
-          "classification": "CDL Groundman",
-          "text": "# company STURGEON - CDL GROUNDMAN - 68TH YARD date of request 10/23/2026 class CDL Groundman number of jobs 1 Job Location 68th Yard Hours 4/10's starting date 10/26/2026 wage 30.68 starting time 6:30AM SUB 0 SPECIAL QUALIFICATIONS Valid CDL - No Restriction, MED Card, FA/CPR, OSHA 10 ET&D CLIMBING POLE TOP RESCUE CERT & BUCKET/DIGGER CERT. AGREEMENT CSLCA - ADDM 1 file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "88d4744d08b5fe14",
-          "key": "88d4744d08b5fe14",
-          "count": 2,
-          "classification": "Groundman",
-          "text": "# company WARD - GROUNDMAN - BRIGHTON date of request class Groundman number of jobs 2 Job Location Brighton Hours 4/10's starting date ASAP wage 24.01 starting time 7:00AM SUB 0 SPECIAL QUALIFICATIONS First-Aid/CPR, Drug Test, Valid DL, Clean MVR,Must have Non-DOT Med Card or willing to schdule AGREEMENT REA ADDM 1 file upload Download File Notes",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l113-colorado-springs-co": {
       "local_no": 113,
       "url": "https://www.ibew113.com/dispatch",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -532,7 +76,7 @@
     "l180-napa-ca": {
       "local_no": 180,
       "url": "https://www.ibewlu180.org/index.cfm?zone=/unionactive/jobcalls_view.cfm",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "Feb 11, 2021",
       "total": 0,
       "count_sum": 0,
@@ -541,7 +85,7 @@
     "l236-albany-ny": {
       "local_no": 236,
       "url": "https://www.ibew236.org/job-referrals/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -550,47 +94,16 @@
     "l302-martinez-ca": {
       "local_no": 302,
       "url": "https://www.ibewlu302.com/dispatch/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 6,
-      "count_sum": 6,
-      "calls": [
-        {
-          "id": "01393ca7bde292b7",
-          "key": "01393ca7bde292b7",
-          "count": 1,
-          "classification": "SOUND & COMM TECH",
-          "text": "SecureCom Inc. | Walnut Creek The Crossings Project | 1 SOUND & COMM TECH LONG | Working 5/8's Monday-Friday 6:30am-3pm | Report Date: 10/26/2026 | Fire Life Safety Cert. Required, Leather Workboots, Please bring all I-9 Documents to on board, Please bring voided check for direct deposit. OPEN CALL, CALL DISPATCH IF INTRESTED!!",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "06e7daf6d4189e48",
-          "key": "06e7daf6d4189e48",
-          "count": 4,
-          "classification": "JIW",
-          "text": "Contra Costa Electric | Richmond Chevron Refinery | 4 JIW LONG | Working 4/10's Monday-Thursday 6am-4:30pm | NO STRIKEABLE CALL | Report Date: 10/26/2026 | CA State Cert, Drug & Alcohol Screening, (Mouth Swab) 20-Hour Hi-Hazard Cert, LACC Drug and Alcohol Screening, Background Check, 6” Leather Boots w/ Notched Heel. & Safety Toe, please have 2 valid forms of Id when you report to office Monday 7:30am to on board. OPEN CALLS, CALL DISPATCH IF INTRESTED!!",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "875e0690ca53ebd0",
-          "key": "875e0690ca53ebd0",
-          "count": 1,
-          "classification": "JIW",
-          "text": "Cupertino Electric | Walnut Creek BART Project | 1 JIW SHORT | Working 5/8's's Monday-Friday 7am-3:30pm | NO STRIKEABLE CALL | Report Date: 10/26/2026 | CA State Cert, Drug Test & Background Check, Bring all I-9 documents for on boarding. Rigid Conuit install. Report to project after dipatch. Short Call starts at #12 Book 1",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l340-sacramento-ca": {
       "local_no": 340,
       "url": "https://www.ibewlocal340.org/referral-policy/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -599,267 +112,16 @@
     "l405-cedar-rapids-n-ia": {
       "local_no": 405,
       "url": "https://ibew405.org/job-calls/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 77,
-      "count_sum": 77,
-      "calls": [
-        {
-          "id": "1d7fda080f75d487",
-          "key": "e1fba89a0e9af4de",
-          "count": 10,
-          "classification": "JW",
-          "text": "10 JW The Baker Group – Long calls for Home Makers in Tiffin, Iowa. Report Tuesday or Thursdays at 1PM for onboarding. Working 40s, job expected to last until June.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e5e10eb8176731bf",
-          "key": "bcc2f71d95c9949f",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW Streff Electric – Long calls for Home Makers in Tiffin, Iowa. Working 40s. Report next day for onboarding.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "a883a17034907f57",
-          "key": "0e166ebb7a62d9a0",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW ACME Electric – Long calls for work at ADM. Working 5-10s and paying $5 over scale. Drug screen required.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "51f681b80aea07a4",
-          "key": "26bfc2f65e11ad3b",
-          "count": 3,
-          "classification": "JW",
-          "text": "3 JW Basepoint Building Automation – Long calls for building automation/control work. Paying $2.50/hour over scale. Drug screen and background check. Report ASAP.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5d5daeea20b8ffa5",
-          "key": "b25b872a45876cd5",
-          "count": 14,
-          "classification": "JW",
-          "text": "14 JW CST – Long calls for EWD Data Center. Currently working (6) 10s, starting at 7AM. OSHA 10 or 30, background check, and drug screen are required. Report Tuesday or Thursday at 8AM for drug screen/background check, orientations are MWF. Paying $10 over scale and all OT at double time rate. Paying an additional $2 over scale for Foreman and GF.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "0ca5c4886ba98020",
-          "key": "790b1de2c97c3e80",
-          "count": 8,
-          "classification": "JW",
-          "text": "8 JW Cupertino – L ong calls for QTS Data Center. OSHA 10 or 30 and Journeyman A license required. Currently working (5) 10s with some Saturdays, 7AM-530PM. Orientations are M-Thur at 7AM. Paying $10 over scale and all OT at double time rate. Paying $2 for Foreman and GF.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "9542c481435cf090",
-          "key": "2834f006192d73f1",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW ESCO Electric – Long calls for General Mills. Paying $10 over scale. Working (5) 10s and some Saturdays. Report next day at 8AM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "197fcdea4707842f",
-          "key": "6d9556a60c8cc96c",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Justice Electric – Long call for service truck work. Iowa Journeyman A license required. Report to shop next day at 7AM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "1d240550dfa96be1",
-          "key": "98c9c9025c2be45c",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Koehler Electric – Long calls for work at QTS Data Center. Working (5) 10s and an 8. Paying $10 over scale. OSHA 10 and Iowa JW license required.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "2bc42823b8345f3b",
-          "key": "4a33cc0300b86d1d",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Nelson Electric – Long call for service truck work. Paying foreman rate. Iowa Journeyman A license required. Report to shop next day at 7AM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d6a90656fd7b446c",
-          "key": "172504e2b8d21265",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Nelson Electric – Long call for small jobs in the area. Iowa Journeyman A License required. Report to shop next day at 7AM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "42f2652d6cca4922",
-          "key": "a4b89de0c4de8c6d",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Premier Electric – Long call for service truck work. Journeyman Class A required. Report M-F 7AM to onboard.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "b40bbbfcadbd05cf",
-          "key": "1f75a2650d528d0d",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Premier Electric – Long call for small jobs in the area. Journeyman Class A required. Report M-F 7AM to onboard.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5b917b309735d9b1",
-          "key": "c25e0d2a6e512159",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Ruyle Mechanical – Long Call for HVAC Control Projects and Service work. Working 40 hours paying at the Foreman rate.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5f6d181f1b28f0f7",
-          "key": "6b2c3ca7d4065797",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW The Baker Group – Long Calls for QTS Data Center doing HVAC control work. OSHA 10 or 30 required. Currently working 5-10s and 8 on Saturday. Onboard Tuesdays and Thursdays at 1pm. Paying $10 over scale and all overtime at the double time rate.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "a2166887d99f9470",
-          "key": "1131b4a2b613b8c3",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW TriCity Electric – Long calls for QTS Data Center. (5) 8 Schedule currently working (6) 10s, Starting at 6AM. OSHA 10 or 30 and Iowa Journeyman A license required. Orientation is on Tuesdays and Wednesdays at 7AM. Paying $10 over scale and all OT at double time rate.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "9b77b036c39d034b",
-          "key": "27fca2553e3a36c5",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW Van Ert Electric – Long calls for work at Prairie Creek Power House for the natural gas upgrade. Currently working (5) 10s, 7AM-530PM. Paying $5 over scale. Drug screen required. Onboarding Mondays and Wednesdays at 7AM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e17cb2adf1cb6be9",
-          "key": "348f372d8f500fd8",
-          "count": 3,
-          "classification": "JW",
-          "text": "3 JW Westphal – Long calls for QTS Data Center. Currently working (5) 10s with some Saturdays, starting at 6:45AM. Paying all OT at double time rate. Orientations are on site M-F.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c1316f2eb8196bc1",
-          "key": "bbaf118b663fd443",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Winger – Long call for multiple sites. OSHA 10, Journeyman A License, drug screen and background check required. Currently working (5) 10s and (1) 8, 6AM to 430PM.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "2612d80ee8f56f85",
-          "key": "ba1b5cea50465874",
-          "count": 1,
-          "classification": "JW",
-          "text": "1 JW Winger – Long calls for DAEC. OSHA 10, Journeyman A License, drug screen and background check required. Currently working (4) 10s, 6AM to 430PM. Start date of 10/26/26",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d563c413e2e56bd2",
-          "key": "ae89ed368a6efa1a",
-          "count": 1,
-          "classification": "VDV Tech",
-          "text": "1 VDV Tech The Baker Group – Long call for work in the area. Report to the shop Tuesday or Thursdays at 1PM for onboarding.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "cd2aba5dcf09b6ee",
-          "key": "f771d62eb9d63df2",
-          "count": 9,
-          "classification": "VDV Tech",
-          "text": "9 VDV Tech NTI – Long calls for QTS data center hanging cable tray, trapezes, data wire pulls. Working 54 hour weeks, currently working 68 hours. Report for onboarding on Mondays.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "6611318fe5bb8bb4",
-          "key": "331aca239e576dd6",
-          "count": 4,
-          "classification": "JW",
-          "text": "4 JW on 1st",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "f919c23028ffcccc",
-          "key": "e374f68d4a2acba7",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW on 2nd(17.3%)",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "8ecac954fc8fe055",
-          "key": "65d81a9f8deab7a1",
-          "count": 2,
-          "classification": "JW",
-          "text": "2 JW on 3rd(31.4%)",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l428-bakersfield-ca": {
       "local_no": 428,
       "url": "https://www.ibew428.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -868,7 +130,7 @@
     "l430-racine-wi": {
       "local_no": 430,
       "url": "https://www.ibewlu430.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -877,7 +139,7 @@
     "l440-riverside-ca": {
       "local_no": 440,
       "url": "https://www.ibew440.org/dispatch/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -886,877 +148,52 @@
     "l441-orange-county-ca": {
       "local_no": 441,
       "url": "https://www.ibewoc.com/calls-for-dispatch",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "October 26, 2026",
-      "total": 3,
-      "count_sum": 3,
-      "calls": [
-        {
-          "id": "05def7326dd1b7a0",
-          "key": "05def7326dd1b7a0",
-          "count": 1,
-          "classification": "JW",
-          "text": "Touchstone Engineering | 1 JW | DGS - Costa Mesa | Jobsite | Drug test | Indefinite (3 mos.) | 6:30 AM | Preferred",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "245e5ef6260bd11f",
-          "key": "245e5ef6260bd11f",
-          "count": 2,
-          "classification": "Sound Installers",
-          "text": "CSI Electrical Contractors | 2 Sound Installers | Choc - Orange | Office | Short (10 days) | 6:00 AM | Preferred",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l477-san-bernadino-zone-a-ca": {
       "local_no": 477,
       "url": "https://ibew477.org/job-calls/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 2,
-      "count_sum": 2,
-      "calls": [
-        {
-          "id": "d0f4d2382b553841",
-          "key": "5cdfbc29ce4369f5",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "1 – Journeyman Wireman to A&R Electric for the FMC Parking Structure Elevators in Fontana California. Report Monday October 26th, 2026, after dispatch. This job has a normal 6:00am start time. Job requires 2 valid forms of ID, OSHA 10 and CPR/First Aid certifications. This is a non-smoking job and is in tight spaces.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ab14287adc24b598",
-          "key": "789ec023ddad3b07",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "1 – Journeyman Wireman to Southern Contracting for the Rialto WWTP Solids Handling Project. Report after dispatch on October 26th, 2026. This job has a regular 6:00am start time. Job requires 2 valid forms of ID, OSHA 10 and CPR/First Aid certifications. Industrial Experience is preferred",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l477-san-bernadino-zone-b-ca": {
       "local_no": 477,
       "url": "https://ibew477.org/job-calls/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 2,
-      "count_sum": 2,
-      "calls": [
-        {
-          "id": "d0f4d2382b553841",
-          "key": "5cdfbc29ce4369f5",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "1 – Journeyman Wireman to A&R Electric for the FMC Parking Structure Elevators in Fontana California. Report Monday October 26th, 2026, after dispatch. This job has a normal 6:00am start time. Job requires 2 valid forms of ID, OSHA 10 and CPR/First Aid certifications. This is a non-smoking job and is in tight spaces.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ab14287adc24b598",
-          "key": "789ec023ddad3b07",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "1 – Journeyman Wireman to Southern Contracting for the Rialto WWTP Solids Handling Project. Report after dispatch on October 26th, 2026. This job has a regular 6:00am start time. Job requires 2 valid forms of ID, OSHA 10 and CPR/First Aid certifications. Industrial Experience is preferred",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:14:28.846Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l481-indianapolis-in": {
       "local_no": 481,
       "url": "https://www.ibew481.org/AvailableJobs/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 141,
-      "count_sum": 141,
-      "calls": [
-        {
-          "id": "e15130fed4c02b8e",
-          "key": "e15130fed4c02b8e",
-          "count": 10,
-          "classification": "JW Wireman",
-          "text": "Job #1 Meade Electric Start Date : 10/25/2026 Request Date : 03/17/2026 Meta Data Center, Lebanon Indiana Schedule : 5-10's Monday-Friday & 10 on Saturday Call Type : Long Classification : N/A People Requested : 10 JW Wireman Comments Following Call is for Wednesday October 28th and pays $10.00 above scale = $58.90 HR . Meade Electric needs 10JW at Meta Data Center located in Lebanon IN. Working 5-10’s Monday – Friday and 10 on Saturdays. ALL OVERTIME IS PAID AT DOUBLE TIME RATE AS LONG AS YOU WORK ALL AVAILBLE HOURS PER DAY . Current start time 6:00 am. New Construction installing various types of conduits inside & outside, under and above ground. You must have a Cell Phone and a current email address to complete on Boarding. Onsite Mouth Swab drug test and Off-Site 10 panel drug test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "de5b4447c14045c7",
-          "key": "de5b4447c14045c7",
-          "count": 2,
-          "classification": "JW Wireman",
-          "text": "Job #2 Payne Electric Start Date : 10/25/2026 Request Date : 07/22/2026 Whitestown Indiana Schedule : 6-10's Monday - Saturday Call Type : Long Classification : N/A People Requested : 2 JW Wireman Comments Payne Electric needs 2 JW at the Kroger located in Whitestown, Indiana. Working 6-10's Monday – Saturday. Background check, Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "33dccee562beb9ec",
-          "key": "33dccee562beb9ec",
-          "count": 29,
-          "classification": "JW Wireman",
-          "text": "Job #3 Electric Plus Start Date : 10/25/2026 Request Date : 11/22/2024 IU Hospital 16th and Capital Schedule : 5-10's and 8 Saturday Call Type : Long Classification : N/A People Requested : 29 JW Wireman Comments Electric Plus needs 29JW at IU \"Indiana University\" Hospital located 1330 N Senate Ave, downtown Indianapolis. Saturday is paid at double time if you work 90% of the available hours Monday through Saturday. AC/Heat inside work. Job currently working 5-10's Monday - Friday and 8 on Saturday. 6AM start time. Drug Test required. OHSA 10 Card required, if not OHSA 10 training will be provided. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d2c1648873c9cacc",
-          "key": "d2c1648873c9cacc",
-          "count": 3,
-          "classification": "JW Wireman",
-          "text": "Job #4 Exential Installation Services Start Date : 10/25/2026 Request Date : 10/21/2026 Lilly Lebanon Indiana Schedule : 5-10's Monday - Friday Call Type : Long Classification : N/A People Requested : 3 JW Wireman Comments Exential Installation Services needs 3JW on the Lilly project in Lebanon, IN. This job pays $5.00 above scale $53.90hr. All OT is paid at double time rate with the requirement of working 8 hours prior. Onboarding will be required before site access, through email & Docusign . ALL OUTSIDE WORK. All rigid conduit, large bore. Cable tray installation. Aerial lift work. OSHA 10 OR 30 IS REQUIRED . Drug test. Background check.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c1756cc5592fda75",
-          "key": "c1756cc5592fda75",
-          "count": 1,
-          "classification": "JW Wiremen",
-          "text": "Job #5 Industrial Electric Start Date : 10/25/2026 Request Date : 06/26/2024 1240 Brookville Way Schedule : Long Call Call Type : Long Classification : N/A People Requested : 1 JW Wiremen Comments This call pays Foreman scale $54.75 & requires supervising helpers in their prefab shop . Industrial Electric needs 1 JW at Industrial's Prefab Shop located on the Eastside of Indianapolis. Working 5-8’s Monday – Friday 6:00 am – 2:30 pm. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "6aacd3c60c425c79",
-          "key": "6aacd3c60c425c79",
-          "count": 6,
-          "classification": "JW Wireman",
-          "text": "Job #6 Ermco Start Date : 10/25/2026 Request Date : 04/06/2026 Lilly Southside Indianapolis Schedule : 5-8's Monday - Friday w/spotty OT Call Type : Long Classification : N/A People Requested : 6 JW Wireman Comments Ermco needs 6JW at Lilly 98C Corporate Center located Southside Indianapolis. Indoor conditions. Working 5-8's Monday – Friday w/spotty OT. 6:30 am start time. Background check, Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "65a59d18616a697a",
-          "key": "65a59d18616a697a",
-          "count": 23,
-          "classification": "JW Wireman",
-          "text": "Job #7 Ermco Start Date : 10/25/2026 Request Date : 03/31/2026 Google Data Center Mooresville Indiana Schedule : 5-10's and 8 Saturday Call Type : Long Classification : N/A People Requested : 23 JW Wireman Comments Following call is for Wednesday October 28th . Ermco needs 23JW at Google Data Center located in Mooresville Indiana. OSHA 10 IS REQUIRED TO TAKE THIS CALL . Working 5-10's & 8 on Saturday. ALL OVERTIME IS PAID AT DOUBLE TIME RATE AS LONG AS YOU WORK ALL AVAILABLE HOURS PER DAY. All outside New Construction in Outdoor conditions. You must have a Cell Phone and current email address to complete onboarding. Background check, Drug Test and safety toe boots required. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4b6eaaae8ee4efd6",
-          "key": "4b6eaaae8ee4efd6",
-          "count": 3,
-          "classification": "JW Wireman",
-          "text": "Job #8 Ermco Start Date : 10/25/2026 Request Date : 10/12/2026 Community North Hospital Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 3 JW Wireman Comments ERMCO needs 3JW at Community North Hospital. This is work inside an existing hospital. Working 5-8's Monday - Friday with a 6:30AM start time. OSHA 10 is required. Khaki pants are required. Drug test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "70f51d393d217132",
-          "key": "70f51d393d217132",
-          "count": 2,
-          "classification": "JW Wireman",
-          "text": "Job #9 Industrial Electric Start Date : 10/25/2026 Request Date : 02/13/2026 Lilly Plainfield Indiana Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 2 JW Wireman Comments Industrial Electric needs 2JW at PDC/Plainfield Lilly. This job is paying $5.00 above scale $53.90hr. Working 5-8’s Monday - Friday. 6:30 am start time. This is both inside and outside work new building tying into existing building. Background check. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "3918518c1bda3b25",
-          "key": "3918518c1bda3b25",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #10 Payne Electric Start Date : 10/25/2026 Request Date : 10/05/2026 Zionsville, IN Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Payne electric needs 1 JW at the Early Learning Center located in Zionsville, IN. Must have solar experience . Working 5-8's Monday - Friday with a 7AM start time. Background check. Drug test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "aef1c81ca0ac7e83",
-          "key": "aef1c81ca0ac7e83",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #11 Payne Electric Start Date : 10/25/2026 Request Date : 10/05/2026 Zionsville, IN Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Payne electric needs 1 JW at the Early Learning Center located in Zionsville, IN. Working 5-8's Monday - Friday with a 7AM start time. Background check. Drug test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5b18f872f7e9146d",
-          "key": "5b18f872f7e9146d",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #12 Industrial Electric Start Date : 10/25/2026 Request Date : 10/09/2024 1515 Drover Street Schedule : 5-8's Monday - Friday w/spotty OT Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments The following call pays 12% above scale $54.75 Hr. Industrial Electric needs 1 JW for a 5-8’s call with overtime available at Ingredion Maintenance (Old National Starch). Start time 7:00AM. Located at 1515 Dover St. Drug test required. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "eee42aaf3763afe9",
-          "key": "eee42aaf3763afe9",
-          "count": 7,
-          "classification": "JW Wireman",
-          "text": "Job #13 Industrial Electric Start Date : 10/25/2026 Request Date : 09/11/2024 IU Hospital 16th and Capital Schedule : 5-10's and 8 Saturday Call Type : Long Classification : N/A People Requested : 7 JW Wireman Comments Industrial Electric needs 7JW at IU \"Indiana University\" Hospital located 1330 N Senate Ave, downtown Indianapolis. Job currently working 5-10's Monday - Friday and 8 on Saturday. 6AM start time. Saturday is paid at double time if you work 90% of the available hours Monday through Saturday. This call is for indoor work with AC. Drug Test. OHSA 10 Card required, if not OHSA 10 training will be provided. This job is new construction. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "7622e0fcdb3909e3",
-          "key": "7622e0fcdb3909e3",
-          "count": 1,
-          "classification": "JW / Test Tech",
-          "text": "Job #14 Substation Electrical Testing Company Start Date : 10/25/2026 Request Date : 05/06/2026 Various locations Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW / Test Tech Comments Substation Electrical Testing Company needs 1 JW / Test Tech. Applicant must have a NETA 2 or NETA 3 certification . Clean driving record. Background check. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "cfe26a17561edddb",
-          "key": "cfe26a17561edddb",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #15 Payne Electric Start Date : 10/25/2026 Request Date : 05/20/2026 70 & Sam Jones Schedule : 4-10's Monday - Thursday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Payne Electric needs 1 JW at FAA Federal Aviation Administration Complex. Total of (5) five buildings located at 70 & Sam Jones Expressway. This is a Total Fire Alarm replacement project. Extensive Background check. This job is working 4-10’s Monday – Thursday with 6:00 am start time. All Visitors and Vehicles are subject to search per FAA regulations at any time .",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5291e6f935cf2a74",
-          "key": "5291e6f935cf2a74",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #16 Payne Electric Start Date : 10/25/2026 Request Date : 03/13/2026 North Putnam HS, Roachdale Indiana Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Payne Electric needs 1 JW at North Putnam High School located in Roachdale Indiana. This is a New Gymnasium add on to existing School. Working 5-8’s Monday – Friday. Background check, Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c8bd16ca34a7ad33",
-          "key": "c8bd16ca34a7ad33",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #17 TEST Start Date : 10/25/2026 Request Date : 09/10/2026 Various locations Schedule : Long call Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Total Electrical Systems Testing needs 1 Test technician NETA level 2 (NETA level 3 preferred) for various projects. Drug test required. Background check. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "6896bea7041c6e85",
-          "key": "6896bea7041c6e85",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #18 Industrial Electric Start Date : 10/25/2026 Request Date : 04/01/2025 Lilly Southside Indianapolis Schedule : 5-8's Monday - Friday w/spotty OT Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Industrial Electric needs 1JW at Eli Lilly LTC North Maintenance located Southside Indianapolis. This job is paying $5.00 above scale $53.90hr . This job is currently working 5-8's Monday - Friday w/spotty OT. 6:00 am start time . Drug Test, Background Check required . This is a long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c6ccd9f16c5a25db",
-          "key": "c6ccd9f16c5a25db",
-          "count": 3,
-          "classification": "JW Wireman",
-          "text": "Job #19 Industrial Electric Start Date : 10/25/2026 Request Date : 09/04/2026 Lilly Southside Indianapolis Schedule : 5-8's Monday - Friday w/spotty OT Call Type : Long Classification : N/A People Requested : 3 JW Wireman Comments Industrial Electric needs 3JW at LTCS API Maintenance. This job is paying $5.00 above scale $53.90hr. Working 5-8's with spotty OT. Start time is 6AM . Drug card required. Background check. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "410229b7b853680d",
-          "key": "410229b7b853680d",
-          "count": 3,
-          "classification": "JW Wireman",
-          "text": "Job #20 Industrial Electric Start Date : 10/25/2026 Request Date : 08/27/2026 16 Tech Indiana Ave. Schedule : 5-8's Monday - Friday & 8hrs on Saturday Call Type : Long Classification : N/A People Requested : 3 JW Wireman Comments Industrial Electric needs 3JW for IU Launch Accelerator project located at 16 Tech & Indiana Ave. . Working 5-8's Monday - Friday & 8hrs on Saturday. 6AM start time Drug test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d7b19eec01255d26",
-          "key": "d7b19eec01255d26",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #21 Industrial Electric Start Date : 10/25/2026 Request Date : 09/25/2025 Lilly Southside Indianapolis Schedule : 5-10's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Industrial Electric needs 1 JW at Eli Lilly LTCS Maintenance Southside Indianapolis. This job is paying $5.00 above scale $53.90hr. This job is currently working 5-10's Monday - Friday. 6AM Start time. Drug Test, Background Check required. long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "98a73ca83b44bf2a",
-          "key": "98a73ca83b44bf2a",
-          "count": 2,
-          "classification": "JW Wireman",
-          "text": "Job #22 Huston Electric Start Date : 10/25/2026 Request Date : 08/12/2026 Wabash College Schedule : 5-8's Monday - Friday w/spotty OT Call Type : Long Classification : N/A People Requested : 2 JW Wireman Comments Huston needs 2 JW for Wabash College . Working 5-8's w/spotty OT. Outside conditions, new construction on a new student center, central utility plant. Must be able to pass a background check . Drug test.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d94808faf4e38c8c",
-          "key": "d94808faf4e38c8c",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #23 Electric Plus Start Date : 10/25/2026 Request Date : 05/06/2025 Various locations Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Electric Plus needs 1JW working 5-8's Monday - Friday at various locations. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "aae9bedfd5d7c7f1",
-          "key": "aae9bedfd5d7c7f1",
-          "count": 10,
-          "classification": "JW Wireman",
-          "text": "Job #24 Ermco Start Date : 10/25/2026 Request Date : 07/22/2026 Lilly LP1 Lebanon Indiana Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 10 JW Wireman Comments Ermco needs 10JW at the Lilly LP1 project in Lebanon, Indiana. Temperature Control experience preferred but not required. Working 5-8's Monday - Friday 6AM - 2:30PM. OSHA 10 required. Drug test. Long sleeve's.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "024a804e4f4a7036",
-          "key": "024a804e4f4a7036",
-          "count": 1,
-          "classification": "JW Wireman",
-          "text": "Job #25 Electrical Specialists Start Date : 10/25/2026 Request Date : 01/22/2026 Various locations Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 1 JW Wireman Comments Electrical Specialists needs 1 JW at various locations working 5-8's Monday - Friday. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "443a37a6e9007dc3",
-          "key": "443a37a6e9007dc3",
-          "count": 1,
-          "classification": "JW / NETA Test Tech",
-          "text": "Job #26 Potomac Testing Start Date : 10/25/2026 Request Date : 04/17/2026 Various locations Schedule : Long Call Call Type : Long Classification : N/A People Requested : 1 JW / NETA Test Tech Comments Potomac Testing needs 1 JW / NETA Level 2 Test Tech at various locations. Clean driving record and able to travel. Background check, Drug Test required. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d931820dbbe55b54",
-          "key": "d931820dbbe55b54",
-          "count": 9,
-          "classification": "JW Wireman",
-          "text": "Job #27 Ermco Start Date : 10/25/2026 Request Date : 09/16/2025 Franklin Indiana Schedule : 5-10's Monday - Friday & 8 on Saturday Call Type : Long Classification : N/A People Requested : 9 JW Wireman Comments Ermco needs 9 JW at Malarchy Shingles Factory located 3540 Essdex Drive Franklin Indiana. All New Construction Working 5-10’s Monday – Friday and 8 on Saturday. 6:00 am Start time. Drug Test. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "7752a68d284d686c",
-          "key": "7752a68d284d686c",
-          "count": 5,
-          "classification": "JW Wireman",
-          "text": "Job #28 Electric Plus Start Date : 10/25/2026 Request Date : 01/25/2024 Various locations Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 5 JW Wireman Comments Electric Plus needs 5JW at Various Temperature Controls Jobs in and around Indianapolis . Most Jobs currently working 5-8's Monday - Friday . Drug Test, OHSA 10 Card required. Long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "f1b2eacf2d4d2bd3",
-          "key": "f1b2eacf2d4d2bd3",
-          "count": 2,
-          "classification": "JW Wireman",
-          "text": "Job #29 Industrial Electric Start Date : 10/25/2026 Request Date : 07/22/2022 Eli Lilly LCC Coporate Southside Indianapolis Schedule : 5-8's Monday - Friday Call Type : Long Classification : N/A People Requested : 2 JW Wireman Comments Industrial Electric needs 2JW at Eli Lilly LCC Corporate Center located Southside Indianapolis. This job is paying $5.00 above scale $53.90hr. This job is currently working 5-8's Monday - Friday with spotty OT. 6:00 am start time. Drug test, Extensive Background Check required. This is a long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "a4450d0b41f472c5",
-          "key": "a4450d0b41f472c5",
-          "count": 3,
-          "classification": "JW Wireman",
-          "text": "Job #30 Industrial Electric Start Date : 10/25/2026 Request Date : 06/01/2026 Lilly Southside Indianapolis Schedule : 6-10's Monday - Saturday Call Type : Long Classification : N/A People Requested : 3 JW Wireman Comments Industrial Electric needs 3JW at Eli Lilly K153 located on Southside Indianapolis. This job is paying $5.00 above scale $53.90hr. New Construction. Job is currently working 6-10's Monday - Saturday. Extensive Background check. 6:00 am start time. Drug Test. long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "f4350dcce4a51af4",
-          "key": "f4350dcce4a51af4",
-          "count": 6,
-          "classification": "JW Wireman",
-          "text": "Job #31 Ermco Start Date : 10/25/2026 Request Date : 02/14/2023 Various locations Schedule : 5-8’s Monday - Friday Call Type : Long Classification : N/A People Requested : 6 JW Wireman Comments Ermco needs 6JW for a regular 5-8’s call Monday - Friday at various locations. Drug Test. long call.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l494-milwaukee-wi": {
       "local_no": 494,
       "url": "https://www.ibew494.com/?zone=/unionactive/view_page.cfm&page=Referral",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "June 22, 2026",
-      "total": 198,
-      "count_sum": 198,
-      "calls": [
-        {
-          "id": "5bd40f0805202143",
-          "key": "5bd40f0805202143",
-          "count": 4,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 681 4 Milwaukee Inside JW's for a long call (REPOST) Contractor — B&B Electrical Contractors Start Date - 10/26/26 Start Time - 6:30 AM Jobsite: Oak Creek LNG (Liquid Natural Gas) (11002 S. Chicago Rd.) Base JW wage increase to $60.00 currently $1,050 per week subsistence for people traveling over 70 miles, must work all scheduled shifts to receive full subsistence 5% quarterly bonus Currently working 5-10's with possible Saturdays (6:30 AM to 5:00 PM) Safety toe boots required Must have physical copy of the following: Passport or two forms of government ID (ie. Drivers License, Social Security Card, Birth Certificate) Customer required drug test on site",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "fa8404a9866c3644",
-          "key": "fa8404a9866c3644",
-          "count": 3,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 674 3 Milwaukee Inside JW's for a long call (REPOST) Contractor — Terminal-Andrae Start Date - 10/26/26 Start Time - 7 AM Working 40 hours per week Currently paying JW wage plus $10/hr base wage increase Industrial and/or food plant experience preferred Must have valid Wisconsin JW license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "46148f358e7078cb",
-          "key": "46148f358e7078cb",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 659 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Uihlein Electric Start Date - 10/26/26 Start Time - 6 AM Jobsite : Various",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "1a0d358eedb0ee71",
-          "key": "1a0d358eedb0ee71",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 653 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Lee Mechanical Start Date - ASAP Start Time - 6 AM Special Skills: Service Truck Experience Potential service truck opportunity. Contractor willing to pay Foreman rate plus $10/hr base wage increase based on relevant work experience. Must have valid Wisconsin JW license and valid driver's license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d559bf882ffc367c",
-          "key": "d559bf882ffc367c",
-          "count": 2,
-          "classification": "C-Tech's",
-          "text": "Job#- 638 2 C-Tech's for a long call (REPOST) Contractor — Systems Technologies (Pieper) Start Date - 10/26/26 Start Time - 6 AM OSHA 30 and BICSI certification preferred. This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "5342d3284f4037cc",
-          "key": "5342d3284f4037cc",
-          "count": 5,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 620 5 Milwaukee Inside JW's for a long call (REPOST) Contractor — Gurtz Electric Start Date - ASAP Start Time - 7:30 AM on orientation day Jobsite : MKE Airport International Terminal Currently working 40 hours per week Up to 20 hours of overtime available at other sites This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "292dc61db20d0b5b",
-          "key": "292dc61db20d0b5b",
-          "count": 3,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 609 3 Milwaukee Inside JW's for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/26/26 Start Time - 7 AM Special Skills: Service Truck Experience Potential service truck opportunity. Industrial experience preferred. Contractor willing to pay foreman rate based on relevant work experience. Must have valid Wisconsin JW license and valid driver's license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e64b55d493165810",
-          "key": "e64b55d493165810",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 590 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Uihlein Electric Start Date - ASAP Start Time - 6 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 58+ hours per week This call requires a completed and passed drug test prior to being permitted access to the jobsite.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "14651abd7e725b8e",
-          "key": "14651abd7e725b8e",
-          "count": 4,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 567 4 Milwaukee Inside JW's for a long call (REPOST) Contractor — Roman Electric Start Date - ASAP Start Time - 6 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 58+ hours per week This call requires a completed and passed drug test prior to being permitted access to the jobsite.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "18570ef33cdf1122",
-          "key": "18570ef33cdf1122",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 529 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Nooter Start Date - ASAP Start Time - 6 AM Jobsite : Port Washington Data Center",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "64ca308b0eb27e25",
-          "key": "64ca308b0eb27e25",
-          "count": 9,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 507 9 Milwaukee Inside JW's for a long call (REPOST) Contractor — MJ Electric Start Date - ASAP Start Time - 6 AM Jobsite : Port Washington Data Center Outside underground duct bank and MV work Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 50-58 hours per week, Safety toe boots required Must have physical copy of the following: Passport or two forms of government ID (ie. Drivers License plus Social Security Card or Birth Certificate) This call requires a completed and passed drug test prior to being permitted access to the jobsite.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "49bfda2f1fb015d9",
-          "key": "49bfda2f1fb015d9",
-          "count": 1,
-          "classification": "Kettle Moraine Inside JW",
-          "text": "Job # 501 Kettle Moraine Inside JW for a long call (REPOST) Contractor — Altmeyer Electric Start Date - ASAP Start Time - 7 AM Special Skills: Service Truck Experience—Wisconsin State Licensed This call requires a drug test.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4280cd9a0d0efe26",
-          "key": "4280cd9a0d0efe26",
-          "count": 10,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 455 10 Milwaukee Inside JW's for a long call (REPOST) Contractor — Wil-Surge Electric Start Date - ASAP Start Time - 7 AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c7d25fe6d91e084a",
-          "key": "c7d25fe6d91e084a",
-          "count": 8,
-          "classification": "C-Tech's",
-          "text": "Job#- 454 8 C-Tech's for a long call (REPOST) Contractor — Wil-Surge Electric Start Date - ASAP Start Time - 7 AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d316c8a4e21ea1f2",
-          "key": "d316c8a4e21ea1f2",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job# - 437 1 Milwaukee Inside JW for a long call (REPOST) Contractor — High Voltage Maintenance Start Date - ASAP Start Time - 7 AM Special Skills : OSHA 30, NFPA 70E In need of a NETA certified technician or JW with experience in the troubleshooting, testing and repair of transformers, and medium and high voltage distribution systems.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4bf0cdb802c84177",
-          "key": "4bf0cdb802c84177",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 398 1 Milwaukee Inside JW for a long call (REPOST) Contractor — J. Miller Electric Start Date - ASAP Start Time - 7 AM Rigid conduit and control wiring experience preferred",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "1ab42dd32afa9392",
-          "key": "1ab42dd32afa9392",
-          "count": 1,
-          "classification": "C-Tech",
-          "text": "Job#- 350 1 C-Tech for a long call (REPOST) Contractor — Allcon Start Date - ASAP Start Time - 7 AM This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4c56b83442064a11",
-          "key": "4c56b83442064a11",
-          "count": 1,
-          "classification": "Kettle Moraine Inside JW",
-          "text": "Job#- 339 1 Kettle Moraine Inside JW for a long call (REPOST) Contractor — Van Ert Electric Start Date - ASAP Start Time - 7 AM Special Skills: Service Truck Experience—On Call Nights and Weekends/Holidays This Call Requires A Drug Test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "7a1333c51c79fe08",
-          "key": "7a1333c51c79fe08",
-          "count": 2,
-          "classification": "Kettle Moraine Inside JW's",
-          "text": "Job#- 321 2 Kettle Moraine Inside JW's for a long call (REPOST) Contractor — Uihlein Electric Start Date - ASAP Start Time - 7 AM Jobsite : WE Energies Service Center (250 N. Trenton Road, West Bend)",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "db2f6dd6b7ca071e",
-          "key": "db2f6dd6b7ca071e",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 318 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Roman Electric Start Date - ASAP Start Time - 7 AM Special Skills: Service Truck Experience Commercial service experience preferred Foreman pay Must have a valid Wisconsin JW electrical license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "daacb96952636e64",
-          "key": "daacb96952636e64",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 293 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Preferred Electrical Contractors Start Date - ASAP Start Time - 6 AM Working on an industrial project This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "056adef6667a2734",
-          "key": "056adef6667a2734",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 283 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Pro Electric Start Date - ASAP Start Time - 7 AM Special Skills: NFPA 70E, Service Truck Experience Railroad service experience helpful. Willing to travel throughout the Midwest. Safety-toed boots required.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "a5971c1ae685409e",
-          "key": "a5971c1ae685409e",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 282 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Pro Electric Start Date - ASAP Start Time - 7 AM Special Skills: NFPA 70E, Service Truck Experience Street lighting and traffic wiring experience helpful",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4f305702c65fca3d",
-          "key": "4f305702c65fca3d",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 279 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Tri-City Electric Start Date - ASAP Start Time - 7 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin registered or JW electrical license Safety toe boots required",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ecea6f6ae2850904",
-          "key": "ecea6f6ae2850904",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 250 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Hurt Electric Start Date - ASAP Start Time - 7 AM Special Skills: OSHA 30, NFPA 70E Jobsite : MATC (700 W. State St. Milwaukee, WI 53202) Fire alarm replacement project",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ceb1108e3671ffc2",
-          "key": "ceb1108e3671ffc2",
-          "count": 48,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 232 48 Milwaukee Inside JW's for a long call (REPOST) Contractor — Gurtz Electric Start Date - 10/20 /26 Start Time - 7:30 AM on orientation day Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 60 hours per week with more hours available, but not required Must have physical copy of Passport or Drivers License and Social Security Card This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "75ba4f069cf4313d",
-          "key": "75ba4f069cf4313d",
-          "count": 6,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 225 6 Milwaukee Inside JW's for a long call (REPOST) Contractor — Staff Electric Start Date - ASAP Start Time - 7:30 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 50+ hours per week Must have physical copy of the following: Passport or two forms of government ID (ie. Driver's License plus Social Security Card or Birth Certificate) This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "dfa795e6e386fc7d",
-          "key": "dfa795e6e386fc7d",
-          "count": 30,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 192 30 Milwaukee Inside JW's for a long call (REPOST) Contractor — Cupertino Electric Start Date - ASAP Start Time - 7 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 58-60 hours per week with more hours available Must have physical copy of the following: Passport or two forms of government ID (ie. Drivers License plus Social Security Card or Birth Certificate) This call requires a completed and passed drug test prior to being permitted access to the jobsite",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "643d8a8c574fbe9f",
-          "key": "643d8a8c574fbe9f",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 151 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/19/26 Start Time - 7 AM Healthcare experience preferred Overtime opportunities available This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "be8bf161784d4388",
-          "key": "be8bf161784d4388",
-          "count": 5,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 150 5 Milwaukee Inside JW's for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/19/26 Start Time - 7 AM Solar construction experience preferred Must have a valid Wisconsin electrical license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "0a57f012872a4c09",
-          "key": "0a57f012872a4c09",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 128 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Wil-Surge Electric Start Date - ASAP Start Time - 7 AM Special Skills : Service Truck experience Currently paying $3/hr over Foreman base wage",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d17b9d37bf19f3ef",
-          "key": "d17b9d37bf19f3ef",
-          "count": 5,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 102 5 Milwaukee Inside JW's for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/19/26 Start Time - 6 AM Jobsite : Port Washington Data Center Currently paying JW wage plus $10/hr base wage increase Must have a valid Wisconsin electrical license Currently working 50+ hours per week Must have physical copy of the following: Passport or two forms of government ID (ie. Driver's License plus Social Security Card or Birth Certificate) This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "994ae1889ebeeba3",
-          "key": "994ae1889ebeeba3",
-          "count": 4,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 082 4 Milwaukee Inside JW's for a long call (REPOST) Contractor — Wil-Surge Start Date - ASAP Start Time - 7 AM Jobsite : West Allis Department of Public Works Currently paying JW wage plus $3/hr base wage increase",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "b7d1880f50e306eb",
-          "key": "b7d1880f50e306eb",
-          "count": 2,
-          "classification": "Kettle Moraine Inside JW's",
-          "text": "Job#- 064 2 Kettle Moraine Inside JW's for a long call (REPOST) Contractor — Konz Electric Start Date - ASAP Start Time - 7 AM Jobsite : N6085 State Hwy 32, Sheboygan Falls, WI 53085",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e6cbd56bd076d93c",
-          "key": "e6cbd56bd076d93c",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 034 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/19/26 Start Time - 7 AM Solar Service Operations and Maintenance Service of existing solar arrays Must have a valid Wisconsin electrical license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "79503e625a861210",
-          "key": "79503e625a861210",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 995 1 Milwaukee Inside JW for a long call (REPOST) Contractor — AirFlow 360 Start Date - ASAP Start Time - 7:00 AM",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "034ddcc7f7f3ce31",
-          "key": "034ddcc7f7f3ce31",
-          "count": 5,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 969 5 Milwaukee Inside JW's for a long call (REPOST) Contractor — Lemberg Start Date - ASAP Start Time - 6:00 AM Must have a valid Wisconsin JW license",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ae898968b3bfe054",
-          "key": "ae898968b3bfe054",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 959 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Roman Electric Start Date - ASAP Start Time - 7 AM This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "50e26980c72951dc",
-          "key": "50e26980c72951dc",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 936 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Pieper Electric Start Date - 10/19/26 Start Time - 7 AM Cell tower work Must have a valid Wisconsin electrical license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "9f8c2bfd56e12dc2",
-          "key": "9f8c2bfd56e12dc2",
-          "count": 1,
-          "classification": "Milwaukee Inside JW",
-          "text": "Job#- 926 1 Milwaukee Inside JW for a long call (REPOST) Contractor — Trawicki Electric Start Date - ASAP Start Time - 7:00 AM Special Skills: NFPA 70E West Bend/Mequon area, potential service truck opportunity.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "d0b30d5e5e817a10",
-          "key": "d0b30d5e5e817a10",
-          "count": 8,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 918 8 Milwaukee Inside JW's for a long call (REPOST) Contractor — Staff Electric Start Date - ASAP Start Time - 7:30 AM Jobsite : Various MKE jobsites Must have a valid electrical license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "019c1765f5e62caf",
-          "key": "019c1765f5e62caf",
-          "count": 4,
-          "classification": "Milwaukee RW (Residential)",
-          "text": "Job#- 857 4 Milwaukee RW (Residential) for a long call (REPOST) Contractor — Roman Electric Start Date - ASAP Start Time - 7 AM Special Skills: Service Truck Experience Must have a valid Wisconsin Residential Journeyman or Wisconsin Journeyman license This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "49b1680011837d02",
-          "key": "49b1680011837d02",
-          "count": 1,
-          "classification": "C-Tech",
-          "text": "Job#- 851 1 C-Tech for a long call (REPOST) Contractor — Nelco Electric Start Date - ASAP Start Time - 7 AM This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "f22004a4320f4572",
-          "key": "f22004a4320f4572",
-          "count": 2,
-          "classification": "Milwaukee Inside JW's",
-          "text": "Job#- 842 2 Milwaukee Inside JW's for a long call (REPOST) Contractor — Allcon Start Date - ASAP Start Time - 7 AM Special Skills: NFPA 70E, Code of Excellence This call requires a drug test",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "c56964a1138f6524",
-          "key": "c56964a1138f6524",
-          "count": 1,
-          "classification": "Kettle Moraine JW",
-          "text": "Job#- 575 1 Kettle Moraine JW for a long call (REPOST) Contractor — Altmeyer Electric Start Date - ASAP Start Time - 8:30 AM Jobsite: Inn on Woodlake (705 Woodlake Road",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l570-tucson-az": {
       "local_no": 570,
       "url": "https://www.ibew570.org/job-board/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "October 3, 2026",
       "total": 0,
       "count_sum": 0,
@@ -1765,47 +202,16 @@
     "l577-appleton-wi": {
       "local_no": 577,
       "url": "https://www.ibewlu577.com/OpenJobs",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 3,
-      "count_sum": 3,
-      "calls": [
-        {
-          "id": "58a661aa6286cda3",
-          "key": "58a661aa6286cda3",
-          "count": 1,
-          "classification": "IN.JYM.WIREMAN",
-          "text": "VANDENHEUVEL ELECTRIC 07/06/2026 No Job Class : IN.JYM.WIREMAN Positions Requested : 1 Report On : 07/06/2026 Worksite : Franklin Elementary School Request Date : 10/24/2026 Comments :",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "e3bd39c5f86a2fb2",
-          "key": "e3bd39c5f86a2fb2",
-          "count": 1,
-          "classification": "IN.JYM.WIREMAN",
-          "text": "MICHELS POWER 10/12/2026 No Job Class : IN.JYM.WIREMAN Positions Requested : 1 Report On : 10/12/2026 Worksite : Shop Request Date : 10/24/2026 Comments :",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "ecb2f18a5d8afba8",
-          "key": "ecb2f18a5d8afba8",
-          "count": 1,
-          "classification": "IN.JYM.WIREMAN",
-          "text": "SARGENT ELECTRIC 10/19/2026 No Job Class : IN.JYM.WIREMAN Positions Requested : 1 Report On : 10/19/2026 Worksite : SHOP Request Date : 10/24/2026 Comments :",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l606-orlando-fl": {
       "local_no": 606,
       "url": "https://www.ibew606.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "October 23, 2026",
       "total": 10,
       "count_sum": 10,
@@ -1817,14 +223,14 @@
           "classification": "Journeyman Wireman",
           "text": "10 Journeyman Wireman calls for Miller Electric at project daisy in melbourne. The hours are 6 am to 4:30 pm, Monday through Sunday. This is a seven day short call. The scale is $32.64 an hour. Sunday is double time if all hours are worked. You must be able to pass a background check and be a U.S. Citizen. You will need a birth certificate for onboarding.",
           "first_seen": "2026-10-23T23:03:52.122Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
+          "last_seen": "2026-10-25T12:17:24.427Z"
         }
       ]
     },
     "l704-dubuque-ia": {
       "local_no": 704,
       "url": "https://www.ibew704.com/job-calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 0,
       "count_sum": 0,
@@ -1833,87 +239,25 @@
     "l756-daytona-beach-fl": {
       "local_no": 756,
       "url": "https://www.ibew756.org/?zone=/unionactive/view_page.cfm&page=Job20Calls",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
-      "total": 10,
-      "count_sum": 10,
-      "calls": [
-        {
-          "id": "5d0a15826f11aa10",
-          "key": "5d0a15826f11aa10",
-          "count": 10,
-          "classification": "JW",
-          "text": "Standing open Call for JW's to Cache Valley working at the Space Center at various locations pad. They are working 6-10's with a start time of 7am. You will start once your badge is approved. $40.30 Hr. They are looking for 10 JW to work at the Gigabay. If interested, let the Local know you would like to go to the Gigabay project.",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l890-janesville-wi": {
       "local_no": 890,
       "url": "https://ibew890.org/resign-referral/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": "October 23, 2026",
-      "total": 10,
-      "count_sum": 10,
-      "calls": [
-        {
-          "id": "906103f0b9a02eb7",
-          "key": "906103f0b9a02eb7",
-          "count": 1,
-          "classification": "Journeyman Wireman/Instrumentation Tech.",
-          "text": "Contractor: Atlantic Plant Maintenance (APM) Length: 2-Week Short Call Manpower Requested: 1- Journeyman Wireman/Instrumentation Tech. Start Date: ASAP – 7 a.m. Job Location: West Riverside Power Plant, Beloit, WI Requirements: Bring S.S. card, 2 forms of ID, voided check . Must be willing to work the OT Comments: 7-10s starting at 7am – Outside of 50 miles $181 per day per diem",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "4fc08ca3404aefe8",
-          "key": "4fc08ca3404aefe8",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "Contractor: Pieper Electric Length: Long Call Manpower Requested: 1 – Journeyman Wireman Start Date: 10/26/26 – 7:00 a.m. Job Location: Prefab shop, East Troy, WI Requirements: Bring ID, physical SS card, and voided check, electrical license, dues slip Comments: M-F",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "3b6d4005958c7e2e",
-          "key": "3b6d4005958c7e2e",
-          "count": 2,
-          "classification": "Journeyman Wireman",
-          "text": "Contractor: Michels Power Length: Long Call Manpower Requested: 2 – Journeyman Wireman Start Date: ASAP– 7:00 a.m. Job Location: Darien BESS, Darien WI Requirements: Bring ID, physical SS card, and voided check. Steel Toe Boots and Drug Testing are required, smoking not allowed on site. Comments: (6) 10s, M-SAT 7a-5:30p",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "25a3aa4dbf647c13",
-          "key": "25a3aa4dbf647c13",
-          "count": 1,
-          "classification": "Journeyman Wireman",
-          "text": "Contractor: The State Group, Inc Length: Long Call Manpower Requested: 1 – Journeyman Wireman Start Date: ASAP – 8:00 a.m. Job Location: Enbridge Energy, Whitewater, WI Requirements: Bring ID, physical SS card, and voided check. Steel Toe Boots and Drug Testing are required, smoking not allowed on site. Comments: (6) 10s, M-SAT 7a-5:30p, 6-month duration",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        },
-        {
-          "id": "62fd311dc633e1f7",
-          "key": "62fd311dc633e1f7",
-          "count": 5,
-          "classification": "Journeyman Wireman",
-          "text": "Contractor: Westphal Electric Length: Long Call Manpower Requested: 5 – Journeyman Wireman Start Date: ASAP – 6:00 a.m. Job Location: Cupertino, Edgerton, WI Requirements: Bring 2 forms of ID, physical SS card, and voided check Comments: Monday-Friday. 6am-4:30pm, (5)10s and 8hrs Saturday",
-          "source": "llm",
-          "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
-        }
-      ]
+      "total": 0,
+      "count_sum": 0,
+      "calls": []
     },
     "l1105-newark-oh": {
       "local_no": 1105,
       "url": "https://www.ibewlocal1105.org/job-calls/",
-      "scraped_at": "2026-10-25T12:14:28.846Z",
+      "scraped_at": "2026-10-25T12:17:24.427Z",
       "posted": null,
       "total": 20,
       "count_sum": 20,
@@ -1925,7 +269,7 @@
           "classification": "Journeyman Wireman",
           "text": "6-JW for #29736 , 1-JW for #26896 , 6-JW for #32445 , 1-JW for #33022, 1-JW for #33023, 1-JW for #33024, 1-JW for #33025 . Start date 11/2/26 . Start time 7:00am. Working Mon-Fri 10 hours per day mandatory. This call is paying an additional $100 for every 10 hour day worked. Additional $5.00 per hr for Inside Wiremen. Site-specific drug screen and background check. Long sleeves on site.",
           "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
+          "last_seen": "2026-10-25T12:17:24.427Z"
         },
         {
           "id": "1f9faa2e5f78b63f",
@@ -1934,7 +278,7 @@
           "classification": "JWS",
           "text": "5-JWs for THE SUPERIOR GROUP at CMH02 Conesville . start time 6:00am. working 4-10’s and 1-8, most Saturdays. regular call. All overtime paid as double time.",
           "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
+          "last_seen": "2026-10-25T12:17:24.427Z"
         },
         {
           "id": "118d20ad0f359a3d",
@@ -1943,7 +287,7 @@
           "classification": "JWS",
           "text": "4-JWs for THE SUPERIOR GROUP at Project Cyrus 1 . Working 4-10s, 8 on Friday, and spotty Saturdays. Start time 6:30 am on a regular call.",
           "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
+          "last_seen": "2026-10-25T12:17:24.427Z"
         },
         {
           "id": "4fd26596750a8224",
@@ -1952,7 +296,7 @@
           "classification": "JWS",
           "text": "5-JWs for THE SUPERIOR GROUP at Various Locations . Start time 7:00am. Working 4-10s and 1-8.",
           "first_seen": "2026-10-25T12:11:12.558Z",
-          "last_seen": "2026-10-25T12:14:28.846Z"
+          "last_seen": "2026-10-25T12:17:24.427Z"
         }
       ]
     }
