@@ -232,27 +232,33 @@ function parseJobCalls(html, formatNames) {
 /**
  * A local's page matched none of FORMATS — try the LLM extractor on the same
  * plain text, when LLM_EXTRACT=1 and a Gemini key are both present. Never
- * runs when the regex path already found calls, and never throws: a failure
- * here just means this local stays empty for the run, same as it would
- * without the fallback at all.
+ * runs when the regex path already found calls.
+ *
+ * Every return carries `attempted`: true only when extractCallsWithLLM() was
+ * actually called. Regex running zero-for-zero is a real signal (this local
+ * genuinely has no open calls); the fallback being off, missing its key, or
+ * erroring is NOT the same thing as "zero calls" — it's "we couldn't check" —
+ * and the caller uses that distinction to avoid overwriting a local's last
+ * known-good calls with an empty result just because this run couldn't see
+ * them (see the carry-forward logic around the main loop below).
  */
 async function maybeLlmFallback(slug, parsed) {
   const text = parsed._plainText;
   delete parsed._plainText;
-  if (parsed.calls.length || !LLM_EXTRACT) return parsed;
+  if (parsed.calls.length || !LLM_EXTRACT) return { ...parsed, attempted: false };
   if (!process.env.GEMINI_API_KEY && !process.env.GOOGLE_API_KEY) {
     if (!llmWarned) {
       console.warn('  LLM_EXTRACT=1 but GEMINI_API_KEY/GOOGLE_API_KEY is not set — skipping the LLM fallback.');
       llmWarned = true;
     }
-    return parsed;
+    return { ...parsed, attempted: false };
   }
-  if (!text) return parsed;
+  if (!text) return { ...parsed, attempted: false };
   try {
     const { calls: llmCalls } = await extractCallsWithLLM(text);
     if (!llmCalls.length) {
       console.log(`  ${slug}: LLM fallback found no calls`);
-      return parsed;
+      return { ...parsed, attempted: true };
     }
     const calls = llmCalls.map((c) => ({
       id: callId(c.text), key: listingKey(c.text),
@@ -261,10 +267,10 @@ async function maybeLlmFallback(slug, parsed) {
     }));
     const countSum = calls.reduce((a, c) => a + c.count, 0);
     console.log(`  ${slug}: LLM fallback found ${calls.length} call(s)`);
-    return { ...parsed, total: parsed.total || countSum, count_sum: countSum, calls };
+    return { ...parsed, total: parsed.total || countSum, count_sum: countSum, calls, attempted: true };
   } catch (e) {
     console.warn(`  ${slug}: LLM fallback failed — ${e.message}`);
-    return parsed;
+    return { ...parsed, attempted: false };
   }
 }
 
@@ -404,7 +410,19 @@ const entries = Object.entries(config).filter(([k, v]) => /^l\d/.test(k) && v &&
 for (const [slug, { local_no, url, format }] of entries) {
   if (ONLY && slug !== ONLY) continue;
   try {
-    const scraped = await maybeLlmFallback(slug, parseJobCalls(await getHtml(slug, url), [].concat(format || [])));
+    let scraped = await maybeLlmFallback(slug, parseJobCalls(await getHtml(slug, url), [].concat(format || [])));
+    // Regex found zero AND the LLM fallback wasn't actually run this time
+    // (off, no key, or errored) — if this local's last committed calls came
+    // from the LLM path, a bare regex pass can never reproduce them, so an
+    // empty result here means "couldn't check," not "now zero." Keep the
+    // last known-good calls instead of wiping them — this is exactly what
+    // went wrong when a push nudged CI into a run with no Gemini key set:
+    // 1738 real calls got committed away to 5 in one pass.
+    const prevCalls = prev[slug]?.calls || [];
+    if (!scraped.attempted && scraped.calls.length === 0 && prevCalls.some((c) => c.source === 'llm')) {
+      console.warn(`  ${slug}: LLM fallback didn't run — keeping ${prevCalls.length} previously-known call(s) instead of clearing them`);
+      scraped = { ...scraped, posted: prev[slug].posted, total: prev[slug].total, count_sum: prev[slug].count_sum, calls: prevCalls };
+    }
     const parsed = withManual(slug, scraped);
     commitLocal(slug, local_no, parsed, { url });
     ok += 1;
